@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/font/materialdesignicons.ttf</file>
+        <file>assets/img/banana.png</file>
+        <file>assets/img/coment.png</file>
+        <file>assets/img/play.png</file>
+        <file>assets/img/leftNav/a_z.png</file>
+        <file>assets/img/leftNav/a3a.png</file>
+        <file>assets/img/leftNav/a3c.png</file>
+        <file>assets/img/leftNav/a4g.png</file>
+        <file>assets/img/leftNav/a4g2.png</file>
+        <file>assets/img/leftNav/a7p.png</file>
+        <file>assets/img/leftNav/a7p2.png</file>
+        <file>assets/img/leftNav/d.png</file>
+        <file>assets/img/leftNav/u9.png</file>
+        <file>assets/img/leftNav/u9Red.png</file>
+        <file>assets/img/leftNav/ub.png</file>
+        <file>assets/img/leftNav/uc.png</file>
+        <file>assets/img/leftNav/ug.png</file>
+        <file>assets/img/leftNav/uh.png</file>
+        <file>assets/img/leftNav/z0.png</file>
+        <file>assets/img/leftNav/zz.png</file>
+    </qresource>
+</RCC>
