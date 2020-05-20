@@ -14,7 +14,7 @@ Rectangle{
 
     readonly property string pref : "qrc:/assets/img/leftNav/"
     signal popupOpened(var open);
-    signal getRankFinish(var js);
+    signal loginFinish(var js);
 
     property bool logined :false
     property var jsLogin : ({avatar:"",username:"",userid:""})
@@ -36,6 +36,7 @@ Rectangle{
             tabBar.setVisible(6, true)
         }
         console.log("jsLogin", JSON.stringify(jsLogin))
+        loginFinish(js)
     }
 
     Item{
@@ -171,7 +172,6 @@ Rectangle{
             root.setLoginInfo(js)
             popLogin.close()
         }
-        onGetRankFinish: getRankFinish(js)
     }
 
     Component.onCompleted: {

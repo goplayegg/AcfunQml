@@ -17,7 +17,6 @@ Popup {
     height:520
 
     signal loginFinish(var js);
-    signal getRankFinish(var js);
     function setLoginData(js){
         g_preference.setValue("acPassToken",js.acPassToken)
         g_preference.setValue("acSecurity",js.acSecurity)
@@ -25,9 +24,6 @@ Popup {
         g_preference.setValue("token",js.token)
         g_preference.setValue("userid",js.userid)
         loginFinish(js)
-        AcService.getRank(function(res){
-            getRankFinish(res)
-        })
     }
 
     function initLogin(){

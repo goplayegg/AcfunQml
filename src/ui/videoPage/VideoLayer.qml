@@ -12,6 +12,7 @@ Rectangle {
     property string title :"Title"
     function stop(){
         vlcPlayer.stop()
+        console.log("vlcPlayer stop")
     }
 
     function start(){

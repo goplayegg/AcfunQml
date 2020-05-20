@@ -23,127 +23,127 @@ Window {
     minimumHeight: 600
     title: qsTr("AcfunQml")
 
-    onClosing:{
+    onClosing: {
         console.log("mainWindow closing")
-        videoPage.stop()
+        if(videoLoader.item){
+            videoLoader.item.stop()
+        }
     }
 
-    Row{
-        id: rowMain
+    property string videoPageSource: "qrc:/ui/videoPage/VideoPage.qml"
+    property var stackViewLoader: [null, acMainLoader, acMainLoader2, acMainLoader3]
+    property var stackViewSource: ["",
+        "qrc:/ui/mainPage/AcMainPage.qml",
+        "qrc:/ui/mainPage/AcMainPage.qml",
+        "qrc:/ui/mainPage/AcMainPage.qml"]
+    Item {
+        id: root
         anchors.fill: parent
-        z:1
-
-        LeftNavig{
+        LeftNavig {
             id: navi
             height: parent.height
             onPopupOpened: {
-                rowMain.enabled = !open
+                root.enabled = !open
             }
-            onGetRankFinish: {
-
+            onLoginFinish:{
+                stack.currentItem.item.refresh()
+            }
+            onCurIdxChanged: {
+                stackViewLoader[curIdx].source = stackViewSource[curIdx]
+                stack.replace(null, stackViewLoader[curIdx])//repRect.itemAt(curIdx))
             }
         }
 
-        Item{
-            id:mainContent
+        StackView {
+            id:stack
+            anchors.left: navi.right
+            anchors.right: parent.right
+            //anchors.leftMargin: 100
             height: parent.height
-            width: parent.width-navi.width
 
-            VideoPage {
-                id: videoPage
-                visible: false
-                width:parent.width
-                height:parent.height-100
-                x:0
-                y:20
+            Component.onCompleted: {
+                stackViewLoader[1].source = stackViewSource[1]
+                initialItem =  stackViewLoader[1].item
             }
 
-            AcMainPage{
-                id:acMain
-                visible: false
-                anchors.fill: parent
-                onOpenVideo:{
+            replaceEnter:Transition {
+                PropertyAnimation {
+                    property: "opacity"
+                    from: 0
+                    to:1
+                    duration: 200
+                }
+            }
+
+            replaceExit:Transition {
+                PropertyAnimation {
+                    property: "opacity"
+                    from: 0
+                    to:1
+                    duration: 20
+                }
+            }
+        }
+
+        Loader{
+            id: videoLoader
+            visible: false
+            z:9
+            anchors.fill: parent
+            Connections {
+                target: videoLoader.item
+            }
+        }
+
+        Loader{
+            id: acMainLoader
+            //anchors.fill: parent
+            Connections {
+                target: acMainLoader.item
+                onOpenVideo: {
                     console.log("open video:"+JSON.stringify(js))
-
-                    acMain.visible = false
-                    videoPage.visible = true
-                    videoPage.title = js.title
-                    AcService.getVideo(js.vId,js.sId,js.sType,funPlayVideo)
-                    videoPage.setDanm(js)
+                    videoLoader.source = videoPageSource
+                    videoLoader.visible = true
+                    videoLoader.item.open(js)
                 }
             }
+            onLoaded: {
+                console.log("open acMainLoader1")
+            }
+        }
 
-            Rectangle {
-                id: settingsButton
-
-                height: 40
-                width: 12
-                color: AppStyle.accentColor
-                z: 6
-                anchors.top: parent.top
-                anchors.right: parent.right
-                MouseArea {
-                    anchors.fill: parent
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: {
-                        videoPage.setDanm()
-                        console.debug('open settings page')
-                        //dlgOpen.open()
-                    }
+        Loader{
+            id: acMainLoader2
+            //anchors.fill: parent
+            Connections {
+                target: acMainLoader2.item
+                onOpenVideo: {
+                    console.log("open video:"+JSON.stringify(js))
+                    videoLoader.source = videoPageSource
+                    videoLoader.visible = true
+                    videoLoader.item.open(js)
                 }
             }
+            onLoaded: {
+                console.log("open acMainLoader2")
+            }
+        }
 
-            Button{
-                anchors.topMargin: 50
-                id:btnTest
-                anchors.top: settingsButton.bottom
-                anchors.right: parent.right
-                height: 50
-                width: 50
-                text:qsTr("Rank")
-                //textColor: "white"
-                //color: AppStyle.accentColor
-                onClicked: {
-                    AcService.getRank(function(res){
-                        videoPage.stop()
-                        videoPage.visible = false
-                        acMain.visible = true
-                        acMain.updateInfo(res)
-                    })
+        Loader{
+            id: acMainLoader3
+            //anchors.fill: parent
+            Connections {
+                target: acMainLoader3.item
+                onOpenVideo: {
+                    console.log("open video:"+JSON.stringify(js))
+                    videoLoader.source = videoPageSource
+                    videoLoader.visible = true
+                    videoLoader.item.open(js)
                 }
             }
-
-            Button{
-                anchors.topMargin: 50
-                id:btnBack
-                anchors.top: btnTest.bottom
-                anchors.right: parent.right
-                height: 50
-                width: 50
-                text:qsTr("Back")
-                //textColor: "white"
-                //color: AppStyle.accentColor
-                onClicked: {
-                    videoPage.stop()
-                    videoPage.visible = false
-                    acMain.visible = true
-                }
+            onLoaded: {
+                console.log("open acMainLoader3")
             }
         }
     }
-
-
-    function funPlayVideo(js){
-        if(0 !== js.result){
-            //弹错误
-            //js.error_msg
-        }
-
-        var playInfos = js.playInfo.streams
-        var url = playInfos[1].playUrls[0]
-        console.log("url"+url)
-        videoPage.stop()
-        videoPage.videoUrl = url
-    }
-
 }
