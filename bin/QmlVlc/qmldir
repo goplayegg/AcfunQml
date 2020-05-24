@@ -1,0 +1,2 @@
+module QmlVlc
+plugin QmlVlcPlugin
