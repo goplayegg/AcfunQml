@@ -25,12 +25,14 @@
         <file>ui/navigator/LeftNavig.qml</file>
         <file>ui/navigator/Login.qml</file>
         <file>ui/player/ControlLayer.qml</file>
-        <file>ui/videoPage/VideoLayer.qml</file>
         <file>ui/videoPage/VideoPage.qml</file>
         <file>ui/components/sideBar/qmldir</file>
         <file>ui/components/sideBar/SideBar.qml</file>
         <file>ui/components/sideBar/SideBarItem.qml</file>
         <file>ui/components/sideBar/SideBarSlider.qml</file>
         <file>ui/global/Global.qml</file>
+        <file>ui/components/SearchToolBar.qml</file>
+        <file>ui/components/BusyIndicatorWithText.qml</file>
+        <file>ui/player/AcPlayer.qml</file>
     </qresource>
 </RCC>

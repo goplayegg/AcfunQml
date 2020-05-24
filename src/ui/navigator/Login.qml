@@ -1,6 +1,5 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
-import AcfunQml 1.0
 
 import "qrc:///ui/components/" as COM
 import "qrc:///ui/global/styles/"
@@ -25,7 +24,17 @@ Popup {
         g_preference.setValue("userid",js.userid)
         loginFinish(js)
     }
-
+    function gotUserInfo(res){
+        if(res.result === 0){
+            var userInfo = {
+                "avatar": res.info.headUrl,
+                "username": res.info.userName,
+                "userid": res.info.userId,
+                "level": res.info.level
+            }
+            loginFinish(userInfo)
+        }
+    }
     function initLogin(){
         var acPass = g_preference.value("acPassToken")
         if(!acPass)
@@ -39,6 +48,7 @@ Popup {
             userid:parseInt(g_preference.value("userid"))
         }
         AcService.makeCookie(auth)
+        //AcService.getUserInfo(gotUserInfo)
     }
 
     Column{

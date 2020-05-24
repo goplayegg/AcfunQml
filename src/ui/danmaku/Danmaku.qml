@@ -13,6 +13,13 @@ Label{
     text: info.body
     font.pixelSize: info.size
 
+    function togglePause(isPause){
+        if(isPause){
+            flyAnim.pause()
+        }else{
+            flyAnim.resume()
+        }
+    }
 
     function start(){
         switch(info.mode){

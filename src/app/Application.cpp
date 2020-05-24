@@ -1,8 +1,5 @@
 ﻿#include "Application.h"
-
-#ifndef DISABLE_GUI
 #include "QmlWindow.h"
-#endif
 
 #include <QTextCodec>
 #include <QTranslator>
@@ -16,10 +13,7 @@ class ApplicationPrivate
 public:
     ApplicationPrivate(Application *app);
 
-#ifndef DISABLE_GUI
     QPointer<QmlWindow> qmlWindow;
-#endif
-
     QTranslator translator;
 };
 
@@ -37,10 +31,7 @@ Application::Application(int &argc, char **argv)
     // 1.setup application information: verison/window icon/attibute ...
     setApplicationName("acfunQml");
     setOrganizationDomain("acfunQml.org");
-
-#if !defined (DISABLE_GUI)
     setDesktopFileName("org.acfunQml.acfunQml");
-#endif
 
     // enable logger
 	// ...
@@ -77,12 +68,11 @@ int Application::exec(const QStringList &params)
 {
     Q_UNUSED(params)
 
-#ifndef DISABLE_GUI
     d->qmlWindow = new QmlWindow(this);
     d->qmlWindow->qmlRegisterType();
     d->qmlWindow->show();
-#endif
 
-
-    return BaseApplication::exec();
+    auto ret = BaseApplication::exec();
+    delete d->qmlWindow;
+    return ret;
 }

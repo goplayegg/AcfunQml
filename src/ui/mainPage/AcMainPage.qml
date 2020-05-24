@@ -8,9 +8,15 @@ Item{
 
     signal openVideo(var js)
     function refresh(){
+        busyBox.text = qsTr("Loading video list ...")
+        busyBox.running = true
         AcService.getRank(function(res){
             updateInfo(res)
         })
+    }
+
+    function back(){
+
     }
 
     function updateInfo(js){
@@ -25,55 +31,29 @@ Item{
             rankModel.append(jsCurRank)
             console.log("rank append:"+js.rankList[i].title)
         }
+        busyBox.running = false
     }
     ListModel {
         id:rankModel
     }
     GridView {
+        id: cardView
         anchors.fill: parent
-        anchors.margins: 15
+        anchors.margins: 0
         clip: true
         cellWidth: 205
         cellHeight: cellWidth
+        ScrollBar.vertical : ScrollBar{
+            id: scrollbar
+            anchors.right: cardView.right
+            y: cardView.visibleArea.yPosition * cardView.height
+            width: 10
+            height: cardView.visibleArea.heightRatio * cardView.height
+        }
+
         model:  rankModel
         delegate: VideoInfoCard{
                 infoJs: model
             }
-    }
-
-
-    Button{
-        anchors.topMargin: 50
-        id:btnTest
-        anchors.top: parent.bottom
-        anchors.right: parent.right
-        height: 50
-        width: 50
-        text:qsTr("Rank")
-        //textColor: "white"
-        //color: AppStyle.accentColor
-        onClicked: {
-            videoPage.stop()
-            videoPage.visible = false
-            acMain.visible = true
-            acMain.refresh()
-        }
-    }
-
-    Button{
-        anchors.topMargin: 50
-        id:btnBack
-        anchors.top: btnTest.bottom
-        anchors.right: parent.right
-        height: 50
-        width: 50
-        text:qsTr("Back")
-        //textColor: "white"
-        //color: AppStyle.accentColor
-        onClicked: {
-            videoPage.stop()
-            videoPage.visible = false
-            acMain.visible = true
-        }
     }
 }

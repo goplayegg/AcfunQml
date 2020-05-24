@@ -4,23 +4,48 @@ import "qrc:///ui/global/"
 
 Item{
     id:root
+    visible: false
+
     //property var jsonDanm: ({})
     property int timeStamp: 0
     property var componentDanm: null
+    property bool paused: false
+    onPausedChanged: {
+        togglePause(paused)
+    }
 
-    function open(js){
+    function open(js) {
         AcService.getDanm(js.vId, 0, 9, function(res){
             danmPaser.updateDanm(res)
             danmPaser.start()
             })
         visible = true
     }
-    function close(){
+    function close() {
         visible = false
         danmPaser.stop()
+        var danms = danmContainer.children
+        var cnt = danms.length
+        for(var idx = 0; idx<cnt; ++idx){
+             danms[idx].destroy()
+        }
     }
 
-    DanmakuPaser{
+    function togglePause(isPause) {
+        root.paused = isPause
+        if(isPause)
+            danmPaser.pause()
+        else
+            danmPaser.resume()
+
+        var danms = danmContainer.children
+        var cnt = danms.length
+        for(var idx = 0; idx<cnt; ++idx){
+             danms[idx].togglePause(isPause)
+        }
+    }
+
+    DanmakuPaser {
         id:danmPaser
         onPopDanm:{
             var danms = jsObj.list
@@ -29,6 +54,10 @@ Item{
                 console.log("danm added:"+JSON.stringify(danms[i]))
             }
         }
+    }
+    Item {
+        id: danmContainer
+        anchors.fill: parent
     }
 
     property int flyY: 0
@@ -53,14 +82,14 @@ Item{
         }
     }
 
-    function addSingleDanm(info){
+    function addSingleDanm(info) {
         if(null == componentDanm){
             componentDanm = Qt.createComponent("Danmaku.qml")
         }
         if(componentDanm.status === Component.Ready){
             var danmY = getSuitY(info.mode)
             console.log("danm getSuitY:"+danmY)
-            var tmp = componentDanm.createObject(root,{"y":danmY, "info":info})
+            var tmp = componentDanm.createObject(danmContainer,{"y":danmY, "info":info})
             tmp.start();
         }
     }

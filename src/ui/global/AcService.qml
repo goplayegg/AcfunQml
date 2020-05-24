@@ -8,6 +8,7 @@ Item {
 
     property string cookie: ""
     property string token: ""
+    property string acSecurity: ""
 
     signal httpError(var errMsg);
 
@@ -22,6 +23,10 @@ Item {
                 null, body, callBack);
     }
 
+    function getUserInfo(cb) {
+        var url = "api-new.acfunchina.com/rest/app/user/personalInfo";
+        request('GET', url, null, null, cb);
+    }
 
     function getRank(cb) {
         var url = "api-new.app.acfun.cn/rest/app/rank/channel";
@@ -49,8 +54,19 @@ Item {
         request('GET', url, qParam, null, cb);
     }
 
+    function getComment(sourceId, cb){
+        var url = "api-new.app.acfun.cn/rest/app/comment/list";
+        var qParam = [{"sourceId": sourceId},
+                {"sourceType": 3},
+                {"pcursor": 0},
+                {"count": 10},
+                {"showHotComments": 1}];
+
+        request('GET', url, qParam, null, cb);
+    }
+
     function addHeader(hreq){
-        hreq.setRequestHeader("User-agent", "acvideo core/6.17.1.879(OPPO;OPPO A83;7.1.1)");
+        hreq.setRequestHeader("User-agent", "acvideo core/6.19.1.907(OPPO;OPPO A83;7.1.1)");
         hreq.setRequestHeader("acPlatform","ANDROID_PHONE");
         hreq.setRequestHeader("deviceType","1");
         hreq.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -65,6 +81,7 @@ Item {
         {
             hreq.setRequestHeader("access_token", token);
         }
+        hreq.setRequestHeader("token", acSecurity)
         return hreq;
     }
 
@@ -93,6 +110,7 @@ Item {
         cookie +=";old_token="+ res.token;
         cookie +=";userid="+ res.userid;
         token = res.token;
+        acSecurity = res.acSecurity;
     }
 
     function request(verb, endpoint, qParam, body, cb) {

@@ -109,6 +109,11 @@ Item {
         obj.checked = true
     }
 
+
+    ButtonGroup {
+        id: btnGroup
+        //buttons: speedMenu.children
+    }
     Menu { // 速度菜单
             title: "Speed"
             id: speedMenu

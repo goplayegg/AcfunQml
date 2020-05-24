@@ -15,6 +15,8 @@ public:
 
     Q_INVOKABLE void start();
     Q_INVOKABLE void stop();
+    Q_INVOKABLE void pause();
+    Q_INVOKABLE void resume();
     Q_INVOKABLE void updateDanm(const QJsonObject &jsObj);
 
 signals:

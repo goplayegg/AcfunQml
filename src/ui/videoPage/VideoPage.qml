@@ -1,43 +1,43 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
-import "qrc:///ui/components/"
+import "qrc:///ui/player/"
 import "qrc:///ui/global/"
+import "qrc:///ui/libraries/functions.js" as FUN
 
 Item{
     id:root
 
-    property alias videoUrl :player.videoUrl
     property alias title :player.title
 
     function open(js){
         title = js.title
-        AcService.getVideo(js.vId,js.sId,js.sType,funPlayVideo)
-        player.setDanm(js)
+        player.start(js)
+        //AcService.getComment(js.vId, showComment)
     }
 
-    function funPlayVideo(js){
-        if(0 !== js.result){
-            //弹错误
-            //js.error_msg
-        }
-
-        var playInfos = js.playInfo.streams
-        var url = playInfos[1].playUrls[0]
-        console.log("url"+url)
+    function back(){
         stop()
-        videoUrl = url
     }
 
-    function stop(){
+    function showComment(res){
+        console.log("showComment"+JSON.stringify(res))
+    }
+
+    function stop() {
         player.stop()
     }
 
-    VideoLayer{
+    AcPlayer {
         id: player
         anchors.fill: parent
+        onVideoReady: {
+            busyBox.running = false
+        }
     }
 
     Component.onCompleted: {
         console.log("VideoPage completed")
+        var d=new Date();
+        console.log(FUN.fmtTime(d, "hh:mm:ss"))
     }
 }

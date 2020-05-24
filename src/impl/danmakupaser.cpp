@@ -5,6 +5,9 @@
 #include <QDebug>
 #include <QJsonArray>
 #include <QTimer>
+#include <QDateTime>
+#define CUT_TIME_S QDateTime::currentSecsSinceEpoch()
+#define CUT_TIME_MS QDateTime::currentMSecsSinceEpoch()
 
 DanmakuPaser::DanmakuPaser(QObject *parent)
     :QObject(parent)
@@ -37,13 +40,27 @@ void DanmakuPaser::start()
     m_pTimer->start();
 }
 
+static int g_iTimeStamp = 0;
 void DanmakuPaser::stop()
+{
+    g_iTimeStamp = 0;
+    m_pTimer->stop();
+    m_mapDanm.clear();
+}
+
+void DanmakuPaser::pause()
 {
     m_pTimer->stop();
 }
 
+void DanmakuPaser::resume()
+{
+    m_pTimer->start();
+}
+
 void DanmakuPaser::updateDanm(const QJsonObject &jsObj)
 {
+    auto iStart = CUT_TIME_MS;
     if(0){
         getDanm();
         getDanmMap();
@@ -51,12 +68,13 @@ void DanmakuPaser::updateDanm(const QJsonObject &jsObj)
         m_jsDanm = jsObj;
         getDanmMap();
     }
+    auto elapse = CUT_TIME_MS - iStart;
+    qDebug()<<"updateDanm elapse: " << elapse << " ms";
 }
 
 void DanmakuPaser::onTimerPop()
 {
     //快进？变速？
-    static int g_iTimeStamp = 0;
     int iTimeStamp = g_iTimeStamp;//getVideoTS();
     g_iTimeStamp+=100;
     QJsonArray arrPop;

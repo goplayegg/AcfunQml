@@ -1,17 +1,14 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Window 2.12
-import QtQuick.Dialogs 1.3
-import QtQuick.Layouts 1.12
 
-import AcfunQml 1.0
-import "qrc:///ui/components/" as COM
-import "qrc:///ui/global/styles/"
-import "qrc:///ui/player/" as PLAYER
-import "qrc:///ui/global/"
+import "qrc:///ui/components/"
+//import "qrc:///ui/global/styles/"
+//import "qrc:///ui/global/"
 import "qrc:///ui/navigator/"
 import "qrc:///ui/mainPage/"
 import "qrc:///ui/videoPage/"
+import "qrc:///ui/libraries/functions.js" as FUN
 
 Window {
     id: mainwindow
@@ -41,11 +38,12 @@ Window {
         anchors.fill: parent
         LeftNavig {
             id: navi
+            z: content.z+1
             height: parent.height
             onPopupOpened: {
                 root.enabled = !open
             }
-            onLoginFinish:{
+            onLoginFinish: {
                 stack.currentItem.item.refresh()
             }
             onCurIdxChanged: {
@@ -54,42 +52,65 @@ Window {
             }
         }
 
-        StackView {
-            id:stack
+        Item {
+            id: content
+            anchors.leftMargin: 45
             anchors.left: navi.right
+            anchors.rightMargin: 15
             anchors.right: parent.right
-            //anchors.leftMargin: 100
             height: parent.height
 
-            Component.onCompleted: {
-                stackViewLoader[1].source = stackViewSource[1]
-                initialItem =  stackViewLoader[1].item
-            }
-
-            replaceEnter:Transition {
-                PropertyAnimation {
-                    property: "opacity"
-                    from: 0
-                    to:1
-                    duration: 200
+            SearchToolBar {
+                id: tool
+                anchors.top: parent.top
+                anchors.topMargin: 30
+                width: parent.width
+                backEnable: stack.depth>1
+                onRefresh: {
+                    stack.currentItem.item.refresh()
+                }
+                onBack: {
+                    stack.currentItem.item.back()
+                    stack.pop()
                 }
             }
 
-            replaceExit:Transition {
-                PropertyAnimation {
-                    property: "opacity"
-                    from: 0
-                    to:1
-                    duration: 20
+            StackView {
+                id: stack
+                width: parent.width
+                anchors.topMargin: 15
+                anchors.top: tool.bottom
+                anchors.bottom: parent.bottom
+
+                Component.onCompleted: {
+                    stackViewLoader[1].source = stackViewSource[1]
+                    initialItem =  stackViewLoader[1].item
+                }
+
+                replaceEnter:Transition {
+                    PropertyAnimation {
+                        property: "opacity"
+                        from: 0
+                        to:1
+                        duration: 200
+                    }
+                }
+
+                replaceExit:Transition {
+                    PropertyAnimation {
+                        property: "opacity"
+                        from: 0
+                        to:1
+                        duration: 20
+                    }
                 }
             }
         }
 
         Loader{
             id: videoLoader
-            visible: false
-            z:9
-            anchors.fill: parent
+            //z:9
+            //anchors.fill: stack
             Connections {
                 target: videoLoader.item
             }
@@ -101,9 +122,14 @@ Window {
             Connections {
                 target: acMainLoader.item
                 onOpenVideo: {
+                    busyBox.text = qsTr("Loading video ...")
+                    busyBox.running = true
                     console.log("open video:"+JSON.stringify(js))
+                    var d=new Date();
+                    console.log(FUN.fmtTime(d, "hh:mm:ss"))
+                    //navi.curIdx = 0
                     videoLoader.source = videoPageSource
-                    videoLoader.visible = true
+                    stack.push(videoLoader)
                     videoLoader.item.open(js)
                 }
             }
@@ -119,8 +145,7 @@ Window {
                 target: acMainLoader2.item
                 onOpenVideo: {
                     console.log("open video:"+JSON.stringify(js))
-                    videoLoader.source = videoPageSource
-                    videoLoader.visible = true
+                    //videoLoader.source = videoPageSource
                     videoLoader.item.open(js)
                 }
             }
@@ -137,7 +162,6 @@ Window {
                 onOpenVideo: {
                     console.log("open video:"+JSON.stringify(js))
                     videoLoader.source = videoPageSource
-                    videoLoader.visible = true
                     videoLoader.item.open(js)
                 }
             }
@@ -145,5 +169,12 @@ Window {
                 console.log("open acMainLoader3")
             }
         }
+
+        BusyIndicatorWithText {
+            id: busyBox
+            anchors.centerIn: root
+            visible: busyBox.running
+        }
+
     }
 }

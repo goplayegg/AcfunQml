@@ -9,8 +9,7 @@ function formatTime(second) {
 
 //使用方法
 //var a=new Date();
-//console.log(a.Format("yyyy-MM-dd")) //年月日
-//console.log(a.Format("yyyy-MM-dd hh:mm:ss")) //年月日时分秒
+//fmtTime(a, "yyyy-MM-dd hh:mm:ss")//年月日时分秒
 function fmtTime(date, fmt) {
     var o = {
         "M+" : date.getMonth() + 1, //月份
