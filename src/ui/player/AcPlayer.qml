@@ -3,6 +3,8 @@ import QmlVlc 0.1
 
 import "qrc:///ui/danmaku/"
 import "qrc:///ui/global/"
+import "qrc:///ui/player/ctrl"
+import "qrc:///ui/libraries/functions.js" as FUN
 
 Rectangle {
     color: "black"//"transparent"//
@@ -32,6 +34,7 @@ Rectangle {
         var url = playInfos[1].playUrls[0]
         console.log("url"+url)
         videoUrl = url
+        ctrlFrame.duration = FUN.formatTime(parseInt(js.playInfo.duration/1000))
     }
 
     function togglePause(){
@@ -41,15 +44,14 @@ Rectangle {
     VlcPlayer {
         id: vlcPlayer
         mrl: videoUrl
-        speed: controlLayer.playSpeed
-        volume: controlLayer.playVolume*100
+        speed: ctrlFrame.speed
+        volume: ctrlFrame.volume
         onStateChanged: {
             if(VlcPlayer.Playing == state ||
                 VlcPlayer.Error  == state){
                 videoReady()
             }
-            danmaku.paused = (vlcPlayer.state === VlcPlayer.Paused)
-
+            ctrlFrame.paused = (vlcPlayer.state === VlcPlayer.Paused)
         }
     }
 
@@ -58,31 +60,52 @@ Rectangle {
         source: vlcPlayer
         anchors.fill:parent
         anchors.margins: 5
+
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: {
+                tmCtrlHide.stop()
+                ctrlFrame.visible = true
+            }
+            onExited: {
+                tmCtrlHide.start()
+            }
+            onClicked: togglePause()
+        }
+        VideoControl {
+            id: ctrlFrame
+            anchors.bottom: parent.bottom
+            width: parent.width
+            visible: false
+            position: vlcPlayer.position
+            timeCurrent: FUN.formatTime(parseInt(vlcPlayer.time/1000))
+            onPausedChanged: {
+                if(paused)
+                    vlcPlayer.pause()
+                else
+                    vlcPlayer.play()
+            }
+            onMuteChanged: {
+                mute?vlcPlayer.mute():vlcPlayer.unMute();
+            }
+            onChangePosition: {
+                vlcPlayer.position = pos
+            }
+        }
+        Timer {
+            id: tmCtrlHide
+            interval: 3000
+            onTriggered: {
+                ctrlFrame.visible = false
+            }
+        }
     }
 
     DanmakuLayer {
         id: danmaku
         anchors.fill: parent
         clip: true
-    }
-
-    ControlLayer {
-        id: controlLayer
-
-        z: 5
-        anchors.fill: parent
-        titleName:title
-        progressSlidePos:vlcPlayer.position;
-        onPlayBtnChanged: {
-            vlcPlayer.togglePause();
-        }
-        onPlayPosChanged:{
-            vlcPlayer.position = pos
-        }
-    }
-    MouseArea {
-        hoverEnabled: true
-        anchors.fill: parent
-        onClicked: togglePause()
+        paused: ctrlFrame.paused
     }
 }

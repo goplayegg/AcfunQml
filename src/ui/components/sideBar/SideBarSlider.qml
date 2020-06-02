@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.5
 import "qrc:///ui/global/"
+import "qrc:///ui/global/styles/"
 
 Item{
     id:root
@@ -21,7 +22,7 @@ Item{
     }
 
     Rectangle{
-        color: "pink"
+        color: AppStyle.primaryColor
         anchors.fill: parent
         radius: 2
         anchors.topMargin: 8

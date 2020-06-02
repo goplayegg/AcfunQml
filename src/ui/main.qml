@@ -109,8 +109,8 @@ Window {
 
         Loader{
             id: videoLoader
-            //z:9
-            //anchors.fill: stack
+            asynchronous: true
+            source: videoPageSource
             Connections {
                 target: videoLoader.item
             }
@@ -127,14 +127,14 @@ Window {
                     console.log("open video:"+JSON.stringify(js))
                     var d=new Date();
                     console.log(FUN.fmtTime(d, "hh:mm:ss"))
-                    //navi.curIdx = 0
-                    videoLoader.source = videoPageSource
+                    //videoLoader.source = videoPageSource//概率需要8秒
                     stack.push(videoLoader)
                     videoLoader.item.open(js)
                 }
             }
             onLoaded: {
                 console.log("open acMainLoader1")
+                item.refresh()
             }
         }
 

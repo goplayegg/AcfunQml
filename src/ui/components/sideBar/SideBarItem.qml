@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.5
 import "qrc:///ui/global/"
+import "qrc:///ui/global/styles/"
 
 Item {
     id: root
@@ -72,7 +73,7 @@ Item {
             anchors.rightMargin: Global.sliderBarWidth*2
             anchors.leftMargin: Global.sliderBarWidth*2
             Rectangle {
-                color: "pink"
+                color: AppStyle.primaryColor
                 anchors.fill: parent
             }
         }
@@ -85,7 +86,7 @@ Item {
     }
 
     Rectangle {
-        color: "pink"
+        color: AppStyle.primaryColor
         //anchors.verticalCenter: parent.verticalCenter
         width: Global.sliderBarWidth
         anchors.top: parent.top

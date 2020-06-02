@@ -10,7 +10,7 @@ RoundButton {
 
     property color color: AppStyle.primaryColor
     property color textColor: outline || flat ? color : AppStyle.foregroundColor
-    property bool ripple: true
+    property bool ripple: false
     property string tooltip
     property bool outline: false
     property bool loading: false
@@ -25,8 +25,10 @@ RoundButton {
     leftInset: 2
     rightInset: 2
     bottomInset: 0
+    hoverEnabled:true
     ToolTip.visible: hovered && tooltip.length > 0
     ToolTip.text: tooltip
+    ToolTip.delay: Qt.styleHints.mousePressAndHoldInterval
     Material.background: (flat || outline) && enabled ? AppStyle.transparent : color
     Material.elevation: flat || outline ? down || hovered ? 2 : 0 : down ? 12 : 6
 
@@ -74,13 +76,15 @@ RoundButton {
         implicitHeight: control.size
         radius: control.radius
         color: !control.enabled ? control.Material.buttonDisabledColor
-                               : control.checked || control.highlighted
+                               : /*control.checked ||*/ control.highlighted
                                 ? control.Material.highlightedButtonColor
-                                : control.Material.buttonColor
-        layer.enabled: control.enabled && control.Material.buttonColor.a > 0
-        layer.effect: ElevationEffect {
-            elevation: control.Material.elevation
-        }
+                                : control.hovered
+                                ? AppStyle.backgroundColor
+                                : AppStyle.thirdBkgroundColor
+//        layer.enabled: control.enabled && control.Material.buttonColor.a > 0
+//        layer.effect: ElevationEffect {
+//            elevation: control.Material.elevation
+//        }
 
         Rectangle {
             id: outlineRect

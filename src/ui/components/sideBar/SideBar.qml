@@ -1,9 +1,11 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.5
+import "qrc:///ui/global/styles/"
+import "qrc:///ui/components" as Comp
 
 Rectangle{
     id:root
-    color: "#F9FAFE"
+    color: AppStyle.secondBkgroundColor
     width: shrinked?shrinkWidth:norWidth
     Behavior on width {
         NumberAnimation{ duration: 100; easing.type: Easing.OutQuad}
@@ -130,20 +132,28 @@ Rectangle{
         }
     }
 
-    Button{
-        id:btnShrink
-        hoverEnabled:true
-        background: Rectangle{
-            radius: width/2
-            color: btnShrink.hovered?"white":"#DEE5EB"
-        }
+//    Button{
+//        id:btnShrink
+//        background: Rectangle{
+//            radius: width/2
+//        }
+//        checkable: true
+//        text: checked? ">>":"<<"
+//        anchors.left: parent.left
+//        anchors.leftMargin: checked ? 20:30
+//        anchors.bottom: parent.bottom
+//        anchors.bottomMargin: 20
+//        width: 40
+//        height: width
+//    }
+    Comp.RoundButton {
+        id: btnShrink
         checkable: true
-        text: checked? ">>":"<<"
+        icon.name: checked?AppIcons.mdi_chevron_double_right: AppIcons.mdi_chevron_double_left
+        size: 40
         anchors.left: parent.left
         anchors.leftMargin: checked ? 20:30
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 20
-        width: 40
-        height: width
     }
 }

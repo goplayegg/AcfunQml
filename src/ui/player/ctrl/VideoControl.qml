@@ -1,0 +1,167 @@
+﻿import QtQuick 2.12
+import QtQuick.Controls 2.12
+import "qrc:///ui/global/styles/"
+
+Rectangle {
+    id: root
+    color: "#88999999"
+    width: 500
+    implicitHeight: progress.implicitHeight + timeLine.implicitHeight + btnContainer.implicitHeight
+
+    property int btnHeight: 40
+    property int btnWidth : 46
+
+    property int volume: 100
+    property bool mute: false
+    property var speed: cmbSpeed.model.get(cmbSpeed.currentIndex).value
+    property alias paused: btnPause.checked
+    property alias position: progress.value
+    property alias smallWindow: btnSmall.checked
+    property alias fullApp: btnFullApp.checked
+    property alias fullScreen: btnFullScreen.checked
+    property alias duration: labEndTm.text
+    property alias timeCurrent: labCurrentTm.text
+
+    signal changePosition(var pos)
+    ProgressControl {
+        id: progress
+        anchors.top: parent.top
+        width: parent.width
+        implicitHeight: 33
+        onPressedChanged: {
+            changePosition(value)
+        }
+    }
+
+    Item {
+        id: timeLine
+        anchors.top: progress.bottom
+        width: parent.width
+        implicitHeight: labCurrentTm.height
+
+        Label{
+            id: labCurrentTm
+            anchors.left: parent.left
+            anchors.leftMargin: 8
+            text: "00:00:00"
+        }
+        Label{
+            id: labEndTm
+            anchors.right: parent.right
+            anchors.rightMargin: 8
+            text: "00:00:00"
+        }
+    }
+
+    Item {
+        id: btnContainer
+        anchors.top: timeLine.bottom
+        implicitHeight: btnHeight
+        width: parent.width
+
+        Loader {
+            id: voiceBar
+            asynchronous: true
+            source: "VolumeControl.qml"
+            Connections {
+                target: voiceBar.item
+                onPlayVolumeChanged: {
+                    root.volume = voiceBar.item.playVolume
+                }
+                onMuteChanged: {
+                    root.mute = voiceBar.item.mute
+                }
+            }
+        }
+
+        Row {
+            id: rowLeft
+            anchors.left: parent.left
+            height: btnHeight
+            spacing: 2
+            VideoCtrlBtn {
+                height: btnHeight
+                width: btnWidth
+                text: AppIcons.mdi_volume_high
+                tip: qsTr("Voice")
+                onClicked: {
+                    voiceBar.item.open()
+                }
+            }
+            VideoCtrlBtn {
+                height: btnHeight
+                width: btnWidth
+                text: AppIcons.mdi_vector_arrange_below
+                tip: qsTr("Window")
+                onClicked: {
+                }
+            }
+        }
+        Row {
+            id: rowCenter
+            height: btnHeight
+            anchors.horizontalCenter: parent.horizontalCenter
+            spacing: 2
+            VideoCtrlBtn {
+                id: btnPause
+                height: btnHeight
+                width: btnWidth
+                text: checked ? AppIcons.mdi_play : AppIcons.mdi_pause
+                tip: qsTr("Pause")
+                checkable: true
+            }
+            ComboBox {
+                id: cmbSpeed
+                width: 50
+                textRole: "key"
+                currentIndex: 1
+                indicator: null
+                model: ListModel {
+                  ListElement { key: "0.5X"; value: 0.5 }
+                  ListElement { key: "1.0X"; value: 1.0 }
+                  ListElement { key: "1.5X"; value: 1.5 }
+                  ListElement { key: "2.0X"; value: 2.0 }
+                }
+            }
+        }
+        Row {
+            id: rowRight
+            height: btnHeight
+            anchors.right: parent.right
+            spacing: 2
+            VideoCtrlBtn {
+                height: btnHeight
+                width: btnWidth
+                text: AppIcons.mdi_eye_circle_outline
+                tip: qsTr("Resolution")
+                onClicked: {
+                }
+            }
+            VideoCtrlBtn {
+                id: btnSmall
+                height: btnHeight
+                width: btnWidth
+                text: AppIcons.mdi_image_size_select_small
+                tip: qsTr("Small")
+                checkable: true
+            }
+            VideoCtrlBtn {
+                id: btnFullApp
+                height: btnHeight
+                width: btnWidth
+                text: checked?AppIcons.mdi_fullscreen_exit:AppIcons.mdi_crop_free//mdi_fullscreen
+                tip: qsTr("Full App")
+                checkable: true
+            }
+            VideoCtrlBtn {
+                id: btnFullScreen
+                height: btnHeight
+                width: btnWidth
+                text: AppIcons.mdi_arrow_expand
+                tip: qsTr("Full Screen")
+                checkable: true
+            }
+        }
+
+    }
+}

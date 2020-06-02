@@ -1,9 +1,10 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtGraphicalEffects 1.0
+import "qrc:///ui/global/styles/"
 
 Rectangle {
-    color: "#F9FAFE"
+    color: AppStyle.secondBkgroundColor
     property alias text: msg.text
     property alias running: anim.running
     width: 180
@@ -36,8 +37,8 @@ Rectangle {
         ConicalGradient {
             anchors.fill: rect
             gradient: Gradient {
-                GradientStop { position: 0.0; color: "white" }
-                GradientStop { position: 1.0; color: "pink" }
+                GradientStop { position: 0.0; color: AppStyle.backgroundColor }
+                GradientStop { position: 1.0; color: AppStyle.primaryColor }
             }
             source: rect
 
@@ -47,7 +48,7 @@ Rectangle {
                 width: rect.border.width
                 height: width
                 radius: width / 2
-                color: "pink"
+                color: AppStyle.primaryColor
             }
 
             RotationAnimation on rotation {

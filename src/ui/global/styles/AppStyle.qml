@@ -9,12 +9,14 @@ QtObject {
 
     // Global colors
     property string defaultColor: "#000000"
-    property string primaryColor: "#2196F3"
-    property string accentColor: "#E91E63"
+    property string primaryColor: "#fd4c5c"
+    property string accentColor: "#00a1d6"
     property string warningColor: "#FF5722"
     property string errorColor: "#F44336"
     property string successColor: "#4CAF50"
     property string backgroundColor: "#FFFFFF"
+    property string secondBkgroundColor: "#f1f6fa"
+    property string thirdBkgroundColor: "#dee5eb"
     property string foregroundColor: "#000000"
     property string transparent: "transparent"
 

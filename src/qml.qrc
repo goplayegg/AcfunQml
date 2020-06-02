@@ -14,9 +14,6 @@
         <file>ui/global/styles/AppStyle.qml</file>
         <file>ui/global/styles/qmldir</file>
         <file>ui/libraries/mdi.js</file>
-        <file>ui/player/PlayControl.qml</file>
-        <file>ui/player/ProgressControl.qml</file>
-        <file>ui/player/VolumeControl.qml</file>
         <file>ui/main.qml</file>
         <file>ui/global/AcService.qml</file>
         <file>ui/libraries/functions.js</file>
@@ -24,7 +21,6 @@
         <file>ui/mainPage/AcMainPage.qml</file>
         <file>ui/navigator/LeftNavig.qml</file>
         <file>ui/navigator/Login.qml</file>
-        <file>ui/player/ControlLayer.qml</file>
         <file>ui/videoPage/VideoPage.qml</file>
         <file>ui/components/sideBar/qmldir</file>
         <file>ui/components/sideBar/SideBar.qml</file>
@@ -34,5 +30,9 @@
         <file>ui/components/SearchToolBar.qml</file>
         <file>ui/components/BusyIndicatorWithText.qml</file>
         <file>ui/player/AcPlayer.qml</file>
+        <file>ui/player/ctrl/ProgressControl.qml</file>
+        <file>ui/player/ctrl/VideoControl.qml</file>
+        <file>ui/player/ctrl/VideoCtrlBtn.qml</file>
+        <file>ui/player/ctrl/VolumeControl.qml</file>
     </qresource>
 </RCC>

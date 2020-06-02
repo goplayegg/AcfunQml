@@ -1,5 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
+import "qrc:///ui/global/styles/"
+import "qrc:///ui/components" as Comp
 
 Item {
     id:root
@@ -8,11 +10,12 @@ Item {
     signal back();
     signal refresh();
     height: 40
-    RoundButton {
+    Comp.RoundButton {
         id: btnBack
-        text: "<"
-        width: parent.height
-        height: width
+        icon.name: AppIcons.mdi_chevron_left
+        tooltip: qsTr("back")
+        size: parent.height
+        textColor: AppStyle.accentColor
         anchors.left: parent.left
         onClicked: back()
     }
@@ -27,11 +30,12 @@ Item {
         anchors.leftMargin: 20
     }
 
-    RoundButton {
+    Comp.RoundButton {
         id: btnRefresh
-        text: "R"
-        width: root.height
-        height: width
+        icon.name: AppIcons.mdi_refresh
+        tooltip: qsTr("refresh")
+        size: root.height
+        textColor: AppStyle.accentColor
         anchors.right: parent.right
         onClicked: refresh()
     }

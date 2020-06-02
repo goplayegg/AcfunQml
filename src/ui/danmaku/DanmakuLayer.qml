@@ -32,7 +32,6 @@ Item{
     }
 
     function togglePause(isPause) {
-        root.paused = isPause
         if(isPause)
             danmPaser.pause()
         else
