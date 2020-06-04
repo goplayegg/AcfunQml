@@ -32,7 +32,7 @@ Rectangle {
 
         var playInfos = js.playInfo.streams
         var url = playInfos[1].playUrls[0]
-        console.log("url"+url)
+        console.log("current playing url:"+url)
         videoUrl = url
         ctrlFrame.duration = FUN.formatTime(parseInt(js.playInfo.duration/1000))
     }
@@ -106,6 +106,7 @@ Rectangle {
         id: danmaku
         anchors.fill: parent
         clip: true
+        speed: ctrlFrame.speed
         paused: ctrlFrame.paused
     }
 }

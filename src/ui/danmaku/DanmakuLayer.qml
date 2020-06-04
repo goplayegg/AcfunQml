@@ -2,13 +2,13 @@
 import AcfunQml 1.0
 import "qrc:///ui/global/"
 
-Item{
+Item {
     id:root
     visible: false
 
-    //property var jsonDanm: ({})
     property int timeStamp: 0
     property var componentDanm: null
+    property var speed: 1.0//TODO
     property bool paused: false
     onPausedChanged: {
         togglePause(paused)
@@ -50,7 +50,7 @@ Item{
             var danms = jsObj.list
             for(var i=0;i<danms.length;++i){
                 addSingleDanm(danms[i])
-                console.log("danm added:"+JSON.stringify(danms[i]))
+                //console.log("danm added:"+JSON.stringify(danms[i]))
             }
         }
     }
@@ -59,12 +59,11 @@ Item{
         anchors.fill: parent
     }
 
-    property int flyY: 0
     property int topY: 0
     property int bottomY: height
     function getSuitY(mode){
         if(5 === mode){
-            topY+=20
+            topY+=20//TODO
             if(topY>height-30)
                 topY = 0;
             return topY
@@ -74,11 +73,35 @@ Item{
                 bottomY=height
             return bottomY
         }else{
-            flyY+=20
-            if(flyY>height-30)
-                flyY = 0;
-            return flyY
+            return getFlyY()
         }
+    }
+
+    readonly property int kDmXSpacing:10
+    readonly property int kDmYSpacing:28
+    function getFlyY(){
+        var danms = danmContainer.children;
+        var cnt = danms.length;
+        var dmRowCnt = parseInt(root.height/kDmYSpacing);
+        var y = 0;
+        for(var rowIdx = 0; rowIdx<dmRowCnt; ++rowIdx){
+            var bInvalidY = false;
+            for(var idx = 0; idx<cnt; ++idx){
+                 if(4 !== danms[idx].info.mode &&
+                    5 !== danms[idx].info.mode){//只判断滚动弹幕
+                     if(danms[idx].y === y &&
+                        danms[idx].x + danms[idx].width + kDmXSpacing > root.width){
+                         bInvalidY = true;
+                         break;
+                     }
+                 }
+            }
+            if(!bInvalidY){
+                break;
+            }
+            y+=kDmYSpacing;
+        }
+        return y;
     }
 
     function addSingleDanm(info) {

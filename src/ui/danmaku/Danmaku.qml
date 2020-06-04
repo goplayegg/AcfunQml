@@ -12,6 +12,8 @@ Label{
     color: "#"+info.color.toString(16)
     text: info.body
     font.pixelSize: info.size
+    font.family: "微软雅黑"
+    font.weight: Font.Medium
 
     function togglePause(isPause){
         if(isPause){
@@ -50,7 +52,7 @@ Label{
         duration: 1000*(parent.width+width)/(speed*pixPerSecond)
         onStopped:{
             root.destroy()
-            console.log("danm destroyed:"+text)
+            //console.log("danm destroyed:"+text)
         }
     }
 }
