@@ -21,6 +21,7 @@ Label{
         }else{
             flyAnim.resume()
         }
+        //console.log("danm togglePause:"+isPause)
     }
 
     function start(){
@@ -38,15 +39,18 @@ Label{
     function hCenter(){
         x = (parent.width-width)/2
         root.destroy(delayTimsMs)
+        //console.log("danm hCenter:")
     }
 
     function fly(){
         x = parent.width
         flyAnim.start()
+        //console.log("danm fly:")
     }
 
     NumberAnimation on x{
         id:flyAnim
+        running: false
         from:parent.width
         to:0-root.width
         duration: 1000*(parent.width+width)/(speed*pixPerSecond)

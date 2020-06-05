@@ -15,7 +15,6 @@ Rectangle {
     function stop(){
         vlcPlayer.stop()
         danmaku.close()
-        console.log("vlcPlayer stop")
     }
 
     function start(js){
@@ -47,11 +46,17 @@ Rectangle {
         speed: ctrlFrame.speed
         volume: ctrlFrame.volume
         onStateChanged: {
-            if(VlcPlayer.Playing == state ||
-                VlcPlayer.Error  == state){
+            if(VlcPlayer.Playing === state ||
+                VlcPlayer.Error  === state){
                 videoReady()
             }
-            ctrlFrame.paused = (vlcPlayer.state === VlcPlayer.Paused)
+            if(VlcPlayer.Paused === state){
+                ctrlFrame.paused = true
+            }else if(VlcPlayer.Playing === state ||
+                     VlcPlayer.Buffering === state){
+                ctrlFrame.paused = false
+            }
+            console.log("vlcPlayer status:"+ state)
         }
     }
 

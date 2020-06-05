@@ -34,5 +34,6 @@
         <file>ui/player/ctrl/VideoControl.qml</file>
         <file>ui/player/ctrl/VideoCtrlBtn.qml</file>
         <file>ui/player/ctrl/VolumeControl.qml</file>
+        <file>ui/danmaku/DanmakuContainer.qml</file>
     </qresource>
 </RCC>

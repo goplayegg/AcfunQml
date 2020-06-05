@@ -24,11 +24,8 @@ Item {
     function close() {
         visible = false
         danmPaser.stop()
-        var danms = danmContainer.children
-        var cnt = danms.length
-        for(var idx = 0; idx<cnt; ++idx){
-             danms[idx].destroy()
-        }
+        flyContainer.close()
+        topBottomContainer.close()
     }
 
     function togglePause(isPause) {
@@ -36,12 +33,8 @@ Item {
             danmPaser.pause()
         else
             danmPaser.resume()
-
-        var danms = danmContainer.children
-        var cnt = danms.length
-        for(var idx = 0; idx<cnt; ++idx){
-             danms[idx].togglePause(isPause)
-        }
+        flyContainer.togglePause()
+        //topBottomContainer.togglePause()
     }
 
     DanmakuPaser {
@@ -54,54 +47,14 @@ Item {
             }
         }
     }
-    Item {
-        id: danmContainer
+
+    DanmakuContainer {
+        id: flyContainer
         anchors.fill: parent
     }
-
-    property int topY: 0
-    property int bottomY: height
-    function getSuitY(mode){
-        if(5 === mode){
-            topY+=20//TODO
-            if(topY>height-30)
-                topY = 0;
-            return topY
-        }else if(4 === mode){
-            bottomY-=20
-            if(bottomY<0)
-                bottomY=height
-            return bottomY
-        }else{
-            return getFlyY()
-        }
-    }
-
-    readonly property int kDmXSpacing:10
-    readonly property int kDmYSpacing:28
-    function getFlyY(){
-        var danms = danmContainer.children;
-        var cnt = danms.length;
-        var dmRowCnt = parseInt(root.height/kDmYSpacing);
-        var y = 0;
-        for(var rowIdx = 0; rowIdx<dmRowCnt; ++rowIdx){
-            var bInvalidY = false;
-            for(var idx = 0; idx<cnt; ++idx){
-                 if(4 !== danms[idx].info.mode &&
-                    5 !== danms[idx].info.mode){//只判断滚动弹幕
-                     if(danms[idx].y === y &&
-                        danms[idx].x + danms[idx].width + kDmXSpacing > root.width){
-                         bInvalidY = true;
-                         break;
-                     }
-                 }
-            }
-            if(!bInvalidY){
-                break;
-            }
-            y+=kDmYSpacing;
-        }
-        return y;
+    DanmakuContainer {
+        id: topBottomContainer
+        anchors.fill: parent
     }
 
     function addSingleDanm(info) {
@@ -110,10 +63,74 @@ Item {
         }
         if(componentDanm.status === Component.Ready){
             var danmY = getSuitY(info.mode)
-            console.log("danm getSuitY:"+danmY)
-            var tmp = componentDanm.createObject(danmContainer,{"y":danmY, "info":info})
+            var danmParent = (info.mode !== 5 && info.mode !== 4)
+                    ?flyContainer:topBottomContainer
+            var tmp = componentDanm.createObject(danmParent,{"y":danmY, "info":info})
             tmp.start();
         }
     }
 
+    function getSuitY(mode){
+        if(5 === mode){
+            return getTopBottomY(true)
+        }else if(4 === mode){
+            return getTopBottomY(false)
+        }else{
+            return getFlyY()
+        }
+    }
+
+    readonly property int kDmXSpacing:10
+    readonly property int kDmYSpacing:28
+    property int dmRowCnt: parseInt(root.height/kDmYSpacing);
+
+    function getFlyY(){
+        var danms = flyContainer.children;
+        var cnt = danms.length;
+        var y = 0;
+        for(var rowIdx = 0; rowIdx<dmRowCnt; ++rowIdx){
+            var bValidY = true;
+            for(var idx = 0; idx<cnt; ++idx){
+                 if(danms[idx].y === y &&
+                    danms[idx].x + danms[idx].width + kDmXSpacing > root.width){
+                     bValidY = false;
+                     break;
+                 }
+            }
+            if(bValidY){
+                break;
+            }
+            y+=kDmYSpacing;
+        }
+        return y;
+    }
+
+    function getTopBottomY(isTop){
+        var danms = topBottomContainer.children;
+        var cnt = danms.length;
+        var y = 0;
+        if(!isTop)
+            y = root.height-kDmYSpacing;
+        for(var rowIdx = 0; rowIdx<dmRowCnt; ++rowIdx){
+            var bValidY = true;
+            for(var idx = 0; idx<cnt; ++idx){
+                if(danmCross(y, danms[idx].y)){
+                     bValidY = false;
+                     break;
+                 }
+            }
+            if(bValidY){
+                break;
+            }
+            if(isTop)
+                y+=kDmYSpacing;
+            else
+                y-=kDmYSpacing;
+        }
+        return y;
+    }
+
+    function danmCross(y1, y2){
+        return Math.abs(y1-y2) < kDmYSpacing
+    }
 }
