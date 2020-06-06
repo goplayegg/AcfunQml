@@ -1,7 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.0
-import "qrc:///ui/libraries/functions.js" as FUN
+import "qrc:///ui/global/libraries/functions.js" as FUN
 
 Item {
     id:root

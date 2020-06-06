@@ -33,7 +33,7 @@ Rectangle{
         if(jsLogin.username){
             logined = true
             tabBar.setVisible(3, true)
-            tabBar.setVisible(6, true)
+            //tabBar.setVisible(6, true)
         }
         console.log("jsLogin", JSON.stringify(jsLogin))
         loginFinish(js)
@@ -98,7 +98,7 @@ Rectangle{
             onClicked: {
                 logined = false
                 tabBar.setVisible(3, false)
-                tabBar.setVisible(6, false)
+                //tabBar.setVisible(6, false)
             }
         }
         Text{
@@ -156,7 +156,7 @@ Rectangle{
             tabBar.addItem({"text":qsTr("动态"),"icon":pref+"ub.png","iconChecked":pref+"uc.png","hide":true})
             tabBar.addItem({"text":qsTr("排行榜"),"icon":pref+"a7p2.png","iconChecked":pref+"a7p.png"})
             tabBar.addItem({"spliter":true})
-            tabBar.addItem({"text":"设置","icon":pref+"a4g.png","iconChecked":pref+"a4g2.png","hide":true})
+            tabBar.addItem({"text":"设置","icon":pref+"a4g.png","iconChecked":pref+"a4g2.png","hide":false})
             tabBar.addItem({"text":"关于","icon":pref+"ug.png","iconChecked":pref+"uh.png"})
         }
     }

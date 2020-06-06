@@ -4,7 +4,7 @@ import QmlVlc 0.1
 import "qrc:///ui/danmaku/"
 import "qrc:///ui/global/"
 import "qrc:///ui/player/ctrl"
-import "qrc:///ui/libraries/functions.js" as FUN
+import "qrc:///ui/global/libraries/functions.js" as FUN
 
 Rectangle {
     color: "black"//"transparent"//

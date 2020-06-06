@@ -13,10 +13,8 @@
         <file>ui/global/styles/AppIcons.qml</file>
         <file>ui/global/styles/AppStyle.qml</file>
         <file>ui/global/styles/qmldir</file>
-        <file>ui/libraries/mdi.js</file>
         <file>ui/main.qml</file>
         <file>ui/global/AcService.qml</file>
-        <file>ui/libraries/functions.js</file>
         <file>qtquickcontrols2.conf</file>
         <file>ui/mainPage/AcMainPage.qml</file>
         <file>ui/navigator/LeftNavig.qml</file>
@@ -35,5 +33,11 @@
         <file>ui/player/ctrl/VideoCtrlBtn.qml</file>
         <file>ui/player/ctrl/VolumeControl.qml</file>
         <file>ui/danmaku/DanmakuContainer.qml</file>
+        <file>ui/other/about.qml</file>
+        <file>ui/article/article.qml</file>
+        <file>ui/other/setting.qml</file>
+        <file>ui/global/libraries/functions.js</file>
+        <file>ui/circle/circle.qml</file>
+        <file>ui/topRank/topRank.qml</file>
     </qresource>
 </RCC>

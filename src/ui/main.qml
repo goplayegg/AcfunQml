@@ -8,7 +8,7 @@ import "qrc:///ui/components/"
 import "qrc:///ui/navigator/"
 import "qrc:///ui/mainPage/"
 import "qrc:///ui/videoPage/"
-import "qrc:///ui/libraries/functions.js" as FUN
+import "qrc:///ui/global/libraries/functions.js" as FUN
 
 Window {
     id: mainwindow
@@ -28,11 +28,16 @@ Window {
     }
 
     property string videoPageSource: "qrc:/ui/videoPage/VideoPage.qml"
-    property var stackViewLoader: [null, acMainLoader, acMainLoader2, acMainLoader3]
-    property var stackViewSource: ["",
+    property var stackViewLoader: [null, acMainLoader, articleLoader,
+        circleLoader, topRankLoader, null, settingLoader, aboutLoader]
+    property var stackViewSource: ["spliter",
         "qrc:/ui/mainPage/AcMainPage.qml",
-        "qrc:/ui/mainPage/AcMainPage.qml",
-        "qrc:/ui/mainPage/AcMainPage.qml"]
+        "qrc:/ui/article/article.qml",
+        "qrc:/ui/circle/circle.qml",
+        "qrc:/ui/topRank/topRank.qml",
+        "spliter",
+        "qrc:/ui/other/setting.qml",
+        "qrc:/ui/other/about.qml"]
     Item {
         id: root
         anchors.fill: parent
@@ -118,7 +123,6 @@ Window {
 
         Loader{
             id: acMainLoader
-            //anchors.fill: parent
             Connections {
                 target: acMainLoader.item
                 onOpenVideo: {
@@ -133,42 +137,61 @@ Window {
                 }
             }
             onLoaded: {
-                console.log("open acMainLoader1")
+                console.log("acMainLoader Loaded")
                 item.refresh()
             }
         }
 
         Loader{
-            id: acMainLoader2
-            //anchors.fill: parent
+            id: articleLoader
             Connections {
-                target: acMainLoader2.item
-                onOpenVideo: {
-                    console.log("open video:"+JSON.stringify(js))
-                    //videoLoader.source = videoPageSource
-                    videoLoader.item.open(js)
-                }
+                target: articleLoader.item
             }
             onLoaded: {
-                console.log("open acMainLoader2")
+                console.log("articleLoader Loaded")
             }
         }
 
         Loader{
-            id: acMainLoader3
-            //anchors.fill: parent
+            id: circleLoader
             Connections {
-                target: acMainLoader3.item
-                onOpenVideo: {
-                    console.log("open video:"+JSON.stringify(js))
-                    videoLoader.source = videoPageSource
-                    videoLoader.item.open(js)
-                }
+                target: circleLoader.item
             }
             onLoaded: {
-                console.log("open acMainLoader3")
+                console.log("circleLoader Loaded")
             }
         }
+
+        Loader{
+            id: topRankLoader
+            Connections {
+                target: topRankLoader.item
+            }
+            onLoaded: {
+                console.log("topRankLoader Loaded")
+            }
+        }
+
+        Loader{
+            id: settingLoader
+            Connections {
+                target: settingLoader.item
+            }
+            onLoaded: {
+                console.log("settingLoader Loaded")
+            }
+        }
+
+        Loader{
+            id: aboutLoader
+            Connections {
+                target: aboutLoader.item
+            }
+            onLoaded: {
+                console.log("aboutLoader Loaded")
+            }
+        }
+
 
         BusyIndicatorWithText {
             id: busyBox

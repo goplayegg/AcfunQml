@@ -67,4 +67,7 @@ QtObject {
     property double font_xlarge: 16 * scale
     property double font_xxlarge: 20 * scale
     property double font_xxxlarge: 30 * scale
+
+    // font family
+    property string fontNameMain: "微软雅黑"
 }
