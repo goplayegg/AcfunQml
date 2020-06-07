@@ -51,7 +51,7 @@ Item {
                     visible: !root.shrinked
                     height: parent.height
                     text: btn.text
-                    font.family: "微软雅黑"
+                    font.family: AppStyle.fontNameMain
                     font.pointSize: 10
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter

@@ -33,8 +33,8 @@ Item {
             danmPaser.pause()
         else
             danmPaser.resume()
-        flyContainer.togglePause()
-        //topBottomContainer.togglePause()
+        flyContainer.togglePause(isPause)
+        topBottomContainer.togglePause(isPause)
     }
 
     DanmakuPaser {

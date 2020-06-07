@@ -10,7 +10,7 @@ Item {
              danms[idx].destroy()
         }
     }
-    function togglePause(){
+    function togglePause(isPause){
         var danms = control.children
         var cnt = danms.length
         for(var idx = 0; idx<cnt; ++idx){

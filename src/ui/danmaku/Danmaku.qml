@@ -1,5 +1,6 @@
 ﻿import QtQuick 2.1
 import QtQuick.Controls 2.12
+import "qrc:///ui/global/styles/"
 
 Label{
     id: root
@@ -12,14 +13,14 @@ Label{
     color: "#"+info.color.toString(16)
     text: info.body
     font.pixelSize: info.size
-    font.family: "微软雅黑"
+    font.family: AppStyle.fontNameMain
     font.weight: Font.Medium
 
     function togglePause(isPause){
         if(isPause){
-            flyAnim.pause()
+            anim.item.pause()
         }else{
-            flyAnim.resume()
+            anim.item.resume()
         }
         //console.log("danm togglePause:"+isPause)
     }
@@ -34,29 +35,48 @@ Label{
             fly()
             break;
         }
+        anim.item.start()
     }
 
     function hCenter(){
+        anim.sourceComponent = compCenter
         x = (parent.width-width)/2
-        root.destroy(delayTimsMs)
         //console.log("danm hCenter:")
     }
 
     function fly(){
+        anim.sourceComponent = compFly
         x = parent.width
-        flyAnim.start()
         //console.log("danm fly:")
     }
 
-    NumberAnimation on x{
-        id:flyAnim
-        running: false
-        from:parent.width
-        to:0-root.width
-        duration: 1000*(parent.width+width)/(speed*pixPerSecond)
-        onStopped:{
-            root.destroy()
-            //console.log("danm destroyed:"+text)
+    Loader {
+        id: anim
+    }
+
+    Component {
+        id: compCenter
+        NumberAnimation {
+            duration: delayTimsMs
+            onStopped: {
+                root.destroy()
+            }
+        }
+    }
+
+    Component {
+        id: compFly
+        NumberAnimation {
+            running: false
+            target: root
+            property: "x"
+            from: root.width
+            to: 0-root.width
+            duration: 1000*(root.width+width)/(speed*pixPerSecond)
+            onStopped: {
+                root.destroy()
+                //console.log("danm destroyed:"+text)
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ import QtQuick.Controls 2.5
 import "qrc:///ui/components/"
 import "qrc:///ui/components/sideBar"
 import "qrc:///ui/global/"
+import "qrc:///ui/global/styles/"
 
 Rectangle{
     id:root
@@ -106,7 +107,7 @@ Rectangle{
             visible: logined&&(!shrinked)
             text: jsLogin.username
             font.pointSize: 12
-            font.family: "微软雅黑"
+            font.family: AppStyle.fontNameMain
             font.weight: Font.Bold
             anchors.top: imgAvatar.bottom
             anchors.topMargin: 22
@@ -116,7 +117,7 @@ Rectangle{
             id:txUserId
             visible: txUserName.visible
             text: "lv:" + jsLogin.level
-            font.family: "微软雅黑"
+            font.family: AppStyle.fontNameMain
             anchors.top: txUserName.bottom
             anchors.topMargin: 5
             anchors.horizontalCenter: parent.horizontalCenter
@@ -133,7 +134,7 @@ Rectangle{
                 Text {
                     text: modelData;
                     width: parent.width/3;
-                    font.family: "微软雅黑"
+                    font.family: AppStyle.fontNameMain
                     horizontalAlignment: Text.AlignHCenter;
                 }
             }

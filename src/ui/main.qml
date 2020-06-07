@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Window 2.12
+import QmlVlc 0.1
 
 import "qrc:///ui/components/"
 //import "qrc:///ui/global/styles/"
@@ -19,6 +20,19 @@ Window {
     minimumWidth: 500
     minimumHeight: 600
     title: qsTr("AcfunQml")
+
+    VlcConfig {
+        id: vlcConfig
+        Component.onCompleted: {
+            var hardDec = g_preference.value("hardDec")
+            var enable = true
+            if(undefined !== hardDec){
+                enable = hardDec === "true"
+            }
+            console.log("VlcConfig enable hard decode:"+enable)
+            vlcConfig.enableHardDecode(enable)
+        }
+    }
 
     onClosing: {
         console.log("mainWindow closing")

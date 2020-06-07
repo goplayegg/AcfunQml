@@ -19,7 +19,10 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
   - send comment (with problems)
 - Index Page Video List (TODO)
 - Video Search (TODO)
-- Skin change (TODO)
+- Setting
+  - Hard decode
+  - Language change
+  - Skin change (TODO)
 
 # 遇到的问题
 - 登陆后获取到一些认证信息 acPassToken acSecurity等， 但使用这些作为Cookies 无法成功请求用户详情，发送弹幕等需要用户认证的api， 可能是因为请求少了一个时刻在变的token字段。（从Ac手机客户端抓包发现token一直变化，应该是跟请求时间戳有关的一个加密令牌，目前不知道规则，很多功能无法实现）
