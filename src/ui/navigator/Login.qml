@@ -96,7 +96,7 @@ Popup {
             id: texPsw
             height: 60
             width: parent.width
-            placeholderText: qsTr("password")
+            placeholderText: qsTr("Password")
             echoMode:TextInput.Password
             text: ""//TODO del
         }

@@ -28,7 +28,24 @@ RESOURCES += \
         qml.qrc
 
 DISTFILES += \
+    ../LICENSE.md \
+    ../LICENSE_third.md \
+    ../README.md \
     acfunQml.rc
+
+TRANSLATIONS += \
+    $$PWD/trans/trans_zh.ts \
+    $$PWD/trans/trans_en.ts \
+    $$PWD/trans/trans_ja.ts \
+    $$PWD/trans/trans_ko.ts \
+    $$PWD/trans/trans_fr.ts \
+    $$PWD/trans/trans_es.ts \
+    $$PWD/trans/trans_pt.ts \
+    $$PWD/trans/trans_it.ts \
+    $$PWD/trans/trans_ru.ts \
+    $$PWD/trans/trans_vi.ts \
+    $$PWD/trans/trans_de.ts \
+    $$PWD/trans/trans_ar.ts
 
 include(base/base.pri)
 include(impl/impl.pri)

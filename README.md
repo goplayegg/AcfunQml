@@ -66,6 +66,12 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
     	+--src
     	+--AcfunQml.pro
     ```
+  - make ts / qm (translation files)
+    - goto \src\trans
+	- fix your lupdatePath in trans_update.bat and run
+	- run Trans.bat(暂时还有问题，免费翻译API限制每秒1次翻译请求)(https://github.com/jaredtao/Transer)
+	- fix your lreleasePath in trans_release.bat and run
+	
   - open the `AcfunQml.pro` with Qt Creator
   
   - build and run

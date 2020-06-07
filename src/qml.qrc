@@ -39,5 +39,8 @@
         <file>ui/global/libraries/functions.js</file>
         <file>ui/circle/circle.qml</file>
         <file>ui/topRank/topRank.qml</file>
+        <file>ui/components/IconTextButton.qml</file>
+        <file>ui/components/ImgTextButton.qml</file>
+        <file>ui/components/LinkLabel.qml</file>
     </qresource>
 </RCC>

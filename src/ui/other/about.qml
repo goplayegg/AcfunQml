@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import "qrc:///ui/global/styles/"
+import "qrc:///ui/components/"
 
 Item{
     id:root
@@ -14,22 +15,24 @@ Item{
 
     ScrollView {
         id: scroll
+        clip: true
         anchors.fill: parent
 
-        Column{
+        Column {
             id:colBars
             width: parent.width
             spacing: 20
 
             Label {
                 text: qsTr("Help & About")
-                font.pixelSize: AppStyle.xlg
+                font.pixelSize: AppStyle.font_xxxxlarge
                 font.family: AppStyle.fontNameMain
+                font.weight: Font.Black
             }
 
             Label {
                 text: qsTr("Disclaimer")
-                font.pixelSize: AppStyle.font_xlarge
+                font.pixelSize: AppStyle.font_xxlarge
                 font.family: AppStyle.fontNameMain
             }
 
@@ -44,63 +47,65 @@ Item{
 
             Label {
                 text: qsTr("Developer")
-                font.pixelSize: AppStyle.font_xlarge
+                font.pixelSize: AppStyle.font_xxlarge
                 font.family: AppStyle.fontNameMain
             }
 
-            Label {
-                text: "<a href=\"https://www.acfun.cn/u/923834\">乐音乐的乐 敌军还有30秒到达葬场</a>"
-                font.pixelSize: AppStyle.font_large
-                font.family: AppStyle.fontNameMain
-                onLinkActivated: Qt.openUrlExternally(link)
+            Row {
+                width: parent.width
+                height: btnGitHub.height
+                leftPadding: 10
+                spacing: 20
+                IconTextButton {
+                    id: btnGitHub
+                    color: AppStyle.accentColor
+                    icon.name: AppIcons.mdi_github_circle
+                    text: "蚂蚁会飞乐"
+                    tip: "https://github.com/baoyuanle/AcfunQml"
+                    onClicked: Qt.openUrlExternally(tip)
+                }
+                ImgTextButton {
+                    img: "qrc:/assets/img/leftNav/d.png"
+                    text: "敌军还有30秒到达葬场"
+                    tip: "https://www.acfun.cn/u/923834"
+                    onClicked: Qt.openUrlExternally(tip)
+                }
             }
 
             Label {
                 text: qsTr("Thanks")
-                font.pixelSize: AppStyle.font_xlarge
+                font.pixelSize: AppStyle.font_xxlarge
                 font.family: AppStyle.fontNameMain
             }
 
-            Label {
-                text: "<a href=\"https://github.com/yuriyoung/mcplayer\">麻菜 mcplayer</a>"
-                font.pixelSize: AppStyle.font_large
-                font.family: AppStyle.fontNameMain
-                onLinkActivated: Qt.openUrlExternally(link)
+            LinkLabel {
+                url: "https://github.com/yuriyoung/mcplayer"
+                text: "麻菜 mcplayer"
             }
 
-            Label {
-                text: "<a href=\"https://github.com/jaredtao/TaoQuick\">涛哥 TaoQuick</a>"
-                font.pixelSize: AppStyle.font_large
-                font.family: AppStyle.fontNameMain
-                onLinkActivated: Qt.openUrlExternally(link)
+            LinkLabel {
+                url: "https://github.com/jaredtao/TaoQuick"
+                text: "涛哥 TaoQuick"
             }
 
-            Label {
-                text: "<a href=\"https://github.com/RSATom/QmlVlc\">RSATom QmlVlc</a>"
-                font.pixelSize: AppStyle.font_large
-                font.family: AppStyle.fontNameMain
-                onLinkActivated: Qt.openUrlExternally(link)
+            LinkLabel {
+                url: "https://github.com/RSATom/QmlVlc"
+                text: "RSATom QmlVlc"
             }
 
-            Label {
-                text: "<a href=\"https://github.com/qyvlik/HttpRequest\">qyvlik HttpRequest</a>"
-                font.pixelSize: AppStyle.font_large
-                font.family: AppStyle.fontNameMain
-                onLinkActivated: Qt.openUrlExternally(link)
+            LinkLabel {
+                url: "https://github.com/qyvlik/HttpRequest"
+                text: "qyvlik HttpRequest"
             }
 
-            Label {
-                text: "<a href=\"https://www.azimiao.com/5882.html\">梓喵出没</a>"
-                font.pixelSize: AppStyle.font_large
-                font.family: AppStyle.fontNameMain
-                onLinkActivated: Qt.openUrlExternally(link)
+            LinkLabel {
+                url: "https://www.azimiao.com/5882.html"
+                text: "梓喵出没"
             }
 
-            Label {
-                text: "<a href=\"https://github.com/Richasy\">云之幻</a>"
-                font.pixelSize: AppStyle.font_large
-                font.family: AppStyle.fontNameMain
-                onLinkActivated: Qt.openUrlExternally(link)
+            LinkLabel {
+                url: "https://github.com/Richasy"
+                text: "云之幻"
             }
 
             Image {

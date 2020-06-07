@@ -17,6 +17,7 @@ public:
 
     void qmlRegisterType();
 
+    void reTrans(const QString &lang);
 signals:
 
 public slots:
@@ -26,7 +27,6 @@ private:
     QUrl m_indexUrl;
     QPointer<QQmlApplicationEngine> m_qmlEgnine;
 
-    // for testing ...
     QScopedPointer<QmlWindowPrivate> d;
 };
 

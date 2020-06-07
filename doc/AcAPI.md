@@ -28,13 +28,10 @@ username=&password=
 | userid        |   |   |  |
 | username  |   |   |  |
 
-**示例：**
 
+## 获取排行榜
 
-
-## 获取视频评论
-
-> http://api.bilibili.com/x/space/upstat
+> https://api-new.app.acfun.cn/rest/app/rank/channel
 
 *方式:GET*
 
@@ -42,53 +39,23 @@ username=&password=
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | url  | 目标用户UID | 必要   |      |
+| rankPeriod    | str  | DAY | 必要   |      |
+| channelId    | str  | 0 | 必要   |      |
 
 **json回复：**
 
-根对象：
+root.rankList.videoList：
 
 | 字段    | 类型 | 内容     | 备注                        |
 | ------- | ---- | -------- | --------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
-| message | str  | 错误信息 | 默认为0                     |
-| ttl     | num  | 1        | 作用尚不明确                |
-| data    | obj  | 信息本体 |                             |
+| duration    | int  |    | 时长|
+| videoCover    | str  |    | 封面url|
+| userName    | str  |    | up主|
+| createTime    | str  |    | 发布时间|
+| title    | str  |    | 标题|
 
-`data`对象：
-
-| 字段    | 类型  | 内容       | 备注  |
-| ------- | ----- | ---------- | ----- |
-| archive | obj   | 视频播放量 |       |
-| article | obj   | 专栏阅读量 |       |
-| likes   | num   | 获赞次数   |       |
-
-`data`中的`archive`对象：
-
-| 字段 | 类型  | 内容       | 备注  |
-| ---- | ----- | ---------- | ----- |
-| view | num   | 视频播放量 |       |
 
 **示例：**
-
-查询用户`UID=456664753`的UP主状态数
-
-http://api.bilibili.com/x/space/upstat?mid=456664753
-```json
-{
-	"code": 0,
-	"message": "0",
-	"ttl": 1,
-	"data": {
-		"archive": {
-			"view": 213567370
-		},
-		"article": {
-			"view": 3230808
-		},
-		"likes": 20295095
-	}
-}
-```
+[排行榜视频json](排行榜视频.json)
 
 

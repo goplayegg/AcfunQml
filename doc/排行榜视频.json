@@ -1,0 +1,115 @@
+{
+	"groupId": "Ml8wXzE1ODg2NzYwMDE2MDNfNTgwNQ_1",
+	"userId": 19768866,
+	"dougaId": "15326237",
+	"contributeTime": 1588601223400,
+	"channelId": 206,
+	"userImg": "https://tx-free-imgs.acfun.cn/content/2020_04_06/1586134037755.JPG?imageslim",
+	"videoCover": "https://tx-free-imgs.acfun.cn/content/2020_05_04/1588598079020.JPG?imageslim",
+	"contentId": 15326237,
+	"fansCount": 128688,
+	"channelName": "搞笑",
+	"isFollowing": false,
+	"userName": "朱一旦的枯燥生活",
+	"contentTitle": "《非浪》| 朱一旦献给新员工的演讲",
+	"contentDesc": "公众号：朱一旦的枯燥生活<br/>微博@朱一旦的枯燥生活<br/>YouTube  【朱一旦的枯燥生活】官方频道<br/>网易云/知乎：朱一旦的枯燥生活",
+	"userSignature": "黑色幽默 感谢关注！",
+	"contributionCount": 171,
+	"danmuCount": 998,
+	"duration": 167530,
+	"contentType": 2,
+	"coverUrl": "https://tx-free-imgs.acfun.cn/content/2020_05_04/1588598079020.JPG?imageslim",
+	"user": {
+		"gender": 1,
+		"fanCount": "12.9万",
+		"avatarFrame": 0,
+		"headUrl": "https://tx-free-imgs.acfun.cn/content/2020_04_06/1586134037755.JPG?imageslim",
+		"followingCount": "3",
+		"nameColor": 0,
+		"verifiedType": 2,
+		"verifiedText": "黑色幽默，感谢关注",
+		"isFollowing": false,
+		"sexTrend": -1,
+		"contributeCount": "171",
+		"headCdnUrls": [
+			{
+				"url": "https://tx-free-imgs.acfun.cn/content/2020_04_06/1586134037755.JPG?imageslim",
+				"freeTrafficCdn": true
+			},
+			{
+				"url": "https://imgs.aixifan.com/content/2020_04_06/1586134037755.JPG?imageslim",
+				"freeTrafficCdn": false
+			}
+		],
+		"isJoinUpCollege": true,
+		"followingCountValue": 3,
+		"fanCountValue": 128688,
+		"contributeCountValue": 171,
+		"name": "朱一旦的枯燥生活",
+		"signature": "黑色幽默 感谢关注！",
+		"id": "19768866"
+	},
+	"title": "《非浪》| 朱一旦献给新员工的演讲",
+	"createTime": "20小时前",
+	"hasHotComment": true,
+	"commentCount": 1751,
+	"bananaCount": 29618,
+	"videoList": [
+		{
+			"priority": 0,
+			"sourceStatus": 3,
+			"title": "noTitle",
+			"visibleType": 1,
+			"sizeType": 2,
+			"uploadTime": 1588598285498,
+			"danmakuCountShow": "998",
+			"durationMillis": 167530,
+			"danmakuCount": 998,
+			"fileName": "tempExportedVideo.mov",
+			"id": "12698537"
+		}
+	],
+	"createTimeMillis": 1588601223400,
+	"coverCdnUrls": [
+		{
+			"url": "https://tx-free-imgs.acfun.cn/content/2020_05_04/1588598079020.JPG?imageslim",
+			"freeTrafficCdn": true
+		},
+		{
+			"url": "https://imgs.aixifan.com/content/2020_05_04/1588598079020.JPG?imageslim",
+			"freeTrafficCdn": false
+		}
+	],
+	"picShareUrl": "https://m.acfun.cn/v/?ac=15326237&shareType=pic",
+	"isLike": false,
+	"viewCountShow": "17.6万",
+	"commentCountShow": "1751",
+	"shareCountShow": "1728",
+	"commentCountRealValue": 1751,
+	"commentCountTenThousandShow": "1751",
+	"stowCountShow": "1016",
+	"danmakuCountShow": "998",
+	"bananaCountShow": "3.0万",
+	"giftPeachCountShow": "1687",
+	"likeCountShow": "2507",
+	"shareUrl": "https://m.acfun.cn/v/?ac=15326237",
+	"durationMillis": 167530,
+	"danmakuCount": 998,
+	"viewCount": 175685,
+	"likeCount": 2507,
+	"stowCount": 1016,
+	"shareCount": 1728,
+	"giftPeachCount": 1687,
+	"description": "公众号：朱一旦的枯燥生活<br/>微博@朱一旦的枯燥生活<br/>YouTube  【朱一旦的枯燥生活】官方频道<br/>网易云/知乎：朱一旦的枯燥生活",
+	"status": 2,
+	"channel": {
+		"parentId": 60,
+		"parentName": "娱乐",
+		"name": "搞笑",
+		"id": 206
+	},
+	"isRewardSupportted": true,
+	"superUbb": true,
+	"isThrowBanana": false,
+	"isFavorite": false
+}

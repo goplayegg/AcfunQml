@@ -1,5 +1,7 @@
 ﻿BusyIndicatorWithText 1.0 BusyIndicatorWithText.qml
 Icon 1.0 Icon.qml
+IconTextButton 1.0 IconTextButton.qml
+LinkLabel 1.0 LinkLabel.qml
 RoundButton 1.0 RoundButton.qml
 RoundImage 1.0 RoundImage.qml
 RoundMouseArea 1.0 RoundMouseArea.qml

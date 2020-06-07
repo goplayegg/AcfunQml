@@ -5,6 +5,7 @@
 #include <QHash>
 #include <QMetaProperty>
 #include <QLoggingCategory>
+#include "QmlWindow.h"
 
 Q_LOGGING_CATEGORY(lcQmlPreferences, "app.QmlPreferences")
 
@@ -240,6 +241,12 @@ void QmlPreferences::setValue(const QString &key, const QVariant &value)
 {
     d->instance()->setValue(key, value);
     qCDebug(lcQmlPreferences) << "setValue" << key << ":" << value;
+    if("translation" == key){
+        auto pWnd = qobject_cast<QmlWindow*>(parent());
+        if(pWnd){
+            pWnd->reTrans(value.toString());
+        }
+    }
 }
 
 void QmlPreferences::propertyChanged()

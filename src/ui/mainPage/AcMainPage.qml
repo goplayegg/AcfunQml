@@ -26,7 +26,7 @@ Item{
         for(var i=0;i<cnt;++i){
             var jsCurRank = js.rankList[i]
             var videoArr = jsCurRank.videoList
-            console.log("videoArr:"+ JSON.stringify(videoArr))
+            //console.log("videoArr:"+ JSON.stringify(videoArr))
             jsCurRank.vid = videoArr[0].id
             rankModel.append(jsCurRank)
             console.log("rank append:"+js.rankList[i].title)
