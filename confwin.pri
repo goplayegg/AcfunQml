@@ -26,7 +26,7 @@ exists($$ACFUNQML_SOURCE_TREE/lib/acfunQml) {
 }
 
 COPYRIGHT = "$${ACFUNQML_COPYRIGHT} By baoyuanle"
-DESCRIPTION  = "$${APP_CASE_ID} For Music"
+DESCRIPTION  = "$${APP_CASE_ID}"
 DEFINES += RC_VERSION=$$replace(ACFUNQML_VERSION, "\\.", ","),0 \
         RC_VERSION_STRING=\"$${ACFUNQML_COMPAT_VERSION}\" \
         RC_DESCRIPTION_STRING=\"$$replace(DESCRIPTION, " ", "\\x20")\" \

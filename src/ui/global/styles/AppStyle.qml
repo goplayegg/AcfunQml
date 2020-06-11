@@ -3,10 +3,6 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 
 QtObject {
-    property int sliderBarWidth: 6
-
-    property real scale: 1.0
-
     // Global colors
     property string defaultColor: "#000000"
     property string primaryColor: "#fd4c5c"
@@ -19,6 +15,55 @@ QtObject {
     property string thirdBkgroundColor: "#dee5eb"
     property string foregroundColor: "#000000"
     property string transparent: "transparent"
+
+    property int currentTheme: 0
+    onCurrentThemeChanged: {
+        var t = themes.get(currentTheme)
+        defaultColor = t.defaultColor
+        primaryColor = t.primaryColor
+        accentColor = t.accentColor
+        warningColor = t.warningColor
+        errorColor = t.errorColor
+        successColor = t.successColor
+        backgroundColor = t.backgroundColor
+        secondBkgroundColor = t.secondBkgroundColor
+        thirdBkgroundColor = t.thirdBkgroundColor
+        foregroundColor = t.foregroundColor
+        transparent = t.transparent
+    }
+    readonly property ListModel themes: ListModel {
+        ListElement {
+            name: qsTr("白昼主题")
+            defaultColor: "#000000"
+            primaryColor: "#fd4c5c"
+            accentColor: "#00a1d6"
+            warningColor: "#FF5722"
+            errorColor: "#F44336"
+            successColor: "#4CAF50"
+            backgroundColor: "#FFFFFF"
+            secondBkgroundColor: "#f1f6fa"
+            thirdBkgroundColor: "#dee5eb"
+            foregroundColor: "#000000"
+            transparent: "transparent"
+        }
+        ListElement {
+            name: qsTr("暗夜主题")
+            defaultColor: "#FFFFFF"
+            primaryColor: "#fd4c5c"
+            accentColor: "#00a1d6"
+            warningColor: "#FF5722"
+            errorColor: "#F44336"
+            successColor: "#4CAF50"
+            backgroundColor: "#1c1c1c"
+            secondBkgroundColor: "#29292a"
+            thirdBkgroundColor: "#dee5eb"
+            foregroundColor: "#FFFFFF"
+            transparent: "transparent"
+        }
+    }
+
+    property int sliderBarWidth: 6
+    property real scale: 1.0
 
     // device breakpoints
     property int bp_xs: 560

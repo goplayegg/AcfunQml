@@ -79,6 +79,7 @@ public:
         qDebug()<<"language:"<<m_lang;
         m_pLastLang = m_transMap[m_lang].get();
         QCoreApplication::installTranslator(m_pLastLang);
+        lazyPref->setValue("appPath",QCoreApplication::applicationDirPath());
     }
 
     void reTrans(const QString &lang)

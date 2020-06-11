@@ -93,7 +93,7 @@ void DanmakuPaser::onTimerPop()
     QJsonObject objPop;
     objPop.insert("list", arrPop);
     popDanm(objPop);
-    qDebug()<<"json pop:"<<objPop;
+    //qDebug()<<"json pop:"<<objPop;
 }
 
 void DanmakuPaser::getDanmMap()

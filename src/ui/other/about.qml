@@ -34,6 +34,7 @@ Item{
                 text: qsTr("Disclaimer")
                 font.pixelSize: AppStyle.font_xxlarge
                 font.family: AppStyle.fontNameMain
+                font.weight: Font.DemiBold
             }
 
             Label {
@@ -49,6 +50,7 @@ Item{
                 text: qsTr("Developer")
                 font.pixelSize: AppStyle.font_xxlarge
                 font.family: AppStyle.fontNameMain
+                font.weight: Font.DemiBold
             }
 
             Row {
@@ -76,6 +78,7 @@ Item{
                 text: qsTr("Thanks")
                 font.pixelSize: AppStyle.font_xxlarge
                 font.family: AppStyle.fontNameMain
+                font.weight: Font.DemiBold
             }
 
             LinkLabel {
@@ -106,6 +109,25 @@ Item{
             LinkLabel {
                 url: "https://github.com/Richasy"
                 text: "云之幻"
+            }
+
+            IconTextButton {
+                id: btnLicense
+                color: AppStyle.backgroundColor
+                textColor: AppStyle.foregroundColor
+                icon.name: AppIcons.mdi_scale_balance
+                text: qsTr("Open Lisence Folder")
+                tip: "file:///"+g_preference.value("appPath")+"/License"
+                onClicked: Qt.openUrlExternally(tip)
+            }
+
+            IconTextButton {
+                color: AppStyle.backgroundColor
+                textColor: AppStyle.foregroundColor
+                icon.name: AppIcons.mdi_sword
+                text: qsTr("Acfun 社区管理条例")
+                tip: "https://www.acfun.cn/a/ac16012740"
+                onClicked: Qt.openUrlExternally(tip)
             }
 
             Image {

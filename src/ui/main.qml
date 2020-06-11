@@ -4,7 +4,7 @@ import QtQuick.Window 2.12
 import QmlVlc 0.1
 
 import "qrc:///ui/components/"
-//import "qrc:///ui/global/styles/"
+import "qrc:///ui/global/styles/"
 //import "qrc:///ui/global/"
 import "qrc:///ui/navigator/"
 import "qrc:///ui/mainPage/"
@@ -31,6 +31,11 @@ Window {
             }
             console.log("VlcConfig enable hard decode:"+enable)
             vlcConfig.enableHardDecode(enable)
+
+            var theme = g_preference.value("theme")
+            if(undefined !== theme) {
+                AppStyle.currentTheme = parseInt(theme)
+            }
         }
     }
 
@@ -38,6 +43,11 @@ Window {
         console.log("mainWindow closing")
         if(videoLoader.item){
             videoLoader.item.stop()
+        }
+    }
+    onActiveChanged: {
+        if(active && FullScreenWindow.visible){
+            FullScreenWindow.raise()
         }
     }
 
@@ -53,7 +63,7 @@ Window {
         "qrc:/ui/other/setting.qml",
         "qrc:/ui/other/about.qml"]
     Item {
-        id: root
+        id: mainwindowRoot
         anchors.fill: parent
         LeftNavig {
             id: navi
@@ -145,7 +155,6 @@ Window {
                     console.log("open video:"+JSON.stringify(js))
                     var d=new Date();
                     console.log(FUN.fmtTime(d, "hh:mm:ss"))
-                    //videoLoader.source = videoPageSource//概率需要8秒
                     stack.push(videoLoader)
                     videoLoader.item.open(js)
                 }
@@ -209,7 +218,7 @@ Window {
 
         BusyIndicatorWithText {
             id: busyBox
-            anchors.centerIn: root
+            anchors.centerIn: mainwindowRoot
             visible: busyBox.running
         }
 

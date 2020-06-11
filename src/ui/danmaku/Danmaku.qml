@@ -46,7 +46,6 @@ Label{
 
     function fly(){
         anim.sourceComponent = compFly
-        x = parent.width
         //console.log("danm fly:")
     }
 
@@ -70,9 +69,9 @@ Label{
             running: false
             target: root
             property: "x"
-            from: root.width
+            from: root.parent.width
             to: 0-root.width
-            duration: 1000*(root.width+width)/(speed*pixPerSecond)
+            duration: 1000*(root.width+root.parent.width)/(speed*pixPerSecond)
             onStopped: {
                 root.destroy()
                 //console.log("danm destroyed:"+text)

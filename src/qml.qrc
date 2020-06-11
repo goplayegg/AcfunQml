@@ -42,5 +42,7 @@
         <file>ui/components/IconTextButton.qml</file>
         <file>ui/components/ImgTextButton.qml</file>
         <file>ui/components/LinkLabel.qml</file>
+        <file>ui/components/FullScreen.qml</file>
+        <file>ui/components/FullScreenWindow.qml</file>
     </qresource>
 </RCC>

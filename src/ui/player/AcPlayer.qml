@@ -3,14 +3,15 @@ import QmlVlc 0.1
 
 import "qrc:///ui/danmaku/"
 import "qrc:///ui/global/"
+import "qrc:///ui/components/"
 import "qrc:///ui/player/ctrl"
 import "qrc:///ui/global/libraries/functions.js" as FUN
 
-Rectangle {
-    color: "black"//"transparent"//
-
+FullScreen {
+    id: rootFull
+    fullApp:  ctrlFrame.fullApp
+    fullScreen: ctrlFrame.fullScreen
     signal videoReady
-    property string videoUrl: ""//file:///D:/1.mp4
     property string title :"Title"
     function stop(){
         vlcPlayer.stop()
@@ -32,7 +33,7 @@ Rectangle {
         var playInfos = js.playInfo.streams
         var url = playInfos[1].playUrls[0]
         console.log("current playing url:"+url)
-        videoUrl = url
+        vlcPlayer.mrl = url
         ctrlFrame.duration = FUN.formatTime(parseInt(js.playInfo.duration/1000))
     }
 
@@ -40,78 +41,89 @@ Rectangle {
         vlcPlayer.togglePause()
     }
 
-    VlcPlayer {
-        id: vlcPlayer
-        mrl: videoUrl
-        speed: ctrlFrame.speed
-        volume: ctrlFrame.volume
-        onStateChanged: {
-            if(VlcPlayer.Playing === state ||
-                VlcPlayer.Error  === state){
-                videoReady()
-            }
-            if(VlcPlayer.Paused === state){
-                ctrlFrame.paused = true
-            }else if(VlcPlayer.Playing === state ||
-                     VlcPlayer.Buffering === state){
-                ctrlFrame.paused = false
-            }
-            console.log("vlcPlayer status:"+ state)
-        }
-    }
-
-    VlcVideoSurface {
-        id: videoSur
-        source: vlcPlayer
-        anchors.fill:parent
-        anchors.margins: 5
-
-        MouseArea {
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: {
-                tmCtrlHide.stop()
-                ctrlFrame.visible = true
-            }
-            onExited: {
-                tmCtrlHide.start()
-            }
-            onClicked: togglePause()
-        }
-        VideoControl {
-            id: ctrlFrame
-            anchors.bottom: parent.bottom
-            width: parent.width
-            visible: false
-            position: vlcPlayer.position
-            timeCurrent: FUN.formatTime(parseInt(vlcPlayer.time/1000))
-            onPausedChanged: {
-                if(paused)
-                    vlcPlayer.pause()
-                else
-                    vlcPlayer.play()
-            }
-            onMuteChanged: {
-                mute?vlcPlayer.mute():vlcPlayer.unMute();
-            }
-            onChangePosition: {
-                vlcPlayer.position = pos
-            }
-        }
-        Timer {
-            id: tmCtrlHide
-            interval: 3000
-            onTriggered: {
-                ctrlFrame.visible = false
-            }
-        }
-    }
-
-    DanmakuLayer {
-        id: danmaku
+    Rectangle {
         anchors.fill: parent
-        clip: true
-        speed: ctrlFrame.speed
-        paused: ctrlFrame.paused
+        color: "black"//"transparent"//
+
+        VlcPlayer {
+            id: vlcPlayer
+            //mrl: "file:///D:/1.mp4"
+            speed: ctrlFrame.speed
+            volume: ctrlFrame.volume
+            onStateChanged: {
+                if(VlcPlayer.Playing === state ||
+                    VlcPlayer.Error  === state){
+                    videoReady()
+                }
+                if(VlcPlayer.Paused === state){
+                    ctrlFrame.paused = true
+                }else if(VlcPlayer.Playing === state ||
+                         VlcPlayer.Buffering === state){
+                    ctrlFrame.paused = false
+                }
+                console.log("vlcPlayer status:"+ state)
+            }
+        }
+
+        VlcVideoSurface {
+            id: videoSur
+            source: vlcPlayer
+            anchors.fill:parent
+            anchors.margins: 5
+
+            MouseArea {
+                function showCtrl(){
+                    ctrlFrame.visible = true
+                    tmCtrlHide.restart()
+                }
+
+                anchors.fill: parent
+                hoverEnabled: true
+                onMouseXChanged: showCtrl()
+                onMouseYChanged: showCtrl()
+                onEntered: showCtrl()
+                onExited: {
+                    tmCtrlHide.start()
+                }
+
+                onClicked: togglePause()
+                onDoubleClicked: ctrlFrame.fullScreen = !ctrlFrame.fullScreen
+            }
+            VideoControl {
+                id: ctrlFrame
+                anchors.bottom: parent.bottom
+                width: parent.width
+                visible: false
+                position: vlcPlayer.position
+                timeCurrent: FUN.formatTime(parseInt(vlcPlayer.time/1000))
+                onPausedChanged: {
+                    if(paused)
+                        vlcPlayer.pause()
+                    else
+                        vlcPlayer.play()
+                }
+                onMuteChanged: {
+                    mute?vlcPlayer.mute():vlcPlayer.unMute();
+                }
+                onChangePosition: {
+                    vlcPlayer.position = pos
+                }
+            }
+            Timer {
+                id: tmCtrlHide
+                interval: 3000
+                onTriggered: {
+                    ctrlFrame.visible = false
+                }
+            }
+        }
+
+        DanmakuLayer {
+            id: danmaku
+            anchors.fill: parent
+            clip: true
+            speed: ctrlFrame.speed
+            paused: ctrlFrame.paused
+        }
     }
 }

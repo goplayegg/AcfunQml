@@ -6,6 +6,7 @@
 #include <QPointer>
 #include <QTimer>
 #include <qDebug>
+#include <QIcon>
 
 class ApplicationPrivate
 {
@@ -53,7 +54,7 @@ Application::Application(int &argc, char **argv)
 
     // 7.load plugins if have
 
-    // 8. ...
+    setWindowIcon(QIcon(":/assets/img/appIcon.png"));
 
 }
 
