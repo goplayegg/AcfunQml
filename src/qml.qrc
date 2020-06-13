@@ -44,5 +44,6 @@
         <file>ui/components/LinkLabel.qml</file>
         <file>ui/components/FullScreen.qml</file>
         <file>ui/components/FullScreenWindow.qml</file>
+        <file>ui/components/TitleBar.qml</file>
     </qresource>
 </RCC>

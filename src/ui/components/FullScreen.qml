@@ -28,6 +28,7 @@ Item {
             PropertyChanges {
                 target: FullScreenWindow
                 smallWindow: false
+                fullWindow: true
             }
         },
         State {
