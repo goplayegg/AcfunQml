@@ -41,6 +41,7 @@ Window {
 
     onClosing: {
         console.log("mainWindow closing")
+        FullScreenWindow.close()
         if(videoLoader.item){
             videoLoader.item.stop()
         }
