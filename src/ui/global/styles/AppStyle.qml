@@ -4,7 +4,6 @@ import QtQuick.Window 2.12
 
 QtObject {
     // Global colors
-    property color defaultColor: "#000000"
     property color primaryColor: "#fd4c5c"
     property color accentColor: "#00a1d6"
     property color warningColor: "#FF5722"
@@ -14,12 +13,12 @@ QtObject {
     property color secondBkgroundColor: "#f1f6fa"
     property color thirdBkgroundColor: "#dee5eb"
     property color foregroundColor: "#000000"
+    property color secondForeColor: "#2e2f33"
     property color transparent: "transparent"
 
     property int currentTheme: 0
     onCurrentThemeChanged: {
         var t = themes.get(currentTheme)
-        defaultColor = t.defaultColor
         primaryColor = t.primaryColor
         accentColor = t.accentColor
         warningColor = t.warningColor
@@ -29,12 +28,12 @@ QtObject {
         secondBkgroundColor = t.secondBkgroundColor
         thirdBkgroundColor = t.thirdBkgroundColor
         foregroundColor = t.foregroundColor
+        secondForeColor = t.secondForeColor
         transparent = t.transparent
     }
     readonly property ListModel themes: ListModel {
         ListElement {
             name: qsTr("白昼主题")
-            defaultColor: "#000000"
             primaryColor: "#fd4c5c"
             accentColor: "#00a1d6"
             warningColor: "#FF5722"
@@ -44,11 +43,11 @@ QtObject {
             secondBkgroundColor: "#f1f6fa"
             thirdBkgroundColor: "#dee5eb"
             foregroundColor: "#000000"
+            secondForeColor: "#3e3e3e"
             transparent: "transparent"
         }
         ListElement {
             name: qsTr("暗夜主题")
-            defaultColor: "#FFFFFF"
             primaryColor: "#fd4c5c"
             accentColor: "#00a1d6"
             warningColor: "#FF5722"
@@ -58,6 +57,7 @@ QtObject {
             secondBkgroundColor: "#29292a"
             thirdBkgroundColor: "#dee5eb"
             foregroundColor: "#FFFFFF"
+            secondForeColor: "#dddddd"
             transparent: "transparent"
         }
     }

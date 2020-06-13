@@ -19,7 +19,7 @@ Item {
         id: iconText
 
         text: control.icon
-        color: AppStyle.defaultColor
+        color: AppStyle.foregroundColor
         font.family: AppIcons.family
         font.pixelSize: control.size
 

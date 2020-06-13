@@ -8,24 +8,32 @@ Item {
 
     property int timeStamp: 0
     property var componentDanm: null
-    property var speed: 1.0//TODO
+    property var speed: 1.0
     property bool paused: false
+
     onPausedChanged: {
         togglePause(paused)
     }
 
-    function open(js) {
-        AcService.getDanm(js.vId, 0, 9, function(res){
+    function open(vId, timeStamp) {
+        var ts = parseInt(timeStamp)
+        danmPaser.timeStamp = ts
+        danmPaser.stop()
+        console.log("timestamp:"+timeStamp+" ts:"+ts)
+        AcService.getDanm(vId, ts, 9, function(res){
             danmPaser.updateDanm(res)
             danmPaser.start()
             })
         visible = true
     }
-    function close() {
+
+    function close(destroy) {
         visible = false
         danmPaser.stop()
-        flyContainer.close()
-        topBottomContainer.close()
+        if(destroy){
+            flyContainer.close()
+            topBottomContainer.close()
+        }
     }
 
     function togglePause(isPause) {
@@ -39,6 +47,7 @@ Item {
 
     DanmakuPaser {
         id:danmPaser
+        speed: root.speed
         onPopDanm:{
             var danms = jsObj.list
             for(var i=0;i<danms.length;++i){
@@ -63,6 +72,10 @@ Item {
         }
         if(componentDanm.status === Component.Ready){
             var danmY = getSuitY(info.mode)
+            if(danmY<0){
+                console.log("throw danmaku:"+info.body)
+                return
+            }
             var danmParent = (info.mode !== 5 && info.mode !== 4)
                     ?flyContainer:topBottomContainer
             var tmp = componentDanm.createObject(danmParent,{"y":danmY, "info":info})
@@ -102,6 +115,8 @@ Item {
             }
             y+=kDmYSpacing;
         }
+        if(y>= dmRowCnt*kDmYSpacing)
+            y=-1
         return y;
     }
 
@@ -127,6 +142,8 @@ Item {
             else
                 y-=kDmYSpacing;
         }
+        if(y>= dmRowCnt*kDmYSpacing)
+            y=-1
         return y;
     }
 

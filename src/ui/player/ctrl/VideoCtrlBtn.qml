@@ -4,7 +4,7 @@ import "qrc:///ui/global/styles"
 
 Button {
     property string tip: ""
-    property string color: "#fff"
+    property color color: "#fff"
     id: control
     height: 40
     width: 46

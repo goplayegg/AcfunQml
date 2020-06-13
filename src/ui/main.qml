@@ -77,8 +77,10 @@ Window {
                 stack.currentItem.item.refresh()
             }
             onCurIdxChanged: {
+                if(stack.currentItem)
+                    stack.currentItem.item.back()
                 stackViewLoader[curIdx].source = stackViewSource[curIdx]
-                stack.replace(null, stackViewLoader[curIdx])//repRect.itemAt(curIdx))
+                stack.replace(null, stackViewLoader[curIdx])
             }
         }
 

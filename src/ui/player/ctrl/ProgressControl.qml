@@ -42,7 +42,7 @@ Slider {
             text: AppIcons.mdi_fan
             font.family: AppIcons.family
             font.pixelSize: 20
-            color: AppStyle.defaultColor
+            color: AppStyle.foregroundColor
             font.weight: Font.Medium
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter

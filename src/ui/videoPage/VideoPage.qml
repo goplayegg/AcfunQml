@@ -7,7 +7,7 @@ import "qrc:///ui/global/libraries/functions.js" as FUN
 Item{
     id:root
 
-    property alias title :player.title
+    property string title :"Title"
 
     function open(js){
         title = js.title

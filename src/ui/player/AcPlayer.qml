@@ -13,16 +13,17 @@ FullScreen {
     fullScreen: ctrlFrame.fullScreen
     smallWindow: ctrlFrame.smallWindow
     signal videoReady
-    property string title :"Title"
+    property var vidioInfo
     function stop(){
         vlcPlayer.stop()
-        danmaku.close()
+        danmaku.close(true)
     }
 
     function start(js){
+        vidioInfo = js
         stop()
         AcService.getVideo(js.vId,js.sId,js.sType,funPlayVideo)
-        danmaku.open(js)
+        danmaku.open(js.vId, 0)
     }
 
     function funPlayVideo(js){
@@ -41,9 +42,23 @@ FullScreen {
     function togglePause(){
         vlcPlayer.togglePause()
     }
+    DanmControl {
+        id: danmCtrl
+        anchors.bottom: parent.bottom
+        width: parent.width
+        onDanmakuClosedChanged: {
+            if(danmakuClosed)
+                danmaku.close(false)
+            else{
+                danmaku.open(vidioInfo.vId, vlcPlayer.time)
+            }
+        }
+    }
 
     Rectangle {
-        anchors.fill: parent
+        anchors.top: parent.top
+        anchors.bottom: danmCtrl.top
+        width: parent.width
         color: "black"
 
         VlcPlayer {
@@ -112,6 +127,7 @@ FullScreen {
                 }
                 onChangePosition: {
                     vlcPlayer.position = pos
+                    danmaku.open(vidioInfo.vId, vlcPlayer.time)
                 }
             }
             Timer {

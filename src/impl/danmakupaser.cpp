@@ -9,11 +9,12 @@
 #define CUT_TIME_S QDateTime::currentSecsSinceEpoch()
 #define CUT_TIME_MS QDateTime::currentMSecsSinceEpoch()
 
+static const int g_DanmPopInterval = 100;//ms
 DanmakuPaser::DanmakuPaser(QObject *parent)
     :QObject(parent)
 {
     m_pTimer = new QTimer(parent);
-    m_pTimer->setInterval(100);
+    m_pTimer->setInterval(g_DanmPopInterval);
     connect(m_pTimer, &QTimer::timeout, this, &DanmakuPaser::onTimerPop);
 }
 
@@ -40,10 +41,8 @@ void DanmakuPaser::start()
     m_pTimer->start();
 }
 
-static int g_iTimeStamp = 0;
 void DanmakuPaser::stop()
 {
-    g_iTimeStamp = 0;
     m_pTimer->stop();
     m_mapDanm.clear();
 }
@@ -74,12 +73,12 @@ void DanmakuPaser::updateDanm(const QJsonObject &jsObj)
 
 void DanmakuPaser::onTimerPop()
 {
-    //快进？变速？
-    int iTimeStamp = g_iTimeStamp;//getVideoTS();
-    g_iTimeStamp+=100;
+    m_timeStamp+=g_DanmPopInterval*m_speed;
+    auto iTimeStamp = m_timeStamp;
     QJsonArray arrPop;
-    auto funcCmpTs = [iTimeStamp](std::pair<int,QJsonObject> const&pr){
-        return iTimeStamp >= pr.first;
+    auto funcCmpTs = [iTimeStamp, this](std::pair<qint64,QJsonObject> const&pr){
+        return (iTimeStamp >= pr.first &&
+                iTimeStamp < pr.first +g_DanmPopInterval*m_speed);
     };
     auto itNeedPop = std::find_if(m_mapDanm.begin(),m_mapDanm.end(),funcCmpTs);
     while (itNeedPop!=m_mapDanm.end())
@@ -100,7 +99,7 @@ void DanmakuPaser::getDanmMap()
 {
     auto danms = m_jsDanm["added"];
     {
-        std::map<int, QJsonObject> tmp;
+        std::map<qint64, QJsonObject> tmp;
         m_mapDanm.swap(tmp);
     }
     if(danms.isArray())
