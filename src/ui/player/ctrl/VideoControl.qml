@@ -93,6 +93,13 @@ Rectangle {
                 width: btnWidth
                 text: AppIcons.mdi_vector_arrange_below
                 tip: qsTr("Window")
+                visible: false//TODO
+            }
+            VideoCtrlBtn {
+                height: btnHeight
+                width: btnWidth
+                text: AppIcons.mdi_eye_circle_outline
+                tip: qsTr("Resolution")
                 onClicked: {
                 }
             }
@@ -130,20 +137,18 @@ Rectangle {
             anchors.right: parent.right
             spacing: 2
             VideoCtrlBtn {
-                height: btnHeight
-                width: btnWidth
-                text: AppIcons.mdi_eye_circle_outline
-                tip: qsTr("Resolution")
-                onClicked: {
-                }
-            }
-            VideoCtrlBtn {
                 id: btnSmall
                 height: btnHeight
                 width: btnWidth
                 text: AppIcons.mdi_image_size_select_small
                 tip: qsTr("Small")
                 checkable: true
+                onCheckedChanged: {
+                    if(checked){
+                        btnFullApp.checked = false
+                        btnFullScreen.checked = false
+                    }
+                }
             }
             VideoCtrlBtn {
                 id: btnFullApp
@@ -152,6 +157,12 @@ Rectangle {
                 text: checked?AppIcons.mdi_fullscreen_exit:AppIcons.mdi_crop_free//mdi_fullscreen
                 tip: qsTr("Full App")
                 checkable: true
+                onCheckedChanged: {
+                    if(checked){
+                        btnSmall.checked = false
+                        btnFullScreen.checked = false
+                    }
+                }
             }
             VideoCtrlBtn {
                 id: btnFullScreen
@@ -160,8 +171,13 @@ Rectangle {
                 text: AppIcons.mdi_arrow_expand
                 tip: qsTr("Full Screen")
                 checkable: true
+                onCheckedChanged: {
+                    if(checked){
+                        btnSmall.checked = false
+                        btnFullApp.checked = false
+                    }
+                }
             }
         }
-
     }
 }

@@ -4,15 +4,16 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 # Features
 - Login Acfun and show basic user infomation
 - Load Acfun Top Rank
-- Play Rank Video
+- Video
   - pause
   - speed 1.0/1.5/2.0
   - jump position (not work somtimes)
+  - fullScreen
 - Danmaku
-  - fly (updating)
-  - top (TODO)
-  - bottom (TODO)
-  - pause (TODO)
+  - fly
+  - top
+  - bottom
+  - pause
   - send danmaku (with problems)
 - Comment
   - show comment (TODO)
@@ -20,7 +21,7 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 - Index Page Video List (TODO)
 - Video Search (TODO)
 - Setting
-  - Hard decode
+  - Hard decode (with problems)
   - Language change
   - Skin change (TODO)
 

@@ -11,6 +11,7 @@ FullScreen {
     id: rootFull
     fullApp:  ctrlFrame.fullApp
     fullScreen: ctrlFrame.fullScreen
+    smallWindow: ctrlFrame.smallWindow
     signal videoReady
     property string title :"Title"
     function stop(){
@@ -43,7 +44,7 @@ FullScreen {
 
     Rectangle {
         anchors.fill: parent
-        color: "black"//"transparent"//
+        color: "black"
 
         VlcPlayer {
             id: vlcPlayer
@@ -86,8 +87,13 @@ FullScreen {
                     tmCtrlHide.start()
                 }
 
-                onClicked: togglePause()
-                onDoubleClicked: ctrlFrame.fullScreen = !ctrlFrame.fullScreen
+                onClicked: {
+                    console.log("clicked player")
+                    togglePause()
+                }
+                onDoubleClicked: {
+                    ctrlFrame.fullScreen = !ctrlFrame.fullScreen
+                }
             }
             VideoControl {
                 id: ctrlFrame

@@ -30,6 +30,7 @@ Item{
     AcPlayer {
         id: player
         anchors.fill: parent
+        normalParent: root
         onVideoReady: {
             busyBox.running = false
         }
