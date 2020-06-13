@@ -4,17 +4,17 @@ import QtQuick.Window 2.12
 
 QtObject {
     // Global colors
-    property string defaultColor: "#000000"
-    property string primaryColor: "#fd4c5c"
-    property string accentColor: "#00a1d6"
-    property string warningColor: "#FF5722"
-    property string errorColor: "#F44336"
-    property string successColor: "#4CAF50"
-    property string backgroundColor: "#FFFFFF"
-    property string secondBkgroundColor: "#f1f6fa"
-    property string thirdBkgroundColor: "#dee5eb"
-    property string foregroundColor: "#000000"
-    property string transparent: "transparent"
+    property color defaultColor: "#000000"
+    property color primaryColor: "#fd4c5c"
+    property color accentColor: "#00a1d6"
+    property color warningColor: "#FF5722"
+    property color errorColor: "#F44336"
+    property color successColor: "#4CAF50"
+    property color backgroundColor: "#FFFFFF"
+    property color secondBkgroundColor: "#f1f6fa"
+    property color thirdBkgroundColor: "#dee5eb"
+    property color foregroundColor: "#000000"
+    property color transparent: "transparent"
 
     property int currentTheme: 0
     onCurrentThemeChanged: {

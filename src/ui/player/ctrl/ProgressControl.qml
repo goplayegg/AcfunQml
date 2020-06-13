@@ -1,17 +1,16 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
+import "qrc:///ui/global/styles/"
 
 Slider {
     id: control
 
-    //property var slidePos: 0.0
     implicitHeight: 33
     horizontalPadding: 0
     from: 0.0
     to: 1.0
     value: 0.0
     hoverEnabled: true
-
 
     background: Rectangle {
         x: control.leftPadding
@@ -21,12 +20,12 @@ Slider {
         width: control.availableWidth
         height: implicitHeight
         radius: 2
-        color: control.hovered?"#cccccb":"#bcbcb9"
+        color: control.hovered?Qt.lighter(AppStyle.thirdBkgroundColor):AppStyle.thirdBkgroundColor
 
         Rectangle {
             width: control.visualPosition * parent.width
             height: parent.height
-            color: control.hovered?"#c93164":"#ed5b8c"
+            color: control.hovered?Qt.lighter(AppStyle.primaryColor):AppStyle.primaryColor
             radius: 2
         }
     }
@@ -37,12 +36,28 @@ Slider {
         implicitWidth: 26
         implicitHeight: 26
         radius: 13
-        color: control.hovered ? "#c93164" : "white"
-        Image {
+        color: control.hovered?AppStyle.primaryColor:AppStyle.backgroundColor
+        Label {
             anchors.centerIn: parent
-            width: parent.width/2
-            height: width
-            source: ""
+            text: AppIcons.mdi_fan
+            font.family: AppIcons.family
+            font.pixelSize: 20
+            color: AppStyle.defaultColor
+            font.weight: Font.Medium
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            NumberAnimation on rotation {
+                id: anim
+                from: 0
+                to: 360*3
+                duration: 3000
+                easing.type: Easing.OutCubic
+            }
         }
+    }
+
+    onPressedChanged: {
+        if(pressed)
+            anim.restart()
     }
 }

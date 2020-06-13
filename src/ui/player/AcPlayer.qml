@@ -34,7 +34,7 @@ FullScreen {
         var playInfos = js.playInfo.streams
         var url = playInfos[1].playUrls[0]
         console.log("current playing url:"+url)
-        vlcPlayer.mrl = url
+        vlcPlayer.mrl = url//"file:///D:/1.mp4"//
         ctrlFrame.duration = FUN.formatTime(parseInt(js.playInfo.duration/1000))
     }
 
@@ -48,7 +48,6 @@ FullScreen {
 
         VlcPlayer {
             id: vlcPlayer
-            //mrl: "file:///D:/1.mp4"
             speed: ctrlFrame.speed
             volume: ctrlFrame.volume
             onStateChanged: {

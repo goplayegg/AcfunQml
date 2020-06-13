@@ -29,7 +29,8 @@ Rectangle {
         width: parent.width
         implicitHeight: 33
         onPressedChanged: {
-            changePosition(value)
+            if(!pressed)
+                changePosition(value)
         }
     }
 
