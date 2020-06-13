@@ -6,6 +6,7 @@
 #include <QJsonArray>
 #include <QTimer>
 #include <QDateTime>
+#include <thread>
 #define CUT_TIME_S QDateTime::currentSecsSinceEpoch()
 #define CUT_TIME_MS QDateTime::currentMSecsSinceEpoch()
 
@@ -16,6 +17,12 @@ DanmakuPaser::DanmakuPaser(QObject *parent)
     m_pTimer = new QTimer(parent);
     m_pTimer->setInterval(g_DanmPopInterval);
     connect(m_pTimer, &QTimer::timeout, this, &DanmakuPaser::onTimerPop);
+    connect(this, &DanmakuPaser::sigStart, this, [this](){
+        if(m_bWorking){
+            m_bWorking = false;
+            m_pTimer->start();
+        }
+    }, Qt::QueuedConnection);
 }
 
 //for local danm test
@@ -38,28 +45,40 @@ void DanmakuPaser::getDanm()
 
 void DanmakuPaser::start()
 {
+    if(m_bWorking)
+        return;
     m_pTimer->start();
 }
 
 void DanmakuPaser::stop()
 {
+    if(m_bWorking){
+        m_bWorking = false;
+        return;
+    }
     m_pTimer->stop();
     m_mapDanm.clear();
 }
 
 void DanmakuPaser::pause()
 {
+    if(m_bWorking)
+        return;
     m_pTimer->stop();
 }
 
 void DanmakuPaser::resume()
 {
+    if(m_bWorking)
+        return;
     m_pTimer->start();
 }
 
 void DanmakuPaser::updateDanm(const QJsonObject &jsObj)
 {
-    auto iStart = CUT_TIME_MS;
+    if(m_bWorking)
+        return;
+    m_pTimer->stop();
     if(0){
         getDanm();
         getDanmMap();
@@ -67,8 +86,6 @@ void DanmakuPaser::updateDanm(const QJsonObject &jsObj)
         m_jsDanm = jsObj;
         getDanmMap();
     }
-    auto elapse = CUT_TIME_MS - iStart;
-    qDebug()<<"updateDanm elapse: " << elapse << " ms";
 }
 
 void DanmakuPaser::onTimerPop()
@@ -97,18 +114,27 @@ void DanmakuPaser::onTimerPop()
 
 void DanmakuPaser::getDanmMap()
 {
-    auto danms = m_jsDanm["added"];
-    {
-        std::map<qint64, QJsonObject> tmp;
-        m_mapDanm.swap(tmp);
-    }
-    if(danms.isArray())
-    {
-        auto danmArr = danms.toArray();
-        for (auto it = danmArr.constBegin();it!=danmArr.constEnd(); ++ it)
+    qDebug()<<"getDanmMap";
+    m_bWorking = true;
+    std::thread thDealMap([this](){
+        auto iStart = CUT_TIME_MS;
+        auto danms = m_jsDanm["added"];
         {
-            m_mapDanm[(*it)["position"].toInt()] = it->toObject();
+            std::map<qint64, QJsonObject> tmp;
+            m_mapDanm.swap(tmp);
         }
-    }
-    qDebug()<<"map merged:"<<m_mapDanm;
+        if(danms.isArray())
+        {
+            auto danmArr = danms.toArray();
+            for (auto it = danmArr.constBegin();it!=danmArr.constEnd(); ++ it)
+            {
+                m_mapDanm[(*it)["position"].toInt()] = it->toObject();
+            }
+        }
+        //qDebug()<<"map merged:"<<m_mapDanm;
+        auto elapse = CUT_TIME_MS - iStart;
+        emit sigStart();
+        qDebug()<<"updateDanm elapse: " << elapse << " ms";
+    });
+    thDealMap.detach();
 }

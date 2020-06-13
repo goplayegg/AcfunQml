@@ -65,6 +65,11 @@ QtObject {
     property int sliderBarWidth: 6
     property real scale: 1.0
 
+    // display z
+    property int danmakuZ: 10
+    property int busyZ: 20
+    property int msgZ: 30
+
     // device breakpoints
     property int bp_xs: 560
     property int bp_sm: 960

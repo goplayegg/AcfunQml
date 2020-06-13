@@ -4,6 +4,7 @@ singleton FullScreenWindow 1.0 FullScreenWindow.qml
 Icon 1.0 Icon.qml
 IconTextButton 1.0 IconTextButton.qml
 LinkLabel 1.0 LinkLabel.qml
+singleton PopMsg 1.0 PopMsg.qml
 RoundButton 1.0 RoundButton.qml
 RoundImage 1.0 RoundImage.qml
 RoundMouseArea 1.0 RoundMouseArea.qml

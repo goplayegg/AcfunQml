@@ -9,7 +9,7 @@ Rectangle {
     property alias running: anim.running
     width: 180
     height: 180
-    z: 10
+    z: AppStyle.busyZ
 
     Item {
         anchors.fill: parent

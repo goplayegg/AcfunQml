@@ -18,11 +18,9 @@ Item {
     function open(vId, timeStamp) {
         var ts = parseInt(timeStamp)
         danmPaser.timeStamp = ts
-        danmPaser.stop()
         console.log("timestamp:"+timeStamp+" ts:"+ts)
         AcService.getDanm(vId, ts, 9, function(res){
             danmPaser.updateDanm(res)
-            danmPaser.start()
             })
         visible = true
     }

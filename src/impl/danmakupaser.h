@@ -15,7 +15,7 @@ public:
 
     Q_PROPERTY(qint64 timeStamp READ getTS WRITE setTs)
     Q_PROPERTY(float speed READ getSpeed WRITE setSpeed)
-    Q_INVOKABLE void start();
+    /*Q_INVOKABLE*/ void start();
     Q_INVOKABLE void stop();
     Q_INVOKABLE void pause();
     Q_INVOKABLE void resume();
@@ -44,6 +44,7 @@ public slots:
 
 signals:
     void popDanm(const QJsonObject &jsObj);
+    void sigStart();
 private slots:
     void onTimerPop();
 private:
@@ -54,6 +55,7 @@ private:
     std::map<qint64, QJsonObject> m_mapDanm;
     qint64 m_timeStamp{ 0 };
     float m_speed{ 1.0 };
+    bool m_bWorking{false};
 };
 QML_DECLARE_TYPE(DanmakuPaser)
 

@@ -28,8 +28,11 @@ FullScreen {
 
     function funPlayVideo(js){
         if(0 !== js.result){
-            //弹错误
-            //js.error_msg
+            videoReady()
+            PopMsg.parent = mainwindowRoot
+            PopMsg.text = js.error_msg
+            PopMsg.visible = true
+            return
         }
 
         var playInfos = js.playInfo.streams
@@ -84,7 +87,6 @@ FullScreen {
             id: videoSur
             source: vlcPlayer
             anchors.fill:parent
-            anchors.margins: 5
 
             MouseArea {
                 function showCtrl(){

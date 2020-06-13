@@ -9,7 +9,7 @@ Label{
     property var speed: 1.0
     readonly property int pixPerSecond: 100
     readonly property int delayTimsMs: 5000
-    z:10
+    z: AppStyle.danmakuZ
     color: "#"+info.color.toString(16)
     text: info.body
     font.pixelSize: info.size
