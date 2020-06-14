@@ -1,19 +1,21 @@
 # Introduction
-AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build on Qt 5 & Qt Quick 2.x (Qml) & QmlVlc (based on libvlc)
+AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build on Qt 5 & Qt Quick 2.x (Qml) & QmlVlc (based on libvlc).
 
 # Features
 - Login Acfun and show basic user infomation
 - Load Acfun Top Rank
 - Video
-  - pause
-  - speed 1.0/1.5/2.0
-  - jump position (not work somtimes)
-  - fullScreen
+  - pause/resume
+  - speed 0.5/1.0/1.5/2.0
+  - jump position
+  - fill App
+  - full Screen
+  - mini window
 - Danmaku
   - fly
   - top
   - bottom
-  - pause
+  - pause/resume
   - send danmaku (with problems)
 - Comment
   - show comment (TODO)
@@ -34,6 +36,8 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 # ScreenShots
 
 ![shot](./screenshots/mainpage.jpg)
+![shot](./screenshots/playPage.jpg)
+![shot](./screenshots/playPageFullApp.jpg)
 
 # Requirements
 - Qt 5.12.0 or later
@@ -94,5 +98,8 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 > Copyright &copy;  baoyuanle Under the [DBAD LICENSE](LICENSE.md)
 ##
 > The project dependent on some other opensource project , see [LICENSES_third](LICENSE_third.md)
+##
+> 软件交互视觉很大程度上参考[云之幻](https://github.com/Richasy)的[UWP应用哔哩](https://www.microsoft.com/store/apps/9MVN4NSLT150)。
 
-<img src="https://github.com/baoyuanle/blog/blob/master/res/like.jpg" width="200">
+## 微信赞赏码
+<img src="https://github.com/baoyuanle/blog/blob/master/res/like.jpg?raw=true" width="200">
