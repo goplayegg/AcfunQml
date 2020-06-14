@@ -15,8 +15,8 @@ Window {
     id: mainwindow
 
     visible: true
-    width: 640
-    height: 600
+    width: 990
+    height: 710
     minimumWidth: 500
     minimumHeight: 600
     title: qsTr("AcfunQml")

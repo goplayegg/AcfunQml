@@ -102,6 +102,8 @@ Item {
     }
 
     function makeCookie(res){
+        if(0 !== res.result)
+            return
         cookie = "";
         cookie +="did=be0088b8-1ae1-341d-b31e-bed8e78e2325;safety_id=AAFAsQ04RM6Acm0WUcbfyJ5Q";
         cookie +=";acPassToken="+ res.acPassToken;

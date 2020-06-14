@@ -17,6 +17,11 @@ Popup {
 
     signal loginFinish(var js);
     function setLoginData(js){
+        if(0 !== js.res){
+            //TODO报错
+            console.log("login error:"+js.error_msg)
+            return
+        }
         g_preference.setValue("acPassToken",js.acPassToken)
         g_preference.setValue("acSecurity",js.acSecurity)
         g_preference.setValue("auth_key",js.auth_key)

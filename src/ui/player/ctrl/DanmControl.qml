@@ -11,6 +11,7 @@ Rectangle {
     readonly property int btnWidth : 55
 
     property alias danmakuClosed: btnSwitch.checked
+    signal clickBanana()
 
     Row {
         anchors.fill: parent
@@ -48,8 +49,18 @@ Rectangle {
         TextField {
             id: msg
             height: btnHeight
-            width: parent.width-(btnWidth+parent.spacing)*4
+            width: parent.width-(btnWidth+parent.spacing)*6
             placeholderText: qsTr("Acfun 认真你就输了 (つд⊂)")
+        }
+        Image {
+            height: 32
+            y: (btnHeight-32)/2
+            width: btnWidth*2
+            source: "qrc:/assets/img/common/btnBanana.png"
+            MouseArea {
+                anchors.fill: parent
+                onClicked: clickBanana()
+            }
         }
         VideoCtrlBtn {
             height: btnHeight

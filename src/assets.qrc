@@ -24,5 +24,7 @@
         <file>assets/img/bk/pee.gif</file>
         <file>assets/img/bk/umbrella.png</file>
         <file>assets/img/appIcon.png</file>
+        <file>assets/img/common/banana.png</file>
+        <file>assets/img/common/btnBanana.png</file>
     </qresource>
 </RCC>

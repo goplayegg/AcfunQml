@@ -46,6 +46,7 @@ FullScreen {
         vlcPlayer.togglePause()
     }
     DanmControl {
+        property var componentBanana: null
         id: danmCtrl
         anchors.bottom: parent.bottom
         width: parent.width
@@ -54,6 +55,16 @@ FullScreen {
                 danmaku.close(false)
             else{
                 danmaku.open(vidioInfo.vId, vlcPlayer.time)
+            }
+        }
+        onClickBanana: {
+            if(null == componentBanana){
+                componentBanana = Qt.createComponent("qrc:/ui/components/Banana.qml")
+            }
+            if(componentBanana.status === Component.Ready){
+                console.log("throw Banana")
+                var tmp = componentBanana.createObject(rootFull,{"fromPos":"615,540", "toPos":"1,1"})
+                tmp.start();
             }
         }
     }

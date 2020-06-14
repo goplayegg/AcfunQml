@@ -1,4 +1,5 @@
-﻿BusyIndicatorWithText 1.0 BusyIndicatorWithText.qml
+﻿Banana 1.0 Banana.qml
+BusyIndicatorWithText 1.0 BusyIndicatorWithText.qml
 FullScreen 1.0 FullScreen.qml
 singleton FullScreenWindow 1.0 FullScreenWindow.qml
 Icon 1.0 Icon.qml
