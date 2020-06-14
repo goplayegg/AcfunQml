@@ -102,4 +102,4 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 > 软件交互视觉很大程度上参考[云之幻](https://github.com/Richasy)的[UWP应用哔哩](https://www.microsoft.com/store/apps/9MVN4NSLT150)。
 
 ## 微信赞赏码
-<img src="https://github.com/baoyuanle/blog/blob/master/res/like.jpg?raw=true" width="200">
+<img src="https://github.com/baoyuanle/blog/blob/master/res/like.jpg?raw=true" width="400">
