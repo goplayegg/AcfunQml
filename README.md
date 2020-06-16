@@ -94,11 +94,22 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
   > TODO
 
 
-## 
+## LICENSE
 > Copyright &copy;  baoyuanle Under the [DBAD LICENSE](LICENSE.md)
 ##
 > The project dependent on some other opensource project , see [LICENSES_third](LICENSE_third.md)
-##
+
+## Thanks
+> 麻菜 mcplayer(https://github.com/yuriyoung/mcplayer)
+
+> 涛哥 TaoQuick(https://github.com/jaredtao/TaoQuick)
+
+> RSATom QmlVlc(https://github.com/RSATom/QmlVlc)
+
+> qyvlik HttpRequest(https://github.com/qyvlik/HttpRequest)
+
+> 梓喵出没(https://www.azimiao.com/5882.html)
+
 > 软件交互视觉很大程度上参考[云之幻](https://github.com/Richasy)的[UWP应用哔哩](https://www.microsoft.com/store/apps/9MVN4NSLT150)。
 
 ## 微信赞赏码

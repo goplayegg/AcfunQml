@@ -71,7 +71,7 @@ Window {
             z: content.z+1
             height: parent.height
             onPopupOpened: {
-                root.enabled = !open
+                mainwindowRoot.enabled = !open
             }
             onLoginFinish: {
                 stack.currentItem.item.refresh()

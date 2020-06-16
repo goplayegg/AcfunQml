@@ -1,4 +1,4 @@
-#include "httprequest.h"
+﻿#include "httprequest.h"
 #include "httprequest_p.h"
 #include "networkcookiejar.h"
 
@@ -16,6 +16,7 @@ HttpRequest::HttpRequest(QNetworkAccessManager *networkManager, QObject *parent)
     QObject(parent),
     d_ptr(new HttpRequestPrivate(networkManager, this))
 {
+    qDebug()<<"ssl version:"<<QSslSocket::sslLibraryBuildVersionString();
     qRegisterMetaType<NetworkStatus>("HttpRequest::NetworkStatus");
     qRegisterMetaType<State>("HttpRequest::State");
 
