@@ -66,10 +66,10 @@ Rectangle {
             source: "VolumeControl.qml"
             Connections {
                 target: voiceBar.item
-                onPlayVolumeChanged: {
+                function onPlayVolumeChanged(){
                     root.volume = voiceBar.item.playVolume
                 }
-                onMuteChanged: {
+                function onMuteChanged(){
                     root.mute = voiceBar.item.mute
                 }
             }

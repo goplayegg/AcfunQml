@@ -152,7 +152,7 @@ Window {
             id: acMainLoader
             Connections {
                 target: acMainLoader.item
-                onOpenVideo: {
+                function  onOpenVideo(js) {
                     busyBox.text = qsTr("Loading video ...")
                     busyBox.running = true
                     console.log("open video:"+JSON.stringify(js))

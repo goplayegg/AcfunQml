@@ -18,7 +18,7 @@ Rectangle{
     signal loginFinish(var js);
 
     property bool logined :false
-    property var jsLogin : ({avatar:"",username:"",userid:""})
+    property var jsLogin : ({avatar:"",username:"",userid:"",followed:0,following:0,contentCount:0})
     property alias shrinked: tabBar.shrinked
     property alias curIdx: tabBar.curIdx
     property alias norWidth: tabBar.norWidth
@@ -26,15 +26,9 @@ Rectangle{
 
     function setLoginInfo(js){
         jsLogin = js
-//        jsLogin = {
-//            "avatar":pref+"avatar.jpg",
-//            "username":"敌军还有30秒到达葬场",
-//            "userid":"923834",
-//            "level":"23"}
         if(jsLogin.username){
             logined = true
             tabBar.setVisible(3, true)
-            //tabBar.setVisible(6, true)
         }
         console.log("jsLogin", JSON.stringify(jsLogin))
         loginFinish(js)
@@ -99,7 +93,6 @@ Rectangle{
             onClicked: {
                 logined = false
                 tabBar.setVisible(3, false)
-                //tabBar.setVisible(6, false)
             }
         }
         Text{
@@ -130,7 +123,7 @@ Rectangle{
             anchors.topMargin: 15
             width: parent.width
             Repeater {
-                model: ["4454444","14", "144222466", "动态", "关注", "粉丝"]
+                model: [jsLogin.contentCount,jsLogin.following, jsLogin.followed, "动态", "关注", "粉丝"]
                 Text {
                     text: modelData;
                     width: parent.width/3;
@@ -169,7 +162,6 @@ Rectangle{
             popupOpened(false)
         }
         onLoginFinish: {
-            console.log("funLogined js:"+JSON.stringify(js))
             root.setLoginInfo(js)
             popLogin.close()
         }

@@ -1,7 +1,6 @@
 ﻿pragma Singleton
 import QtQuick 2.12
 import Network 1.0
-import "qrc:///ui/global/styles/"
 
 
 Item {
@@ -21,6 +20,12 @@ Item {
 
         request('POST', "id.app.acfun.cn/rest/app/login/signin",
                 null, body, callBack);
+    }
+
+    function hasSignedIn(cb) {
+        var url = "api-new.acfunchina.com/rest/app/user/hasSignedIn";
+        var body = "access_token="+token
+        request('POST', url, null, body, cb);
     }
 
     function getUserInfo(cb) {
@@ -106,11 +111,12 @@ Item {
             return
         cookie = "";
         cookie +="did=be0088b8-1ae1-341d-b31e-bed8e78e2325;safety_id=AAFAsQ04RM6Acm0WUcbfyJ5Q";
-        cookie +=";acPassToken="+ res.acPassToken;
+        cookie +=";acPasstoken="+ res.acPassToken;
         cookie +=";acSecurity="+ res.acSecurity;
         cookie +=";auth_key="+ res.auth_key;
         cookie +=";old_token="+ res.token;
-        cookie +=";userid="+ res.userid;
+        cookie +=";userId="+ res.userid;
+        //console.log("cookie:"+cookie)
         token = res.token;
         acSecurity = res.acSecurity;
     }
