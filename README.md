@@ -108,6 +108,8 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 
 > qyvlik HttpRequest(https://github.com/qyvlik/HttpRequest)
 
+> BANKA2017(https://github.com/BANKA2017/Acsign)
+
 > 梓喵出没(https://www.azimiao.com/5882.html)
 
 > 软件交互视觉很大程度上参考[云之幻](https://github.com/Richasy)的[UWP应用哔哩](https://www.microsoft.com/store/apps/9MVN4NSLT150)。
