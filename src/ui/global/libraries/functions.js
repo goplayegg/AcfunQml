@@ -27,3 +27,15 @@ function fmtTime(date, fmt) {
             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
+
+//make key=value&key2=value2
+function fmtQueryBody(keyVal){
+    var ret = "";
+    for(var key in keyVal){
+        if(ret !== ""){
+            ret+="&";
+        }
+        ret +=(key+'='+keyVal[key]);
+    }
+    return ret;
+}

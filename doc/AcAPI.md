@@ -92,3 +92,32 @@ root.rankList.videoList：
 [排行榜视频json](排行榜视频.json)
 
 
+## 发弹幕（需要token 参考签到状态）
+> https://api-new.acfunchina.com/rest/app/new-danmaku/add
+
+*方式:POST*
+
+**请求body：**
+格式： key=value&key2=value2
+
+| key    | 类型 | value     | 备注     |
+| ------- | ---- | -------- | -------- |
+|body   |      |   弹幕内容   |  需要encodeURIComponent|
+|videoId   |      |  11626279  |分P的视频videoList-id|
+|position   |      |  10294  |  视频进度毫秒  |
+|mode   |      |  1   |  1:滚动  4:底部  5:顶部 |
+|size   |      |  18   |  25/18  |
+|color   |  RGB十进制  |  16777215  |    |
+|type   |      |  douga  |    |
+|id   |      |  视频Ac号contentId|    |
+|subChannelId   |      |  190  |    |
+|subChannelName   |      |    |  留空  |
+
+**json回复：**
+```json
+{
+	"result": 0,
+	"danmakuId": 177859644,
+	"host-name": "hb2-acfun-kcs308.aliyun"
+}
+```

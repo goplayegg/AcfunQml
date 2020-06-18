@@ -43,6 +43,10 @@ Item {
         topBottomContainer.togglePause(isPause)
     }
 
+    function addSelfDanm(danmJson){
+        addSingleDanm(danmJson)
+    }
+
     DanmakuPaser {
         id:danmPaser
         speed: root.speed

@@ -1,7 +1,7 @@
 ﻿pragma Singleton
 import QtQuick 2.12
 import Network 1.0
-
+import "libraries/functions.js" as FUN
 
 Item {
 
@@ -47,6 +47,13 @@ Item {
         var body = "videoId=" + videoId + "&lastFetchTime="+ lastFetchTime
                     + "&resourceTypeId=" + resourceTypeId;
         request('POST', url, qParam, body, cb);
+    }
+
+    //body, videoId, position, mode, color, size, type, id, subChannelId
+    function sendDanm(dmJson, cb) {
+        var url = "api-new.acfunchina.com/rest/app/new-danmaku/add";
+        var body = FUN.fmtQueryBody(dmJson)
+        request('POST', url, null, body, cb);
     }
 
     function getVideo(vid, sourceId, contentType, cb) {

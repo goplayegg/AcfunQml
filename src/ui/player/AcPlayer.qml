@@ -13,14 +13,14 @@ FullScreen {
     fullScreen: ctrlFrame.fullScreen
     smallWindow: ctrlFrame.smallWindow
     signal videoReady
-    property var vidioInfo
+    property var videoInfo
     function stop(){
         vlcPlayer.stop()
         danmaku.close(true)
     }
 
     function start(js){
-        vidioInfo = js
+        videoInfo = js
         stop()
         AcService.getVideo(js.vId,js.sId,js.sType,funPlayVideo)
         danmaku.open(js.vId, 0)
@@ -54,7 +54,7 @@ FullScreen {
             if(danmakuClosed)
                 danmaku.close(false)
             else{
-                danmaku.open(vidioInfo.vId, vlcPlayer.time)
+                danmaku.open(videoInfo.vId, vlcPlayer.time)
             }
         }
         onClickBanana: {
@@ -66,6 +66,19 @@ FullScreen {
                 var tmp = componentBanana.createObject(rootFull,{"fromPos":"615,540", "toPos":"1,1"})
                 tmp.start();
             }
+        }
+        onSendDanm: {
+            danmaku.addSelfDanm(danmJson)
+            danmJson.body = encodeURIComponent(danmJson.body)
+            danmJson.position = vlcPlayer.time
+            danmJson.videoId = videoInfo.vId
+            danmJson.id = videoInfo.sId
+            AcService.sendDanm(danmJson, function(res){
+                if(0!==res.result){
+                    console.log("danmaku send failed:"+JSON.stringify(danmJson))
+                    return
+                }
+            })
         }
     }
 
@@ -140,7 +153,7 @@ FullScreen {
                 }
                 onChangePosition: {
                     vlcPlayer.position = pos
-                    danmaku.open(vidioInfo.vId, vlcPlayer.time)
+                    danmaku.open(videoInfo.vId, vlcPlayer.time)
                 }
             }
             Timer {

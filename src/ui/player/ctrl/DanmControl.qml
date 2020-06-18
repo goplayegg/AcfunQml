@@ -12,6 +12,7 @@ Rectangle {
 
     property alias danmakuClosed: btnSwitch.checked
     signal clickBanana()
+    signal sendDanm(var danmJson)
 
     Row {
         anchors.fill: parent
@@ -70,6 +71,22 @@ Rectangle {
             text: AppIcons.mdi_telegram
             tip: qsTr("Send")
             onClicked: {
+                if(msg.text.length === 0){
+                    return
+                }
+                var danmJson = {
+                    body: msg.text,
+                    videoId:0,
+                    position:0,
+                    id:0,
+                    mode:1,
+                    color:16777215,
+                    size:25,
+                    type:"douga",
+                    subChannelId:190,
+                    subChannelName:""
+                }
+                root.sendDanm(danmJson)
             }
         }
     }
