@@ -7,7 +7,7 @@ Popup {
     width: 300
     height: 50
     background: Rectangle {
-        color: "#f2f7fd"
+        color: AppStyle.secondBkgroundColor
         radius: 5
     }
     property var playVolume: volumeSlider.value

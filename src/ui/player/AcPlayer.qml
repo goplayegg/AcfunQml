@@ -48,6 +48,7 @@ FullScreen {
     DanmControl {
         property var componentBanana: null
         id: danmCtrl
+        visible: (fullScreen||fullApp||smallWindow)?ctrlFrame.visible:true
         anchors.bottom: parent.bottom
         width: parent.width
         onDanmakuClosedChanged: {
@@ -78,13 +79,14 @@ FullScreen {
                     console.log("danmaku send failed:"+JSON.stringify(danmJson))
                     return
                 }
+                danmCtrl.clearInput()
             })
         }
     }
 
     Rectangle {
         anchors.top: parent.top
-        anchors.bottom: danmCtrl.top
+        anchors.bottom: danmCtrl.visible?danmCtrl.top:parent.bottom
         width: parent.width
         color: "black"
 

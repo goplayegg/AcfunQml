@@ -14,6 +14,10 @@ Rectangle {
     signal clickBanana()
     signal sendDanm(var danmJson)
 
+    function clearInput(){
+        msg.text = ""
+    }
+
     Row {
         anchors.fill: parent
         spacing: 2
@@ -38,6 +42,7 @@ Rectangle {
             }
         }
         VideoCtrlBtn {
+            id: btnSendOpt
             height: btnHeight
             width: btnWidth
             hoverEnabled: false
@@ -45,6 +50,10 @@ Rectangle {
             text: AppIcons.mdi_format_color_text
             tip: qsTr("Danmaku send option")
             onClicked: {
+                var pt = btnSendOpt.mapToItem(root, btnSendOpt.width/2, 0)
+                danmSendOpt.item.x = pt.x-danmSendOpt.item.width/2
+                danmSendOpt.item.y = pt.y-danmSendOpt.item.height
+                danmSendOpt.item.open()
             }
         }
         TextField {
@@ -79,9 +88,9 @@ Rectangle {
                     videoId:0,
                     position:0,
                     id:0,
-                    mode:1,
-                    color:16777215,
-                    size:25,
+                    mode: danmSendOpt.item.mode,
+                    color: danmSendOpt.item.color,
+                    size: danmSendOpt.item.fontSize,
                     type:"douga",
                     subChannelId:190,
                     subChannelName:""
@@ -89,5 +98,11 @@ Rectangle {
                 root.sendDanm(danmJson)
             }
         }
+    }
+
+    Loader {
+        id: danmSendOpt
+        asynchronous: true
+        source: "DanmSendOption.qml"
     }
 }
