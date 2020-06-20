@@ -10,6 +10,7 @@ Item {
     property var componentDanm: null
     property var speed: 1.0
     property bool paused: false
+    property var danmOpacity: 1.0
 
     onPausedChanged: {
         togglePause(paused)
@@ -80,7 +81,12 @@ Item {
             }
             var danmParent = (info.mode !== 5 && info.mode !== 4)
                     ?flyContainer:topBottomContainer
-            var tmp = componentDanm.createObject(danmParent,{"y":danmY, "info":info})
+            var danmItemProp = {
+                "y":danmY,
+                "info":info,
+                "opacity":danmOpacity
+            }
+            var tmp = componentDanm.createObject(danmParent, danmItemProp)
             tmp.start();
         }
     }

@@ -16,10 +16,14 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
   - top
   - bottom
   - pause/resume
-  - send danmaku (with problems)
+  - modify display opacity
+  - send danmaku
+    - font size
+	- color
+	- mode
 - Comment
   - show comment (TODO)
-  - send comment (with problems)
+  - send comment (TODO)
 - Index Page Video List (TODO)
 - Video Search (TODO)
 - Setting

@@ -49,5 +49,6 @@
         <file>ui/components/PopMsg.qml</file>
         <file>ui/components/Banana.qml</file>
         <file>ui/player/ctrl/DanmSendOption.qml</file>
+        <file>ui/player/ctrl/DanmShowOption.qml</file>
     </qresource>
 </RCC>

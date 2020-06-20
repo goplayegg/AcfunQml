@@ -173,6 +173,7 @@ FullScreen {
             clip: true
             speed: ctrlFrame.speed
             paused: ctrlFrame.paused
+            danmOpacity: danmCtrl.danmOpacity
         }
     }
 }

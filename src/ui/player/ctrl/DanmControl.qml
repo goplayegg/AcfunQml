@@ -10,6 +10,7 @@ Rectangle {
     readonly property int btnHeight: 40
     readonly property int btnWidth : 55
 
+    property var danmOpacity: 1.0
     property alias danmakuClosed: btnSwitch.checked
     signal clickBanana()
     signal sendDanm(var danmJson)
@@ -39,6 +40,10 @@ Rectangle {
             text: AppIcons.mdi_tune_vertical
             tip: qsTr("Danmaku display")
             onClicked: {
+                var pt = mapToItem(root, width/2, 0)
+                danmShowOpt.item.x = pt.x-danmShowOpt.item.width/2
+                danmShowOpt.item.y = pt.y-danmShowOpt.item.height
+                danmShowOpt.item.open()
             }
         }
         VideoCtrlBtn {
@@ -104,5 +109,17 @@ Rectangle {
         id: danmSendOpt
         asynchronous: true
         source: "DanmSendOption.qml"
+    }
+
+    Loader {
+        id: danmShowOpt
+        asynchronous: true
+        source: "DanmShowOption.qml"
+        Connections {
+            target: danmShowOpt.item
+            function  onDanmOpacityChanged() {
+                root.danmOpacity = danmShowOpt.item.danmOpacity
+            }
+        }
     }
 }

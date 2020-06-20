@@ -164,7 +164,6 @@ Window {
             }
             onLoaded: {
                 console.log("acMainLoader Loaded")
-                //item.refresh()
             }
         }
 
