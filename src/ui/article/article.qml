@@ -40,6 +40,8 @@ Item{
             jsCurRank.userName = jsCurRank.user.name
             jsCurRank.contentId = jsCurRank.dougaId
             jsCurRank.contentType = 2
+            jsCurRank.userJson = JSON.stringify(jsCurRank.user)
+            jsCurRank.tagListJson = JSON.stringify(jsCurRank.tagList)
             rankModel.append(jsCurRank)
             console.log("rank append:"+jsCurRank.title)
         }

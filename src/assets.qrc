@@ -26,5 +26,11 @@
         <file>assets/img/appIcon.png</file>
         <file>assets/img/common/banana.png</file>
         <file>assets/img/common/btnBanana.png</file>
+        <file>assets/img/common/banana0.png</file>
+        <file>assets/img/common/banana1.png</file>
+        <file>assets/img/common/like0.png</file>
+        <file>assets/img/common/like1.png</file>
+        <file>assets/img/common/star0.png</file>
+        <file>assets/img/common/star1.png</file>
     </qresource>
 </RCC>

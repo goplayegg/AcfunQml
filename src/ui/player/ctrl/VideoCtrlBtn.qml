@@ -13,9 +13,6 @@ Button {
     ToolTip.delay: Qt.styleHints.mousePressAndHoldInterval
     hoverEnabled: true
 
-    Component.onCompleted: {
-        //console.log("AppIcons.family:" +AppIcons.family)
-    }
     contentItem:
         Text {
             text: control.text
@@ -30,7 +27,7 @@ Button {
     background: Rectangle {
         color: "transparent"
         radius: 5
-        border.color: "#686867"
+        border.color: AppStyle.secondForeColor
         border.width: control.hovered?2:0
     }
 }

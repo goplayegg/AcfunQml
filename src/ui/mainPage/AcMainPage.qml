@@ -28,6 +28,7 @@ Item{
             var videoArr = jsCurRank.videoList
             //console.log("videoArr:"+ JSON.stringify(videoArr))
             jsCurRank.vid = videoArr[0].id
+            jsCurRank.userJson = JSON.stringify(jsCurRank.user)
             rankModel.append(jsCurRank)
             console.log("rank append:"+js.rankList[i].title)
         }

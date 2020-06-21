@@ -25,6 +25,7 @@ Item {
         height: parent.height
         width: 300
         placeholderText: qsTr("Search")
+        selectByMouse: true
         text: ""//TODO del
         anchors.left: btnBack.right
         anchors.leftMargin: 20

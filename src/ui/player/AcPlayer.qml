@@ -22,8 +22,8 @@ FullScreen {
     function start(js){
         videoInfo = js
         stop()
-        AcService.getVideo(js.vId,js.sId,js.sType,funPlayVideo)
-        danmaku.open(js.vId, 0)
+        AcService.getVideo(js.vid,js.contentId,js.contentType,funPlayVideo)
+        danmaku.open(js.vid, 0)
     }
 
     function funPlayVideo(js){
@@ -55,7 +55,7 @@ FullScreen {
             if(danmakuClosed)
                 danmaku.close(false)
             else{
-                danmaku.open(videoInfo.vId, vlcPlayer.time)
+                danmaku.open(videoInfo.vid, vlcPlayer.time)
             }
         }
         onClickBanana: {
@@ -72,8 +72,8 @@ FullScreen {
             danmaku.addSelfDanm(danmJson)
             danmJson.body = encodeURIComponent(danmJson.body)
             danmJson.position = vlcPlayer.time
-            danmJson.videoId = videoInfo.vId
-            danmJson.id = videoInfo.sId
+            danmJson.videoId = videoInfo.vid
+            danmJson.id = videoInfo.contentType
             AcService.sendDanm(danmJson, function(res){
                 if(0!==res.result){
                     console.log("danmaku send failed:"+JSON.stringify(danmJson))
@@ -155,7 +155,7 @@ FullScreen {
                 }
                 onChangePosition: {
                     vlcPlayer.position = pos
-                    danmaku.open(videoInfo.vId, vlcPlayer.time)
+                    danmaku.open(videoInfo.vid, vlcPlayer.time)
                 }
             }
             Timer {

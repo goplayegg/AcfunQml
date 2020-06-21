@@ -7,11 +7,9 @@ import "qrc:///ui/global/libraries/functions.js" as FUN
 Item{
     id:root
 
-    property string title :"Title"
-
     function open(js){
-        title = js.title
         player.start(js)
+        detail.open(js)
         //AcService.getComment(js.vId, showComment)
     }
 
@@ -27,13 +25,27 @@ Item{
         player.stop()
     }
 
-    AcPlayer {
-        id: player
-        anchors.fill: parent
-        normalParent: root
-        onVideoReady: {
-            busyBox.running = false
+    Item {
+        id: playerParent
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: detail.top
+        AcPlayer {
+            id: player
+            anchors.fill: parent
+            normalParent: playerParent
+            onVideoReady: {
+                busyBox.running = false
+            }
         }
+    }
+
+    VideoDetail {
+        id: detail
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
     }
 
     Component.onCompleted: {

@@ -63,6 +63,7 @@ Rectangle {
         }
         TextField {
             id: msg
+            selectByMouse: true
             height: btnHeight
             width: parent.width-(btnWidth+parent.spacing)*6
             placeholderText: qsTr("Acfun 认真你就输了 (つд⊂)")

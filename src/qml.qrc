@@ -50,5 +50,8 @@
         <file>ui/components/Banana.qml</file>
         <file>ui/player/ctrl/DanmSendOption.qml</file>
         <file>ui/player/ctrl/DanmShowOption.qml</file>
+        <file>ui/videoPage/VideoDetail.qml</file>
+        <file>ui/components/RoundBtnWithText.qml</file>
+        <file>ui/components/RoundImgBtn.qml</file>
     </qresource>
 </RCC>

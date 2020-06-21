@@ -4,6 +4,8 @@ import "qrc:///ui/global/styles/"
 
 Image {
     id: root
+    width: 60
+    height: 48
     source: "qrc:/assets/img/common/banana.png"
 
     property point fromPos: "100,100"
@@ -27,7 +29,7 @@ Image {
             from: fromPos.x
             to: toPos.x
             duration: anim.duration
-            easing.type: Easing.InQuad
+            //easing.type: Easing.InQuad
         }
         NumberAnimation {
             target: root
@@ -35,15 +37,15 @@ Image {
             from: fromPos.y
             to: toPos.y
             duration: anim.duration
-            easing.type: Easing.OutCubic
+            //easing.type: Easing.OutCubic
         }
         NumberAnimation {
             target: root
             property: "rotation"
             from: 0
-            to: 360*3
+            to: 360
             duration: anim.duration
-            easing.type: Easing.OutCubic
+            //easing.type: Easing.OutCubic
         }
     }
 }

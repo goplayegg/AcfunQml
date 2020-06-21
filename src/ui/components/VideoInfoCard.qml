@@ -111,15 +111,24 @@ Item {
             }
         }
     }
-    MouseArea{
+    MouseArea {
         anchors.fill: parent
         hoverEnabled: true
         onClicked: {
             openVideo({
                 title        : infoJs.title,
-                vId          : infoJs.vid,
-                sId          : infoJs.contentId,
-                sType        : infoJs.contentType
+                vid          : infoJs.vid,
+                contentId    : infoJs.contentId,
+                contentType  : infoJs.contentType,
+                likeCountShow: infoJs.likeCountShow,
+                bananaCountShow: infoJs.bananaCountShow,
+                stowCount    : infoJs.stowCount,
+                createTime   : infoJs.createTime,
+                viewCountShow: infoJs.viewCountShow,
+                danmakuCountShow: infoJs.danmakuCountShow,
+                description     : infoJs.description,
+                userJson        : infoJs.userJson,
+                tagListJson     : infoJs.tagListJson
             })
         }
         onEntered: duration.visible = true

@@ -132,20 +132,6 @@ Rectangle{
         }
     }
 
-//    Button{
-//        id:btnShrink
-//        background: Rectangle{
-//            radius: width/2
-//        }
-//        checkable: true
-//        text: checked? ">>":"<<"
-//        anchors.left: parent.left
-//        anchors.leftMargin: checked ? 20:30
-//        anchors.bottom: parent.bottom
-//        anchors.bottomMargin: 20
-//        width: 40
-//        height: width
-//    }
     Comp.RoundButton {
         id: btnShrink
         checkable: true
