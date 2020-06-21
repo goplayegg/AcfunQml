@@ -11,6 +11,7 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
   - fill App
   - full Screen
   - mini window
+  - resolution change (TODO)
 - Danmaku
   - fly
   - top
@@ -21,11 +22,15 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
     - font size
 	- color
 	- mode
+- Banana (TODO)
 - Comment
   - show comment (TODO)
   - send comment (TODO)
 - Index Page Video List (TODO)
 - Video Search (TODO)
+- Home page (TODO)
+- Circle page (TODO)
+- Article page (TODO)
 - Setting
   - Hard decode (with problems)
   - Language change
@@ -36,6 +41,7 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 
 - 硬解码不生效
 - 启动慢 ~~appIcon字符串几千个太多没用到->开发后完删除多余的~~
+- 弹幕处理逻辑不行，同一时间戳弹幕会被覆盖，显示不下的也直接丢掉了
 
 # ScreenShots
 

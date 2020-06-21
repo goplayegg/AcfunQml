@@ -74,7 +74,7 @@ Window {
                 mainwindowRoot.enabled = !open
             }
             onLoginFinish: {
-                stack.currentItem.item.refresh()
+                //TODOstack.currentItem.item.refresh()
             }
             onCurIdxChanged: {
                 if(stack.currentItem)
@@ -146,6 +146,15 @@ Window {
             Connections {
                 target: videoLoader.item
             }
+            function  openVideo(js) {
+                busyBox.text = qsTr("Loading video ...")
+                busyBox.running = true
+                console.log("open video:"+JSON.stringify(js))
+                var d=new Date();
+                console.log(FUN.fmtTime(d, "hh:mm:ss"))
+                stack.push(videoLoader)
+                videoLoader.item.open(js)
+            }
         }
 
         Loader{
@@ -153,13 +162,7 @@ Window {
             Connections {
                 target: acMainLoader.item
                 function  onOpenVideo(js) {
-                    busyBox.text = qsTr("Loading video ...")
-                    busyBox.running = true
-                    console.log("open video:"+JSON.stringify(js))
-                    var d=new Date();
-                    console.log(FUN.fmtTime(d, "hh:mm:ss"))
-                    stack.push(videoLoader)
-                    videoLoader.item.open(js)
+                    videoLoader.openVideo(js)
                 }
             }
             onLoaded: {
@@ -171,6 +174,9 @@ Window {
             id: articleLoader
             Connections {
                 target: articleLoader.item
+                function  onOpenVideo(js) {
+                    videoLoader.openVideo(js)
+                }
             }
             onLoaded: {
                 console.log("articleLoader Loaded")

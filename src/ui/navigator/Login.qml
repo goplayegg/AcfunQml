@@ -43,6 +43,7 @@ Popup {
                 "banana": res.info.banana,
                 "contentCount": res.info.contentCount
             }
+            Global.userInfo = userInfo
             loginFinish(userInfo)
         }
     }

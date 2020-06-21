@@ -106,7 +106,7 @@ Item {
                 }
                 Text {
                     font.pointSize: 8
-                    text: infoJs.bananaCount
+                    text: infoJs.bananaCountShow
                 }
             }
         }

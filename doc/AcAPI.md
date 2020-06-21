@@ -121,3 +121,12 @@ root.rankList.videoList：
 	"host-name": "hb2-acfun-kcs308.aliyun"
 }
 ```
+
+## 投稿列表（需要token）
+POST api-new.acfunchina.com/rest/app/user/resource/query
+
+url参数
+count=20&authorId=923834&resourceType=2&sortType=3&status=0&pcursor=0
+
+**返回示例：**
+[已投稿件json](已投稿件.json)

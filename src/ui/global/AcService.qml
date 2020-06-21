@@ -77,6 +77,19 @@ Item {
         request('GET', url, qParam, null, cb);
     }
 
+    //count=20&authorId=923834&resourceType=2&sortType=3&status=0&pcursor=0
+    function getUpVideoList(authorId, cb) {
+        var url = "api-new.acfunchina.com/rest/app/user/resource/query";
+        var qParam = [{"authorId": authorId},
+                {"resourceType": 2},
+                {"count": 20},
+                {"sortType": 3},
+                {"status": 0},
+                {"pcursor": 0}];
+        request('POST', url, qParam, null, cb);
+    }
+
+    //private
     function addHeader(hreq){
         hreq.setRequestHeader("User-agent", "acvideo core/6.19.1.907(OPPO;OPPO A83;7.1.1)");
         hreq.setRequestHeader("acPlatform","ANDROID_PHONE");
