@@ -10,6 +10,7 @@ Row {
     property alias icon: btn.img
     property alias iconChecked: btn.imgChecked
     property alias text: lab.text
+    property alias customChecked: btn.customChecked
     RoundImgBtn {
         id: btn
         onClicked: root.clicked()

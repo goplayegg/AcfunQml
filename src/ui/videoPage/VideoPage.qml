@@ -5,7 +5,7 @@ import "qrc:///ui/global/"
 import "qrc:///ui/global/libraries/functions.js" as FUN
 
 Item{
-    id:root
+    id: root
 
     function open(js){
         player.start(js)
@@ -25,29 +25,36 @@ Item{
         player.stop()
     }
 
-    Item {
-        id: playerParent
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: detail.top
-        AcPlayer {
-            id: player
-            anchors.fill: parent
-            normalParent: playerParent
-            onVideoReady: {
-                busyBox.running = false
+    ScrollView {
+        id: scroll
+        anchors.fill: parent
+        clip: true
+        ScrollBar.vertical.policy: ScrollBar.AlwaysOn
+
+        Column {
+            width: root.width-30
+            Item {
+                id: playerParent
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: root.height-140//露出up头像
+                AcPlayer {
+                    id: player
+                    anchors.fill: parent
+                    normalParent: playerParent
+                    onVideoReady: {
+                        busyBox.running = false
+                    }
+                }
+            }
+
+            VideoDetail {
+                id: detail
+                anchors.left: parent.left
+                anchors.right: parent.right
             }
         }
     }
-
-    VideoDetail {
-        id: detail
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-    }
-
     Component.onCompleted: {
         console.log("VideoPage completed")
         var d=new Date();

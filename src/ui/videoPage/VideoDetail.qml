@@ -3,27 +3,41 @@ import QtQuick.Controls 2.12
 import "qrc:///ui/global/"
 import "qrc:///ui/global/styles/"
 import "qrc:///ui/components/"
+import "qrc:///ui/global/libraries/functions.js" as FUN
 
 Item {
     id: root
     height: rootCol.implicitHeight
 
     property var user: ({})
+    property var tagList: ({})
     function open(js){
         textTitle.text = js.title
         btnLike.text = js.likeCountShow
+        btnLike.customChecked = js.isLike
         btnBanana.text = js.bananaCountShow
+        btnBanana.customChecked = js.isThrowBanana
         btnStar.text = js.stowCount
+        btnStar.customChecked = js.isFavorite
         labPostTime.text = qsTr("Posted") +"  "+ js.createTime
         textPlayCnt.text = js.viewCountShow
         textDanmCount.text = js.danmakuCountShow
         textAC.text = "AC"+js.contentId
         textDesc.text = js.description
-        //refresh.visible = !refresh.visible
         user = JSON.parse(js.userJson)
         imgAvatar.source = user.headUrl
         labUpName.text = user.name
         btnFollow.customChecked = user.isFollowing
+        tagList = JSON.parse(js.tagListJson)
+        var tagLenShow = repTags.count
+        var tagLen = tagList.length
+        for(var idx=0; idx<tagLenShow; ++idx){
+            if(idx<tagLen){
+                repTags.itemAt(idx).text = tagList[idx].name
+            }else{
+                repTags.itemAt(idx).text = ""
+            }
+        }
     }
     Column {
         id: rootCol
@@ -33,7 +47,7 @@ Item {
         topPadding: 10
         bottomPadding: 10
 
-        Item {
+        Item {//标题 + 按钮
             anchors.left: parent.left
             anchors.right: parent.right
             height: Math.max(textTitle.height, rowBtns.height)
@@ -63,11 +77,13 @@ Item {
                     iconChecked: "qrc:/assets/img/common/like1.png"
                 }
                 RoundBtnWithText {
-                    property var componentBanana: null
                     id: btnBanana
+                    enabled: !customChecked
                     icon: "qrc:/assets/img/common/banana0.png"
                     iconChecked: "qrc:/assets/img/common/banana1.png"
+                    property var componentBanana: null
                     onClicked: {
+                        customChecked = true
                         if(null == componentBanana){
                             componentBanana = Qt.createComponent("qrc:/ui/components/Banana.qml")
                         }
@@ -75,7 +91,7 @@ Item {
                             console.log("throw Banana")
                             var from = mapToItem(root, 0, height)
                             var to = itemAvatar.mapToItem(root, 0, 0)
-                            var pos = {"fromPos":from, "toPos":to}
+                            var pos = {"fromPos":from, "toPos":to, "duration": 1000}
                             var tmp = componentBanana.createObject(root, pos)
                             tmp.start();
                             imgAvatar.start()
@@ -90,7 +106,7 @@ Item {
             }
         }
 
-        Row {
+        Row {//播放量 ac号
             spacing: 5
             Text {
                 height: textPlayCnt.height
@@ -134,7 +150,7 @@ Item {
             }
         }
 
-        Item {
+        Item {//up主信息
             id: rowUp
             height: itemAvatar.height
             anchors.left: parent.left
@@ -146,41 +162,38 @@ Item {
                 id: itemAvatar
                 z: 2
 
-                RoundImage {
+                RoundImage {//头像
                     id: imgAvatar
                     size: 50
+                    property int animDuration: 1000
                     function start(){
-                        animAvatar.start()
+                        imgAvatar.state = "eatBanana"
+                        timerAnim.start()
                     }
-                    ParallelAnimation {
-                        property int dura: 2000
-                        id: animAvatar
-                        running: false
-                        NumberAnimation {
-                            target: imgAvatar
-                            property: "x"
-                            from: 0
-                            to: 40
-                            duration: animAvatar.dura
-                            //easing.type: Easing.InQuad
-                        }
-                        NumberAnimation {
-                            target: imgAvatar
-                            property: "y"
-                            from: 0
-                            to: -10
-                            duration: animAvatar.dura
-                            //easing.type: Easing.OutCubic
-                        }
-                        NumberAnimation {
-                            target: imgAvatar
-                            property: "rotation"
-                            from: 0
-                            to: 75
-                            duration: animAvatar.dura
-                            //easing.type: Easing.OutCubic
+                    Timer {
+                        id: timerAnim
+                        interval: imgAvatar.animDuration
+                        onTriggered: {
+                            imgAvatar.state = ""
                         }
                     }
+                    Behavior on x {
+                             NumberAnimation { duration: imgAvatar.animDuration }
+                         }
+                    Behavior on y {
+                             NumberAnimation { duration: imgAvatar.animDuration }
+                         }
+                    Behavior on rotation {
+                             NumberAnimation { duration: imgAvatar.animDuration }
+                         }
+                    states: [
+                        State {
+                            name: "eatBanana"
+                            PropertyChanges { target: imgAvatar; x: 40 }
+                            PropertyChanges { target: imgAvatar; y: -10 }
+                            PropertyChanges { target: imgAvatar; rotation: 75 }
+                        }
+                    ]
                 }
             }
             Column {
@@ -230,18 +243,34 @@ Item {
             textFormat: TextEdit.RichText
             font.pixelSize: AppStyle.font_large
             font.family: AppStyle.fontNameMain
-            verticalAlignment: Text.AlignVCenter
         }
 
-        Item {
-            id: refresh
-        }
+        Row {//标签
+            id: rowTags
+            spacing: 10
+            width: parent.width
+            height: 25
+            Repeater {
+                id: repTags
+                model: 4
 
-        ParallelAnimation {
-            id: animBanana
-            NumberAnimation {
-                target: imgAvatar
-
+                Button {
+                    height: 25
+                    visible: text.length>0
+                    background: Rectangle {
+                        color: FUN.makeTransparent(AppStyle.accentColor, "55")
+                        radius: 5
+                    }
+                    contentItem: Text {
+                        anchors.centerIn: parent
+                        text: parent.text
+                        font.family:  AppStyle.fontNameMain
+                        font.weight: Font.Light
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        color: Qt.darker(AppStyle.accentColor)
+                    }
+                }
             }
         }
 

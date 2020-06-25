@@ -7,7 +7,7 @@ import "qrc:///ui/global/styles/"
 
 Rectangle{
     id:root
-    color: "#F9FAFE"
+    color: AppStyle.secondBkgroundColor
     width: shrinked?shrinkWidth:norWidth
     Behavior on width {
         NumberAnimation{ duration: 100; easing.type: Easing.OutQuad}

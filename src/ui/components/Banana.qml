@@ -8,6 +8,7 @@ Image {
     height: 48
     source: "qrc:/assets/img/common/banana.png"
 
+    property alias duration: anim.duration
     property point fromPos: "100,100"
     property point toPos: "1,1"
     z: AppStyle.msgZ

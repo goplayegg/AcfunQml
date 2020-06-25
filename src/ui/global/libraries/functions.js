@@ -39,3 +39,11 @@ function fmtQueryBody(keyVal){
     }
     return ret;
 }
+
+function insertStr(soure, start, newStr){
+   return soure.slice(0, start) + newStr + soure.slice(start);
+}
+
+function makeTransparent(rgb, a){
+    return insertStr(String(rgb), 1, a)
+}

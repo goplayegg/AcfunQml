@@ -128,7 +128,10 @@ Item {
                 danmakuCountShow: infoJs.danmakuCountShow,
                 description     : infoJs.description,
                 userJson        : infoJs.userJson,
-                tagListJson     : infoJs.tagListJson
+                tagListJson     : infoJs.tagListJson,
+                isThrowBanana   : infoJs.isThrowBanana,
+                isFavorite      : infoJs.isFavorite,
+                isLike          : infoJs.isLike
             })
         }
         onEntered: duration.visible = true
