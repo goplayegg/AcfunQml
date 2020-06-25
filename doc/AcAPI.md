@@ -130,3 +130,54 @@ count=20&authorId=923834&resourceType=2&sortType=3&status=0&pcursor=0
 
 **返回示例：**
 [已投稿件json](已投稿件.json)
+
+## 收藏视频（需要token）
+POST https://api-new.app.acfun.cn/rest/app/favorite
+
+**请求body：**
+resourceId=16381485&resourceType=9
+
+**返回示例：**
+{"result":0,"host-name":"hb2-acfun-kcs030.aliyun"}
+
+## 取消收藏视频（需要token）
+POST https://api-new.app.acfun.cn/rest/app/unFavorite
+
+**请求body：**
+resourceIds=16381485&resourceType=9
+
+**返回示例：**
+{"result":0,"host-name":"hb2-acfun-kcs030.aliyun"}
+
+## 投香蕉（需要token）
+POST https://api-new.app.acfun.cn/rest/app/banana/throwBanana
+
+**请求body：**
+resourceId=16381485&resourceType=2&count=5
+
+**返回示例：**
+
+```json
+{
+	"result": 0,
+	"extData": {
+		"bananaRealCount": 5,
+		"criticalHitInfo": null
+	},
+	"host-name": "hb2-acfun-kcs030.aliyun"
+}
+```
+
+## 关注/取关用户（需要token）
+POST https://api-new.app.acfun.cn/rest/app/relation/follow
+
+**请求body：**
+
+关注
+action=1&groupId=0&toUserId=923834
+
+取关
+action=2&groupId=0&toUserId=923834
+
+**返回示例：**
+{"result":0,"host-name":"hb2-acfun-kcs030.aliyun"}

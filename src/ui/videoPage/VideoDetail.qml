@@ -9,9 +9,13 @@ Item {
     id: root
     height: rootCol.implicitHeight
 
+    property var acID
+    property var contentType
     property var user: ({})
     property var tagList: ({})
     function open(js){
+        acID = js.contentId
+        contentType = js.contentType
         textTitle.text = js.title
         btnLike.text = js.likeCountShow
         btnLike.customChecked = js.isLike
@@ -96,12 +100,24 @@ Item {
                             tmp.start();
                             imgAvatar.start()
                         }
+                        AcService.banana(acID, contentType, 5, function(res){
+                            })
                     }
                 }
                 RoundBtnWithText {
                     id: btnStar
                     icon: "qrc:/assets/img/common/star0.png"
                     iconChecked: "qrc:/assets/img/common/star1.png"
+                    onClicked: {
+                        console.log(customChecked?"favorite":"unFavorite")
+                        if(customChecked){
+                            AcService.favorite(acID, function(res){
+                                })
+                        }else{
+                            AcService.unFavorite(acID, function(res){
+                                })
+                        }
+                    }
                 }
             }
         }
@@ -228,7 +244,11 @@ Item {
                 icon.name: AppIcons.mdi_heart
                 iconColor: customChecked? AppStyle.primaryColor :AppStyle.backgroundColor
                 text: customChecked? qsTr("Followed"): qsTr("Follow")
-                onClicked: customChecked = !customChecked
+                onClicked: {
+                    customChecked = !customChecked
+                    AcService.follow(user.id, customChecked, function(res){
+                        })
+                }
             }
         }
 

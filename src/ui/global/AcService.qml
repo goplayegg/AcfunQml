@@ -24,7 +24,7 @@ Item {
 
     function hasSignedIn(cb) {
         var url = "api-new.acfunchina.com/rest/app/user/hasSignedIn";
-        var body = "access_token="+token
+        var body = "access_token="+token;
         request('POST', url, null, body, cb);
     }
 
@@ -52,7 +52,7 @@ Item {
     //body, videoId, position, mode, color, size, type, id, subChannelId
     function sendDanm(dmJson, cb) {
         var url = "api-new.acfunchina.com/rest/app/new-danmaku/add";
-        var body = FUN.fmtQueryBody(dmJson)
+        var body = FUN.fmtQueryBody(dmJson);
         request('POST', url, null, body, cb);
     }
 
@@ -87,6 +87,30 @@ Item {
                 {"status": 0},
                 {"pcursor": 0}];
         request('POST', url, qParam, null, cb);
+    }
+
+    function favorite(resourceId, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/favorite";
+        var body = "resourceId=" +resourceId+ "&resourceType="+9;
+        request('POST', url, null, body, cb);
+    }
+
+    function unFavorite(resourceId, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/unFavorite";
+        var body = "resourceIds=" +resourceId+ "&resourceType="+9;
+        request('POST', url, null, body, cb);
+    }
+
+    function banana(resourceId, resourceType, count, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/banana/throwBanana";
+        var body = "resourceId=" +resourceId+ "&resourceType="+resourceType+"&count="+count;
+        request('POST', url, null, body, cb);
+    }
+
+    function follow(userId, follow, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/relation/follow";
+        var body = "action=" +(follow?"1":"2")+ "&groupId=0&toUserId=" + userId;
+        request('POST', url, null, body, cb);
     }
 
     //private
