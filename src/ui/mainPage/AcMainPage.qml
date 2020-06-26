@@ -6,12 +6,19 @@ import "qrc:///ui/global/"
 Item{
     id:root
 
+    property var channelInfo
     signal openVideo(var js)
     function refresh(){
         busyBox.text = qsTr("Loading video list ...")
         busyBox.running = true
-        AcService.getRank(function(res){
-            updateInfo(res)
+        AcService.getChannelList(function(res){
+            if(0 !== res.result){
+                busyBox.running = false
+                PopMsg.showError(res, mainwindowRoot)
+            }else{
+                channelInfo = res
+                changeChannel(res.channels[4].channelId)
+            }
         })
     }
 
@@ -19,21 +26,41 @@ Item{
 
     }
 
+    function changeChannel(cid){
+        AcService.getChannelVideo(cid, 10, function(res){
+            if(0 !== res.errorid){
+                busyBox.running = false
+                PopMsg.showError(res, mainwindowRoot)
+            }else{
+                var hot = res.vdata[1]
+                var latest = res.vdata[4]
+                rankModel.clear()
+                updateInfo(hot)
+                updateInfo(latest)
+                busyBox.running = false
+            }
+        })
+    }
+
     function updateInfo(js){
-        rankModel.clear()
-        var cnt = js.rankList.length
-        console.log("rank num:"+cnt)
+        var cnt = js.bodyContents.length
+        console.log("video num:"+cnt)
         for(var i=0;i<cnt;++i){
-            var jsCurRank = js.rankList[i]
-            var videoArr = jsCurRank.videoList
-            //console.log("videoArr:"+ JSON.stringify(videoArr))
-            jsCurRank.vid = videoArr[0].id
-            jsCurRank.userJson = JSON.stringify(jsCurRank.user)
-            jsCurRank.tagListJson = JSON.stringify(jsCurRank.tagList)
-            rankModel.append(jsCurRank)
-            console.log("rank append:"+js.rankList[i].title)
+            var jsCurVideo = js.bodyContents[i]
+            var videoArr = jsCurVideo.videoList
+            jsCurVideo.contentId = jsCurVideo.href
+            jsCurVideo.duration = jsCurVideo.duration*1000
+            jsCurVideo.videoCover = jsCurVideo.img[0]
+            jsCurVideo.userName = jsCurVideo.user.name
+            jsCurVideo.createTime = ""
+            jsCurVideo.viewCountShow = jsCurVideo.visit.views
+            jsCurVideo.commentCountShow = jsCurVideo.visit.comments
+            jsCurVideo.bananaCountShow = jsCurVideo.visit.banana
+            jsCurVideo.stowCount = jsCurVideo.visit.stows
+            jsCurVideo.userJson = JSON.stringify(jsCurVideo.user)
+            rankModel.append(jsCurVideo)
+            console.log("rank append:"+ jsCurVideo.title)
         }
-        busyBox.running = false
     }
     ListModel {
         id:rankModel

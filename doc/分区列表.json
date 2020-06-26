@@ -1,0 +1,620 @@
+{
+	"result": 0,
+	"channels": [
+		{
+			"children": [
+				{
+					"introduction": "以动画内容为主的短片",
+					"channelType": 2,
+					"channelId": "190",
+					"name": "短片动画"
+				},
+				{
+					"introduction": "布袋木偶戏与特摄片的相关衍生视频",
+					"channelType": 2,
+					"channelId": "99",
+					"name": "布袋·特摄"
+				},
+				{
+					"introduction": "漫展与COSPLAY、声优与各种官方延伸内容",
+					"channelType": 2,
+					"channelId": "133",
+					"name": "COSPLAY·声优"
+				},
+				{
+					"introduction": "动画番剧相关的预告、宣传等视频类资讯",
+					"channelType": 2,
+					"channelId": "159",
+					"name": "动画资讯"
+				},
+				{
+					"introduction": "在虚拟或现实世界进行偶像活动的虚拟形象",
+					"channelType": 2,
+					"channelId": "207",
+					"name": "虚拟偶像"
+				},
+				{
+					"introduction": "3D技术产生的二次元相关视频",
+					"channelType": 2,
+					"channelId": "108",
+					"name": "MMD·3D"
+				},
+				{
+					"introduction": "ACG相关的二次创作多媒体作品",
+					"channelType": 2,
+					"channelId": "107",
+					"name": "MAD·AMV"
+				},
+				{
+					"introduction": "动画相关视频，包含但不限于解说、盘点等",
+					"channelType": 2,
+					"channelId": "106",
+					"name": "动画综合"
+				}
+			],
+			"channelType": 2,
+			"channelId": "1",
+			"name": "动画"
+		},
+		{
+			"children": [
+				{
+					"introduction": "电子人声合成歌曲",
+					"channelType": 2,
+					"channelId": "103",
+					"name": "Vocaloid"
+				},
+				{
+					"introduction": "歌曲、纯音乐为创作主体及人声再演绎的作品",
+					"channelType": 2,
+					"channelId": "136",
+					"name": "原创·翻唱"
+				},
+				{
+					"introduction": "以乐器或器材演奏的作品",
+					"channelType": 2,
+					"channelId": "137",
+					"name": "演奏·乐器"
+				},
+				{
+					"introduction": "各类音乐作品以及音乐演出现场",
+					"channelType": 2,
+					"channelId": "139",
+					"name": "综合音乐·现场"
+				},
+				{
+					"introduction": "以音乐分享为主并包括榜单及乐评的音乐集合",
+					"channelType": 2,
+					"channelId": "185",
+					"name": "音乐选集"
+				}
+			],
+			"channelType": 2,
+			"channelId": "58",
+			"name": "音乐"
+		},
+		{
+			"children": [
+				{
+					"introduction": "偶像团体或个人的资讯，综艺，MV，LIVE等",
+					"channelType": 2,
+					"channelId": "129",
+					"name": "偶像"
+				},
+				{
+					"introduction": "原创编舞，振付翻跳的宅舞视频",
+					"channelType": 2,
+					"channelId": "134",
+					"name": "宅舞"
+				},
+				{
+					"introduction": "古风，街舞，韩舞及其他类型的舞蹈视频",
+					"channelType": 2,
+					"channelId": "135",
+					"name": "综合舞蹈"
+				},
+				{
+					"channelType": 2,
+					"channelId": "208",
+					"name": "中国舞"
+				}
+			],
+			"channelType": 2,
+			"channelId": "123",
+			"name": "舞蹈·偶像"
+		},
+		{
+			"children": [
+				{
+					"introduction": "以PC单机、家用主机、掌机游戏为主的视频",
+					"channelType": 2,
+					"channelId": "84",
+					"name": "主机单机"
+				},
+				{
+					"introduction": "英雄联盟相关视频：CG，赛事战报，解说等",
+					"channelType": 2,
+					"channelId": "85",
+					"name": "英雄联盟"
+				},
+				{
+					"introduction": "除英雄联盟外，电子竞技游戏项目的相关视频",
+					"channelType": 2,
+					"channelId": "145",
+					"name": "电子竞技"
+				},
+				{
+					"introduction": "桌游、棋牌、卡牌对战游戏的相关视频",
+					"channelType": 2,
+					"channelId": "165",
+					"name": "桌游卡牌"
+				},
+				{
+					"introduction": "PC多人在线游戏为主要内容的视频",
+					"channelType": 2,
+					"channelId": "186",
+					"name": "网络游戏"
+				},
+				{
+					"introduction": "手机及其他移动端游戏为主要内容的视频",
+					"channelType": 2,
+					"channelId": "187",
+					"name": "手机游戏"
+				},
+				{
+					"introduction": "使用Mugen引擎制作或与Mugen相关的视频",
+					"channelType": 2,
+					"channelId": "72",
+					"name": "Mugen"
+				}
+			],
+			"channelType": 2,
+			"channelId": "59",
+			"name": "游戏"
+		},
+		{
+			"children": [
+				{
+					"introduction": "对素材音画进行处理，与BGM一致的同步感",
+					"channelType": 2,
+					"channelId": "87",
+					"name": "鬼畜调教"
+				},
+				{
+					"introduction": "娱乐圈动态及明星相关资讯",
+					"channelType": 2,
+					"channelId": "188",
+					"name": "娱乐圈"
+				},
+				{
+					"introduction": "搞笑有趣，土味沙雕",
+					"channelType": 2,
+					"channelId": "206",
+					"name": "搞笑"
+				}
+			],
+			"channelType": 2,
+			"channelId": "60",
+			"name": "娱乐"
+		},
+		{
+			"children": [
+				{
+					"introduction": "记录日常生活片段，分享生活经历或体验",
+					"channelType": 2,
+					"channelId": "86",
+					"name": "生活日常"
+				},
+				{
+					"introduction": "宠物生活记录及相关知识分享",
+					"channelType": 2,
+					"channelId": "88",
+					"name": "萌宠"
+				},
+				{
+					"introduction": "美食制作与鉴赏",
+					"channelType": 2,
+					"channelId": "89",
+					"name": "美食"
+				},
+				{
+					"introduction": "旅行地风光记录与分享、风土人情展示与介绍",
+					"channelType": 2,
+					"channelId": "204",
+					"name": "旅行"
+				},
+				{
+					"introduction": "妆发造型，护肤指南，穿搭交流等视频",
+					"channelType": 2,
+					"channelId": "205",
+					"name": "美妆·造型"
+				},
+				{
+					"introduction": "手工艺品及绘画作品的展示、制作与交流分享",
+					"channelType": 2,
+					"channelId": "127",
+					"name": "手工·绘画"
+				}
+			],
+			"channelType": 2,
+			"channelId": "201",
+			"name": "生活"
+		},
+		{
+			"children": [
+				{
+					"introduction": "前沿科技、手工DIY、模玩手办等视频",
+					"channelType": 2,
+					"channelId": "90",
+					"name": "科技制造"
+				},
+				{
+					"introduction": "3C数码产品、家电等相关视频",
+					"channelType": 2,
+					"channelId": "91",
+					"name": "数码"
+				},
+				{
+					"introduction": "汽车等轮式交通工具相关视频",
+					"channelType": 2,
+					"channelId": "122",
+					"name": "汽车"
+				},
+				{
+					"introduction": "电视广告，公益广告，各国创意广告等",
+					"channelType": 2,
+					"channelId": "149",
+					"name": "广告"
+				},
+				{
+					"introduction": "各类教程、公开课相关视频",
+					"channelType": 2,
+					"channelId": "151",
+					"name": "演讲·公开课"
+				},
+				{
+					"introduction": "科普、知识及人文性质相关视频",
+					"channelType": 2,
+					"channelId": "189",
+					"name": "人文科普"
+				}
+			],
+			"channelType": 2,
+			"channelId": "70",
+			"name": "科技"
+		},
+		{
+			"children": [
+				{
+					"introduction": "影剧综预告片，片花，采访",
+					"channelType": 2,
+					"channelId": "192",
+					"name": "预告·花絮"
+				},
+				{
+					"introduction": "电影解说，电影混剪，自制内容等。",
+					"channelType": 2,
+					"channelId": "193",
+					"name": "电影杂谈"
+				},
+				{
+					"introduction": "电视剧解说，电视剧混剪，自制内容等。",
+					"channelType": 2,
+					"channelId": "194",
+					"name": "剧透社"
+				},
+				{
+					"introduction": "综艺相关所有短视频。",
+					"channelType": 2,
+					"channelId": "195",
+					"name": "综艺Show"
+				},
+				{
+					"introduction": "原创小型纪录片，短片解说等。",
+					"channelType": 2,
+					"channelId": "196",
+					"name": "纪实·短片"
+				}
+			],
+			"channelType": 2,
+			"channelId": "68",
+			"name": "影视"
+		},
+		{
+			"children": [
+				{
+					"introduction": "跑酷、跳伞等极限运动及竞技赛车精彩剪辑",
+					"channelType": 2,
+					"channelId": "93",
+					"name": "极限·竞速 "
+				},
+				{
+					"introduction": "足球相关视频，包括足球装备",
+					"channelType": 2,
+					"channelId": "94",
+					"name": "足球"
+				},
+				{
+					"introduction": "篮球相关视频，包括篮球装备",
+					"channelType": 2,
+					"channelId": "95",
+					"name": "篮球"
+				},
+				{
+					"introduction": "各类运动，运动装备等相关视频",
+					"channelType": 2,
+					"channelId": "152",
+					"name": "综合体育"
+				},
+				{
+					"introduction": "搏击，健身相关内容",
+					"channelType": 2,
+					"channelId": "153",
+					"name": "搏击·健身"
+				}
+			],
+			"channelType": 2,
+			"channelId": "69",
+			"name": "体育"
+		},
+		{
+			"children": [
+				{
+					"introduction": "剧场动画及动画电影",
+					"channelType": 2,
+					"channelId": "180",
+					"name": "剧场动画"
+				},
+				{
+					"introduction": "TV动画放送，包括OVA、OAD、SP特典等",
+					"channelType": 2,
+					"channelId": "67",
+					"name": "TV动画"
+				},
+				{
+					"introduction": "国产动画、动漫、有声漫画等国产动画类内容",
+					"channelType": 2,
+					"channelId": "120",
+					"name": "国产动画"
+				}
+			],
+			"channelType": 2,
+			"channelId": "155",
+			"name": "番剧"
+		},
+		{
+			"children": [
+				{
+					"introduction": "国内外热点与正能量！也欢迎个人脑洞类原创",
+					"channelType": 2,
+					"channelId": "132",
+					"name": "新鲜事&正能量"
+				},
+				{
+					"introduction": "真实历史故事，玄幻神话传说，这里都欢迎！",
+					"channelType": 2,
+					"channelId": "131",
+					"name": "历史"
+				},
+				{
+					"introduction": "机枪大炮、飞机坦克！F-22很帅，歼20更爱",
+					"channelType": 2,
+					"channelId": "92",
+					"name": "国防军事"
+				},
+				{
+					"introduction": "普法、破案、交通事故等普法安全相关视频",
+					"channelType": 2,
+					"channelId": "183",
+					"name": "普法安全"
+				}
+			],
+			"channelType": 2,
+			"channelId": "125",
+			"name": "鱼塘"
+		},
+		{
+			"children": [
+				{
+					"realms": [
+						{
+							"introduction": "手有面包，才能心怀梦想。",
+							"realmId": "6",
+							"realmName": "工作"
+						},
+						{
+							"introduction": "独乐乐不如众乐乐。",
+							"realmId": "25",
+							"realmName": "吐槽"
+						},
+						{
+							"introduction": "又到一年剁手季...\n今年猴子连尾巴都剁掉啦！",
+							"realmId": "34",
+							"realmName": "买买买！"
+						},
+						{
+							"introduction": "总有一天，你也会有属于你的喵。",
+							"realmId": "2",
+							"realmName": "萌宠"
+						},
+						{
+							"introduction": "欢迎各位新人入驻AcFun",
+							"realmId": "49",
+							"realmName": "新人报道"
+						},
+						{
+							"introduction": "爽字的50种写法",
+							"realmId": "50",
+							"realmName": "爽文"
+						},
+						{
+							"introduction": "拉你的朋友们来AcFun,也别忘记和他们一起出门游玩！",
+							"realmId": "17",
+							"realmName": "摄影游记"
+						},
+						{
+							"introduction": "唯有美食与爱不可辜负！",
+							"realmId": "1",
+							"realmName": "美食"
+						},
+						{
+							"introduction": "可能是你最接近ACer平均水平的地方了。",
+							"realmId": "7",
+							"realmName": "情感"
+						}
+					],
+					"channelType": 1,
+					"channelId": "73",
+					"name": "生活情感"
+				},
+				{
+					"realms": [
+						{
+							"introduction": "每天都会诞生更多的经典好片和绝世烂片！把它们夸成一朵花或者喷得狗血淋头，是这个领域的主要职责！",
+							"realmId": "3",
+							"realmName": "影视"
+						},
+						{
+							"introduction": "这里有百家之言，这里鱼龙混杂，这里或许有你要的答案。",
+							"realmId": "4",
+							"realmName": "自媒体专栏"
+						},
+						{
+							"introduction": "注意！本版不收录来自《杀人网球》的投稿！",
+							"realmId": "22",
+							"realmName": "体育"
+						},
+						{
+							"introduction": "不知该去哪里寻乐子？遇事不决看这里！\nUP主各个都是人才，评论又有反白又有黑话，超喜欢在里面。",
+							"realmId": "5",
+							"realmName": "杂谈"
+						}
+					],
+					"channelType": 1,
+					"channelId": "110",
+					"name": "综合"
+				},
+				{
+					"realms": [
+						{
+							"introduction": "让我康康今天有哪些有趣的人在直憋。",
+							"realmId": "46",
+							"realmName": "游戏主播"
+						},
+						{
+							"introduction": "快手游戏、A站以及龙拳互娱3家联合发行全新二次元手游《命运神界》",
+							"realmId": "47",
+							"realmName": "命运神界"
+						},
+						{
+							"introduction": "禁止海豹！",
+							"realmId": "44",
+							"realmName": "明日方舟"
+						},
+						{
+							"introduction": "No Game No Life",
+							"realmId": "8",
+							"realmName": "游戏杂谈"
+						},
+						{
+							"introduction": "铸就你的决胜之道",
+							"realmId": "11",
+							"realmName": "英雄联盟"
+						},
+						{
+							"introduction": "还有谁要进本？",
+							"realmId": "43",
+							"realmName": "暴雪游戏"
+						},
+						{
+							"introduction": "先来一发648！",
+							"realmId": "45",
+							"realmName": "手机游戏"
+						}
+					],
+					"channelType": 1,
+					"channelId": "164",
+					"name": "游戏"
+				},
+				{
+					"realms": [
+						{
+							"introduction": "桌面壁纸锁屏图集分享",
+							"realmId": "14",
+							"realmName": "美图分享"
+						},
+						{
+							"introduction": "画的不好就继续画，还学人家瞎摸鱼！",
+							"realmId": "18",
+							"realmName": "涂鸦"
+						}
+					],
+					"channelType": 1,
+					"channelId": "184",
+					"name": "涂图话画"
+				},
+				{
+					"realms": [
+						{
+							"introduction": "只有塑料小人还有一点温暖！",
+							"realmId": "31",
+							"realmName": "手办模玩"
+						},
+						{
+							"introduction": "有关动漫的各种新闻、周边，八卦。",
+							"realmId": "13",
+							"realmName": "动漫杂谈"
+						},
+						{
+							"introduction": "2020年4月新番《富豪刑警》子分区",
+							"realmId": "48",
+							"realmName": "富豪刑警"
+						}
+					],
+					"channelType": 1,
+					"channelId": "74",
+					"name": "动漫文化"
+				},
+				{
+					"realms": [
+						{
+							"introduction": "「以交往为前提而将与AC娘的一模一样的男孩子人体炼成之后，我竟然变成了她的仆人」",
+							"realmId": "16",
+							"realmName": "文学"
+						},
+						{
+							"introduction": "求求你们不要再分享奇怪的漫画啦！",
+							"realmId": "15",
+							"realmName": "漫画"
+						},
+						{
+							"introduction": "国漫，在路上！",
+							"realmId": "23",
+							"realmName": "国漫·条漫"
+						}
+					],
+					"channelType": 1,
+					"channelId": "75",
+					"name": "漫画文学"
+				}
+			],
+			"channelType": 1,
+			"channelId": "63",
+			"name": "文章"
+		},
+		{
+			"children": [
+				{
+					"channelType": 2,
+					"channelId": "178",
+					"name": "AC正义展览区"
+				}
+			],
+			"channelType": 2,
+			"disableContribute": true,
+			"channelId": "177",
+			"name": "AC正义"
+		}
+	],
+	"host-name": "hb2-acfun-kcs241.aliyun"
+}

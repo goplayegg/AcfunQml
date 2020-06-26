@@ -23,9 +23,7 @@ Item{
     function updateInfo(js){
         if(0 !== js.result){
             busyBox.running = false
-            PopMsg.parent = mainwindowRoot
-            PopMsg.text = js.error_msg
-            PopMsg.visible = true
+            PopMsg.showError(js, mainwindowRoot)
             return
         }
 

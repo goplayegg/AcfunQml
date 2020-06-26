@@ -1,5 +1,28 @@
 # Acfun API
 
+## 请求通用Header
+
+| key    | value     | 备注     |
+| -------| -------- | -------- |
+| User-agent| acvideo core/6.24.1.958(OPPO;OPPO A83;7.1.1) |  |
+| acPlatform| ANDROID_PHONE |  |
+| deviceType| 1|  |
+|Content-Type | application/x-www-form-urlencoded |  |
+| net| WIFI |  |
+| productId| 2000 |  |
+| udid| be0088b8-1ae1-341d-b31e-bed8e78e2325 |  |
+|resolution | 1080x1920 |  |
+|market | tencent |  |
+|appVersion | 6.24.1.958 | 弹幕请求不能带 |
+
+## 请求通用Query
+
+| key    | value     | 备注     |
+| -------| -------- | -------- |
+| product| ACFUN_APP |  |
+| app_version| 6.24.1.958 |  |
+
+
 ## 登陆
 > https://id.app.acfun.cn/rest/app/login/signin
 
@@ -181,3 +204,25 @@ action=2&groupId=0&toUserId=923834
 
 **返回示例：**
 {"result":0,"host-name":"hb2-acfun-kcs030.aliyun"}
+
+## 分区列表
+POST https://api-new.app.acfun.cn/rest/app/channel/allChannels
+
+**返回示例：**
+[分区列表.json](分区列表.json)
+
+## 分区视频
+GET https://apipc.app.acfun.cn/v3/regions
+
+**请求param：**
+channelId=60&size=10
+
+**返回示例：**
+[娱乐分区视频.json](娱乐分区视频.json)
+
+
+## AC号获取视频详情
+GET https://api-new.app.acfun.cn/rest/app/douga/info
+
+**请求param：**
+dougaId=16310505&mkey=AAHewK3eIAAyMjAxNTc5ODYAAhAAMEP1uwQwBOwDYAAAAH76xZVviL8Tcpx8HscLNFRwnGQA6_eLEvGiajzUp4_YthxOPC-hxcOpTk0SPSrxyhbdkmIwsXnF9PgS5ly8eQyjuXlcS7VpWG0QlK0HakVDamteMHNHIui0A8V4tmELqQ%3D%3D

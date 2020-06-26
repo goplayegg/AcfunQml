@@ -57,12 +57,12 @@ Window {
         circleLoader, topRankLoader, null, settingLoader, aboutLoader]
     property var stackViewSource: ["spliter",
         "qrc:/ui/mainPage/AcMainPage.qml",
-        "qrc:/ui/article/article.qml",
-        "qrc:/ui/circle/circle.qml",
-        "qrc:/ui/topRank/topRank.qml",
+        "qrc:/ui/article/Article.qml",
+        "qrc:/ui/circle/Circle.qml",
+        "qrc:/ui/topRank/TopRank.qml",
         "spliter",
-        "qrc:/ui/other/setting.qml",
-        "qrc:/ui/other/about.qml"]
+        "qrc:/ui/other/Setting.qml",
+        "qrc:/ui/other/About.qml"]
     Item {
         id: mainwindowRoot
         anchors.fill: parent
@@ -197,6 +197,9 @@ Window {
             id: topRankLoader
             Connections {
                 target: topRankLoader.item
+                function  onOpenVideo(js) {
+                    videoLoader.openVideo(js)
+                }
             }
             onLoaded: {
                 console.log("topRankLoader Loaded")

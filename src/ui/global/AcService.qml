@@ -8,6 +8,9 @@ Item {
     property string cookie: ""
     property string token: ""
     property string acSecurity: ""
+    readonly property string c_appVersion: "6.24.1.958"
+    readonly property string c_userAgent: "acvideo core/6.24.1.958(OPPO;OPPO A83;7.1.1)"
+    property string c_mkey: "AAHewK3eIAAyMjA2MDMyMjQAAhAAMEP1uwSG3TvhYAAAAO5fOOpIdKsH2h4IGsF6BlVwnGQA6_eLEvGiajzUp4_YthxOPC-hxcOpTk0SPSrxyhbdkmIwsXnF9PgS5ly8eQyjuXlcS7VpWG0QlK0HakVDamteMHNHIui0A8V4tmELqQ%3D%3D"
 
     signal httpError(var errMsg);
 
@@ -41,6 +44,19 @@ Item {
         request('GET', url, qParam, null, cb);
     }
 
+    function getChannelList(cb) {
+        var url = "api-new.app.acfun.cn/rest/app/channel/allChannels";
+        request('POST', url, null, null, cb);
+    }
+
+    function getChannelVideo(channel, size, cb) {
+        var url = "apipc.app.acfun.cn/v3/regions";
+        var qParam = [  {"channelId": channel},
+                        {"size": size},
+                        {"appMode":"0"}];
+        request('GET', url, qParam, null, cb);
+    }
+
     function getDanm(videoId, lastFetchTime, resourceTypeId, cb) {
         var url = "api-new.acfunchina.com/rest/app/new-danmaku/poll";
         var qParam = [  {"appMode":"0"} ];
@@ -56,12 +72,21 @@ Item {
         request('POST', url, null, body, cb);
     }
 
+    function getVideoByAc(acId, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/douga/info";
+        var qParam = [
+                {"dougaId": acId},
+                {"mkey": c_mkey}];
+
+        request('GET', url, qParam, null, cb);
+    }
+
     function getVideo(vid, sourceId, contentType, cb) {
         var url = "api-new.app.acfun.cn/rest/app/play/playInfo/cast";
         var qParam = [  {"videoId": vid},
                 {"resourceId": sourceId},
                 {"resourceType": contentType},
-                {"mkey": "AAHewK3eIAAyMjA2MDMyMjQAAhAAMEP1uwSG3TvhYAAAAO5fOOpIdKsH2h4IGsF6BlVwnGQA6_eLEvGiajzUp4_YthxOPC-hxcOpTk0SPSrxyhbdkmIwsXnF9PgS5ly8eQyjuXlcS7VpWG0QlK0HakVDamteMHNHIui0A8V4tmELqQ%3D%3D"}];
+                {"mkey": c_mkey}];
 
         request('GET', url, qParam, null, cb);
     }
@@ -114,8 +139,8 @@ Item {
     }
 
     //private
-    function addHeader(hreq){
-        hreq.setRequestHeader("User-agent", "acvideo core/6.19.1.907(OPPO;OPPO A83;7.1.1)");
+    function addHeader(hreq, endpoint){
+        hreq.setRequestHeader("User-agent", c_userAgent);
         hreq.setRequestHeader("acPlatform","ANDROID_PHONE");
         hreq.setRequestHeader("deviceType","1");
         hreq.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -123,6 +148,9 @@ Item {
         hreq.setRequestHeader("productId","2000");
         hreq.setRequestHeader("udid","be0088b8-1ae1-341d-b31e-bed8e78e2325");
         hreq.setRequestHeader("resolution","1080x1920");
+        hreq.setRequestHeader("market","tencent");
+        if("apipc.app.acfun.cn/v3/regions" === endpoint)
+            hreq.setRequestHeader("appVersion", c_appVersion);
         if("" !== cookie){
             hreq.setRequestHeader("Cookie", cookie);
         }
@@ -137,7 +165,7 @@ Item {
     function addQuery(url, qParam){
         var outUrl = url+"?";
         outUrl +=       "product"     + "=" + "ACFUN_APP";
-        outUrl += "&" + "app_version" + "=" + "6.19.1.907";
+        outUrl += "&" + "app_version" + "=" + c_appVersion;
         if(qParam){
             var i = 0;
             var key;
@@ -194,7 +222,7 @@ Item {
         var url = "https://" + endpoint;
         url = addQuery(url, qParam);
         hreq.open(verb, url);
-        hreq = addHeader(hreq);
+        hreq = addHeader(hreq, endpoint);
         var data = body?body:'';
         console.log('request: ' + verb + ' ' + url +  " body:" + data);
         hreq.send(data);

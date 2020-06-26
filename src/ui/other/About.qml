@@ -130,6 +130,14 @@ Item{
                 onClicked: Qt.openUrlExternally(tip)
             }
 
+            IconTextButton {
+                color: AppStyle.backgroundColor
+                textColor: AppStyle.foregroundColor
+                icon.name: AppIcons.mdi_venmo
+                text: "0.0.1 build20200616"
+                tip: qsTr("App version")
+            }
+
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
                 source: "qrc:/assets/img/bk/umbrella.png"

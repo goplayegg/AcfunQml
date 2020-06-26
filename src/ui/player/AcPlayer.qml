@@ -29,9 +29,8 @@ FullScreen {
     function funPlayVideo(js){
         if(0 !== js.result){
             videoReady()
-            PopMsg.parent = mainwindowRoot
-            PopMsg.text = js.error_msg
-            PopMsg.visible = true
+            busyBox.running = false
+            PopMsg.showError(js, mainwindowRoot)
             return
         }
 

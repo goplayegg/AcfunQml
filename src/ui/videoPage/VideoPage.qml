@@ -8,13 +8,26 @@ Item{
     id: root
 
     function open(js){
-        player.start(js)
-        detail.open(js)
-        //AcService.getComment(js.vId, showComment)
+        if(undefined === js.vid){
+            AcService.getVideoByAc(js.contentId, function(res){
+                    res.contentId = res.dougaId
+                    res.contentType = 2
+                    res.vid = res.videoList[0].id
+                    openPrivate(res)
+                })
+        }else{
+            openPrivate(js)
+        }
     }
 
     function back(){
         stop()
+    }
+
+    function openPrivate(js){
+        player.start(js)
+        detail.open(js)
+        //AcService.getComment(js.vId, showComment)
     }
 
     function showComment(res){

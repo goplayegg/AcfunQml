@@ -15,7 +15,20 @@ Rectangle {
     color: AppStyle.secondBkgroundColor
     border.color: AppStyle.thirdBkgroundColor
     border.width: 1
-    property string text: "error"
+    property string text: qsTr("error")
+
+    function showError(result, parent){
+        control.parent = parent
+        if(result.error_msg){
+            control.text = result.error_msg
+        }else if(result.message){
+            control.text = result.message
+        }else{
+            control.text = qsTr("error")
+        }
+        control.visible = true
+    }
+
     Label {
         id: laIcon
         anchors.top: btnClose.bottom

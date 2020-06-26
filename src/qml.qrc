@@ -33,12 +33,12 @@
         <file>ui/player/ctrl/VideoCtrlBtn.qml</file>
         <file>ui/player/ctrl/VolumeControl.qml</file>
         <file>ui/danmaku/DanmakuContainer.qml</file>
-        <file>ui/other/about.qml</file>
-        <file>ui/article/article.qml</file>
-        <file>ui/other/setting.qml</file>
+        <file>ui/other/About.qml</file>
+        <file>ui/article/Article.qml</file>
+        <file>ui/other/Setting.qml</file>
         <file>ui/global/libraries/functions.js</file>
-        <file>ui/circle/circle.qml</file>
-        <file>ui/topRank/topRank.qml</file>
+        <file>ui/circle/Circle.qml</file>
+        <file>ui/topRank/TopRank.qml</file>
         <file>ui/components/IconTextButton.qml</file>
         <file>ui/components/ImgTextButton.qml</file>
         <file>ui/components/LinkLabel.qml</file>

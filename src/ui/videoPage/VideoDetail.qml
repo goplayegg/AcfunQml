@@ -28,11 +28,21 @@ Item {
         textDanmCount.text = js.danmakuCountShow
         textAC.text = "AC"+js.contentId
         textDesc.text = js.description
-        user = JSON.parse(js.userJson)
+        if(undefined === js.userJson){
+            user = js.user
+        }else{
+            user = JSON.parse(js.userJson)
+        }
         imgAvatar.source = user.headUrl
         labUpName.text = user.name
         btnFollow.customChecked = user.isFollowing
-        tagList = JSON.parse(js.tagListJson)
+        tagList = []
+        if(undefined === js.tagListJson){
+            if(undefined !== js.tagList)
+                tagList = js.tagList
+        }else{
+            tagList = JSON.parse(js.tagListJson)
+        }
         var tagLenShow = repTags.count
         var tagLen = tagList.length
         for(var idx=0; idx<tagLenShow; ++idx){

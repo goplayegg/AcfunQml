@@ -65,10 +65,11 @@ Rectangle {
             id: msg
             selectByMouse: true
             height: btnHeight
-            width: parent.width-(btnWidth+parent.spacing)*6
+            width: parent.width-(btnWidth+parent.spacing)*4
             placeholderText: qsTr("Acfun 认真你就输了 (つд⊂)")
         }
         Image {
+            visible: false
             height: 32
             y: (btnHeight-32)/2
             width: btnWidth*2
