@@ -47,6 +47,16 @@ private:
     QScopedPointer<QmlPreferencesPrivate> d;
 };
 
+class constPreferences :public QObject
+{
+    Q_OBJECT
+public:
+    explicit constPreferences(QObject *parent = nullptr);
+
+    Q_INVOKABLE QVariant get(const QString &key);
+};
+
+QML_DECLARE_TYPE(constPreferences)
 QML_DECLARE_TYPE(QmlPreferences)
 QML_DECLARE_TYPE(QSettings)
 

@@ -1,5 +1,6 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
+import "qrc:///ui/global/"
 import "qrc:///ui/global/styles/"
 import "qrc:///ui/components/"
 
@@ -134,7 +135,7 @@ Item{
                 color: AppStyle.backgroundColor
                 textColor: AppStyle.foregroundColor
                 icon.name: AppIcons.mdi_venmo
-                text: "0.0.1 build20200616"
+                text: "0.1.1 " + Global.appVer()
                 tip: qsTr("App version")
             }
 

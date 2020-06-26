@@ -118,6 +118,7 @@ QQmlApplicationEngine *QmlWindow::qmlEgine()
 void QmlWindow::qmlRegisterType()
 {
     ::qmlRegisterType<QmlPreferences>("AcfunQml", 1, 0, "QmlPreferences");
+    ::qmlRegisterType<constPreferences>("AcfunQml", 1, 0, "ConstPreferences");
     ::qmlRegisterType<DanmakuPaser>("AcfunQml", 1, 0, "DanmakuPaser");
     ::qmlRegisterType<HttpRequest>("Network",1, 0, "HttpRequest");
 

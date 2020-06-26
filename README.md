@@ -3,7 +3,8 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 
 # Features
 - Login Acfun and show basic user infomation
-- Load Acfun Top Rank
+- Load Acfun Top Rank Videos
+- Load Acfun Videos in deferent channels
 - Video
   - pause/resume
   - speed 0.5/1.0/1.5/2.0
@@ -22,7 +23,14 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
     - font size
 	- color
 	- mode
-- Banana (TODO)
+- Banana
+- Favorite
+	- add favorite
+	- remote favorite
+	- favorite list (TODO)
+- Like
+	- Like count
+	- like/unlike (TODO)
 - Comment
   - show comment (TODO)
   - send comment (TODO)
@@ -34,7 +42,7 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 - Setting
   - Hard decode (with problems)
   - Language change
-  - Skin change (TODO)
+  - Skin change (simple)
 
 # 遇到的问题
 - ~~登陆后获取到一些认证信息 acPassToken acSecurity等， 但使用这些作为Cookies 无法成功请求用户详情，发送弹幕等需要用户认证的api。~~ acPassToken改为acPasstoken

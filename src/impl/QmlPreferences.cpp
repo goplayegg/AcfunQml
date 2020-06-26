@@ -286,3 +286,19 @@ void QmlPreferences::componentComplete()
 {
     d->init();
 }
+
+constPreferences::constPreferences(QObject *parent)
+    :QObject(parent)
+{
+
+}
+
+QVariant constPreferences::get(const QString &key)
+{
+    QVariant var;
+    if("appVer" == key)
+    {
+        var = QString::fromStdString(std::string(__DATE__) + " "+ __TIME__);
+    }
+    return var;
+}
