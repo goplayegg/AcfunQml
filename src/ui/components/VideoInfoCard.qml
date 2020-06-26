@@ -43,7 +43,7 @@ Item {
         id: maskRect
         anchors.fill: imgCover
         visible: false
-        radius: 5
+        //radius: 5
     }
     OpacityMask {
         anchors.fill: maskRect

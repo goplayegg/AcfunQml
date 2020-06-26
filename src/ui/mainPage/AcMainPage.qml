@@ -2,12 +2,16 @@
 import QtQuick.Controls 2.12
 import "qrc:///ui/components/"
 import "qrc:///ui/global/"
+import "qrc:///ui/global/styles/"
 
 Item{
     id:root
 
-    property var channelInfo
     signal openVideo(var js)
+    function empty(){
+        return videoModel.count === 0
+    }
+
     function refresh(){
         busyBox.text = qsTr("Loading video list ...")
         busyBox.running = true
@@ -16,8 +20,12 @@ Item{
                 busyBox.running = false
                 PopMsg.showError(res, mainwindowRoot)
             }else{
-                channelInfo = res
-                changeChannel(res.channels[4].channelId)
+                channelModel.clear()
+                for(var idx in res.channels){
+                    channelModel.append(res.channels[idx])
+                }
+                tabBar.currentIndex = -1
+                tabBar.currentIndex = 4
             }
         })
     }
@@ -27,16 +35,20 @@ Item{
     }
 
     function changeChannel(cid){
+        busyBox.running = true
         AcService.getChannelVideo(cid, 10, function(res){
             if(0 !== res.errorid){
                 busyBox.running = false
                 PopMsg.showError(res, mainwindowRoot)
             }else{
-                var hot = res.vdata[1]
-                var latest = res.vdata[4]
-                rankModel.clear()
-                updateInfo(hot)
-                updateInfo(latest)
+                videoModel.clear()
+                for(var idx in res.vdata){
+                    if("videos" === res.vdata[idx].schema ||
+                            "videos_new" === res.vdata[idx].schema){
+                        var video = res.vdata[idx]
+                        updateInfo(video)
+                    }
+                }
                 busyBox.running = false
             }
         })
@@ -47,6 +59,9 @@ Item{
         console.log("video num:"+cnt)
         for(var i=0;i<cnt;++i){
             var jsCurVideo = js.bodyContents[i]
+            if(undefined === jsCurVideo.user){
+                continue
+            }
             var videoArr = jsCurVideo.videoList
             jsCurVideo.contentId = jsCurVideo.href
             jsCurVideo.duration = jsCurVideo.duration*1000
@@ -58,17 +73,73 @@ Item{
             jsCurVideo.bananaCountShow = jsCurVideo.visit.banana
             jsCurVideo.stowCount = jsCurVideo.visit.stows
             jsCurVideo.userJson = JSON.stringify(jsCurVideo.user)
-            rankModel.append(jsCurVideo)
+            videoModel.append(jsCurVideo)
             console.log("rank append:"+ jsCurVideo.title)
         }
     }
     ListModel {
-        id:rankModel
+        id: videoModel
+    }
+    ListModel {
+        id: channelModel
+    }
+    TabBar {
+         id: tabBar
+         width: parent.width
+         Repeater {
+             id: repChannel
+             model: channelModel
+             TabButton {
+                 id: tabBtn
+                 text: model.name
+                 width: 20+tabText.implicitWidth
+                 background: Rectangle {
+                          implicitWidth: 100
+                          implicitHeight: 40
+                          color: "transparent"
+                          Rectangle {
+                              anchors.bottom: parent.bottom
+                              anchors.bottomMargin: 5
+                              anchors.left: parent.left
+                              anchors.leftMargin: 5
+                              visible: tabBtn.checked
+                              width: tabText.width
+                              height: 10
+                              radius: height/2
+                              gradient: Gradient {
+                                  orientation: Gradient.Horizontal
+                                  GradientStop {position: 0.0; color: "#ffff0000"}
+                                  GradientStop {position: 1.0; color: "#05ff0000"}
+                              }
+                          }
+                      }
+                 contentItem: Text {
+                          id: tabText
+                          text: tabBtn.text
+                          font.family: AppStyle.fontNameMain
+                          font.pixelSize: tabBtn.checked ? AppStyle.font_xxxlarge: AppStyle.font_xlarge
+                          font.weight: tabBar.checked ? Font.ExtraBold :Font.Normal
+                          color: tabBtn.checked ? AppStyle.foregroundColor : AppStyle.secondForeColor
+                          horizontalAlignment: Text.AlignHCenter
+                          verticalAlignment: Text.AlignBottom
+                      }
+             }
+         }
+         onCurrentIndexChanged: {
+             if(currentIndex > 0)
+                changeChannel(channelModel.get(currentIndex).channelId)
+         }
     }
     GridView {
         id: cardView
-        anchors.fill: parent
-        anchors.margins: 0
+        anchors {
+            margins: 0
+            topMargin: 10
+            top: tabBar.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
         clip: true
         cellWidth: 205
         cellHeight: cellWidth
@@ -80,7 +151,7 @@ Item{
             height: cardView.visibleArea.heightRatio * cardView.height
         }
 
-        model:  rankModel
+        model:  videoModel
         delegate: VideoInfoCard{
                 infoJs: model
             }

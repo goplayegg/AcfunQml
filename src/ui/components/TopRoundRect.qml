@@ -5,7 +5,7 @@ Shape {
     id:root
     antialiasing: true
     smooth: true
-    property int radius:15
+    property int radius: 0//锯齿太严重 需优化 先去掉圆角15
 
     ShapePath {
         strokeWidth: 1

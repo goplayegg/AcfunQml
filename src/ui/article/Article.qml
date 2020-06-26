@@ -7,6 +7,10 @@ Item{
     id:root
 
     signal openVideo(var js)
+    function empty(){
+        return rankModel.count === 0
+    }
+
     //先作为显示自己投稿的页面
     function refresh(){
         busyBox.text = qsTr("Loading artical list ...")

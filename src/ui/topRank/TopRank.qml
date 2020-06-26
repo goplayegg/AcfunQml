@@ -7,6 +7,10 @@ Item{
     id:root
 
     signal openVideo(var js)
+    function empty(){
+        return rankModel.count === 0
+    }
+
     function refresh(){
         busyBox.text = qsTr("Loading video list ...")
         busyBox.running = true

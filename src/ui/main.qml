@@ -81,6 +81,9 @@ Window {
                     stack.currentItem.item.back()
                 stackViewLoader[curIdx].source = stackViewSource[curIdx]
                 stack.replace(null, stackViewLoader[curIdx])
+                if(stack.currentItem.item.empty()){
+                   stack.currentItem.item.refresh()
+                }
             }
         }
 
