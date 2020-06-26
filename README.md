@@ -56,6 +56,7 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 ![shot](./screenshots/mainpage.jpg)
 ![shot](./screenshots/playPage.jpg)
 ![shot](./screenshots/playPageFullApp.jpg)
+![shot](./screenshots/banana.gif)
 
 # Requirements
 - Qt 5.12.0 or later
