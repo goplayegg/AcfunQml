@@ -3,6 +3,7 @@
 #include "QmlPreferences.h"
 #include "danmakupaser.h"
 #include <QCoreApplication>
+#include "base/qtkeychain/keychain.h"
 
 #ifdef QT_DEBUG
     static const QString QMLPrefix = QStringLiteral("../src/");
@@ -117,6 +118,9 @@ QQmlApplicationEngine *QmlWindow::qmlEgine()
 
 void QmlWindow::qmlRegisterType()
 {
+    QKeychain::seQMLReadJob();
+    QKeychain::seQMLWriteJob();
+    QKeychain::seQMLDeleteJob();
     ::qmlRegisterType<QmlPreferences>("AcfunQml", 1, 0, "QmlPreferences");
     ::qmlRegisterType<constPreferences>("AcfunQml", 1, 0, "ConstPreferences");
     ::qmlRegisterType<DanmakuPaser>("AcfunQml", 1, 0, "DanmakuPaser");

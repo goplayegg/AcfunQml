@@ -84,10 +84,13 @@ If the Library as you received it specifies that a proxy can decide whether futu
 # 3. other license
 
 https://github.com/RSATom/QmlVlc Sergey Radionov
-
-/*******************************************************************************
 * Copyright (c) 2014-2015, Sergey Radionov <rsatom_gmail.com>
 * All rights reserved.
+
+https://github.com/frankosterfeld/qtkeychain Frank Osterfeld
+https://github.com/CMGeorge/qtkeychain CMGeorge
+
+/*******************************************************************************
 *
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the following conditions are met:

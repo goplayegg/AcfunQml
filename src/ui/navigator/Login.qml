@@ -24,10 +24,10 @@ Popup {
             return
         }
         strError = ""
-        g_preference.setValue("acPassToken",js.acPassToken)
-        g_preference.setValue("acSecurity",js.acSecurity)
-        g_preference.setValue("auth_key",js.auth_key)
-        g_preference.setValue("token",js.token)
+        Global.storeEncrypt("acPassToken",js.acPassToken)
+        Global.storeEncrypt("acSecurity",js.acSecurity)
+        Global.storeEncrypt("auth_key",js.auth_key)
+        Global.storeEncrypt("token",js.token)
         g_preference.setValue("userid",js.userid)
         AcService.getUserInfo(gotUserInfo)
     }
@@ -47,21 +47,54 @@ Popup {
             loginFinish(userInfo)
         }
     }
+
+    QtObject{
+        id: loginParam
+        property var keyLen: 4
+        property var curkeyIdx: 0
+        property var stracPassToken: ""
+        property var stracSecurity: ""
+        property var strauth_key: ""
+        property var strtoken: ""
+    }
+
     function initLogin(){
-        var acPass = g_preference.value("acPassToken")
-        if(undefined === acPass)
+        var userid = g_preference.value("userid")
+        if(undefined === userid || userid === "")
             return
 
-        var auth = {
-            acPassToken:acPass,
-            acSecurity:g_preference.value("acSecurity"),
-            auth_key:parseInt(g_preference.value("auth_key")),
-            token:g_preference.value("token"),
-            userid:parseInt(g_preference.value("userid")),
-            result:0
+        loginParam.curkeyIdx = 0
+        Global.readEncrypt("acPassToken", function(value){
+            loginParam.stracPassToken = value
+            initLoginImpl()
+        });
+        Global.readEncrypt("acSecurity", function(value){
+            loginParam.stracSecurity = value
+            initLoginImpl()
+        });
+        Global.readEncrypt("auth_key", function(value){
+            loginParam.strauth_key = value
+            initLoginImpl()
+        });
+        Global.readEncrypt("token", function(value){
+            loginParam.strtoken = value
+            initLoginImpl()
+        });
+    }
+    function initLoginImpl(){
+        loginParam.curkeyIdx++
+        if(loginParam.curkeyIdx>=loginParam.keyLen){
+            var auth = {
+                acPassToken:loginParam.stracPassToken,
+                acSecurity:loginParam.stracSecurity,
+                auth_key:loginParam.strauth_key,
+                token:loginParam.strtoken,
+                userid:parseInt(g_preference.value("userid")),
+                result:0
+            }
+            AcService.makeCookie(auth)
+            AcService.getUserInfo(gotUserInfo)
         }
-        AcService.makeCookie(auth)
-        AcService.getUserInfo(gotUserInfo)
     }
 
     Column{

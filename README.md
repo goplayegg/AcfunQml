@@ -3,6 +3,8 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 
 # Features
 - Login Acfun and show basic user infomation
+	- do not save username/password
+	- save token by qtkeychain, auto login next time
 - Load Acfun Top Rank Videos
 - Load Acfun Videos in deferent channels
 - Video
@@ -130,6 +132,8 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 > BANKA2017(https://github.com/BANKA2017/Acsign)
 
 > 梓喵出没(https://www.azimiao.com/5882.html)
+
+> qtkeychain(https://github.com/frankosterfeld/qtkeychain)
 
 > 软件交互视觉很大程度上参考[云之幻](https://github.com/Richasy)的[UWP应用哔哩](https://www.microsoft.com/store/apps/9MVN4NSLT150)。
 

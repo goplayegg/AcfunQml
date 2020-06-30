@@ -1,5 +1,6 @@
 INCLUDEPATH += base
 include(HttpRequest/httprequest.pri)
+include(qtkeychain/qt5keychain.pri)
 
 HEADERS += \
     $$PWD/global.h \
