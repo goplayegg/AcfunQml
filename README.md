@@ -1,3 +1,6 @@
+# 声明
+本软件非Acfun官方产品，不做任何商业用途，不涉及破解，仅用于学习交流，开发者不会以任何形式为软件本体收费，也不对此开通任何捐赠渠道。用户数据仅在用户与Acfun之间流通，开发者不会窃取任何数据，不会存储用户A站密码（会加密存储认证token到用户本地PC），他人经开源等渠道使用本代码衍生的任何软件与本人无关，请注意A站账户安全。
+
 # Introduction
 AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build on Qt 5 & Qt Quick 2.x (Qml) & QmlVlc (based on libvlc).
 
@@ -136,6 +139,3 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 > qtkeychain(https://github.com/frankosterfeld/qtkeychain)
 
 > 软件交互视觉很大程度上参考[云之幻](https://github.com/Richasy)的[UWP应用哔哩](https://www.microsoft.com/store/apps/9MVN4NSLT150)。
-
-## 微信赞赏码
-<img src="https://github.com/baoyuanle/blog/blob/master/res/like.jpg?raw=true" width="400">
