@@ -39,6 +39,7 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 - Comment
   - show comment (TODO)
   - send comment (TODO)
+  - ac emotion
 - Index Page Video List (TODO)
 - Video Search (TODO)
 - Home page (TODO)

@@ -5,6 +5,8 @@
 #include <QHash>
 #include <QMetaProperty>
 #include <QLoggingCategory>
+#include <QJsonDocument>
+#include <QFile>
 #include "QmlWindow.h"
 
 Q_LOGGING_CATEGORY(lcQmlPreferences, "app.QmlPreferences")
@@ -300,5 +302,34 @@ QVariant constPreferences::get(const QString &key)
     {
         var = QString::fromStdString(std::string(__DATE__) + " "+ __TIME__);
     }
+    else if("emotPacks" == key)
+    {
+        if(m_jsEmotpack.isEmpty())
+        {
+            m_jsEmotpack = parseJsonFile(":/assets/emot.json");
+        }
+        return m_jsEmotpack;
+    }
     return var;
 }
+
+QJsonObject constPreferences::parseJsonFile(const QString &file)
+{
+    QJsonObject jsObj;
+    QByteArray barrayJson;
+    QFile fi(file);
+    if(fi.open(QIODevice::ReadOnly))
+    {
+        barrayJson = fi.readAll();
+    }
+    //qDebug()<<"json ba "<<barrayJson;
+    QJsonParseError errInfo;
+    QJsonDocument jsonDocument = QJsonDocument::fromJson(barrayJson, &errInfo);
+    if(!jsonDocument.isNull()){
+        jsObj = jsonDocument.object();
+    }else{
+        qDebug()<<"json parse err: "<<errInfo.error<<"  line:"<<errInfo.offset;
+    }
+    return jsObj;
+}
+

@@ -8,7 +8,7 @@ Popup {
     id:root
     closePolicy:Popup.NoAutoClose | Popup.CloseOnEscape
     background: Rectangle{
-        color: "#F1F6FA"
+        color: AppStyle.secondBkgroundColor
     }
 
     anchors.centerIn: parent

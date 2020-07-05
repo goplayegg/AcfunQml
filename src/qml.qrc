@@ -53,5 +53,7 @@
         <file>ui/videoPage/VideoDetail.qml</file>
         <file>ui/components/RoundBtnWithText.qml</file>
         <file>ui/components/RoundImgBtn.qml</file>
+        <file>ui/components/emot/PopEmot.qml</file>
+        <file>ui/components/emot/qmldir</file>
     </qresource>
 </RCC>

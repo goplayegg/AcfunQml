@@ -226,3 +226,12 @@ GET https://api-new.app.acfun.cn/rest/app/douga/info
 
 **请求param：**
 dougaId=16310505&mkey=AAHewK3eIAAyMjAxNTc5ODYAAhAAMEP1uwQwBOwDYAAAAH76xZVviL8Tcpx8HscLNFRwnGQA6_eLEvGiajzUp4_YthxOPC-hxcOpTk0SPSrxyhbdkmIwsXnF9PgS5ly8eQyjuXlcS7VpWG0QlK0HakVDamteMHNHIui0A8V4tmELqQ%3D%3D
+
+
+## 发评论
+POST https://api-new.acfunchina.com/rest/app/comment/add
+
+sourceId=16184205&sourceType=3&content=评论内容UrlEncode编码&replyToCommentId=259679422&syncToMoment=0&access_token=**************
+
+**返回示例：**
+[评论后的服务端返回.json](评论后的服务端返回.json)

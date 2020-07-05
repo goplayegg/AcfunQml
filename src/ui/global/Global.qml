@@ -15,6 +15,10 @@ Item {
         return constPref.get("appVer")
     }
 
+    function emotPacks(){
+        return constPref.get("emotPacks")
+    }
+
     Component {
         id: cmpWritePsw
         WritePasswordJob {

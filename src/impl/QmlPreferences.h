@@ -5,6 +5,7 @@
 #include <QSettings>
 #include <QQmlParserStatus>
 #include <QtQml>
+#include <QJsonObject>
 
 class QmlPreferencesPrivate;
 class QmlPreferences : public QObject, public QQmlParserStatus
@@ -54,6 +55,10 @@ public:
     explicit constPreferences(QObject *parent = nullptr);
 
     Q_INVOKABLE QVariant get(const QString &key);
+
+private:
+    QJsonObject parseJsonFile(const QString &file);
+    QJsonObject m_jsEmotpack;
 };
 
 QML_DECLARE_TYPE(constPreferences)
