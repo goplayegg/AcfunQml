@@ -55,5 +55,11 @@
         <file>ui/components/RoundImgBtn.qml</file>
         <file>ui/components/emot/PopEmot.qml</file>
         <file>ui/components/emot/qmldir</file>
+        <file>ui/components/comment/CommentList.qml</file>
+        <file>ui/components/comment/qmldir</file>
+        <file>ui/components/comment/CommentItem.qml</file>
+        <file>test/TestWindow.qml</file>
+        <file>test/qmldir</file>
+        <file>ui/components/comment/CommentContent.qml</file>
     </qresource>
 </RCC>

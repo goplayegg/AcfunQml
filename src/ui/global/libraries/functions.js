@@ -6,6 +6,10 @@ function formatTime(second) {
             second % 60].join(":").replace(/\b(\d)\b/g, "0$1");
 }
 
+function crtTimsMs(){
+    var t=new Date();
+    return t.getMilliseconds()
+}
 
 //使用方法
 //var a=new Date();

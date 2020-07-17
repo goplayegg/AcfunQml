@@ -2,6 +2,9 @@
 #include "utils/Lazy.h"
 #include "QmlPreferences.h"
 #include "danmakupaser.h"
+#include "documenthandler.h"
+#include "acCommentPaser.h"
+#include "textDocHandler.h"
 #include <QCoreApplication>
 #include "base/qtkeychain/keychain.h"
 
@@ -124,6 +127,9 @@ void QmlWindow::qmlRegisterType()
     ::qmlRegisterType<QmlPreferences>("AcfunQml", 1, 0, "QmlPreferences");
     ::qmlRegisterType<constPreferences>("AcfunQml", 1, 0, "ConstPreferences");
     ::qmlRegisterType<DanmakuPaser>("AcfunQml", 1, 0, "DanmakuPaser");
+    ::qmlRegisterType<DocumentHandler>("AcfunQml", 1, 0, "DocumentHandler");
+    ::qmlRegisterType<AcCommentPaser>("AcfunQml", 1, 0, "AcCommentPaser");
+    ::qmlRegisterType<TextDocHandler>("AcfunQml", 1, 0, "TextDocHandler");
     ::qmlRegisterType<HttpRequest>("Network",1, 0, "HttpRequest");
 
     qmlRegisterSingletonType<HttpRequestFactory>("Network",

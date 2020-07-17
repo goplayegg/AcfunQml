@@ -8,7 +8,7 @@ Item {
     property string cookie: ""
     property string token: ""
     property string acSecurity: ""
-    readonly property string c_appVersion: "6.24.1.958"
+    readonly property string c_appVersion: "6.26.0.966"//"6.24.1.958"
     readonly property string c_userAgent: "acvideo core/6.24.1.958(OPPO;OPPO A83;7.1.1)"
     property string c_mkey: "AAHewK3eIAAyMjA2MDMyMjQAAhAAMEP1uwSG3TvhYAAAAO5fOOpIdKsH2h4IGsF6BlVwnGQA6_eLEvGiajzUp4_YthxOPC-hxcOpTk0SPSrxyhbdkmIwsXnF9PgS5ly8eQyjuXlcS7VpWG0QlK0HakVDamteMHNHIui0A8V4tmELqQ%3D%3D"
 
@@ -92,12 +92,24 @@ Item {
     }
 
     function getComment(sourceId, cb){
-        var url = "api-new.app.acfun.cn/rest/app/comment/list";
+        var url = "api-new.acfunchina.com/rest/app/comment/list";
         var qParam = [{"sourceId": sourceId},
                 {"sourceType": 3},
                 {"pcursor": 0},
-                {"count": 10},
+                {"count": 50},
                 {"showHotComments": 1}];
+
+        request('GET', url, qParam, null, cb);
+    }
+
+    function getCommentPC(sourceId, cb){
+        var url = "www.acfun.cn/rest/pc-direct/comment/list";
+        var qParam = [{"sourceId": sourceId},
+                {"sourceType": 3},
+                {"page": 1},
+                {"t": FUN.crtTimsMs()},
+                {"showHotComments": 1},
+                {"supportZtEmot": true}];
 
         request('GET', url, qParam, null, cb);
     }
@@ -149,7 +161,8 @@ Item {
         hreq.setRequestHeader("udid","be0088b8-1ae1-341d-b31e-bed8e78e2325");
         hreq.setRequestHeader("resolution","1080x1920");
         hreq.setRequestHeader("market","tencent");
-        if("apipc.app.acfun.cn/v3/regions" === endpoint)
+        if("apipc.app.acfun.cn/v3/regions" === endpoint ||
+           "api-new.acfunchina.com/rest/app/comment/list" === endpoint)
             hreq.setRequestHeader("appVersion", c_appVersion);
         if("" !== cookie){
             hreq.setRequestHeader("Cookie", cookie);

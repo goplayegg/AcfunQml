@@ -37,7 +37,7 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 	- Like count
 	- like/unlike (TODO)
 - Comment
-  - show comment (TODO)
+  - show comment 
   - send comment (TODO)
   - ac emotion
 - Index Page Video List (TODO)
@@ -138,5 +138,7 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 > 梓喵出没(https://www.azimiao.com/5882.html)
 
 > qtkeychain(https://github.com/frankosterfeld/qtkeychain)
+
+> zhengtianzuo(https://github.com/zhengtianzuo)
 
 > 软件交互视觉很大程度上参考[云之幻](https://github.com/Richasy)的[UWP应用哔哩](https://www.microsoft.com/store/apps/9MVN4NSLT150)。

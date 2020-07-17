@@ -2,6 +2,7 @@
 import QtQuick.Controls 2.12
 import "qrc:///ui/player/"
 import "qrc:///ui/global/"
+import "qrc:///ui/components/comment/"
 import "qrc:///ui/global/libraries/functions.js" as FUN
 
 Item{
@@ -27,11 +28,7 @@ Item{
     function openPrivate(js){
         player.start(js)
         detail.open(js)
-        //AcService.getComment(js.vId, showComment)
-    }
-
-    function showComment(res){
-        console.log("showComment"+JSON.stringify(res))
+        comment.open(js)
     }
 
     function stop() {
@@ -63,6 +60,12 @@ Item{
 
             VideoDetail {
                 id: detail
+                anchors.left: parent.left
+                anchors.right: parent.right
+            }
+
+            CommentList {
+                id: comment
                 anchors.left: parent.left
                 anchors.right: parent.right
             }
