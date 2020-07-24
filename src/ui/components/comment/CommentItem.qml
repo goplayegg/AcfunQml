@@ -71,10 +71,15 @@ Row {
                 text: qsTr("Send by") + js.deviceModel
             }
         }
+        Loader {
+            id: subCmt
+            anchors.left: parent.left
+            anchors.right: parent.right
+        }
     }
 
     Component.onCompleted: {
-        if(undefined !== js.avatarImage){
+        if(undefined !== js.avatarImage){//头饰挂件
             var gifIdx = js.avatarImage.indexOf(".gif")
             if(gifIdx !== -1){
                 imgAvatarBk.sourceComponent = cmpGif
@@ -85,6 +90,10 @@ Row {
             }
             imgAvatarBk.visible = true
         }
-        console.log("avat:"+js.avatarImage)
+
+        if("" !== js.subCommentsJson){
+            subCmt.source = "SubCommentList.qml"
+            subCmt.item.open(js.subCommentsJson, js.commentId)
+        }
     }
 }

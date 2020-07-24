@@ -21,8 +21,15 @@ Item {
         commentCnt.text = res.commentCount
         for(var idx in res.rootComments){
             res.rootComments[idx].headImgUrl = res.rootComments[idx].headUrl[0].url
+            var curCID = res.rootComments[idx].commentId
+            if(undefined !== res.subCommentsMap[String(curCID)]){
+                res.rootComments[idx].subCommentsJson = JSON.stringify(res.subCommentsMap[String(curCID)])
+            }else{
+                res.rootComments[idx].subCommentsJson = ""
+            }
+
             modelCmt.append(res.rootComments[idx])
-            //if(idx>2)
+            //if(idx>15)
                 //break;
         }
     }

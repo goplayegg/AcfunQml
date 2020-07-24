@@ -61,5 +61,7 @@
         <file>test/TestWindow.qml</file>
         <file>test/qmldir</file>
         <file>ui/components/comment/CommentContent.qml</file>
+        <file>ui/components/comment/SubCommentItem.qml</file>
+        <file>ui/components/comment/SubCommentList.qml</file>
     </qresource>
 </RCC>
