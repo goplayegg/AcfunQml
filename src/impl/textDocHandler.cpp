@@ -50,6 +50,7 @@ void TextDocHandler::setTxtJson(const QString &txt)
         ft.underline = jsVar["u"].toBool();
         ft.italic = jsVar["i"].toBool();
         ft.strikethrough = jsVar["s"].toBool();
+        ft.iId = jsVar["id"].toInt();
         ft.txt = jsVar["t"].toString();
         ft.color = jsVar["c"].toString();
         addTextToDoc(ft, cursor);
@@ -63,6 +64,12 @@ void TextDocHandler::addTextToDoc(FormatText &ft, QTextCursor& cursor)
     format.setFontItalic(ft.italic);
     format.setFontStretch(ft.strikethrough);
     format.setFontWeight(ft.bold ? QFont::Bold : QFont::Normal);
+    if(0!=ft.iId){
+        QColor clr(0x0000ff);
+        format.setForeground(QBrush(clr));
+        format.setAnchor(true);
+        format.setAnchorHref(QString("https://www.acfun.cn/u/%1").arg(ft.iId));
+    }
     if(!ft.color.isEmpty()){
         QColor clr(ft.color);
         format.setForeground(QBrush(clr));

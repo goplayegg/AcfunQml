@@ -1,4 +1,12 @@
-﻿#pragma once
+﻿/*
+ * 使用正则解析acfun评论报文
+ * 因为Qt自带html富文本显示控件对gif动图支持较差
+ * 需要对gif单独用AnimatedImage显示，其他富文本可以用TextArea
+ * 他们之间的拼接使用QML的流Flow
+ * 方便排版起见先将图片和表情都单独显示，TextArea只有文本
+ * 按格式拆分评论为一个个segment 再按顺序和各自格式显示
+*/
+#pragma once
 #include <QObject>
 #include <QList>
 
@@ -8,6 +16,7 @@ struct FormatText
     bool underline{false};
     bool italic{false};
     bool strikethrough{false};
+    int iId{ 0 };//@人的ID
     QString txt;
     QString color;
 };

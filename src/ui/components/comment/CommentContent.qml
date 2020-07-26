@@ -21,8 +21,10 @@ Flow {
             console.log("doc err:"+message)
         }
         onAddSegment: {
-            if("txt"===type)
-                console.log("onAddSegment222222222")
+//            if("txt"===type)
+//                return
+//            if("gif"===type)
+//                return
             modelCmtSegment.append({type:type, source:source});
         }
     }
@@ -57,6 +59,10 @@ Flow {
                     }
                     TextDocHandler{
                         id: txtHand
+                    }
+                    onLinkActivated:{
+                        console.log("open link:"+link)
+                        Qt.openUrlExternally(link)
                     }
                 }
             }

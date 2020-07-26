@@ -8,23 +8,26 @@ Item {
     id: root
     implicitHeight: rootCol.implicitHeight
     height: implicitHeight
+    property var sourceId: 0
     property var rootCmtId: 0
     property string pcursor: ""
 
-    onHeightChanged: {
-        console.log("SubCommentList height:"+height + "rootCmtId:"+rootCmtId)
-    }
+//    onHeightChanged: {
+//        console.log("SubCommentList height:"+height + "rootCmtId:"+rootCmtId)
+//    }
 
     function open(jsonStr, cmtId){
         rootCmtId = cmtId
         //console.log("showComment"+JSON.stringify(res))
-        modelCmt.clear();
+        modelCmt.clear()
         var subCmt = JSON.parse(jsonStr)
         pcursor = subCmt.pcursor
         var subCmts = subCmt.subComments
         for(var idx in subCmts){
             subCmts[idx].headImgUrl = subCmts[idx].headUrl[0].url
             modelCmt.append(subCmts[idx])
+            if(0 === sourceId)
+                sourceId = subCmts[idx].sourceId
         }
         if("no_more" === pcursor)
             textMore.visible = false
@@ -32,6 +35,21 @@ Item {
             textMore.iTotal = subCmts.length
         }
     }
+    function loadSubCmt(res){
+        if(0 !== res.result){
+            PopMsg.showError(res, mainwindowRoot)
+            return
+        }
+        pcursor = res.pcursor
+        if("no_more" === pcursor)
+            textMore.visible = false
+        var subCmts = res.subComments
+        for(var idx in subCmts){
+            subCmts[idx].headImgUrl = subCmts[idx].headUrl[0].url
+            modelCmt.append(subCmts[idx])
+        }
+    }
+
     Column {
         id: rootCol
         anchors.left: parent.left
@@ -58,6 +76,7 @@ Item {
             text: qsTr("total:%1").arg(iTotal)+"  " + "<a href=\"more\">"+qsTr("show more")+"</a>"
             onLinkActivated: {
                 console.log("clicked:"+link)
+                AcService.getSubComment(sourceId, rootCmtId, pcursor, loadSubCmt)
             }
         }
     }

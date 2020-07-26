@@ -102,6 +102,17 @@ Item {
         request('GET', url, qParam, null, cb);
     }
 
+    function getSubComment(sourceId, rootCommentId, pcursor, cb){
+        var url = "api-new.app.acfun.cn/rest/app/comment/sublist";
+        var qParam = [{"sourceId": sourceId},
+                {"sourceType": 3},
+                {"pcursor": pcursor},
+                {"count": 20},
+                {"rootCommentId": rootCommentId}];
+
+        request('GET', url, qParam, null, cb);
+    }
+
     function getCommentPC(sourceId, cb){
         var url = "www.acfun.cn/rest/pc-direct/comment/list";
         var qParam = [{"sourceId": sourceId},

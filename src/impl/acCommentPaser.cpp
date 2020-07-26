@@ -28,25 +28,35 @@ void AcCommentPaser::cvtToSegment(const QString &str)
 {
     qDebug()<<"cvtToHtml:";
 
-    //匹配带格式bius的字符
-    //将匹配的和不匹配的分割开，按顺序添加到doc里面
+    //匹配带格式bius的字符 或者[at uid=]@用户ID[/at]
+    //将匹配的和不匹配的分割开，按顺序添加到评论UI里面
     QString strRet = str;
-    QRegularExpression reg("(\\[[bius]\\])+(?<txt>.*?)(\\[/([bius]|color)\\])+");
+    QRegularExpression reg("(\\[[bius]\\])+(?<txt>.*?)(\\[/([bius]|color)\\])+|\\[at\\suid=(?<id>[0-9]+)\\](?<name>.*?)\\[/at\\]");
     QRegularExpressionMatch match= reg.match(strRet);
     int iCurStart = match.capturedStart();
     int iCurEnd = match.capturedEnd();
     while (iCurStart>=0) {
-        if(iCurStart>0){
+        if(iCurStart>0){//不匹配任何特殊格式的字符直接丢进去
             FormatText ft;
             ft.txt = strRet.left(iCurStart);
             qDebug()<<"strText:"<<ft.txt;
             addToDoc(ft);
         }
         auto strFormated = strRet.mid(iCurStart, iCurEnd-iCurStart);
-        auto strText = match.captured("txt");
-        qDebug()<<"strText:"<<strText;
-        auto ft = getFormatText(strFormated, strText);
+        FormatText ft;
+        auto strId = match.captured("id");
+        if(!strId.isEmpty()){//匹配到了@用户
+            auto strName = match.captured("name");
+            qDebug()<<"at:"<<strId<<" name:"<<strName;
+            ft.iId = strId.toUInt();
+            ft.txt = strName;
+        }else{//带格式bius的字符
+            auto strText = match.captured("txt");
+            qDebug()<<"strText:"<<strText;
+            ft = getFormatText(strFormated, strText);
+        }
         addToDoc(ft);
+        //尝试匹配下一个
         strRet = strRet.mid(iCurEnd);
         match= reg.match(strRet);
         iCurStart = match.capturedStart();
@@ -124,6 +134,7 @@ void AcCommentPaser::addImgToDoc(QString &url)
     emit addSegment(type, url);
 }
 
+//遇到图片或表情都先将之前的文本显示掉
 void AcCommentPaser::emitTxtComment()
 {
     if(!m_lsTxt.empty()){
@@ -142,6 +153,7 @@ QString AcCommentPaser::txtListToJson()
         objTxt.insert("u", txt.underline);
         objTxt.insert("i", txt.italic);
         objTxt.insert("s", txt.strikethrough);
+        objTxt.insert("id", txt.iId);
         objTxt.insert("t", txt.txt);
         objTxt.insert("c", txt.color);
         arr<<objTxt;
