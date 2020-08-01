@@ -52,7 +52,6 @@ Row {
     }
 
     Component.onCompleted: {
-
         if("" !== js.subCommentsJson){
             subCmt.source = "SubCommentList.qml"
             subCmt.item.open(js.subCommentsJson, js.commentId)

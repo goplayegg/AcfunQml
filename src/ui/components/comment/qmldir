@@ -1,5 +1,6 @@
 ﻿CommentList 1.0 CommentList.qml
 CommentItem 1.0 CommentItem.qml
 CommentContent 1.0 CommentContent.qml
+CommentEditor 1.0 CommentEditor.qml
 SubCommentItem 1.0 SubCommentItem.qml
 SubCommentList 1.0 SubCommentList.qml

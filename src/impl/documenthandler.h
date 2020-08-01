@@ -48,6 +48,7 @@
 **
 ****************************************************************************/
 
+//用于处理发评论的输入框富文本
 #ifndef DOCUMENTHANDLER_H
 #define DOCUMENTHANDLER_H
 
@@ -88,6 +89,7 @@ class DocumentHandler : public QObject
     Q_PROPERTY(bool bold READ bold WRITE setBold NOTIFY boldChanged)
     Q_PROPERTY(bool italic READ italic WRITE setItalic NOTIFY italicChanged)
     Q_PROPERTY(bool underline READ underline WRITE setUnderline NOTIFY underlineChanged)
+    Q_PROPERTY(bool strike READ strike WRITE setStrike NOTIFY strikeChanged)
 
     Q_PROPERTY(int fontSize READ fontSize WRITE setFontSize NOTIFY fontSizeChanged)
 
@@ -97,7 +99,7 @@ class DocumentHandler : public QObject
 
     Q_PROPERTY(bool modified READ modified WRITE setModified NOTIFY modifiedChanged)
 
-    Q_PROPERTY(QString acFormatTxt READ acFormatTxt WRITE setAcFormatTxt)
+    Q_PROPERTY(QString acFormatTxt READ acFormatTxt)
 public:
     explicit DocumentHandler(QObject *parent = nullptr);
 
@@ -131,6 +133,9 @@ public:
     bool underline() const;
     void setUnderline(bool underline);
 
+    bool strike() const;
+    void setStrike(bool strike);
+
     int fontSize() const;
     void setFontSize(int size);
 
@@ -142,7 +147,7 @@ public:
     void setModified(bool m);
 
     QString acFormatTxt() const;
-    void setAcFormatTxt(const QString &txt);
+
 public Q_SLOTS:
     void load(const QUrl &fileUrl);
     void saveAs(const QUrl &fileUrl);
@@ -159,6 +164,7 @@ Q_SIGNALS:
     void boldChanged();
     void italicChanged();
     void underlineChanged();
+    void strikeChanged();
 
     void fontSizeChanged();
 
@@ -177,14 +183,7 @@ private:
     void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
 
     QQuickTextDocument *m_document;
-    void cvtToHtml(const QString &str);
     QString cvtFromHtml(const QString &str);
-    void addToDoc(FormatText& ft);
-    void addTextToDoc(FormatText& ft);
-    void addEmotToDoc(QString& emot);
-    void addImgToDoc(QString& url);
-
-    FormatText getFormatText(const QString&captured,const QString &txt);
 
     int m_cursorPosition;
     int m_selectionStart;

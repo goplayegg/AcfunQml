@@ -64,5 +64,8 @@
         <file>ui/components/comment/SubCommentItem.qml</file>
         <file>ui/components/comment/SubCommentList.qml</file>
         <file>ui/components/AvatarWithCover.qml</file>
+        <file>ui/components/comment/CommentEditor.qml</file>
+        <file>ui/components/btn/IconBtn.qml</file>
+        <file>ui/components/btn/qmldir</file>
     </qresource>
 </RCC>

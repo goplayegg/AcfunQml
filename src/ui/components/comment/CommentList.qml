@@ -67,9 +67,15 @@ Item {
             }
             Rectangle {
                 id: cmtEditer
-                height: 120
+                height: editor.height
                 width: parent.width-avatarSelf.width-parent.spacing
-                color: "red"
+                color: "transparent"
+                CommentEditor {
+                    id: editor
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    acId: contentId
+                }
             }
         }
 

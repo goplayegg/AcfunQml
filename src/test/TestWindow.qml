@@ -36,6 +36,7 @@ Window {
                 width: parent.width-30
                 anchors.left: parent.left
                 anchors.right: parent.right
+                anchors.rightMargin: scroll.ScrollBar.vertical.width+2
             }
         }
 

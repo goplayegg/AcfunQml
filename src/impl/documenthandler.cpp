@@ -232,6 +232,22 @@ void DocumentHandler::setUnderline(bool underline)
     emit underlineChanged();
 }
 
+bool DocumentHandler::strike() const
+{
+    QTextCursor cursor = textCursor();
+    if (cursor.isNull())
+        return false;
+    return textCursor().charFormat().fontStrikeOut();
+}
+
+void DocumentHandler::setStrike(bool strike)
+{
+    QTextCharFormat format;
+    format.setFontStrikeOut(strike);
+    mergeFormatOnWordOrSelection(format);
+    emit strikeChanged();
+}
+
 int DocumentHandler::fontSize() const
 {
     QTextCursor cursor = textCursor();
@@ -297,13 +313,6 @@ QString DocumentHandler::acFormatTxt() const
     return m_acFormatTxt;
 }
 
-void DocumentHandler::setAcFormatTxt(const QString &txt)
-{
-    qDebug()<<"setAcFormatTxt:";
-    m_acFormatTxt = txt;
-    cvtToHtml(txt);
-}
-
 void DocumentHandler::load(const QUrl &fileUrl)
 {
     if (fileUrl == m_fileUrl)
@@ -327,7 +336,6 @@ void DocumentHandler::load(const QUrl &fileUrl)
             QByteArray data = file.readAll();
             QTextCodec *codec = QTextCodec::codecForName("UTF-8");
             auto text = codec->toUnicode(data);
-            setAcFormatTxt(text);
             //emit loaded(text);
             reset();
         }
@@ -367,6 +375,7 @@ void DocumentHandler::reset()
     emit boldChanged();
     emit italicChanged();
     emit underlineChanged();
+    emit strikeChanged();
     emit fontSizeChanged();
     emit textColorChanged();
 }
@@ -403,154 +412,8 @@ void DocumentHandler::mergeFormatOnWordOrSelection(const QTextCharFormat &format
     cursor.mergeCharFormat(format);
 }
 
-void DocumentHandler::cvtToHtml(const QString &str)
-{
-    qDebug()<<"cvtToHtml:";
-
-    //匹配带格式bius的字符
-    //将匹配的和不匹配的分割开，按顺序添加到doc里面
-    QString strRet = str;
-    QRegularExpression reg("(\\[[bius]\\])+(?<txt>.*?)(\\[/([bius]|color)\\])+");
-    QRegularExpressionMatch match= reg.match(strRet);
-    int iCurStart = match.capturedStart();
-    int iCurEnd = match.capturedEnd();
-    while (iCurStart>=0) {
-        if(iCurStart>0){
-            FormatText ft;
-            ft.txt = strRet.left(iCurStart);
-            qDebug()<<"strText:"<<ft.txt;
-            addToDoc(ft);
-        }
-        auto strFormated = strRet.mid(iCurStart, iCurEnd-iCurStart);
-        auto strText = match.captured("txt");
-        qDebug()<<"strText:"<<strText;
-        auto ft = getFormatText(strFormated, strText);
-        addToDoc(ft);
-        strRet = strRet.mid(iCurEnd);
-        match= reg.match(strRet);
-        iCurStart = match.capturedStart();
-        iCurEnd = match.capturedEnd();
-    }
-    if(!strRet.isEmpty()){
-        FormatText ft;
-        ft.txt=strRet;
-        qDebug()<<"strText:"<<ft.txt;
-        addToDoc(ft);
-    }
-}
 
 QString DocumentHandler::cvtFromHtml(const QString &str)
 {
     return str;
-}
-
-void DocumentHandler::addToDoc(FormatText &ft)
-{
-    //解析所有表情或图片
-    QRegularExpression reg("\\[emot=[a-zA-Z]*,(?<emot>[0-9a-zA-Z]+)/\\]|\\[img=?(?<txt>[^\\]]*)\\](?<url>[^\\]]+)\\[/img\\]");
-    QRegularExpressionMatch match= reg.match(ft.txt);
-    int iCurStart = match.capturedStart();
-    int iCurEnd = match.capturedEnd();
-    while (iCurStart>=0) {
-        if(iCurStart>0){
-            FormatText ftStart = ft;
-            ftStart.txt = ft.txt.left(iCurStart);
-            qDebug()<<"strLeft:"<<ftStart.txt;
-            addTextToDoc(ftStart);
-        }
-        auto emot = match.captured("emot");
-        if(!emot.isEmpty()){
-            qDebug()<<"emot:"<<emot;
-            addEmotToDoc(emot);
-        }else{
-            auto url = match.captured("url");
-            qDebug()<<"url:"<<url;
-            addImgToDoc(url);
-        }
-        ft.txt = ft.txt.mid(iCurEnd);
-        match= reg.match(ft.txt);
-        iCurStart = match.capturedStart();
-        iCurEnd = match.capturedEnd();
-    }
-    if(!ft.txt.isEmpty()){
-        qDebug()<<"last  Text:"<<ft.txt;
-        addTextToDoc(ft);
-    }
-}
-
-void DocumentHandler::addTextToDoc(FormatText &ft)
-{
-    QTextDocument *doc = textDocument();
-    if (!doc)
-    {
-        qDebug()<<"addTextToDoc addSegment 111111:"<<ft.txt;
-        emit addSegment("txt", "");
-        qDebug()<<"addTextToDoc addSegment 444444";
-        doc = textDocument();
-    }
-    if (!doc)
-    {
-        //Q_ASSERT(0);
-        return;
-    }
-
-    QTextCursor cursor = QTextCursor(doc);
-    cursor.movePosition(QTextCursor::End);
-    QTextCharFormat format;
-    format.setFontUnderline(ft.underline);
-    format.setFontItalic(ft.italic);
-    format.setFontStretch(ft.strikethrough);
-    format.setFontWeight(ft.bold ? QFont::Bold : QFont::Normal);
-    if(!ft.color.isEmpty()){
-        QColor clr(ft.color);
-        format.setForeground(QBrush(clr));
-    }
-    ft.txt.replace("\\r\\n","\r\n");
-    ft.txt.replace("<br/>","\r\n");
-    cursor.insertText(ft.txt,format);
-}
-
-void DocumentHandler::addEmotToDoc(QString &emot)
-{
-    setDocument(nullptr);
-    auto url = QString(":/assets/img/emot/%1.").arg(emot);
-    qDebug()<<url;
-    QString type = "png";
-    if(!QFile::exists(url+type)){
-        type="gif";
-    }
-    url+=type;
-    url = "qrc"+url;
-    emit addSegment(type=="png"?"img":type, url);
-}
-
-void DocumentHandler::addImgToDoc(QString &url)
-{
-    setDocument(nullptr);
-    QString type = "img";
-    if(url.endsWith(".gif")){
-        type="gif";
-    }
-    emit addSegment(type, url);
-}
-
-FormatText DocumentHandler::getFormatText(const QString &captured,const QString &txt)
-{
-    FormatText ft;
-    ft.bold=captured.contains("[b]")&&captured.contains("[/b]");
-    ft.italic=captured.contains("[i]")&&captured.contains("[/i]");
-    ft.underline=captured.contains("[u]")&&captured.contains("[/u]");
-    ft.strikethrough=captured.contains("[s]")&&captured.contains("[/s]");
-
-    QRegularExpression reg("\\[color=(?<color>\\#[0-9a-fA-F]{6})\\](?<txt>.*)");
-    QRegularExpressionMatch match= reg.match(txt);
-    if(match.hasMatch()){
-        ft.color = match.captured("color");
-        ft.txt = match.captured("txt");
-    }else{
-        ft.txt = txt;
-    }
-
-    qDebug()<<ft.txt<<":"<<ft.color<<":"<<ft.bold<<ft.italic<<ft.underline<<ft.strikethrough;
-    return ft;
 }

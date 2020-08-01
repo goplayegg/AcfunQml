@@ -102,6 +102,19 @@ Item {
         request('GET', url, qParam, null, cb);
     }
 
+    function sendComment(sourceId, cmt, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/comment/add";
+        var cmtJson = {
+            "sourceId": sourceId,
+            "sourceType": 3,
+            "content": encodeURIComponent(cmt),
+            "syncToMoment": 0,
+            "access_token": token
+        }
+        var body = FUN.fmtQueryBody(cmtJson);
+        request('POST', url, null, body, cb);
+    }
+
     function getSubComment(sourceId, rootCommentId, pcursor, cb){
         var url = "api-new.app.acfun.cn/rest/app/comment/sublist";
         var qParam = [{"sourceId": sourceId},
