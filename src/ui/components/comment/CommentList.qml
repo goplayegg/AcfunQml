@@ -42,6 +42,8 @@ Item {
         bottomPadding: 10
 
         Row {
+            anchors.left: parent.left
+            anchors.right: parent.right
             spacing: 10
             Text {
                 text: qsTr("Comment")
@@ -49,6 +51,30 @@ Item {
             Text {
                 id: commentCnt
             }
+        }
+        Row {
+            anchors.left: parent.left
+            anchors.right: parent.right
+            spacing: 10
+            AvatarWithCover {
+                id: avatarSelf
+                width: 90
+                height: width
+                avatarUrl: Global.userInfo.avatar
+            }
+            Rectangle {
+                id: cmtEditer
+                height: 120
+                width: parent.width-avatarSelf.width-parent.spacing
+                color: "red"
+            }
+        }
+
+        Rectangle {
+            id: pageJumper
+            height: 50
+            width: parent.width
+            color: "green"
         }
 
         ListModel {
