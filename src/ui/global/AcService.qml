@@ -91,12 +91,12 @@ Item {
         request('GET', url, qParam, null, cb);
     }
 
-    function getComment(sourceId, cb){
+    function getComment(sourceId, pcursor, cb){
         var url = "api-new.acfunchina.com/rest/app/comment/list";
         var qParam = [{"sourceId": sourceId},
                 {"sourceType": 3},
-                {"pcursor": 0},
-                {"count": 50},
+                {"pcursor": pcursor},
+                {"count": 20},
                 {"showHotComments": 1}];
 
         request('GET', url, qParam, null, cb);

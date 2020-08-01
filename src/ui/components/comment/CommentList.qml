@@ -7,17 +7,22 @@ import "qrc:///ui/components/"
 Item {
     id: root
     implicitHeight: rootCol.implicitHeight
+    property var pcursor: "no_more"
+    property var contentId
 
     function open(js){
-        AcService.getComment(js.contentId, showComment)
+        modelCmt.clear();
+        contentId = js.contentId
+        AcService.getComment(js.contentId, 0, showComment)
     }
 
     function showComment(res){
         //console.log("showComment"+JSON.stringify(res))
-        modelCmt.clear();
         if(0 !== res.result){
+            PopMsg.showError(res, mainwindowRoot)
             return
         }
+        pcursor = res.pcursor
         commentCnt.text = res.commentCount
         for(var idx in res.rootComments){
             res.rootComments[idx].headImgUrl = res.rootComments[idx].headUrl[0].url
@@ -29,8 +34,6 @@ Item {
             }
 
             modelCmt.append(res.rootComments[idx])
-            //if(idx>15)
-                //break;
         }
     }
     Column {
@@ -70,13 +73,6 @@ Item {
             }
         }
 
-        Rectangle {
-            id: pageJumper
-            height: 50
-            width: parent.width
-            color: "green"
-        }
-
         ListModel {
             id: modelCmt
         }
@@ -85,6 +81,15 @@ Item {
             model: modelCmt
             delegate: CommentItem {
                 js: model
+            }
+        }
+
+        Button {
+            width: parent.width
+            text: qsTr("show more")
+            visible: "no_more" !== pcursor
+            onClicked: {
+                AcService.getComment(contentId, pcursor, showComment)
             }
         }
 
