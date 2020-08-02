@@ -9,6 +9,7 @@ import AcfunQml 1.0
 Rectangle {
     id: control
     property var acId
+    property var replyToId: 0
     property int btnHeight: 30
     property int btnWidth : 30
     color: "transparent"
@@ -116,10 +117,12 @@ Rectangle {
             anchors.right: parent.right
             onClicked: {
                 console.log("send:"+cmtText.text)
-                AcService.sendComment(acId, cmtText.text, function(res){
+                AcService.sendComment(acId, cmtText.text, replyToId, function(res){
                     if(res.result !== 0){
                         PopMsg.showError(res, mainwindowRoot)
+                        return
                     }
+                    cmtText.text = ""
                 })
             }
         }

@@ -102,7 +102,7 @@ Item {
         request('GET', url, qParam, null, cb);
     }
 
-    function sendComment(sourceId, cmt, cb) {
+    function sendComment(sourceId, cmt, replyToCommentId, cb) {
         var url = "api-new.app.acfun.cn/rest/app/comment/add";
         var cmtJson = {
             "sourceId": sourceId,
@@ -110,6 +110,9 @@ Item {
             "content": encodeURIComponent(cmt),
             "syncToMoment": 0,
             "access_token": token
+        }
+        if(replyToCommentId){
+            cmtJson.replyToCommentId = replyToCommentId
         }
         var body = FUN.fmtQueryBody(cmtJson);
         request('POST', url, null, body, cb);

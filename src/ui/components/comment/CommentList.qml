@@ -24,18 +24,24 @@ Item {
         }
         pcursor = res.pcursor
         commentCnt.text = res.commentCount
-        for(var idx in res.rootComments){
-            res.rootComments[idx].headImgUrl = res.rootComments[idx].headUrl[0].url
-            var curCID = res.rootComments[idx].commentId
-            if(undefined !== res.subCommentsMap[String(curCID)]){
-                res.rootComments[idx].subCommentsJson = JSON.stringify(res.subCommentsMap[String(curCID)])
-            }else{
-                res.rootComments[idx].subCommentsJson = ""
-            }
-
-            modelCmt.append(res.rootComments[idx])
+        for(var idx in res.hotComments){
+            addCmt(res.hotComments[idx], res)
+        }
+        for(var idxR in res.rootComments){
+            addCmt(res.rootComments[idxR], res)
         }
     }
+    function addCmt(cmt, res){
+        cmt.headImgUrl = cmt.headUrl[0].url
+        var curCID = cmt.commentId
+        if(undefined !== res.subCommentsMap[String(curCID)]){
+            cmt.subCommentsJson = JSON.stringify(res.subCommentsMap[String(curCID)])
+        }else{
+            cmt.subCommentsJson = ""
+        }
+        modelCmt.append(cmt)
+    }
+
     Column {
         id: rootCol
         anchors.left: parent.left
@@ -87,6 +93,9 @@ Item {
             model: modelCmt
             delegate: CommentItem {
                 js: model
+                onReplyTo: {
+                    editor.replyToId = cmtId
+                }
             }
         }
 

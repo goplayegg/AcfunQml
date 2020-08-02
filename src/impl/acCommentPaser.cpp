@@ -26,7 +26,7 @@ void AcCommentPaser::setAcFormatTxt(const QString &txt)
 
 void AcCommentPaser::cvtToSegment(const QString &str)
 {
-    qDebug()<<"cvtToHtml:";
+    qDebug()<<"cvtToSegment:";
 
     //匹配带格式bius的字符 或者[at uid=]@用户ID[/at]
     //将匹配的和不匹配的分割开，按顺序添加到评论UI里面

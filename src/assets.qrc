@@ -632,5 +632,7 @@
         <file>assets/img/emot/5xzy3p5zkrcw32y.png</file>
         <file>assets/img/emot/5xzydfnbjuyt87i.png</file>
         <file>assets/emot.json</file>
+        <file>assets/img/common/cmt0.png</file>
+        <file>assets/img/common/cmt1.png</file>
     </qresource>
 </RCC>

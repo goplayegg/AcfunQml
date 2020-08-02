@@ -74,6 +74,11 @@ void TextDocHandler::addTextToDoc(FormatText &ft, QTextCursor& cursor)
         QColor clr(ft.color);
         format.setForeground(QBrush(clr));
     }
+    ft.txt.replace("&quot;","\"");
+    ft.txt.replace("&#39;","\'");
+    ft.txt.replace("&lt;","<");
+    ft.txt.replace("&gt;",">");
+    ft.txt.replace("&amp;","&");
     ft.txt.replace("\\r\\n","\r\n");
     ft.txt.replace("<br/>","\r\n");
     cursor.insertText(ft.txt,format);

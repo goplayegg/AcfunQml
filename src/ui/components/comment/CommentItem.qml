@@ -11,6 +11,8 @@ Row {
     leftPadding: 10
     property var js
 
+    signal replyTo(var cmtId)
+
     AvatarWithCover {
         id: avatarItem
         width: 90
@@ -21,6 +23,7 @@ Row {
 
     Column {
         id: col
+        spacing: 8
         width: parent.width-avatarItem.width-control.spacing
         Row {
             Text {
@@ -40,7 +43,25 @@ Row {
             contentText: js.content
         }
         Row {
+            spacing: 18
+            RoundBtnWithText {
+                id: btnLike
+                icon: "qrc:/assets/img/common/like0.png"
+                iconChecked: "qrc:/assets/img/common/like1.png"
+            }
+            RoundBtnWithText {
+                id: btnReply
+                text: qsTr("Reply")
+                icon: "qrc:/assets/img/common/cmt0.png"
+                iconChecked: "qrc:/assets/img/common/cmt1.png"
+                onClicked: {
+                    console.log("reply to:"+js.commentId)
+                    replyTo(js.commentId)
+                }
+            }
             Text {
+                height: btnLike.height
+                verticalAlignment: Text.AlignVCenter
                 text: qsTr("Send by") + js.deviceModel
             }
         }
@@ -56,5 +77,10 @@ Row {
             subCmt.source = "SubCommentList.qml"
             subCmt.item.open(js.subCommentsJson, js.commentId)
         }
+        var likeTxt = qsTr("Like")
+        if(js.likeCount)
+            likeTxt+=js.likeCountFormat
+        btnLike.text = likeTxt
+        btnLike.customChecked = js.isLiked
     }
 }
