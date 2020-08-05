@@ -14,6 +14,7 @@ QtObject {
     property color thirdBkgroundColor: "#dee5eb"
     property color foregroundColor: "#000000"
     property color secondForeColor: "#2e2f33"
+    property color thirdForeColor: "#999999"
     property color transparent: "transparent"
 
     property int currentTheme: 0

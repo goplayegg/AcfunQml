@@ -72,6 +72,9 @@ Item {
             property int iTotal:0
             id: textMore
             leftPadding: 0
+            font.pixelSize: AppStyle.font_large
+            font.family: AppStyle.fontNameMain
+            font.weight: Font.Normal
             textFormat: Qt.RichText
             text: qsTr("total:%1").arg(iTotal)+"  " + "<a href=\"more\">"+qsTr("show more")+"</a>"
             onLinkActivated: {

@@ -102,6 +102,9 @@ Item {
         Button {
             width: parent.width
             text: qsTr("show more")
+            font.pixelSize: AppStyle.font_large
+            font.family: AppStyle.fontNameMain
+            font.weight: Font.Normal
             visible: "no_more" !== pcursor
             onClicked: {
                 AcService.getComment(contentId, pcursor, showComment)

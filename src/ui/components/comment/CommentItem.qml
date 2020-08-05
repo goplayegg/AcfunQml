@@ -26,14 +26,26 @@ Row {
         spacing: 8
         width: parent.width-avatarItem.width-control.spacing
         Row {
+            spacing: 8
             Text {
+                font.pixelSize: AppStyle.font_large
+                font.family: AppStyle.fontNameMain
+                font.weight: Font.Normal
                 text: js.userName
             }
             Text {
-                text: js.postDate
+                font.pixelSize: AppStyle.font_large
+                font.family: AppStyle.fontNameMain
+                font.weight: Font.Normal
+                color: AppStyle.thirdForeColor
+                text: qsTr("post time")+" " +js.postDate
             }
             Text {
-                text: js.floor
+                font.pixelSize: AppStyle.font_large
+                font.family: AppStyle.fontNameMain
+                font.weight: Font.Normal
+                color: AppStyle.thirdForeColor
+                text: "#" +js.floor
             }
         }
         CommentContent {
@@ -51,7 +63,7 @@ Row {
             }
             RoundBtnWithText {
                 id: btnReply
-                text: qsTr("Reply")
+                text: ""//qsTr("Reply")
                 icon: "qrc:/assets/img/common/cmt0.png"
                 iconChecked: "qrc:/assets/img/common/cmt1.png"
                 onClicked: {
@@ -60,6 +72,10 @@ Row {
                 }
             }
             Text {
+                font.pixelSize: AppStyle.font_large
+                font.family: AppStyle.fontNameMain
+                font.weight: Font.Normal
+                color: AppStyle.thirdForeColor
                 height: btnLike.height
                 verticalAlignment: Text.AlignVCenter
                 text: qsTr("Send by") + js.deviceModel
@@ -77,7 +93,7 @@ Row {
             subCmt.source = "SubCommentList.qml"
             subCmt.item.open(js.subCommentsJson, js.commentId)
         }
-        var likeTxt = qsTr("Like")
+        var likeTxt = ""//qsTr("Like")
         if(js.likeCount)
             likeTxt+=js.likeCountFormat
         btnLike.text = likeTxt

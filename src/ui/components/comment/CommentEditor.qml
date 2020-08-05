@@ -3,6 +3,7 @@ import QtQuick.Controls 2.12
 import "qrc:///ui/global/styles/"
 import "qrc:///ui/components/"
 import "qrc:///ui/components/btn/"
+import "qrc:///ui/components/emot"
 import "qrc:///ui/global/"
 import AcfunQml 1.0
 
@@ -108,6 +109,19 @@ Rectangle {
                 onClicked: {
                 }
             }
+            IconBtn {
+                id: btnEmot
+                height: btnHeight
+                width: btnWidth
+                text: AppIcons.mdi_emoticon_outline
+                color: AppStyle.foregroundColor
+                tip: qsTr("Emotion")
+                onClicked: {
+                    PopEmot.parent = control
+                    PopEmot.callBk = inputEmot
+                    PopEmot.open()
+                }
+            }
         }
         Button {
             enabled: cmtText.text.length>0
@@ -128,8 +142,7 @@ Rectangle {
         }
     }
 
-
-    Component.onCompleted: {
-
+    function inputEmot(eid){
+        console.log("input emot:"+eid)
     }
 }

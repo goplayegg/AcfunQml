@@ -74,7 +74,7 @@ void AcCommentPaser::cvtToSegment(const QString &str)
 void AcCommentPaser::addToDoc(FormatText &ft)
 {
     //解析所有表情或图片
-    QRegularExpression reg("\\[emot=[a-zA-Z]*,(?<emot>[0-9a-zA-Z]+)/\\]|\\[img=?(?<txt>[^\\]]*)\\](?<url>[^\\]]+)\\[/img\\]");
+    QRegularExpression reg("\\[emot=[0-9a-zA-Z]*,(?<emot>[0-9a-zA-Z]+)/\\]|\\[img=?(?<txt>[^\\]]*)\\](?<url>[^\\]]+)\\[/img\\]");
     QRegularExpressionMatch match= reg.match(ft.txt);
     int iCurStart = match.capturedStart();
     int iCurEnd = match.capturedEnd();

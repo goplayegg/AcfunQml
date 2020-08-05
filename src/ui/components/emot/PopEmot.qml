@@ -5,18 +5,17 @@ import "qrc:///ui/global/styles/"
 import "qrc:///ui/global/"
 
 Popup {
+    property var callBk//function (emotID)
     id: control
     anchors.centerIn: parent
     background: Rectangle{
-        color: AppStyle.secondBkgroundColor
+        color: AppStyle.backgroundColor
         border.color: AppStyle.thirdBkgroundColor
         border.width: 1
     }
     width: 500
     height: 400
     bottomPadding: 0
-
-    signal selectEmot(var id)
 
     function changePack(idx){
         emotModel.clear();
@@ -59,7 +58,7 @@ Popup {
         }
 
         TabBar {
-            id: tabBar
+            id: tabBar//表情类别tab按钮组
             anchors.bottom: parent.bottom
             anchors.left: parent.left
             anchors.right: parent.right
@@ -104,7 +103,7 @@ Popup {
         }
 
         GridView {
-            id: cardView
+            id: cardView//表情列表
             anchors {
                 margins: 0
                 topMargin: 10
@@ -132,7 +131,7 @@ Popup {
                 property string eid: model.eid
                 property int type:model.type
                 color: mouse.containsMouse?AppStyle.thirdBkgroundColor:
-                                            AppStyle.secondBkgroundColor
+                                            AppStyle.backgroundColor
 
                 Image {
                     id: img
@@ -147,7 +146,9 @@ Popup {
                     hoverEnabled: true
                     onClicked: {
                         control.close()
-                        selectEmot(rect.id)
+                        if(callBk){
+                            callBk(rect.eid)
+                        }
                     }
                 }
             }
