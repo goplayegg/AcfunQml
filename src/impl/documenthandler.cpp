@@ -60,15 +60,11 @@
 #include <QTextCodec>
 #include <QTextDocument>
 #include <QDebug>
-#include <QRegularExpression>
-#include <QMovie>
+#include <QTextList>
+#include <QTextBlock>
 
 DocumentHandler::DocumentHandler(QObject *parent)
     : QObject(parent)
-    , m_document(nullptr)
-    , m_cursorPosition(-1)
-    , m_selectionStart(0)
-    , m_selectionEnd(0)
 {
 }
 
@@ -326,7 +322,115 @@ void DocumentHandler::addEmot(const QString &emotId)
 
     auto html = "<img src=\""+url+"\" alt=\""+url+"\" height=\"50\"/>";
     auto cursor = textCursor();
+    auto fmt = cursor.charFormat();
     cursor.insertHtml(html);
+    restoreFormat(fmt);//恢复插入表情前的字体格式
+}
+
+QString DocumentHandler::getAcCmt()
+{
+    QString strCmt;
+    QTextDocument *doc = textDocument();
+    if (!doc){
+        return strCmt;
+    }
+    QTextBlock block = doc->firstBlock();
+    auto allFormats = doc->allFormats();
+    int iBlockIdx=0;
+    while(block.isValid()) {
+        if(0 != iBlockIdx)
+            makeAcNewBlock(strCmt);
+        qDebug()<<"Block start, index:"<<iBlockIdx++;
+        QTextBlockFormat blockFmt = block.blockFormat();
+        QTextList* textList = block.textList();
+        if(textList)
+            QTextListFormat listFmt = allFormats[textList->formatIndex()].toListFormat();
+
+        int iFragIdx=0;
+        for(QTextBlock::iterator it = block.begin(); !it.atEnd(); it++)
+        {
+            QTextFragment fragment = it.fragment();
+            if(!fragment.isValid()){
+                continue;
+            }
+            QTextCharFormat charFmt = fragment.charFormat();
+            auto imgFmt = charFmt.toImageFormat();
+            if (imgFmt.isValid()) {
+                makeAcEmot(strCmt, imgFmt.name());
+                qDebug()<<"Frag index:"<<iFragIdx++<<"img:"<<imgFmt.name();
+            } else {
+                FormatText ft;
+                ft.bold = charFmt.fontWeight() == QFont::Bold;
+                ft.italic = charFmt.fontItalic();
+                ft.underline = charFmt.fontUnderline();
+                ft.strikethrough = charFmt.fontStrikeOut();
+                auto c = charFmt.foreground().color();
+                ft.color = c.name();
+                ft.txt = fragment.text();
+                makeAcTxt(strCmt, ft);
+                qDebug()<<"Frag index:"<<iFragIdx++<<" "<<ft.txt<<":"<<ft.color<<":"<<ft.bold<<ft.italic<<ft.underline<<ft.strikethrough;
+            }
+        }
+        block = block.next();
+    }
+    //qDebug()<<"html: "<<doc->toHtml();
+    qDebug()<<"strCmt:"<<strCmt;
+    return strCmt;
+}
+
+void DocumentHandler::makeAcEmot(QString &acCmt, const QString &emot)
+{
+    //qrc:/assets/img/emot/5x6jjq8kkiv6ity.png
+    //[emot=zt,5x6jjq8kkiv6ity/]
+    auto idx = emot.lastIndexOf("/emot/");
+    if(-1 != idx){
+        auto emId = emot.mid(idx+QString("/emot/").length());
+        emId = emId.left(emId.length()-QString(".png").length());
+        acCmt+=QString("[emot=zt,%1/]").arg(emId);
+    } else {
+        qDebug()<<"makeAcEmot error, emot:"<<emot;
+    }
+}
+
+void DocumentHandler::makeAcTxt(QString &acCmt, const FormatText &ft)
+{
+    //[b][i][u][s][color=#ff0000]颜色+加粗+斜体+下划线+删除线[/u][/s][/color][/i][/b]
+    if(ft.bold){
+        acCmt+="[b]";
+    }
+    if(ft.italic){
+        acCmt+="[i]";
+    }
+    if(ft.underline){
+        acCmt+="[u]";
+    }
+    if(ft.strikethrough){
+        acCmt+="[s]";
+    }
+    if(!ft.color.isEmpty() && "#000000"!=ft.color){
+        acCmt+="[color="+ft.color+"]";
+    }
+    acCmt+=ft.txt;
+    if(ft.underline){
+        acCmt+="[/u]";
+    }
+    if(ft.strikethrough){
+        acCmt+="[/s]";
+    }
+    if(!ft.color.isEmpty() && "#000000"!=ft.color){
+        acCmt+="[/color]";
+    }
+    if(ft.italic){
+        acCmt+="[/i]";
+    }
+    if(ft.bold){
+        acCmt+="[/b]";
+    }
+}
+
+void DocumentHandler::makeAcNewBlock(QString &acCmt)
+{
+    acCmt+="\r\n";//"<br/>";
 }
 
 void DocumentHandler::load(const QUrl &fileUrl)
@@ -428,8 +532,18 @@ void DocumentHandler::mergeFormatOnWordOrSelection(const QTextCharFormat &format
     cursor.mergeCharFormat(format);
 }
 
-
-QString DocumentHandler::cvtFromHtml(const QString &str)
+void DocumentHandler::restoreFormat(const QTextCharFormat& fmt)
 {
-    return str;
+    QTextCharFormat format;
+    format.setFontWeight(fmt.fontWeight());
+    format.setFontItalic(fmt.fontItalic());
+    format.setFontUnderline(fmt.fontUnderline());
+    format.setFontStrikeOut(fmt.fontStrikeOut());
+    format.setForeground(fmt.foreground());
+    mergeFormatOnWordOrSelection(format);
+    emit boldChanged();
+    emit italicChanged();
+    emit underlineChanged();
+    emit strikeChanged();
+    emit textColorChanged();
 }

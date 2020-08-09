@@ -159,13 +159,14 @@ Rectangle {
         Button {
             enabled: cmtText.text.length>0
             height: btnHeight
-            text: qsTr("send comment")
+            text: qsTr("Send comment")
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
             onClicked: {
                 console.log("send:"+cmtText.text)
-                return;
-                AcService.sendComment(acId, cmtText.text, replyToId, function(res){
+                var accmt = document.getAcCmt()
+                //return;
+                AcService.sendComment(acId, accmt, replyToId, function(res){
                     if(res.result !== 0){
                         PopMsg.showError(res, mainwindowRoot)
                         return

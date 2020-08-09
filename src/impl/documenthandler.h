@@ -63,16 +63,6 @@ class QTextDocument;
 class QQuickTextDocument;
 QT_END_NAMESPACE
 
-//struct FormatText
-//{
-//    bool bold{false};
-//    bool underline{false};
-//    bool italic{false};
-//    bool strikethrough{false};
-//    QString txt;
-//    QString color;
-//};
-
 class DocumentHandler : public QObject
 {
     Q_OBJECT
@@ -149,6 +139,7 @@ public:
     QString acFormatTxt() const;
 
     Q_INVOKABLE void addEmot(const QString& emotId);
+    Q_INVOKABLE QString getAcCmt();
 public Q_SLOTS:
     void load(const QUrl &fileUrl);
     void saveAs(const QUrl &fileUrl);
@@ -182,13 +173,19 @@ private:
     QTextCursor textCursor() const;
     QTextDocument *textDocument() const;
     void mergeFormatOnWordOrSelection(const QTextCharFormat &format);
+    void restoreFormat(const QTextCharFormat& format);
 
-    QQuickTextDocument *m_document;
-    QString cvtFromHtml(const QString &str);
+//组装ac网传格式评论报文
+private:
+    void makeAcEmot(QString& acCmt, const QString& emot);
+    void makeAcTxt(QString& acCmt, const FormatText& ft);
+    void makeAcNewBlock(QString& acCmt);
+private:
+    QQuickTextDocument *m_document{ nullptr };
 
-    int m_cursorPosition;
-    int m_selectionStart;
-    int m_selectionEnd;
+    int m_cursorPosition{ -1 };
+    int m_selectionStart{ 0 };
+    int m_selectionEnd{ 0 };
 
     QFont m_font;
     QUrl m_fileUrl;
