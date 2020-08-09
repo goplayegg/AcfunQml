@@ -1,4 +1,4 @@
-#ifndef APPLICATION_H
+﻿#ifndef APPLICATION_H
 #define APPLICATION_H
 
 #include <QRunnable>
@@ -7,8 +7,8 @@
 #include <QDebug>
 
 #ifndef DISABLE_GUI
-#include <QGuiApplication>
-using BaseApplication = QGuiApplication;
+#include <QApplication>
+using BaseApplication = QApplication;
 #else
 #include <QCoreApplication>
 using BaseApplication = QCoreApplication;

@@ -313,6 +313,22 @@ QString DocumentHandler::acFormatTxt() const
     return m_acFormatTxt;
 }
 
+void DocumentHandler::addEmot(const QString &emotId)
+{
+    auto url = QString(":/assets/img/emot/%1.").arg(emotId);
+    QString type = "png";
+    if(!QFile::exists(url+type)){
+        type="gif";
+    }
+    url+=type;
+    url = "qrc"+url;
+    qDebug()<<"addEmot url:"<<url;
+
+    auto html = "<img src=\""+url+"\" alt=\""+url+"\" height=\"50\"/>";
+    auto cursor = textCursor();
+    cursor.insertHtml(html);
+}
+
 void DocumentHandler::load(const QUrl &fileUrl)
 {
     if (fileUrl == m_fileUrl)

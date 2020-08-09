@@ -12,6 +12,12 @@ Item {
     property var rootCmtId: 0
     property string pcursor: ""
 
+    Rectangle {
+        id: rectBk
+        color: AppStyle.secondBkgroundColor
+        anchors.fill: parent
+    }
+
 //    onHeightChanged: {
 //        console.log("SubCommentList height:"+height + "rootCmtId:"+rootCmtId)
 //    }

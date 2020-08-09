@@ -8,6 +8,7 @@ Button {
     id: control
     height: 40
     width: 46
+    focusPolicy: Qt.NoFocus
     ToolTip.text: tip
     ToolTip.visible: hovered
     ToolTip.delay: Qt.styleHints.mousePressAndHoldInterval

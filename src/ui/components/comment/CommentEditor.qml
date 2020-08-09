@@ -1,5 +1,6 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
+import Qt.labs.platform 1.0
 import "qrc:///ui/global/styles/"
 import "qrc:///ui/components/"
 import "qrc:///ui/components/btn/"
@@ -17,43 +18,51 @@ Rectangle {
     radius: 4
     border.width: 1
     border.color: AppStyle.secondForeColor
-    height: cmtText.height+btns.height
+    height: flickable.height+btns.height
 
-    TextArea {
-        id: cmtText
+    Flickable {
+        id: flickable
+        flickableDirection: Flickable.VerticalFlick
         anchors.left: parent.left
         anchors.right: parent.right
-        height: 100
-        textFormat: TextEdit.AutoText
-        wrapMode: TextArea.Wrap
-        font.pixelSize: AppStyle.font_xlarge
-        font.family: AppStyle.fontNameMain
-        font.weight: Font.Medium
-        focus: true
-        selectByMouse: true
-        persistentSelection: true
-        leftPadding: 6
-        rightPadding: 6
-        topPadding: 6
-        bottomPadding: 6
-        background: null
+        height: 100>cmtText.height?100:cmtText.height//binding loop
+        TextArea.flickable: TextArea {
+            id: cmtText
+            textFormat: TextEdit.AutoText
+            wrapMode: TextArea.Wrap
+            font.pixelSize: AppStyle.font_xlarge
+            font.family: AppStyle.fontNameMain
+            font.weight: Font.Medium
+            focus: true
+            selectByMouse: true
+            persistentSelection: true
+            leftPadding: 6
+            rightPadding: 6
+            topPadding: 6
+            bottomPadding: 6
+            background: null
+        }
+        //ScrollBar.vertical: ScrollBar {}
+    }
+
+    ColorDialog {
+        id: dlgColor
+        currentColor: "black"
     }
 
     DocumentHandler {
         id: document
+        textColor: dlgColor.color
         document: cmtText.textDocument
         cursorPosition: cmtText.cursorPosition
         selectionStart: cmtText.selectionStart
         selectionEnd: cmtText.selectionEnd
-        bold: btnBold.checked
-        italic: btnItalic.checked
-        underline: btnUnderLine.checked
-        strike: btnStrike.checked
     }
+
     Item {
         id: btns
         height: 40
-        anchors.top: cmtText.bottom
+        anchors.top: flickable.bottom
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.leftMargin: 5
@@ -71,10 +80,10 @@ Rectangle {
                 width: btnWidth
                 text: AppIcons.mdi_format_bold
                 checkable: true
+                checked: document.bold
+                onClicked: document.bold = !document.bold
                 color: checked? AppStyle.primaryColor:AppStyle.foregroundColor
                 tip: qsTr("Bold")
-                onClicked: {
-                }
             }
             IconBtn {
                 id: btnItalic
@@ -82,10 +91,10 @@ Rectangle {
                 width: btnWidth
                 text: AppIcons.mdi_format_italic
                 checkable: true
+                checked: document.italic
+                onClicked: document.italic = !document.italic
                 color: checked? AppStyle.primaryColor:AppStyle.foregroundColor
                 tip: qsTr("Italic")
-                onClicked: {
-                }
             }
             IconBtn {
                 id: btnUnderLine
@@ -93,10 +102,10 @@ Rectangle {
                 width: btnWidth
                 text: AppIcons.mdi_format_underline
                 checkable: true
+                checked: document.underline
+                onClicked: document.underline = !document.underline
                 color: checked? AppStyle.primaryColor:AppStyle.foregroundColor
                 tip: qsTr("Underline")
-                onClicked: {
-                }
             }
             IconBtn {
                 id: btnStrike
@@ -104,9 +113,33 @@ Rectangle {
                 width: btnWidth
                 text: AppIcons.mdi_format_strikethrough_variant
                 checkable: true
+                checked: document.strike
+                onClicked: document.strike = !document.strike
                 color: checked? AppStyle.primaryColor:AppStyle.foregroundColor
-                tip: qsTr("Strikethrough")
-                onClicked: {
+                tip: qsTr("Strike")
+            }
+            IconBtn {
+                id: btnTextColor
+                height: btnHeight
+                width: btnWidth
+                text: AppIcons.mdi_format_color_text
+                color: AppStyle.foregroundColor
+                onClicked: dlgColor.open()
+                tip: qsTr("Color")
+
+                Rectangle {
+                    width: aFontMetrics.width + 3
+                    height: 2
+                    color: document.textColor
+                    parent: btnTextColor.contentItem
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.baseline: parent.baseline
+                    anchors.baselineOffset: 6
+                    TextMetrics {
+                        id: aFontMetrics
+                        font: btnTextColor.font
+                        text: btnTextColor.text
+                    }
                 }
             }
             IconBtn {
@@ -131,6 +164,7 @@ Rectangle {
             anchors.right: parent.right
             onClicked: {
                 console.log("send:"+cmtText.text)
+                return;
                 AcService.sendComment(acId, cmtText.text, replyToId, function(res){
                     if(res.result !== 0){
                         PopMsg.showError(res, mainwindowRoot)
@@ -144,5 +178,6 @@ Rectangle {
 
     function inputEmot(eid){
         console.log("input emot:"+eid)
+        document.addEmot(eid)
     }
 }

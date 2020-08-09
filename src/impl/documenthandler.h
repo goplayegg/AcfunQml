@@ -148,6 +148,7 @@ public:
 
     QString acFormatTxt() const;
 
+    Q_INVOKABLE void addEmot(const QString& emotId);
 public Q_SLOTS:
     void load(const QUrl &fileUrl);
     void saveAs(const QUrl &fileUrl);

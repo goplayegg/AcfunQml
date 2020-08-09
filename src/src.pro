@@ -5,6 +5,7 @@ macx: include(../confmac.pri)
 unix:!macx: include(../confunix.pri)
 
 QT += quick network sql concurrent
+QT += widgets
 TEMPLATE = app
 CONFIG += c++11
 TARGET = $$qtLibraryTargetName($$APP_TARGET)
