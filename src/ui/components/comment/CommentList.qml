@@ -117,7 +117,7 @@ Item {
             id: repCmt
             model: modelCmt
             delegate: CommentItem {
-                id: cmtItem
+                editorItemHeight: editor.height
                 js: model
                 onReplyTo: {
                     btnEditerTip.checked = true
@@ -127,7 +127,6 @@ Item {
                     editor.replyToId = cmtId
                     editor.replyToName = userName
                     editor.parent = editerParent
-                    cmtItem.editorItem = editor
                 }
             }
         }

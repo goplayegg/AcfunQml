@@ -22,7 +22,7 @@ Rectangle {
     radius: 4
     border.width: 1
     border.color: AppStyle.secondForeColor
-    height: flickable.height+btns.height
+    height: cmtItem.height+btns.height
     onParentChanged: {
         cmtText.focus = true
     }
@@ -36,21 +36,28 @@ Rectangle {
         cmtText.text = ""
     }
 
-    Flickable {
-        id: flickable
-        flickableDirection: Flickable.VerticalFlick
+    MouseArea {
+        anchors.fill: parent
+        onClicked: {
+            cmtText.focus = true
+        }
+    }
+
+    Item {
+        id: cmtItem
         anchors.left: parent.left
         anchors.right: parent.right
-        height: 100>cmtText.height?100:cmtText.height//binding loop
-        TextArea.flickable: TextArea {
+        height: 100>cmtText.height?100:cmtText.height
+        TextArea {
             id: cmtText
-            placeholderText: replySubCmt?(qsTr("Reply")+" @"+replyToName):qsTr("评论一时爽，一直评论一直爽。")
+            anchors.left: parent.left
+            anchors.right: parent.right
+            placeholderText: replySubCmt?(qsTr("Reply")+" @"+replyToName):(qsTr("评论一时爽，一直评论一直爽。")+"\r\n\r\n\r\n")
             textFormat: TextEdit.AutoText
             wrapMode: TextArea.Wrap
             font.pixelSize: AppStyle.font_xlarge
             font.family: AppStyle.fontNameMain
             font.weight: Font.Medium
-            focus: true
             selectByMouse: true
             persistentSelection: true
             leftPadding: 6
@@ -58,11 +65,7 @@ Rectangle {
             topPadding: 6
             bottomPadding: 6
             background: null
-            onHeightChanged: {
-                console.log("text cmt height:"+cmtText.height)
-            }
         }
-        //ScrollBar.vertical: ScrollBar {}
     }
 
     ColorDialog {
@@ -82,7 +85,7 @@ Rectangle {
     Item {
         id: btns
         height: 40
-        anchors.top: flickable.bottom
+        anchors.top: cmtItem.bottom
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.leftMargin: 5

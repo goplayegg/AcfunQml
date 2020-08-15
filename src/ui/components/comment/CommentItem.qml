@@ -10,7 +10,7 @@ Row {
     spacing: 20
     leftPadding: 10
     property var js
-    property var editorItem
+    property var editorItemHeight
 
     signal replyTo(var cmtId, var userName, var editerParent)
 
@@ -90,7 +90,7 @@ Row {
             anchors.left: parent.left
             anchors.right: parent.right
             visible: false
-            height: visible?editorItem.height:0
+            height: visible?editorItemHeight:0
             color: "transparent"
             onVisibleChanged: {
                 if(!visible){
