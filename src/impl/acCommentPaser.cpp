@@ -37,9 +37,7 @@ void AcCommentPaser::cvtToSegment(const QString &str)
     int iCurEnd = match.capturedEnd();
     while (iCurStart>=0) {
         if(iCurStart>0){//不匹配任何特殊格式的字符直接丢进去
-            FormatText ft;
-            ft.txt = strRet.left(iCurStart);
-            qDebug()<<"strText:"<<ft.txt;
+            FormatText ft = matchColorOnly(strRet.left(iCurStart));
             addToDoc(ft);
         }
         auto strFormated = strRet.mid(iCurStart, iCurEnd-iCurStart);
@@ -63,12 +61,25 @@ void AcCommentPaser::cvtToSegment(const QString &str)
         iCurEnd = match.capturedEnd();
     }
     if(!strRet.isEmpty()){
-        FormatText ft;
-        ft.txt=strRet;
-        qDebug()<<"strText:"<<ft.txt;
+        FormatText ft = matchColorOnly(strRet);
         addToDoc(ft);
     }
     emitTxtComment();
+}
+
+FormatText AcCommentPaser::matchColorOnly(const QString &str)
+{
+    FormatText ft;
+    QRegularExpression reg("\\[color=(?<color>\\#[0-9a-fA-F]{6,8})\\](?<txt>.*?)\\[/color\\]");
+    QRegularExpressionMatch match= reg.match(str);
+    if(match.hasMatch()){
+        ft.color = match.captured("color");
+        ft.txt = match.captured("txt");
+    }else{
+        ft.txt = str;
+    }
+    qDebug()<<"strText:"<<ft.txt<<" color:"<<ft.color;
+    return  ft;
 }
 
 void AcCommentPaser::addToDoc(FormatText &ft)
@@ -172,7 +183,7 @@ FormatText AcCommentPaser::getFormatText(const QString &captured,const QString &
     ft.underline=captured.contains("[u]")&&captured.contains("[/u]");
     ft.strikethrough=captured.contains("[s]")&&captured.contains("[/s]");
 
-    QRegularExpression reg("\\[color=(?<color>\\#[0-9a-fA-F]{6})\\](?<txt>.*)");
+    QRegularExpression reg("\\[color=(?<color>\\#[0-9a-fA-F]{6,8})\\](?<txt>.*)");
     QRegularExpressionMatch match= reg.match(txt);
     if(match.hasMatch()){
         ft.color = match.captured("color");

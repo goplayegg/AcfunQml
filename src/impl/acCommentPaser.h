@@ -37,6 +37,7 @@ Q_SIGNALS:
     void addSegment(const QString& type, const QString& source);
 private:
     void cvtToSegment(const QString &str);
+    FormatText matchColorOnly(const QString &str);
     void addToDoc(FormatText& ft);
     void addTextToDoc(FormatText& ft);
     void addEmotToDoc(QString& emot);
