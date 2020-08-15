@@ -12,13 +12,29 @@ Rectangle {
     id: control
     property var acId
     property var replyToId: 0
+    property var replyToName: ""
+    property bool replySubCmt: false//回复子串编辑状态
+
     property int btnHeight: 30
     property int btnWidth : 30
+
     color: "transparent"
     radius: 4
     border.width: 1
     border.color: AppStyle.secondForeColor
     height: flickable.height+btns.height
+    onParentChanged: {
+        cmtText.focus = true
+    }
+
+    function reset(){
+        replyToId = 0
+        replyToName = ""
+        replySubCmt = false
+    }
+    function clear(){
+        cmtText.text = ""
+    }
 
     Flickable {
         id: flickable
@@ -28,6 +44,7 @@ Rectangle {
         height: 100>cmtText.height?100:cmtText.height//binding loop
         TextArea.flickable: TextArea {
             id: cmtText
+            placeholderText: replySubCmt?(qsTr("Reply")+" @"+replyToName):qsTr("评论一时爽，一直评论一直爽。")
             textFormat: TextEdit.AutoText
             wrapMode: TextArea.Wrap
             font.pixelSize: AppStyle.font_xlarge
@@ -41,6 +58,9 @@ Rectangle {
             topPadding: 6
             bottomPadding: 6
             background: null
+            onHeightChanged: {
+                console.log("text cmt height:"+cmtText.height)
+            }
         }
         //ScrollBar.vertical: ScrollBar {}
     }

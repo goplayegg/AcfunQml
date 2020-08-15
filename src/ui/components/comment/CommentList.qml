@@ -11,6 +11,12 @@ Item {
     property var contentId
 
     function open(js){
+        btnEditerTip.checked = false
+        if(editor.parent !== cmtEditer)
+            editor.parent.visible = false//隐藏子串的评论占位Rectangle
+        editor.parent = cmtEditer
+        editor.reset()
+        editor.clear()
         modelCmt.clear();
         contentId = js.contentId
         AcService.getComment(js.contentId, 0, showComment)
@@ -73,16 +79,35 @@ Item {
             }
             Rectangle {
                 id: cmtEditer
-                height: editor.height
+                height: btnEditerTip.visible?btnEditerTip.height:editor.height
                 width: parent.width-avatarSelf.width-parent.spacing
                 color: "transparent"
-                CommentEditor {
-                    id: editor
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    acId: contentId
+                Button {
+                    id: btnEditerTip
+                    width: parent.width
+                    height: avatarSelf.height
+                    checkable: true
+                    checked: false
+                    visible: checked
+                    text: qsTr("编辑器正处于引用发言状态，点击恢复正常状态。")
+                    font.pixelSize: AppStyle.font_large
+                    font.family: AppStyle.fontNameMain
+                    font.weight: Font.Normal
+                    onClicked: {
+                        editor.parent.visible = false//隐藏子串的评论占位Rectangle
+                        editor.parent = cmtEditer
+                        editor.reset()
+                    }
                 }
             }
+        }
+
+        CommentEditor {
+            id: editor
+            parent: cmtEditer
+            anchors.left: parent.left
+            anchors.right: parent.right
+            acId: contentId
         }
 
         ListModel {
@@ -92,9 +117,17 @@ Item {
             id: repCmt
             model: modelCmt
             delegate: CommentItem {
+                id: cmtItem
                 js: model
                 onReplyTo: {
+                    btnEditerTip.checked = true
+                    if(editor.parent !== cmtEditer)
+                        editor.parent.visible = false//隐藏其他子串的评论占位Rectangle
+                    editor.replySubCmt = true
                     editor.replyToId = cmtId
+                    editor.replyToName = userName
+                    editor.parent = editerParent
+                    cmtItem.editorItem = editor
                 }
             }
         }

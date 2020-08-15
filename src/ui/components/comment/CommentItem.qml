@@ -10,8 +10,9 @@ Row {
     spacing: 20
     leftPadding: 10
     property var js
+    property var editorItem
 
-    signal replyTo(var cmtId)
+    signal replyTo(var cmtId, var userName, var editerParent)
 
     AvatarWithCover {
         id: avatarItem
@@ -66,9 +67,11 @@ Row {
                 text: ""//qsTr("Reply")
                 icon: "qrc:/assets/img/common/cmt0.png"
                 iconChecked: "qrc:/assets/img/common/cmt1.png"
+                enabled: !customChecked
                 onClicked: {
                     console.log("reply to:"+js.commentId)
-                    replyTo(js.commentId)
+                    replyTo(js.commentId, js.userName, cmtEditer)
+                    cmtEditer.visible = true
                 }
             }
             Text {
@@ -81,6 +84,21 @@ Row {
                 text: qsTr("Send by") + js.deviceModel
             }
         }
+
+        Rectangle {
+            id: cmtEditer
+            anchors.left: parent.left
+            anchors.right: parent.right
+            visible: false
+            height: visible?editorItem.height:0
+            color: "transparent"
+            onVisibleChanged: {
+                if(!visible){
+                    btnReply.customChecked = false
+                }
+            }
+        }
+
         Loader {
             id: subCmt
             anchors.left: parent.left
