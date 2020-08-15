@@ -12,6 +12,8 @@ Item {
     property var rootCmtId: 0
     property string pcursor: ""
 
+    signal replyTo(var cmtId, var userName, var editerParent)
+
     Rectangle {
         id: rectBk
         color: AppStyle.secondBkgroundColor
@@ -71,7 +73,11 @@ Item {
             id: repCmt
             model: modelCmt
             delegate: SubCommentItem {
+                editorItemHeight: editor.height
                 js: model
+                onReplyTo: {
+                    root.replyTo(cmtId, userName, editerParent)
+                }
             }
         }
         Label {

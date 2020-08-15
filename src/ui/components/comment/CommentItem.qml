@@ -7,6 +7,7 @@ Row {
     id: control
     anchors.left: parent.left
     anchors.right: parent.right
+    anchors.rightMargin: 10
     spacing: 20
     leftPadding: 10
     property var js
@@ -29,10 +30,16 @@ Row {
         Row {
             spacing: 8
             Text {
+                id: txUserName
                 font.pixelSize: AppStyle.font_large
                 font.family: AppStyle.fontNameMain
                 font.weight: Font.Normal
                 text: js.userName
+            }
+            RectBackLabel {
+                height: txUserName.height
+                visible: js.isSameCity||js.isUp
+                text: js.isUp?qsTr("UP"):qsTr("same city")
             }
             Text {
                 font.pixelSize: AppStyle.font_large
@@ -64,7 +71,6 @@ Row {
             }
             RoundBtnWithText {
                 id: btnReply
-                text: ""//qsTr("Reply")
                 icon: "qrc:/assets/img/common/cmt0.png"
                 iconChecked: "qrc:/assets/img/common/cmt1.png"
                 enabled: !customChecked
@@ -103,6 +109,13 @@ Row {
             id: subCmt
             anchors.left: parent.left
             anchors.right: parent.right
+        }
+
+        Connections {
+            target: subCmt.item
+            function onReplyTo(cmtId, userName, editerParent) {
+                control.replyTo(cmtId, userName, editerParent)
+            }
         }
     }
 

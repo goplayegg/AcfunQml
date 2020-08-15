@@ -67,5 +67,6 @@
         <file>ui/components/comment/CommentEditor.qml</file>
         <file>ui/components/btn/IconBtn.qml</file>
         <file>ui/components/btn/qmldir</file>
+        <file>ui/components/RectBackLabel.qml</file>
     </qresource>
 </RCC>
