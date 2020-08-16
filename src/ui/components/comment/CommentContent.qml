@@ -57,7 +57,7 @@ Flow {
                     Component.onCompleted: {
                         txtHand.document = textArea.textDocument
                         txtHand.txtJson = segInfo.source
-                        console.log("TextArea document 55555555")
+                        //console.log("TextArea document 55555555")
                     }
                     TextDocHandler{
                         id: txtHand
@@ -72,6 +72,12 @@ Flow {
                 id: cmpGif
                 AnimatedImage {
                     source: segInfo.source
+                    onWidthChanged: {
+                        deleCmt.implicitWidth = width
+                    }
+                    onHeightChanged: {
+                        deleCmt.implicitHeight = height
+                    }
                 }
             }
             Component{
@@ -98,17 +104,12 @@ Flow {
                     return cmpTxt;
                 }
                 onLoaded: {
-                    if(segInfo.type !== "img"){
+                    if(segInfo.type === "txt"){
                         deleCmt.implicitWidth = barLoader.width
                         deleCmt.implicitHeight = barLoader.height
                     }
                 }
             }
         }
-    }
-
-
-    Component.onCompleted: {
-
     }
 }

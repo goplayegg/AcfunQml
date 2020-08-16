@@ -178,6 +178,13 @@ void AcCommentPaser::addImgToDoc(QString &url)
     QString type = "img";
     if(url.endsWith(".gif")){
         type="gif";
+    }else{
+        auto idx = url.indexOf(".gif?");
+        if(-1!=idx){
+            url = url.left(idx+4);
+            qDebug()<<"fixed gif url:"<<url;
+            type="gif";
+        }
     }
     emit addSegment(type, url);
 }
