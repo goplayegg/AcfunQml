@@ -173,18 +173,18 @@ void AcCommentPaser::addEmotToDoc(QString &emot)
 
 void AcCommentPaser::addImgToDoc(QString &url)
 {
-    QString type = "img";
-    if(url.endsWith(".gif")){
-        type="gif";
-    }else{
-        auto idx = url.indexOf(".gif?");
-        if(-1!=idx){
-            url = url.left(idx+4);
-            qDebug()<<"fixed gif url:"<<url;
-            type="gif";
-        }
+    auto idx = url.indexOf("?");
+    if(-1!=idx){
+        url = url.left(idx);
+        qDebug()<<"fixed gif url:"<<url;
     }
-    dealImage(type, url);
+    QString type = "img";
+    if(url.endsWith(".gif", Qt::CaseInsensitive)){
+        type="gif";
+    }
+    //dealImage(type, url);网图放TextArea里显示不出来，必须双击选中才显示 先单独用Image
+    emitTxtComment();
+    emit addSegment(type, url);
 }
 
 void AcCommentPaser::dealImage(const QString &type, const QString &url)

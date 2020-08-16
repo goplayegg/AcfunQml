@@ -25,20 +25,6 @@ Row {
         }
     }
 
-    Component {
-        id: cmpGif
-        AnimatedImage {
-            id: gif
-        }
-    }
-
-    Component {
-        id: cmpImg
-        Image {
-            id: img
-        }
-    }
-
     Column {
         id: col
         width: parent.width-imgAvatar.width-control.spacing
