@@ -70,6 +70,8 @@ Row {
             id: cmtArea
             anchors.left: parent.left
             anchors.right: parent.right
+            replyTo: js.replyTo
+            replyToName:js.replyToUserName
             contentText: js.content
         }
 

@@ -9,6 +9,8 @@ Flow {
     anchors.right: parent.right
     spacing: 20
     leftPadding: 10
+    property alias replyTo: docHandler.replyToId
+    property alias replyToName: docHandler.replyToName
     property alias contentText: docHandler.acFormatTxt
 
     onContentTextChanged: {

@@ -25,10 +25,16 @@ class AcCommentPaser : public QObject
 {
     Q_OBJECT
 
+    Q_PROPERTY(int replyToId READ replyToId WRITE setrReplyToId)
+    Q_PROPERTY(QString replyToName READ replyToName WRITE setReplyToName)
     Q_PROPERTY(QString acFormatTxt READ acFormatTxt WRITE setAcFormatTxt)
 public:
     explicit AcCommentPaser(QObject *parent = nullptr);
 
+    int replyToId() const;
+    void setrReplyToId(int id);
+    QString replyToName() const;
+    void setReplyToName(const QString &name);
     QString acFormatTxt() const;
     void setAcFormatTxt(const QString &txt);
 //public Q_SLOTS:
@@ -36,6 +42,7 @@ Q_SIGNALS:
     void error(const QString &message);
     void addSegment(const QString& type, const QString& source);
 private:
+    void parseReply();
     void cvtToSegment(const QString &str);
     FormatText matchColorOnly(const QString &str);
     void addToDoc(FormatText& ft);
@@ -47,6 +54,8 @@ private:
 
     FormatText getFormatText(const QString&captured,const QString &txt);
 
+    int m_replyToId{ 0 };
+    QString m_replyToName;
     QString m_acFormatTxt;
     QList<FormatText> m_lsTxt;
 };

@@ -13,6 +13,26 @@ AcCommentPaser::AcCommentPaser(QObject *parent)
 
 }
 
+int AcCommentPaser::replyToId() const
+{
+    return m_replyToId;
+}
+
+void AcCommentPaser::setrReplyToId(int id)
+{
+    m_replyToId = id;
+}
+
+QString AcCommentPaser::replyToName() const
+{
+    return m_replyToName;
+}
+
+void AcCommentPaser::setReplyToName(const QString &name)
+{
+    m_replyToName = name;
+}
+
 QString AcCommentPaser::acFormatTxt() const
 {
     return m_acFormatTxt;
@@ -21,7 +41,24 @@ QString AcCommentPaser::acFormatTxt() const
 void AcCommentPaser::setAcFormatTxt(const QString &txt)
 {
     m_acFormatTxt = txt;
+    parseReply();
     cvtToSegment(txt);
+}
+
+void AcCommentPaser::parseReply()
+{
+    if(0 == m_replyToId){
+        return;
+    }
+    FormatText ft;
+    ft.txt = tr("Reply to")+" ";
+    addTextToDoc(ft);
+    ft.iId = m_replyToId;
+    ft.txt = "@"+m_replyToName;
+    addTextToDoc(ft);
+    ft.iId = 0;
+    ft.txt = " : ";
+    addTextToDoc(ft);
 }
 
 void AcCommentPaser::cvtToSegment(const QString &str)
