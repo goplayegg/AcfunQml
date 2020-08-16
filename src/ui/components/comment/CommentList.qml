@@ -73,8 +73,7 @@ Item {
             spacing: 10
             AvatarWithCover {
                 id: avatarSelf
-                width: 90
-                height: width
+                size: 90
                 avatarUrl: Global.userInfo.avatar
             }
             Rectangle {

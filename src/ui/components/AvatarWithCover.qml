@@ -1,22 +1,37 @@
 ﻿import QtQuick 2.0
 import QtQuick.Controls 2.12
-
+import "qrc:///ui/components/"
 import "qrc:///ui/global/styles/"
 
+//         头像+挂件
+//           168
+//---------------------------
+//          Cover           |
+//                          |
+//           110            |       147
+//  --------------------    |  142
+//  |                  |    |
+//  |       Avatar     | 110|
+//  |                  |    |
+//  |                  |    |
+//---------------------------
+//                          | 5
+//---------------------------
+
 Item {
+    property alias size: itemAvatar.width
     property alias avatarUrl: imgAvatar.source
     property var coverUrl: undefined
     id: itemAvatar
     width: 90
-    height: width
+    height: width*147/168
 
-    Image {
+    RoundImage {
         id: imgAvatar
-        width: 80
-        height: width
-        anchors.centerIn: parent
-        sourceSize.width: width
-        sourceSize.height: height
+        size: itemAvatar.width*110/168
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: itemAvatar.width*5/168
     }
 
     Loader {
