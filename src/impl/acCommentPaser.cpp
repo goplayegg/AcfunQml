@@ -160,7 +160,6 @@ void AcCommentPaser::addTextToDoc(FormatText &ft)
 
 void AcCommentPaser::addEmotToDoc(QString &emot)
 {
-    emitTxtComment();
     auto url = QString(":/assets/img/emot/%1.").arg(emot);
     qDebug()<<url;
     QString type = "png";
@@ -169,12 +168,11 @@ void AcCommentPaser::addEmotToDoc(QString &emot)
     }
     url+=type;
     url = "qrc"+url;
-    emit addSegment(type=="png"?"img":type, url);
+    dealImage(type=="png"?"img":type, url);
 }
 
 void AcCommentPaser::addImgToDoc(QString &url)
 {
-    emitTxtComment();
     QString type = "img";
     if(url.endsWith(".gif")){
         type="gif";
@@ -186,7 +184,19 @@ void AcCommentPaser::addImgToDoc(QString &url)
             type="gif";
         }
     }
-    emit addSegment(type, url);
+    dealImage(type, url);
+}
+
+void AcCommentPaser::dealImage(const QString &type, const QString &url)
+{
+    if("gif" == type){
+        emitTxtComment();
+        emit addSegment(type, url);
+    }else{//img
+        FormatText ft;
+        ft.imgUrl = url;
+        m_lsTxt.push_back(ft);
+    }
 }
 
 //遇到图片或表情都先将之前的文本显示掉
@@ -211,6 +221,7 @@ QString AcCommentPaser::txtListToJson()
         objTxt.insert("id", txt.iId);
         objTxt.insert("t", txt.txt);
         objTxt.insert("c", txt.color);
+        objTxt.insert("img", txt.imgUrl);
         arr<<objTxt;
     }
     QJsonDocument jsonDocument(arr);

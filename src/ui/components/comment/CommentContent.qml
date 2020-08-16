@@ -72,26 +72,22 @@ Flow {
                 id: cmpGif
                 AnimatedImage {
                     source: segInfo.source
-                    onWidthChanged: {
-                        deleCmt.implicitWidth = width
-                    }
-                    onHeightChanged: {
-                        deleCmt.implicitHeight = height
-                    }
+                    onWidthChanged: deleCmt.implicitWidth = width
+                    onHeightChanged: deleCmt.implicitHeight = height
                 }
             }
-            Component{
-                id: cmpImg
-                Image {
-                    source: segInfo.source
-                    onStatusChanged: {
-                        if (status === Image.Ready) {
-                            deleCmt.implicitWidth = width
-                            deleCmt.implicitHeight = height
-                        }
-                    }
-                }
-            }
+//            Component{
+//                id: cmpImg
+//                Image {
+//                    source: segInfo.source
+//                    onStatusChanged: {
+//                        if (status === Image.Ready) {
+//                            deleCmt.implicitWidth = width
+//                            deleCmt.implicitHeight = height
+//                        }
+//                    }
+//                }
+//            }
             Loader {
                 id: barLoader
                 sourceComponent: {
@@ -99,8 +95,8 @@ Flow {
                         return cmpTxt;
                     if(segInfo.type === "gif")
                         return cmpGif;
-                    if(segInfo.type === "img")
-                        return cmpImg;
+                    //if(segInfo.type === "img")
+                    //    return cmpImg;
                     return cmpTxt;
                 }
                 onLoaded: {

@@ -46,6 +46,11 @@ void TextDocHandler::setTxtJson(const QString &txt)
     FormatText ft;
     for(auto it = jsArr.begin(); it!=jsArr.end(); ++it){
         QJsonValue jsVar = *it;
+        ft.imgUrl = jsVar["img"].toString();
+        if(!ft.imgUrl.isEmpty()){
+            addImgToDoc(ft, cursor);
+            continue;
+        }
         ft.bold = jsVar["b"].toBool();
         ft.underline = jsVar["u"].toBool();
         ft.italic = jsVar["i"].toBool();
@@ -82,6 +87,12 @@ void TextDocHandler::addTextToDoc(FormatText &ft, QTextCursor& cursor)
     ft.txt.replace("\\r\\n","\r\n");
     ft.txt.replace("<br/>","\r\n");
     cursor.insertText(ft.txt,format);
+}
+
+void TextDocHandler::addImgToDoc(FormatText &ft, QTextCursor &cursor)
+{
+    auto html = "<img src=\""+ft.imgUrl+"\" alt=\""+ft.imgUrl+"\" />";
+    cursor.insertHtml(html);
 }
 
 QTextDocument *TextDocHandler::textDocument() const

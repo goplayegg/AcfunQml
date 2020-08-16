@@ -26,6 +26,7 @@ public:
 //public Q_SLOTS:
 private:
     void addTextToDoc(FormatText& ft, QTextCursor& cursor);
+    void addImgToDoc(FormatText& ft, QTextCursor& cursor);
     QTextDocument *textDocument() const;
 
     QQuickTextDocument *m_document{nullptr};

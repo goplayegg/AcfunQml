@@ -19,6 +19,7 @@ struct FormatText
     int iId{ 0 };//@人的ID
     QString txt;
     QString color;
+    QString imgUrl;
 };
 
 class AcCommentPaser : public QObject
@@ -50,6 +51,7 @@ private:
     void addEmotToDoc(QString& emot);
     void addImgToDoc(QString& url);
     void emitTxtComment();
+    void dealImage(const QString& type, const QString& source);
     QString txtListToJson();
 
     FormatText getFormatText(const QString&captured,const QString &txt);
