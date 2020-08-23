@@ -38,7 +38,7 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 	- like/unlike (TODO)
 - Comment
   - show comment 
-  - send comment (TODO)
+  - send comment
   - ac emotion
 - Index Page Video List (TODO)
 - Video Search (TODO)
@@ -56,6 +56,24 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 - 硬解码不生效
 - 启动慢 ~~appIcon字符串几千个太多没用到->开发后完删除多余的~~
 - 弹幕处理逻辑不行，同一时间戳弹幕会被覆盖，显示不下的也直接丢掉了
+- Qt富文本原生不支持gif动图，只能显示第一帧，评论区如果要显示gif用AnimatedImage 会cpu很高，排版效果很差
+
+```cpp
+void libvlc_video_set_callbacks( libvlc_media_player_t *mp,
+    void *(*lock_cb) (void *, void **),
+    void (*unlock_cb) (void *, void *, void *const *),
+    void (*display_cb) (void *, void *),
+    void *opaque )
+{
+    var_SetAddress( mp, "vmem-lock", lock_cb );
+    var_SetAddress( mp, "vmem-unlock", unlock_cb );
+    var_SetAddress( mp, "vmem-display", display_cb );
+    var_SetAddress( mp, "vmem-data", opaque );
+    var_SetString( mp, "avcodec-hw", "none" );           //看vlc的源码好像设置过显示回调后会自动禁用硬件解码
+    var_SetString( mp, "vout", "vmem" );
+    var_SetString( mp, "window", "none" );
+}
+```
 
 # ScreenShots
 
@@ -95,8 +113,8 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 		|  |
     	|   +--libvlc.dll
     	|   +--libvlccore.dll
-    	|   +--ssleay32.dll
-    	|   +--libeay32.dll
+    	|   +--ssleay32.dll(libssl-1_1.dll in high Qt version)
+    	|   +--libeay32.dll(libcrypto-1_1.dll in high Qt version)
     	|   +--acfunqml.exe
     	|
     	+--src
