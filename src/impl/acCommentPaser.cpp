@@ -45,6 +45,11 @@ void AcCommentPaser::setAcFormatTxt(const QString &txt)
     cvtToSegment(txt);
 }
 
+void AcCommentPaser::setItemWidth(int width)
+{
+    m_itemWidth = width;
+}
+
 void AcCommentPaser::parseReply()
 {
     if(0 == m_replyToId){

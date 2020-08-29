@@ -38,6 +38,7 @@ public:
     void setReplyToName(const QString &name);
     QString acFormatTxt() const;
     void setAcFormatTxt(const QString &txt);
+    Q_INVOKABLE void setItemWidth(int width);//设置显示宽度，用于图片大小限制
 //public Q_SLOTS:
 Q_SIGNALS:
     void error(const QString &message);
@@ -60,4 +61,5 @@ private:
     QString m_replyToName;
     QString m_acFormatTxt;
     QList<FormatText> m_lsTxt;
+    int m_itemWidth{ 0 };
 };
