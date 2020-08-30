@@ -33,7 +33,7 @@ public:
     Q_INVOKABLE void parseAndShow();
 Q_SIGNALS:
     void error(const QString &message);
-    void addImg(const QString &url);
+    void addImg(const QString &url, const QString &type);
 private:
     void parseReply();
     void cvtToSegment(const QString &str);

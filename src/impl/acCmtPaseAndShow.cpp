@@ -181,7 +181,7 @@ void AcCmtPaseAndShow::addEmotToDoc(QString &emot)
     }
     url+=type;
     url = "qrc"+url;
-    dealImage(type=="png"?"img":type, url);
+    dealImage(type, url);
 }
 
 void AcCmtPaseAndShow::addImgToDoc(QString &url)
@@ -189,13 +189,14 @@ void AcCmtPaseAndShow::addImgToDoc(QString &url)
     auto idx = url.indexOf("?");
     if(-1!=idx){
         url = url.left(idx);
-        qDebug()<<"fixed image url:"<<url;
     }
-    QString type = "img";
-    if(url.endsWith(".gif", Qt::CaseInsensitive)){
-        type="gif";
+    QString type = "jpg";
+    idx = url.lastIndexOf(".");
+    if(-1!=idx){
+        type = url.mid(idx+1);
     }
-    dealImage(type, url);//bug网图放TextArea里显示不出来，必须双击选中才显示
+    qDebug()<<"fixed image url:"<<url<<" ,type:"<<type;
+    dealImage(type, url);
 }
 
 void AcCmtPaseAndShow::dealImage(const QString &type, const QString &url)
@@ -275,10 +276,15 @@ void AcCmtPaseAndShow::addTextToDoc(FormatText &ft, QTextCursor &cursor)
 void AcCmtPaseAndShow::addImgToDoc(FormatText &ft, QTextCursor &cursor)
 {
     if(ft.imgUrl.startsWith("http")){
-        emit addImg(ft.imgUrl);//网图在Repeater-TextArea 结构里第一次会显示不出，用单独的Image规避
+        emit addImg(ft.imgUrl, ft.type);//网图在Repeater-TextArea 结构里第一次会显示不出，用单独的Image规避
         return;
     }
-    auto html = "<img src=\""+ft.imgUrl+"\" alt=\""+ft.imgUrl+"\">";//height=\"90\" width=\"90\"
+    QString html;
+    if(ft.type == "gif"){
+        html = "<a href=\""+ft.imgUrl+"\"><img src=\""+ft.imgUrl+"\" alt=\""+ft.imgUrl+"\"></a>";
+    }else{
+        html = "<img src=\""+ft.imgUrl+"\" alt=\""+ft.imgUrl+"\">";//height=\"90\" width=\"90\"
+    }
     cursor.insertHtml(html);
     //cursor.insertImage(QImage("J:/avicii.jpg"), "avicii"); qml会从qrc里找这个文件 然而找不到
 }

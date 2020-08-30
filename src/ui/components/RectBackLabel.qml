@@ -9,6 +9,8 @@ Label {
         border.width: 1
         radius: 4
     }
+    topPadding: 2
+    bottomPadding: 2
     leftPadding: 4
     rightPadding: 4
     verticalAlignment: Text.AlignVCenter

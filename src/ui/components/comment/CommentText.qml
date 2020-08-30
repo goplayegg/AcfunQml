@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import "qrc:///ui/global/styles/"
+import "qrc:///ui/components/"
 import AcfunQml 1.0
 
 Column {
@@ -27,14 +28,18 @@ Column {
         font.weight: Font.Medium
         onLinkActivated:{
             console.log("open link:"+link)
-            Qt.openUrlExternally(link)
+            if(link.substr(link.length-4)===".gif"){
+                PopImage.open(link, "gif")
+            }else{
+                Qt.openUrlExternally(link)
+            }
         }
 
         AcCmtPaseAndShow {
             id: cmtPaser
             document: cmtText.textDocument
             onAddImg: {
-                modelCmt.append({url:url})
+                modelCmt.append({url:url, type:type})
             }
         }
     }
@@ -45,8 +50,9 @@ Column {
     Repeater {
         id: repCmt
         model: modelCmt
-        delegate: Image {
+        delegate: ImageWithTag {
             source: model.url
+            tag: model.type === "gif"? "Gif": ""
             fillMode: Image.PreserveAspectFit
             onStatusChanged: {
                 if (status === Image.Ready) {
@@ -56,6 +62,10 @@ Column {
                         sourceSize.height = height
                     }
                 }
+            }
+            onClicked: {
+                console.log("open img:"+source)
+                PopImage.open(source, model.type)
             }
         }
     }

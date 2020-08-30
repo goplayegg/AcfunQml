@@ -5,8 +5,10 @@ FullScreen 1.0 FullScreen.qml
 singleton FullScreenWindow 1.0 FullScreenWindow.qml
 Icon 1.0 Icon.qml
 IconTextButton 1.0 IconTextButton.qml
+ImageWithTag 1.0 ImageWithTag.qml
 LinkLabel 1.0 LinkLabel.qml
 singleton PopMsg 1.0 PopMsg.qml
+singleton PopImage 1.0 PopImage.qml
 RectBackLabel 1.0 RectBackLabel.qml
 RoundButton 1.0 RoundButton.qml
 RoundImage 1.0 RoundImage.qml
