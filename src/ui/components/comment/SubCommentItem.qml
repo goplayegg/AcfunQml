@@ -52,7 +52,8 @@ Row {
             }
         }
 
-        CommentContent {
+        //CommentContent
+        CommentText {
             id: cmtArea
             anchors.left: parent.left
             anchors.right: parent.right

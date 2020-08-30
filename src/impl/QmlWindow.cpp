@@ -5,6 +5,7 @@
 #include "documenthandler.h"
 #include "acCommentPaser.h"
 #include "textDocHandler.h"
+#include "acCmtPaseAndShow.h"
 #include <QCoreApplication>
 #include "base/qtkeychain/keychain.h"
 
@@ -130,6 +131,7 @@ void QmlWindow::qmlRegisterType()
     ::qmlRegisterType<DocumentHandler>("AcfunQml", 1, 0, "DocumentHandler");
     ::qmlRegisterType<AcCommentPaser>("AcfunQml", 1, 0, "AcCommentPaser");
     ::qmlRegisterType<TextDocHandler>("AcfunQml", 1, 0, "TextDocHandler");
+    ::qmlRegisterType<AcCmtPaseAndShow>("AcfunQml", 1, 0, "AcCmtPaseAndShow");
     ::qmlRegisterType<HttpRequest>("Network",1, 0, "HttpRequest");
 
     qmlRegisterSingletonType<HttpRequestFactory>("Network",

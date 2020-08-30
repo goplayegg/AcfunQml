@@ -1,37 +1,26 @@
 ﻿/*
+ * this is play B
  * 使用正则解析acfun评论报文
- * 因为Qt自带html富文本显示控件对gif动图支持较差
- * 需要对gif单独用AnimatedImage显示，其他富文本可以用TextArea
- * 他们之间的拼接使用QML的流Flow
- * 方便排版起见先将图片和表情都单独显示，TextArea只有文本
- * 按格式拆分评论为一个个segment 再按顺序和各自格式显示
+ * 按格式拆分评论中的文本/表情/图片 为一个个segment
 */
 #pragma once
 #include <QObject>
 #include <QList>
+#include <QTextCursor>
+#include "acCommentPaser.h"
 
-struct FormatText
-{
-    bool bold{false};
-    bool underline{false};
-    bool italic{false};
-    bool strikethrough{false};
-    int iId{ 0 };//@人的ID
-    QString txt;
-    QString color;
-    QString imgUrl;
-    QString type;//img, gif
-};
-
-class AcCommentPaser : public QObject
+class QTextDocument;
+class QQuickTextDocument;
+class AcCmtPaseAndShow : public QObject
 {
     Q_OBJECT
 
     Q_PROPERTY(int replyToId READ replyToId WRITE setrReplyToId)
     Q_PROPERTY(QString replyToName READ replyToName WRITE setReplyToName)
     Q_PROPERTY(QString acFormatTxt READ acFormatTxt WRITE setAcFormatTxt)
+    Q_PROPERTY(QQuickTextDocument *document READ document WRITE setDocument)
 public:
-    explicit AcCommentPaser(QObject *parent = nullptr);
+    explicit AcCmtPaseAndShow(QObject *parent = nullptr);
 
     int replyToId() const;
     void setrReplyToId(int id);
@@ -39,11 +28,12 @@ public:
     void setReplyToName(const QString &name);
     QString acFormatTxt() const;
     void setAcFormatTxt(const QString &txt);
-    Q_INVOKABLE void setItemWidth(int width);//设置显示宽度，用于图片大小限制
-//public Q_SLOTS:
+    QQuickTextDocument *document() const;
+    void setDocument(QQuickTextDocument *document);
+    Q_INVOKABLE void parseAndShow();
 Q_SIGNALS:
     void error(const QString &message);
-    void addSegment(const QString& type, const QString& source);
+    void addImg(const QString &url);
 private:
     void parseReply();
     void cvtToSegment(const QString &str);
@@ -52,9 +42,8 @@ private:
     void addTextToDoc(FormatText& ft);
     void addEmotToDoc(QString& emot);
     void addImgToDoc(QString& url);
-    void emitTxtComment();
+    void showTxtComment();
     void dealImage(const QString& type, const QString& source);
-    QString txtListToJson();
 
     FormatText getFormatText(const QString&captured,const QString &txt);
 
@@ -62,5 +51,10 @@ private:
     QString m_replyToName;
     QString m_acFormatTxt;
     QList<FormatText> m_lsTxt;
-    int m_itemWidth{ 0 };
+
+    //html doc部分
+    void addTextToDoc(FormatText& ft, QTextCursor& cursor);
+    void addImgToDoc(FormatText& ft, QTextCursor& cursor);
+    QTextDocument *textDocument() const;
+    QQuickTextDocument *m_document{nullptr};
 };
