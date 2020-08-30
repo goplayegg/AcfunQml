@@ -51,37 +51,7 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
   - Skin change (simple)
 
 # 遇到的问题
-- ~~登陆后获取到一些认证信息 acPassToken acSecurity等， 但使用这些作为Cookies 无法成功请求用户详情，发送弹幕等需要用户认证的api。~~ acPassToken改为acPasstoken
-
-- 硬解码不生效
-- 启动慢 ~~appIcon字符串几千个太多没用到->开发后完删除多余的~~
-- 弹幕处理逻辑不行，同一时间戳弹幕会被覆盖，显示不下的也直接丢掉了
-- Qt富文本原生不支持gif动图，只能显示第一帧，评论区如果要显示gif用AnimatedImage 会cpu很高，排版效果很差
-
-```cpp
-void libvlc_video_set_callbacks( libvlc_media_player_t *mp,
-    void *(*lock_cb) (void *, void **),
-    void (*unlock_cb) (void *, void *, void *const *),
-    void (*display_cb) (void *, void *),
-    void *opaque )
-{
-    var_SetAddress( mp, "vmem-lock", lock_cb );
-    var_SetAddress( mp, "vmem-unlock", unlock_cb );
-    var_SetAddress( mp, "vmem-display", display_cb );
-    var_SetAddress( mp, "vmem-data", opaque );
-    var_SetString( mp, "avcodec-hw", "none" );           //看vlc的源码好像设置过显示回调后会自动禁用硬件解码
-    var_SetString( mp, "vout", "vmem" );
-    var_SetString( mp, "window", "none" );
-}
-```
-# 问题分析
-- QmlVlc是注册vlc的YUV回调用OpenGL渲染的，cpu占用比vlc官方客户端高一些。
- - 1.是不是可以改为窗口句柄传给vlc直接播放，这样需要Qml嵌入QWidgit。
- - 2.https://github.com/vlc-qt/vlc-qt  qml部分也是OpenGL ，怎么实现的，跟QmlVlc相比是否有提升
-- 评论富文本方案
- - 1.先用TextArea，gif默认不能播放，给图片加上链接可以点击，点击后弹出窗口进行gif播放
- - 2.看源码修改TextEdit的c++类实现富文本gif  Qt5.12.3\5.12.3\Src\qtdeclarative\src\quick\items\qquicktextedit.cpp
- - 3.改用QWebEngine网页渲染评论区，这样文章也能使用Web，缺点软件体积大，运行时占用一个浏览器资源。 会成为桌面大型应用的后续趋势？
+- 已经转移到issues页面
 
 # ScreenShots
 
