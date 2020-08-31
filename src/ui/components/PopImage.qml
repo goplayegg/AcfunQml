@@ -12,8 +12,16 @@ Window {
     height: 300
     title: qsTr("Image")
 
+    onClosing: {
+        img.source = ""
+        imgBig.source = ""
+    }
+
     property string type: ""
     function open(url, type){
+        imgBig.visible = false
+        imgBig.source = ""
+        showNormal()
         control.show()
         control.raise()
         img.source = url
@@ -31,18 +39,49 @@ Window {
             anchors.verticalCenterOffset: btnSave.height/-2
             fillMode: Image.PreserveAspectFit
             onWidthChanged: {
+                if(0 === width)
+                    return
                 if(width>Screen.desktopAvailableWidth){
-                    control.width = Screen.desktopAvailableWidth
-                    return//bug 图片大小不合适 直接改图片width会导致下次打开无法自适应宽高
+                    imgBig.widthFixed = false
+                    imgBig.source = source
+                    imgBig.visible = true
+                    return
                 }
                 control.width = width>200?width:200
             }
             onHeightChanged: {
+                if(0 === height)
+                    return
                 if(height>Screen.desktopAvailableHeight-btnSave.height-35){
-                    control.height = Screen.desktopAvailableHeight
+                    imgBig.widthFixed = false
+                    imgBig.source = source
+                    imgBig.visible = true
                     return
                 }
                 control.height = height+btnSave.height
+            }
+        }
+        AnimatedImage {
+            id: imgBig
+            property bool widthFixed: false
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset: btnSave.height/-2
+            fillMode: Image.PreserveAspectFit
+            onSourceChanged: img.source = ""
+            onWidthChanged: {
+                if(widthFixed)
+                    return
+                widthFixed = true
+                console.log("wid:"+width+" hei:"+height)
+                control.showMaximized()
+                var hwRadio = height*1.0/width
+                var shwRadio = Screen.desktopAvailableHeight*1.0/Screen.desktopAvailableWidth
+                if(hwRadio>shwRadio){//图片很高啊
+                    height = Screen.desktopAvailableHeight
+                }else{//图片很胖哎
+                    width = Screen.desktopAvailableWidth
+                }
             }
         }
 
