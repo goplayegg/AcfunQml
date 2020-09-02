@@ -4,10 +4,12 @@ include(qtkeychain/qt5keychain.pri)
 
 HEADERS += \
     $$PWD/global.h \
+    $$PWD/utils/FileSaver.h \
     $$PWD/utils/Incubator.h \
     $$PWD/utils/Lazy.h \
     $$PWD/utils/TimeTick.h \
 
-SOURCES +=
+SOURCES += \
+    $$PWD/utils/FileSaver.cpp
 
 message(INCLUDEPATH is $$INCLUDEPATH)

@@ -106,7 +106,10 @@ Window {
         nameFilters: ["Image files (*.*)"]
         folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
         onAccepted: {
-            console.log("save image to:"+file)
+            var bSucc = g_fileSaver.saveImg(img.source, file)
+            if(bSucc){
+                console.log("save image succ to:"+file)
+            }
         }
     }
 }

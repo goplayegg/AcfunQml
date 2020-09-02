@@ -1,5 +1,6 @@
 ﻿#include "QmlWindow.h"
 #include "utils/Lazy.h"
+#include "utils/FileSaver.h"
 #include "QmlPreferences.h"
 #include "danmakupaser.h"
 #include "documenthandler.h"
@@ -143,7 +144,8 @@ void QmlWindow::qmlRegisterType()
     m_qmlEgnine->rootContext()->setContextProperty("g_preference", d->lazyPref.get());
     m_qmlEgnine->rootContext()->setContextProperty("g_languageList", d->m_languageList);
     m_qmlEgnine->setNetworkAccessManagerFactory(new MyNetworkAccessManagerFactory());
-
+    Util::FileSaver *pFileSaver = new Util::FileSaver(this);
+    m_qmlEgnine->rootContext()->setContextProperty("g_fileSaver", pFileSaver);
 }
 
 void QmlWindow::reTrans(const QString &lang)
