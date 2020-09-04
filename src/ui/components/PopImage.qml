@@ -103,13 +103,17 @@ Window {
         id: saveDialog
         fileMode: FileDialog.SaveFile
         defaultSuffix: control.type
-        nameFilters: ["Image files (*.*)"]
+        nameFilters: ["Image files (*."+control.type+")"]
         folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
         onAccepted: {
-            var bSucc = g_fileSaver.saveImg(img.source, file)
-            if(bSucc){
-                console.log("save image succ to:"+file)
-            }
+            g_fileSaver.saveImg(img.source==""?imgBig.source:img.source, file)
+        }
+    }
+    Connections {
+        target: g_fileSaver
+        function finished(succ) {
+            console.log("save image succ?:"+succ)
+            //TODO toast tip
         }
     }
 }
