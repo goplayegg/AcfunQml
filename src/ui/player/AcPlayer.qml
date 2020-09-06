@@ -14,8 +14,10 @@ FullScreen {
     smallWindow: ctrlFrame.smallWindow
     signal videoReady
     property var videoInfo
+    property var playInfo
     function stop(){
         vlcPlayer.stop()
+        ctrlFrame.position = 0.0
         danmaku.close(true)
     }
 
@@ -40,12 +42,25 @@ FullScreen {
             PopMsg.showError(js, mainwindowRoot)
             return
         }
+        playInfo = js.playInfo
+        ctrlFrame.duration = FUN.formatTime(parseInt(playInfo.duration/1000))
+        ctrlFrame.initQuality(playInfo.streams, "720p")
+    }
 
-        var playInfos = js.playInfo.streams
-        var url = playInfos[1].playUrls[0]
-        console.log("current playing url:"+url)
+    function playVideoQuility(qualityType){
+        var url = playInfo.streams[0].playUrls[0]
+        for(var idx in playInfo.streams){
+            if(qualityType === playInfo.streams[idx].qualityType){
+                url = playInfo.streams[idx].playUrls[0]
+            }
+        }
+
+        var beforeChangeQualityPos = ctrlFrame.position
+        console.log("beforeChangeQualityPos:"+beforeChangeQualityPos +" current playing url:"+url)
         vlcPlayer.mrl = url//"file:///D:/1.mp4"//
-        ctrlFrame.duration = FUN.formatTime(parseInt(js.playInfo.duration/1000))
+        if(0.0 !== beforeChangeQualityPos){
+            vlcPlayer.position = beforeChangeQualityPos
+        }
     }
 
     function togglePause(){
@@ -162,6 +177,9 @@ FullScreen {
                 onChangePosition: {
                     vlcPlayer.position = pos
                     danmaku.open(videoInfo.vid, vlcPlayer.time)
+                }
+                onChangeQuality: {
+                    playVideoQuility(type)
                 }
             }
             Timer {

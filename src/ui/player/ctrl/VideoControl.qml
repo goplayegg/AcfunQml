@@ -23,6 +23,29 @@ Rectangle {
     property alias timeCurrent: labCurrentTm.text
 
     signal changePosition(var pos)
+    signal changeQuality(var type)
+    property var funcQuality
+    function initQuality(streams, type){
+        funcQuality = undefined
+        var idxToBe = 0
+        modelQuality.clear()
+        for(var idx in streams){
+            if(type === streams[idx].qualityType)
+                idxToBe = idx
+            modelQuality.append({key: streams[idx].qualityLabel, value: streams[idx].qualityType})
+        }
+        funcQuality = slotQualityChanged
+        console.log("quality idxToBe:"+idxToBe)
+        if(idxToBe !== cmbQuality.currentIndex)
+            cmbQuality.currentIndex = idxToBe
+        else
+            slotQualityChanged(type)
+    }
+    function slotQualityChanged(currentValue){
+        console.log("quality changed:"+currentValue)
+        changeQuality(currentValue)
+    }
+
     ProgressControl {
         id: progress
         anchors.top: parent.top
@@ -96,12 +119,18 @@ Rectangle {
                 tip: qsTr("Window")
                 visible: false//TODO
             }
-            VideoCtrlBtn {
-                height: btnHeight
-                width: btnWidth
-                text: AppIcons.mdi_eye_circle_outline
-                tip: qsTr("Resolution")
-                onClicked: {
+            ComboBox {
+                id: cmbQuality
+                width: 60
+                textRole: "key"
+                indicator: null
+                model: ListModel {
+                    id: modelQuality
+                }
+                onCurrentIndexChanged: {
+                    console.log("onCurrentIndexChanged:"+currentIndex)
+                    if(funcQuality)
+                        funcQuality(modelQuality.get(currentIndex).value)
                 }
             }
         }
