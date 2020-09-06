@@ -62,6 +62,10 @@ Item{
                 id: detail
                 anchors.left: parent.left
                 anchors.right: parent.right
+                onChangeVideoPart: {
+                    busyBox.running = true
+                    player.changePart(vInfo)
+                }
             }
 
             CommentList {

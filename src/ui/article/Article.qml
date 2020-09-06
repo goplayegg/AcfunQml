@@ -44,6 +44,7 @@ Item{
             jsCurRank.contentType = 2
             jsCurRank.userJson = JSON.stringify(jsCurRank.user)
             jsCurRank.tagListJson = JSON.stringify(jsCurRank.tagList)
+            jsCurRank.videoListJson = JSON.stringify(jsCurRank.videoList)
             rankModel.append(jsCurRank)
             console.log("rank append:"+jsCurRank.title)
         }

@@ -129,6 +129,7 @@ Item {
                 description     : infoJs.description,
                 userJson        : infoJs.userJson,
                 tagListJson     : infoJs.tagListJson,
+                videoListJson   : infoJs.videoListJson,
                 isThrowBanana   : infoJs.isThrowBanana,
                 isFavorite      : infoJs.isFavorite,
                 isLike          : infoJs.isLike

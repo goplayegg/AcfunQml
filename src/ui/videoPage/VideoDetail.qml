@@ -1,4 +1,5 @@
-﻿import QtQuick 2.12
+﻿//视频标题 分P 标签 up信息
+import QtQuick 2.12
 import QtQuick.Controls 2.12
 import "qrc:///ui/global/"
 import "qrc:///ui/global/styles/"
@@ -13,6 +14,7 @@ Item {
     property var contentType
     property var user: ({})
     property var tagList: ({})
+    signal changeVideoPart(var vInfo)//切换分P
     function open(js){
         acID = js.contentId
         contentType = js.contentType
@@ -50,6 +52,20 @@ Item {
                 repTags.itemAt(idx).text = tagList[idx].name
             }else{
                 repTags.itemAt(idx).text = ""
+            }
+        }
+        var videoList = []
+        if(undefined === js.videoListJson){
+            if(undefined !== js.videoList){
+                videoList = js.videoList
+            }
+        }else {
+            videoList = JSON.parse(js.videoListJson)
+        }
+        modelVideos.clear()
+        if(videoList.length>1){
+            for(var idxV in videoList){
+                modelVideos.append(videoList[idxV])
             }
         }
     }
@@ -90,7 +106,7 @@ Item {
                     icon: "qrc:/assets/img/common/like0.png"
                     iconChecked: "qrc:/assets/img/common/like1.png"
                 }
-                RoundBtnWithText {
+                RoundBtnWithText {//投蕉
                     id: btnBanana
                     enabled: !customChecked
                     icon: "qrc:/assets/img/common/banana0.png"
@@ -114,7 +130,7 @@ Item {
                             })
                     }
                 }
-                RoundBtnWithText {
+                RoundBtnWithText {//关注
                     id: btnStar
                     icon: "qrc:/assets/img/common/star0.png"
                     iconChecked: "qrc:/assets/img/common/star1.png"
@@ -173,6 +189,46 @@ Item {
                 readOnly: true
                 font.pixelSize: AppStyle.font_smal
                 font.family: AppStyle.fontNameMain
+            }
+        }
+
+        Flow {//分P
+            spacing: 10
+            anchors.left: parent.left
+            anchors.right: parent.right
+            ListModel {
+                id: modelVideos
+            }
+            ButtonGroup {
+                id: btnsVideo
+            }
+            Repeater {
+                model: modelVideos
+                Button {
+                    property var vInfo: model
+                    width: implicitWidth<180?180:implicitWidth
+                    height: 36
+                    checkable: true
+                    checked: index === 0
+                    ButtonGroup.group: btnsVideo
+                    background: Rectangle {
+                        color: checked?AppStyle.accentColor:AppStyle.secondBkgroundColor
+                        radius: 5
+                    }
+                    contentItem: Text {
+                        anchors.centerIn: parent
+                        text: model.title
+                        font.family:  AppStyle.fontNameMain
+                        font.weight: Font.Light
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        color: checked?AppStyle.backgroundColor:AppStyle.foregroundColor
+                    }
+                    onClicked: {
+                        textDanmCount.text = vInfo.danmakuCountShow
+                        changeVideoPart(vInfo)
+                    }
+                }
             }
         }
 
