@@ -15,9 +15,10 @@ FullScreen {
     signal videoReady
     property var videoInfo
     property var playInfo
+    property bool manuallyChangeQualityFlag: false
     function stop(){
         vlcPlayer.stop()
-        ctrlFrame.position = 0.0
+        manuallyChangeQualityFlag = false
         danmaku.close(true)
     }
 
@@ -42,9 +43,10 @@ FullScreen {
             PopMsg.showError(js, mainwindowRoot)
             return
         }
+        manuallyChangeQualityFlag = false
         playInfo = js.playInfo
         ctrlFrame.duration = FUN.formatTime(parseInt(playInfo.duration/1000))
-        ctrlFrame.initQuality(playInfo.streams, "720p")
+        ctrlFrame.initQuality(playInfo.streams)
     }
 
     function playVideoQuility(qualityType){
@@ -54,12 +56,13 @@ FullScreen {
                 url = playInfo.streams[idx].playUrls[0]
             }
         }
-
         var beforeChangeQualityPos = ctrlFrame.position
-        console.log("beforeChangeQualityPos:"+beforeChangeQualityPos +" current playing url:"+url)
         vlcPlayer.mrl = url//"file:///D:/1.mp4"//
-        if(0.0 !== beforeChangeQualityPos){
+        console.log("current playing url:"+url)
+        if(manuallyChangeQualityFlag){
             vlcPlayer.position = beforeChangeQualityPos
+        }else{
+            manuallyChangeQualityFlag = true
         }
     }
 

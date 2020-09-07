@@ -25,13 +25,21 @@ Rectangle {
     signal changePosition(var pos)
     signal changeQuality(var type)
     property var funcQuality
-    function initQuality(streams, type){
+    function initQuality(streams){
+        var favoriteQuality = g_preference.value("favoriteVideoQuality")
+        if(undefined === favoriteQuality){
+            favoriteQuality = "720p"
+        }
+
         funcQuality = undefined
         var idxToBe = 0
+        cmbQuality.noFavoriteQuality = true
         modelQuality.clear()
         for(var idx in streams){
-            if(type === streams[idx].qualityType)
+            if(favoriteQuality === streams[idx].qualityType){
                 idxToBe = idx
+                cmbQuality.noFavoriteQuality = false
+            }
             modelQuality.append({key: streams[idx].qualityLabel, value: streams[idx].qualityType})
         }
         funcQuality = slotQualityChanged
@@ -39,7 +47,7 @@ Rectangle {
         if(idxToBe !== cmbQuality.currentIndex)
             cmbQuality.currentIndex = idxToBe
         else
-            slotQualityChanged(type)
+            slotQualityChanged(favoriteQuality)
     }
     function slotQualityChanged(currentValue){
         console.log("quality changed:"+currentValue)
@@ -120,6 +128,7 @@ Rectangle {
                 visible: false//TODO
             }
             ComboBox {
+                property bool noFavoriteQuality: false
                 id: cmbQuality
                 width: 60
                 textRole: "key"
@@ -129,8 +138,12 @@ Rectangle {
                 }
                 onCurrentIndexChanged: {
                     console.log("onCurrentIndexChanged:"+currentIndex)
-                    if(funcQuality)
-                        funcQuality(modelQuality.get(currentIndex).value)
+                    if(funcQuality){
+                        var type = modelQuality.get(currentIndex).value
+                        funcQuality(type)
+                        if(!noFavoriteQuality)
+                            g_preference.setValue("favoriteVideoQuality", type)
+                    }
                 }
             }
         }
