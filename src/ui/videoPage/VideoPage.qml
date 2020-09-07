@@ -55,6 +55,9 @@ Item{
                     onVideoReady: {
                         busyBox.running = false
                     }
+                    onVideoEnded: {
+                        detail.nextPart()
+                    }
                 }
             }
 

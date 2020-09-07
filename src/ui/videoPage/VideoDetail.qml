@@ -69,6 +69,15 @@ Item {
             }
         }
     }
+
+    function nextPart(){
+        var jumpTo = btnsVideo.checkedButton.idx+1
+        if(jumpTo < modelVideos.count){
+            console.log("auto jump to part "+jumpTo+", video part total count:"+modelVideos.count)
+            repBtnPart.itemAt(jumpTo).checked = true
+        }
+    }
+
     Column {
         id: rootCol
         anchors.left: parent.left
@@ -201,11 +210,17 @@ Item {
             }
             ButtonGroup {
                 id: btnsVideo
+                onCheckedButtonChanged: {
+                    textDanmCount.text = checkedButton.vInfo.danmakuCountShow
+                    changeVideoPart(checkedButton.vInfo)
+                }
             }
             Repeater {
+                id: repBtnPart
                 model: modelVideos
                 Button {
                     property var vInfo: model
+                    property var idx: model.index
                     width: implicitWidth<180?180:implicitWidth
                     height: 36
                     checkable: true
@@ -223,10 +238,6 @@ Item {
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                         color: checked?AppStyle.backgroundColor:AppStyle.foregroundColor
-                    }
-                    onClicked: {
-                        textDanmCount.text = vInfo.danmakuCountShow
-                        changeVideoPart(vInfo)
                     }
                 }
             }

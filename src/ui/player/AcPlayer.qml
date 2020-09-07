@@ -13,6 +13,7 @@ FullScreen {
     fullScreen: ctrlFrame.fullScreen
     smallWindow: ctrlFrame.smallWindow
     signal videoReady
+    signal videoEnded
     property var videoInfo
     property var playInfo
     property bool manuallyChangeQualityFlag: false
@@ -128,6 +129,8 @@ FullScreen {
                 }else if(VlcPlayer.Playing === state ||
                          VlcPlayer.Buffering === state){
                     ctrlFrame.paused = false
+                }else if(VlcPlayer.Ended === state){
+                    videoEnded()
                 }
                 console.log("vlcPlayer status:"+ state)
             }
