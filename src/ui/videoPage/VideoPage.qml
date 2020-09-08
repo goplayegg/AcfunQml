@@ -28,11 +28,19 @@ Item{
     function openPrivate(js){
         player.start(js)
         detail.open(js)
-        comment.open(js)
+        timerDelay.param = js
+        timerDelay.start()
     }
 
     function stop() {
         player.stop()
+    }
+
+    Timer {
+        property var param
+        id: timerDelay
+        interval: 1000;
+        onTriggered: comment.open(param)
     }
 
     ScrollView {
