@@ -13,6 +13,7 @@ Rectangle{
         NumberAnimation{ duration: 100; easing.type: Easing.OutQuad}
     }
 
+    readonly property string prefBase : "qrc:/assets/img/"
     readonly property string pref : "qrc:/assets/img/leftNav/"
     signal popupOpened(var open);
     signal loginFinish(var js);
@@ -149,6 +150,7 @@ Rectangle{
             tabBar.addItem({"text":qsTr("文章"),"icon":pref+"a3a.png","iconChecked":pref+"a3c.png"})
             tabBar.addItem({"text":qsTr("动态"),"icon":pref+"ub.png","iconChecked":pref+"uc.png","hide":true})
             tabBar.addItem({"text":qsTr("排行榜"),"icon":pref+"a7p2.png","iconChecked":pref+"a7p.png"})
+            tabBar.addItem({"text":qsTr("活动"),"icon":prefBase+"common/banana0.png","iconChecked":prefBase+"common/banana1.png"})
             tabBar.addItem({"spliter":true})
             tabBar.addItem({"text":"设置","icon":pref+"a4g.png","iconChecked":pref+"a4g2.png","hide":false})
             tabBar.addItem({"text":"关于","icon":pref+"ug.png","iconChecked":pref+"uh.png"})

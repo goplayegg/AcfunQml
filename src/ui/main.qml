@@ -11,6 +11,10 @@ import "qrc:///ui/mainPage/"
 import "qrc:///ui/videoPage/"
 import "qrc:///ui/global/libraries/functions.js" as FUN
 
+//test
+import "qrc:///ui/components/emot"
+import "qrc:///test"
+
 Window {
     id: mainwindow
 
@@ -54,12 +58,13 @@ Window {
 
     property string videoPageSource: "qrc:/ui/videoPage/VideoPage.qml"
     property var stackViewLoader: [null, acMainLoader, articleLoader,
-        circleLoader, topRankLoader, null, settingLoader, aboutLoader]
+        circleLoader, topRankLoader, operationLoader, null, settingLoader, aboutLoader]
     property var stackViewSource: ["spliter",
         "qrc:/ui/mainPage/AcMainPage.qml",
         "qrc:/ui/article/Article.qml",
         "qrc:/ui/circle/Circle.qml",
         "qrc:/ui/topRank/TopRank.qml",
+        "qrc:/ui/other/Operation.qml",
         "spliter",
         "qrc:/ui/other/Setting.qml",
         "qrc:/ui/other/About.qml"]
@@ -102,6 +107,9 @@ Window {
                 width: parent.width
                 backEnable: stack.depth>1
                 onRefresh: {
+                    //TestWindow.open()
+                    //PopEmot.parent = mainwindowRoot
+                    //PopEmot.open()
                     stack.currentItem.item.refresh()
                 }
                 onBack: {
@@ -206,6 +214,13 @@ Window {
             }
             onLoaded: {
                 console.log("topRankLoader Loaded")
+            }
+        }
+
+        Loader{
+            id: operationLoader
+            onLoaded: {
+                console.log("operationLoader Loaded")
             }
         }
 

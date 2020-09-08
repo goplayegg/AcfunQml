@@ -177,6 +177,12 @@ Item {
         request('POST', url, null, body, cb);
     }
 
+    function getOperationList(cb) {
+        var url = "api-new.app.acfun.cn/rest/app/operation/getOperations";
+        var body = "pcursor=&limit=10"
+        request('POST', url, null, body, cb);
+    }
+
     //private
     function addHeader(hreq, endpoint){
         hreq.setRequestHeader("User-agent", c_userAgent);
