@@ -34,6 +34,7 @@ Item{
 
     }
 
+    property int newVideoPageNo:1
     function changeChannel(cid){
         busyBox.running = true
         AcService.getChannelVideo(cid, 10, function(res){
@@ -41,12 +42,13 @@ Item{
                 busyBox.running = false
                 PopMsg.showError(res, mainwindowRoot)
             }else{
+                newVideoPageNo = 1
                 videoModel.clear()
                 for(var idx in res.vdata){
                     if("videos" === res.vdata[idx].schema ||
                             "videos_new" === res.vdata[idx].schema){
                         var video = res.vdata[idx]
-                        updateInfo(video)
+                        updateInfo(video.bodyContents)
                     }
                 }
                 busyBox.running = false
@@ -54,11 +56,26 @@ Item{
         })
     }
 
+    function appendNewVideo(){
+        busyBox.running = true
+        newVideoPageNo++
+        var cid = channelModel.get(tabBar.currentIndex).channelId
+        AcService.getNewVideoInRegion(cid, newVideoPageNo, function(res){
+            if(0 !== res.errorid){
+                busyBox.running = false
+                PopMsg.showError(res, mainwindowRoot)
+            }else{
+                updateInfo(res.vdata)
+                busyBox.running = false
+            }
+        })
+    }
+
     function updateInfo(js){
-        var cnt = js.bodyContents.length
+        var cnt = js.length
         console.log("video num:"+cnt)
         for(var i=0;i<cnt;++i){
-            var jsCurVideo = js.bodyContents[i]
+            var jsCurVideo = js[i]
             if(undefined === jsCurVideo.user){
                 continue
             }
@@ -146,9 +163,19 @@ Item{
         ScrollBar.vertical : ScrollBar{
             id: scrollbar
             anchors.right: cardView.right
-            y: cardView.visibleArea.yPosition * cardView.height
             width: 10
-            height: cardView.visibleArea.heightRatio * cardView.height
+            onPositionChanged: {
+                //console.log("scrollbar position:"+ position)
+                if(1.0 === position+size){
+                    appendNewVideo()
+                }
+            }
+            onSizeChanged: {
+                //console.log("onSizeChanged size:"+ size)
+                if(1.0 === size){
+                    appendNewVideo()
+                }
+            }
         }
 
         model:  videoModel

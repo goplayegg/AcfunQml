@@ -57,6 +57,13 @@ Item {
         request('GET', url, qParam, null, cb);
     }
 
+    function getNewVideoInRegion(channel, pageNo, cb){
+        var url = "apipc.app.acfun.cn/v3/regions/new/"+channel;
+        var qParam = [  {"pageSize": 10},
+                        {"pageNo": pageNo}];
+        request('GET', url, qParam, null, cb);
+    }
+
     function getDanm(videoId, lastFetchTime, resourceTypeId, cb) {
         var url = "api-new.acfunchina.com/rest/app/new-danmaku/poll";
         var qParam = [  {"appMode":"0"} ];
@@ -194,7 +201,7 @@ Item {
         hreq.setRequestHeader("udid","be0088b8-1ae1-341d-b31e-bed8e78e2325");
         hreq.setRequestHeader("resolution","1080x1920");
         hreq.setRequestHeader("market","tencent");
-        if("apipc.app.acfun.cn/v3/regions" === endpoint ||
+        if(endpoint.indexOf("apipc.app.acfun.cn/v3/regions") !== -1 ||
            "api-new.acfunchina.com/rest/app/comment/list" === endpoint)
             hreq.setRequestHeader("appVersion", c_appVersion);
         if("" !== cookie){
