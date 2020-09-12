@@ -57,6 +57,8 @@ Item{
     }
 
     function appendNewVideo(){
+        if(empty())
+            return
         busyBox.running = true
         newVideoPageNo++
         var cid = channelModel.get(tabBar.currentIndex).channelId

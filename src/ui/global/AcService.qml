@@ -36,10 +36,36 @@ Item {
         request('GET', url, null, null, cb);
     }
 
-    function getRank(cb) {
+    function getRankChannelList(cb) {
+        var url = "api-new.app.acfun.cn/rest/app/rank/getChannelList";
+        request('GET', url, null, null, cb);
+    }
+
+    //DAY/THREE_DAYS/WEEK
+    function getRank(cid, period, cb) {
         var url = "api-new.app.acfun.cn/rest/app/rank/channel";
-        var qParam = [  {"rankPeriod":"DAY"},
-                        {"channelId":"0"},
+        var qParam = [  {"rankPeriod":period},
+                        {"channelId":cid},
+                        {"appMode":"0"}];
+        request('GET', url, qParam, null, cb);
+    }
+
+    function getYoungStar(period, cb) {
+        var url = "api-new.acfunchina.com/rest/app/rank/youngStar";
+        var qParam = [{"appMode":"0"}];
+        var body = "rankPeriod=" + period
+        request('POST', url, qParam, body, cb);
+    }
+
+    function getFastRise(cb) {
+        var url = "api-new.acfunchina.com/rest/app/rank/fastRise";
+        var qParam = [{"appMode":"0"}];
+        request('POST', url, qParam, null, cb);
+    }
+
+    function getBananaRank(period, cb) {
+        var url = "api-new.acfunchina.com/rest/app/rank/banana";
+        var qParam = [  {"rankPeriod":period},
                         {"appMode":"0"}];
         request('GET', url, qParam, null, cb);
     }
