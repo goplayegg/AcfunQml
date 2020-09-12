@@ -5,6 +5,7 @@ import QtQuick.Controls 2.12
 import Qt.labs.platform 1.0
 import "qrc:///ui/global/styles/"
 import "qrc:///ui/global/"
+import "qrc:///ui/components/btn/"
 
 Window {
     id: control

@@ -12,6 +12,10 @@ Item{
 
     }
 
+    function empty(){
+        return false
+    }
+
     AnimatedImage {
         anchors.centerIn: parent
         source: "qrc:/assets/img/bk/pee.gif"

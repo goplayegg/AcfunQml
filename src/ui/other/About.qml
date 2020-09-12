@@ -3,6 +3,7 @@ import QtQuick.Controls 2.12
 import "qrc:///ui/global/"
 import "qrc:///ui/global/styles/"
 import "qrc:///ui/components/"
+import "qrc:///ui/components/btn/"
 
 Item{
     id:root
@@ -12,6 +13,10 @@ Item{
 
     function back(){
 
+    }
+
+    function empty(){
+        return false
     }
 
     ScrollView {
@@ -118,8 +123,10 @@ Item{
                 textColor: AppStyle.foregroundColor
                 icon.name: AppIcons.mdi_scale_balance
                 text: qsTr("Open Lisence Folder")
-                tip: "file:///"+g_preference.value("appPath")+"/License"
-                onClicked: Qt.openUrlExternally(tip)
+                onClicked: Qt.openUrlExternally("file:///"+tip)
+                Component.onCompleted: {
+                    tip = g_preference.value("appPath")+"/License"
+                }
             }
 
             IconTextButton {

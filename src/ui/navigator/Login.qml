@@ -1,7 +1,6 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
-
-import "qrc:///ui/components/" as COM
+import "qrc:///ui/components/btn/"
 import "qrc:///ui/global/styles/"
 import "qrc:///ui/global/"
 Popup {
@@ -106,8 +105,9 @@ Popup {
             color: "transparent"
             height: 50
             width: parent.width
-            COM.RoundButton{
+            RoundButton{
                 anchors.right: parent.right
+                icon.name: AppIcons.mdi_close
                 onClicked: {
                     root.close()
                 }

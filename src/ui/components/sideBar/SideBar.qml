@@ -1,7 +1,8 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.5
 import "qrc:///ui/global/styles/"
-import "qrc:///ui/components" as Comp
+import "qrc:///ui/components/btn/"
+//import "qrc:///ui/components" as Comp
 
 Rectangle{
     id:root
@@ -132,13 +133,13 @@ Rectangle{
         }
     }
 
-    Comp.RoundButton {
+    RoundButton {
         id: btnShrink
         checkable: true
         icon.name: checked?AppIcons.mdi_chevron_double_right: AppIcons.mdi_chevron_double_left
         size: 40
         anchors.left: parent.left
-        anchors.leftMargin: checked ? 20:30
+        anchors.leftMargin: 20
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 20
     }

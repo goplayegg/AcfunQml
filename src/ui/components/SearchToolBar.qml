@@ -1,7 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import "qrc:///ui/global/styles/"
-import "qrc:///ui/components" as Comp
+import "qrc:///ui/components/btn/"
 
 Item {
     id:root
@@ -10,7 +10,7 @@ Item {
     signal back();
     signal refresh();
     height: 40
-    Comp.RoundButton {
+    RoundButton {
         id: btnBack
         icon.name: AppIcons.mdi_chevron_left
         tooltip: qsTr("back")
@@ -31,7 +31,7 @@ Item {
         anchors.leftMargin: 20
     }
 
-    Comp.RoundButton {
+    RoundButton {
         id: btnRefresh
         icon.name: AppIcons.mdi_refresh
         tooltip: qsTr("refresh")

@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>ui/components/Icon.qml</file>
         <file>ui/components/qmldir</file>
-        <file>ui/components/RoundButton.qml</file>
         <file>ui/components/RoundImage.qml</file>
         <file>ui/components/RoundMouseArea.qml</file>
         <file>ui/components/TopRoundRect.qml</file>
@@ -39,8 +38,6 @@
         <file>ui/global/libraries/functions.js</file>
         <file>ui/circle/Circle.qml</file>
         <file>ui/topRank/TopRank.qml</file>
-        <file>ui/components/IconTextButton.qml</file>
-        <file>ui/components/ImgTextButton.qml</file>
         <file>ui/components/LinkLabel.qml</file>
         <file>ui/components/FullScreen.qml</file>
         <file>ui/components/FullScreenWindow.qml</file>
@@ -51,8 +48,6 @@
         <file>ui/player/ctrl/DanmSendOption.qml</file>
         <file>ui/player/ctrl/DanmShowOption.qml</file>
         <file>ui/videoPage/VideoDetail.qml</file>
-        <file>ui/components/RoundBtnWithText.qml</file>
-        <file>ui/components/RoundImgBtn.qml</file>
         <file>ui/components/emot/PopEmot.qml</file>
         <file>ui/components/emot/qmldir</file>
         <file>ui/components/comment/CommentList.qml</file>
@@ -73,5 +68,10 @@
         <file>ui/components/PopImage.qml</file>
         <file>ui/other/Operation.qml</file>
         <file>ui/components/TabBarAc.qml</file>
+        <file>ui/components/btn/RoundButton.qml</file>
+        <file>ui/components/btn/IconTextButton.qml</file>
+        <file>ui/components/btn/ImgTextButton.qml</file>
+        <file>ui/components/btn/RoundImgBtn.qml</file>
+        <file>ui/components/btn/RoundBtnWithText.qml</file>
     </qresource>
 </RCC>

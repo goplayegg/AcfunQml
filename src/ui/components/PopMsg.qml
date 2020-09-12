@@ -2,7 +2,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import "qrc:///ui/global/styles/"
-import "qrc:///ui/components" as Comp
+import "qrc:///ui/components/btn/"
 
 Rectangle {
     id: control
@@ -54,7 +54,7 @@ Rectangle {
         verticalAlignment: Text.AlignVCenter
     }
 
-    Comp.RoundButton {
+    RoundButton {
         id: btnClose
         anchors.top: parent.top
         anchors.topMargin: 8

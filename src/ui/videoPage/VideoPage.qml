@@ -2,6 +2,9 @@
 import QtQuick.Controls 2.12
 import "qrc:///ui/player/"
 import "qrc:///ui/global/"
+import "qrc:///ui/global/styles/"
+import "qrc:///ui/components/"
+import "qrc:///ui/components/btn/"
 import "qrc:///ui/components/comment/"
 import "qrc:///ui/global/libraries/functions.js" as FUN
 
@@ -84,6 +87,20 @@ Item{
                 anchors.left: parent.left
                 anchors.right: parent.right
             }
+        }
+    }
+
+    RoundButton {
+        id: btnGoTop
+        icon.name: AppIcons.mdi_arrow_up_thick
+        size: 40
+        anchors.right: parent.right
+        anchors.rightMargin: 30
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 30
+        visible: scroll.ScrollBar.vertical.position>0.2
+        onClicked: {
+            scroll.ScrollBar.vertical.position = 0
         }
     }
     Component.onCompleted: {

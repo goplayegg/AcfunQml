@@ -10,7 +10,10 @@ Item{
     }
 
     function back(){
+    }
 
+    function empty(){
+        return false
     }
 
     AnimatedImage {

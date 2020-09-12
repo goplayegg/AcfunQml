@@ -4,6 +4,7 @@ import QtQuick.Controls 2.12
 import "qrc:///ui/global/"
 import "qrc:///ui/global/styles/"
 import "qrc:///ui/components/"
+import "qrc:///ui/components/btn/"
 import "qrc:///ui/global/libraries/functions.js" as FUN
 
 Item {
