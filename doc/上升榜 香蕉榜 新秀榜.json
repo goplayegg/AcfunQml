@@ -1,0 +1,216 @@
+{
+	"result": 0,
+	"host-name": "hb2-acfun-kcs325.aliyun",
+	"rankList": [{
+			"groupId": "dfd153886870456f8f3fda424e89e8ed_1&-124&&rlf1",
+			"userId": 17138678,
+			"dougaId": "17840989",
+			"videoCover": "https://tx-free-imgs.acfun.cn/o_1ehuc7v1s1tv81bib105414r34o20.jpeg?imageMogr2/format/webp/quality/75!/ignore-error/1",
+			"channelId": 86,
+			"isFollowing": true,
+			"contributeTime": 1599883800000,
+			"contentId": 17840989,
+			"fansCount": 22642,
+			"channelName": "生活日常",
+			"userSignature": "一个除了健身拉胯，其他还行的BT区UP主",
+			"contributionCount": 119,
+			"contentTitle": "【独家】主人的任务2.0 老陈猴山一日游",
+			"contentDesc": "",
+			"danmuCount": 584,
+			"userName": "健力老陈",
+			"userImg": "http://tx-free-imgs2.acfun.cn/kimg/bs2/zt-image-host/ChIwOGZlZmYwNzEwYmU5MTg0NDMQjMrXLw.webp?imageMogr2/format/webp/quality/75!/ignore-error/1",
+			"duration": 185813,
+			"contentType": 2,
+			"createTimeMillis": 1599883800000,
+			"coverCdnUrls": [{
+					"url": "https://tx-free-imgs.acfun.cn/o_1ehuc7v1s1tv81bib105414r34o20.jpeg?imageMogr2/format/webp/quality/75!/ignore-error/1",
+					"freeTrafficCdn": true
+				}, {
+					"url": "https://imgs.aixifan.com/o_1ehuc7v1s1tv81bib105414r34o20.jpeg?imageMogr2/format/webp/quality/75!/ignore-error/1",
+					"freeTrafficCdn": false
+				}
+			],
+			"coverImgInfo": {
+				"width": 1920,
+				"height": 1080,
+				"size": 987845,
+				"type": 1,
+				"thumbnailImage": {
+					"cdnUrls": [{
+							"url": "http://tx-free-imgs2.acfun.cn/kimg/bs2/zt-image-host/ChYwOGRiOGZiYjAxMTBmYzhhOTJlOTA1EIzK1y8.webp",
+							"freeTrafficProductAbbreviation": "K",
+							"freeTrafficCdn": true
+						}, {
+							"url": "http://ali-imgs.acfun.cn/kimg/bs2/zt-image-host/ChYwOGRiOGZiYjAxMTBmYzhhOTJlOTA1EIzK1y8.webp",
+							"freeTrafficProductAbbreviation": "",
+							"freeTrafficCdn": false
+						}
+					]
+				},
+				"smallSharedImage": {
+					"cdnUrls": [{
+							"url": "http://tx-free-imgs2.acfun.cn/kimg/bs2/zt-image-host/ChYwOGRiOGZiYjAxMTBmYzhhOTJlOTA1EIvK1y8.jpg",
+							"freeTrafficProductAbbreviation": "K",
+							"freeTrafficCdn": true
+						}, {
+							"url": "http://ali-imgs.acfun.cn/kimg/bs2/zt-image-host/ChYwOGRiOGZiYjAxMTBmYzhhOTJlOTA1EIvK1y8.jpg",
+							"freeTrafficProductAbbreviation": "",
+							"freeTrafficCdn": false
+						}
+					]
+				}
+			},
+			"picShareUrl": "https://m.acfun.cn/v/?ac=17840989&shareType=pic",
+			"isLike": false,
+			"viewCountShow": "1.4万",
+			"commentCountShow": "252",
+			"shareCountShow": "31",
+			"commentCountRealValue": 252,
+			"commentCountTenThousandShow": "252",
+			"stowCountShow": "293",
+			"danmakuCountShow": "584",
+			"bananaCountShow": "2.3万",
+			"giftPeachCountShow": "0",
+			"likeCountShow": "854",
+			"shareUrl": "https://m.acfun.cn/v/?ac=17840989",
+			"user": {
+				"action": 3,
+				"href": "17138678",
+				"gender": 1,
+				"isFollowing": true,
+				"followingStatus": 2,
+				"verifiedType": 2,
+				"verifiedTypes": [2, 5],
+				"verifiedText": "AcFun签约UP主，A等生计划优秀UP主\n",
+				"nameColor": 1,
+				"sexTrend": 1,
+				"contributeCount": "119",
+				"avatarFrame": 580,
+				"headUrl": "http://tx-free-imgs2.acfun.cn/kimg/bs2/zt-image-host/ChIwOGZlZmYwNzEwYmU5MTg0NDMQjMrXLw.webp",
+				"avatarFrameMobileImg": "https://imgs.aixifan.com/CI2zsPAQnG-uuyUV3-fiq22y-m2e2ei-2IFNfe.png",
+				"avatarFramePcImg": "https://imgs.aixifan.com/EGPNQrVkvp-2Y7jae-RfiiAz-vMV7rm-6FvYJz.png",
+				"followingCount": "224",
+				"userHeadImgInfo": {
+					"width": 158,
+					"height": 158,
+					"size": 20821,
+					"type": 0,
+					"thumbnailImage": {
+						"cdnUrls": [{
+								"url": "http://tx-free-imgs2.acfun.cn/kimg/bs2/zt-image-host/ChIwOGZlZmYwNzEwYmU5MTg0NDMQjMrXLw.webp",
+								"freeTrafficProductAbbreviation": "K",
+								"freeTrafficCdn": true
+							}, {
+								"url": "http://ali-imgs.acfun.cn/kimg/bs2/zt-image-host/ChIwOGZlZmYwNzEwYmU5MTg0NDMQjMrXLw.webp",
+								"freeTrafficProductAbbreviation": "",
+								"freeTrafficCdn": false
+							}
+						]
+					},
+					"smallSharedImage": {
+						"cdnUrls": [{
+								"url": "http://tx-free-imgs2.acfun.cn/kimg/bs2/zt-image-host/ChIwOGZlZmYwNzEwYmU5MTg0NDMQi8rXLw.jpg",
+								"freeTrafficProductAbbreviation": "K",
+								"freeTrafficCdn": true
+							}, {
+								"url": "http://ali-imgs.acfun.cn/kimg/bs2/zt-image-host/ChIwOGZlZmYwNzEwYmU5MTg0NDMQi8rXLw.jpg",
+								"freeTrafficProductAbbreviation": "",
+								"freeTrafficCdn": false
+							}
+						]
+					},
+					"expandedImage": {
+						"cdnUrls": [{
+								"url": "http://tx-free-imgs2.acfun.cn/kimg/bs2/zt-image-host/ChIwOGZlZmYwNzEwYmU5MTg0NDMQjMrXLw.webp",
+								"freeTrafficProductAbbreviation": "K",
+								"freeTrafficCdn": true
+							}, {
+								"url": "http://ali-imgs.acfun.cn/kimg/bs2/zt-image-host/ChIwOGZlZmYwNzEwYmU5MTg0NDMQjMrXLw.webp",
+								"freeTrafficProductAbbreviation": "",
+								"freeTrafficCdn": false
+							}
+						]
+					}
+				},
+				"fanCount": "2.3万",
+				"headCdnUrls": [{
+						"url": "http://tx-free-imgs2.acfun.cn/kimg/bs2/zt-image-host/ChIwOGZlZmYwNzEwYmU5MTg0NDMQjMrXLw.webp",
+						"freeTrafficProductAbbreviation": "K",
+						"freeTrafficCdn": true
+					}, {
+						"url": "http://ali-imgs.acfun.cn/kimg/bs2/zt-image-host/ChIwOGZlZmYwNzEwYmU5MTg0NDMQjMrXLw.webp",
+						"freeTrafficCdn": false
+					}
+				],
+				"isJoinUpCollege": true,
+				"followingCountValue": 224,
+				"fanCountValue": 22642,
+				"contributeCountValue": 119,
+				"name": "健力老陈",
+				"signature": "一个除了健身拉胯，其他还行的BT区UP主",
+				"id": "17138678"
+			},
+			"likeCount": 854,
+			"viewCount": 13924,
+			"createTime": "4小时前",
+			"title": "【独家】主人的任务2.0 老陈猴山一日游",
+			"shareCount": 31,
+			"danmakuCount": 584,
+			"giftPeachCount": 0,
+			"recoReason": {
+				"desc": "",
+				"href": "{\"action\":47,\"actionHref\":\"{\\\"channelId\\\":0,\\\"rankTime\\\":\\\"DAY\\\",\\\"rankType\\\":\\\"ALL\\\"}\"}",
+				"tag": "综合榜Top11",
+				"type": 9
+			},
+			"tagList": [{
+					"name": "周六狂欢24小时",
+					"id": "272479"
+				}, {
+					"name": "福利",
+					"id": "271"
+				}, {
+					"name": "野外求生",
+					"id": "16623"
+				}, {
+					"name": "天降正义",
+					"id": "217"
+				}
+			],
+			"hasHotComment": true,
+			"coverUrl": "https://tx-free-imgs.acfun.cn/o_1ehuc7v1s1tv81bib105414r34o20.jpeg?imageMogr2/format/webp/quality/75!/ignore-error/1",
+			"durationMillis": 185813,
+			"commentCount": 252,
+			"bananaCount": 22696,
+			"videoList": [{
+					"priority": 0,
+					"danmakuCountShow": "584",
+					"sizeType": 1,
+					"title": "A站一日游",
+					"danmakuCount": 584,
+					"userPlayedSeconds": 21,
+					"durationMillis": 185813,
+					"visibleType": 1,
+					"uploadTime": 1599820842569,
+					"sourceStatus": 3,
+					"fileName": "A站一日游",
+					"id": "14214102"
+				}
+			],
+			"originalDeclare": 1,
+			"stowCount": 293,
+			"channel": {
+				"parentId": 201,
+				"parentName": "生活",
+				"name": "生活日常",
+				"id": 86
+			},
+			"description": "",
+			"status": 2,
+			"isRewardSupportted": true,
+			"superUbb": true,
+			"isThrowBanana": true,
+			"isFavorite": false
+		}
+	]
+}

@@ -103,7 +103,7 @@ access_token=登陆返回的token
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| rankPeriod    | str  | DAY | 必要   |      |
+| rankPeriod    | str  | DAY/THREE_DAYS/WEEK | 必要   |      |
 | channelId    | str  | 0 | 必要   |      |
 
 **json回复：**
@@ -250,6 +250,54 @@ GET  https://apipc.app.acfun.cn/v3/regions/new/60?pageSize=10&pageNo=2
 **返回示例：**
 [分区新投稿.json](分区新投稿.json)
 
+## 新秀榜
+POST https://api-new.acfunchina.com/rest/app/rank/youngStar
 
+**请求body：**
+rankPeriod=DAY
 
+**返回示例：**
+[上升榜 香蕉榜 新秀榜.json](上升榜 香蕉榜 新秀榜.json)
 
+## 上升榜
+POST https://api-new.acfunchina.com/rest/app/rank/fastRise
+
+## 香蕉榜
+GET https://api-new.acfunchina.com/rest/app/rank/banana?rankPeriod=DAY
+
+## 精准选择
+GET https://api-new.acfunchina.com/rest/app/feedback/getNegativeReasons
+
+{"result":0,"reasons":[{"reasonMsg":"封面标题引起不适","reasonId":"1"},{"reasonMsg":"低俗","reasonId":"2"},{"reasonMsg":"已经看过","reasonId":"3"},{"reasonMsg":"不喜欢这个视频","reasonId":"4"},{"reasonMsg":"不喜欢同类内容","reasonId":"5"},{"reasonMsg":"不喜欢UP主","reasonId":"6"}],"host-name":"hb2-acfun-kcs327.aliyun"}
+
+## 搜索建议
+GET https://api-new.acfunchina.com/rest/app/search/recommend
+
+{"result":0,"host-name":"hb2-acfun-kcs205.aliyun","searchKeywords":[{"groupId":"OTIzODM0XzE1OTk5ODEzMTk0NjBfOTQ0NQ_1","rank":1,"isHot":true,"keyword":"高级弹幕"},{"groupId":"OTIzODM0XzE1OTk5ODEzMTk0NjBfOTQ0NQ_2","rank":2,"isHot":true,"keyword":"租借女友"},{"groupId":"OTIzODM0XzE1OTk5ODEzMTk0NjBfOTQ0NQ_3","rank":3,"isHot":false,"keyword":"瑞克和莫蒂"},{"groupId":"OTIzODM0XzE1OTk5ODEzMTk0NjBfOTQ0NQ_4","rank":4,"isHot":false,"keyword":"教师节"},{"groupId":"OTIzODM0XzE1OTk5ODEzMTk0NjBfOTQ0NQ_5","rank":5,"isHot":false,"keyword":"奥特曼"}]}
+
+## 搜索“高级弹幕”
+GET  https://api-new.acfunchina.com/rest/app/search/complex?keyword=%E9%AB%98%E7%BA%A7%E5%BC%B9%E5%B9%95&requestId=&pCursor=0&mkey=AAHewK3eIAAyMTkwNTkwNzUAAhAAMEP1uwQALBDiYAAAAMdu1yURgB5jZd_QsBgnOk1wnGQA6_eLEvGiajzUp4_YnU8EjTm7gzNYhBv59oCCDhbdkmIwsXnF9PgS5ly8eQyjuXlcS7VpWG0QlK0HakVDamteMHNHIui0A8V4tmELqQ%3D%3D
+
+## Token请求
+POST https://id.app.acfun.cn/rest/app/token/get
+
+body:
+sid=acfun.midground.api
+
+result:
+{
+	"result": 0,
+	"ssecurity": "5l9fkG\*\*\*\*wBckN5vQ==",
+	"userId": 923834,
+	"acfun.midground.api_st": "\*\*\*\*\*",
+	"acfun.midground.api.at": "\*\*\*\*\*"
+}
+
+## 首页轮播+日刊
+POST https://api-new.acfunchina.com/rest/app/selection/feed
+
+**请求body：**
+mkey=AAHewK3eIAAyMTkwNTExNzYAAhAAMEP1uwSZbohCYAAAAJlXIdNAMQR5fM2F-KEOYN5wnGQA6_eLEvGiajzUp4_YnU8EjTm7gzNYhBv59oCCDhbdkmIwsXnF9PgS5ly8eQyjuXlcS7VpWG0QlK0HakVDamteMHNHIui0A8V4tmELqQ%3D%3D&pcursor=&count=20
+
+**返回示例：**
+[首页轮播日刊.json](首页轮播日刊.json)

@@ -8,10 +8,11 @@ Item {
     property string cookie: ""
     property string token: ""
     property string acSecurity: ""
+    property string midground_st: ""
     readonly property string c_appVersion: "6.26.0.966"//"6.24.1.958"
-    readonly property string c_userAgent: "acvideo core/6.24.1.958(OPPO;OPPO A83;7.1.1)"
+    readonly property string c_userAgent: "acvideo core/6.26.0.966(OPPO;OPPO A83;7.1.1)"
     property string c_mkey: "AAHewK3eIAAyMjA2MDMyMjQAAhAAMEP1uwSG3TvhYAAAAO5fOOpIdKsH2h4IGsF6BlVwnGQA6_eLEvGiajzUp4_YthxOPC-hxcOpTk0SPSrxyhbdkmIwsXnF9PgS5ly8eQyjuXlcS7VpWG0QlK0HakVDamteMHNHIui0A8V4tmELqQ%3D%3D"
-
+    property string c_mkeyMainPage: "AAHewK3eIAAyMTkwNTExNzYAAhAAMEP1uwSZbohCYAAAAJlXIdNAMQR5fM2F-KEOYN5wnGQA6_eLEvGiajzUp4_YnU8EjTm7gzNYhBv59oCCDhbdkmIwsXnF9PgS5ly8eQyjuXlcS7VpWG0QlK0HakVDamteMHNHIui0A8V4tmELqQ%3D%3D"
     signal httpError(var errMsg);
 
     function login(user, psw, cb) {
@@ -25,8 +26,20 @@ Item {
                 null, body, callBack);
     }
 
+    function getToken(cb) {
+        var url = "id.app.acfun.cn/rest/app/token/get";
+        var body = "sid=acfun.midground.api";
+        request('POST', url, null, body, cb);
+    }
+
     function hasSignedIn(cb) {
         var url = "api-new.acfunchina.com/rest/app/user/hasSignedIn";
+        var body = "access_token="+token;
+        request('POST', url, null, body, cb);
+    }
+
+    function signeIn(cb) {//签到
+        var url = "api-new.acfunchina.com/rest/app/user/signIn";
         var body = "access_token="+token;
         request('POST', url, null, body, cb);
     }
@@ -73,6 +86,16 @@ Item {
     function getChannelList(cb) {
         var url = "api-new.app.acfun.cn/rest/app/channel/allChannels";
         request('POST', url, null, null, cb);
+    }
+
+    function getMainPage(pcursor, count, cb) {
+        var url = "api-new.acfunchina.com/rest/app/selection/feed";
+        var qParam = [{"appMode":"0"}];
+        var json = {"mkey": c_mkeyMainPage,
+                    "pcursor": pcursor,
+                    "count": count};
+        var body = FUN.fmtQueryBody(json)
+        request('POST', url, qParam, body, cb);
     }
 
     function getChannelVideo(channel, size, cb) {
@@ -228,7 +251,8 @@ Item {
         hreq.setRequestHeader("resolution","1080x1920");
         hreq.setRequestHeader("market","tencent");
         if(endpoint.indexOf("apipc.app.acfun.cn/v3/regions") !== -1 ||
-           "api-new.acfunchina.com/rest/app/comment/list" === endpoint)
+                "api-new.acfunchina.com/rest/app/comment/list" === endpoint ||
+                "api-new.acfunchina.com/rest/app/selection/feed" === endpoint)
             hreq.setRequestHeader("appVersion", c_appVersion);
         if("" !== cookie){
             hreq.setRequestHeader("Cookie", cookie);
@@ -270,6 +294,17 @@ Item {
         //console.log("cookie:"+cookie)
         token = res.token;
         acSecurity = res.acSecurity;
+        getToken(function(res){
+            if(res.result !== 0)
+                return
+            midground_st = res["acfun.midground.api_st"]
+            cookie +=";acfun.midground.api_st="+ midground_st;
+            hasSignedIn(function(res){
+                if(!res.hasSignedIn){
+                    signeIn(null)
+                }
+            })
+        })
     }
 
     function request(verb, endpoint, qParam, body, cb) {

@@ -9,51 +9,67 @@ Item{
 
     signal openVideo(var js)
     function empty(){
-        return videoModel.count === 0
-    }
-
-    function refresh(){
-        busyBox.text = qsTr("Loading video list ...")
-        busyBox.running = true
-        AcService.getChannelList(function(res){
-            if(0 !== res.result){
-                busyBox.running = false
-                PopMsg.showError(res, mainwindowRoot)
-            }else{
-                channelModel.clear()
-                for(var idx in res.channels){
-                    channelModel.append(res.channels[idx])
-                }
-                tabBar.currentIndex = -1
-                tabBar.currentIndex = 4
-            }
-        })
+        return channelModel.count === 0
     }
 
     function back(){
 
     }
 
+    function refresh(){
+        busyBox.text = qsTr("Loading video list ...")
+        busyBox.running = true
+        if(empty()){
+            AcService.getChannelList(function(res){
+                if(0 !== res.result){
+                    busyBox.running = false
+                    PopMsg.showError(res, mainwindowRoot)
+                }else{
+                    channelModel.append({"name":"精选","channelId":"MainPage"})
+                    for(var idx in res.channels){
+                        channelModel.append(res.channels[idx])
+                    }
+                    //tabBar.currentIndex = -1
+                    //tabBar.currentIndex = 0
+                }
+            })
+        }else{
+            changeChannel(channelModel.get(currentIndex).channelId)
+        }
+    }
+
+    property string pcursor: ""
     property int newVideoPageNo:1
     function changeChannel(cid){
         busyBox.running = true
-        AcService.getChannelVideo(cid, 10, function(res){
-            if(0 !== res.errorid){
-                busyBox.running = false
-                PopMsg.showError(res, mainwindowRoot)
-            }else{
-                newVideoPageNo = 1
-                videoModel.clear()
-                for(var idx in res.vdata){
-                    if("videos" === res.vdata[idx].schema ||
-                            "videos_new" === res.vdata[idx].schema){
-                        var video = res.vdata[idx]
-                        updateInfo(video.bodyContents)
+        if("MainPage" === cid){
+             AcService.getMainPage(pcursor, 10, function(res){
+                 if(0 !== res.result){
+                     busyBox.running = false
+                     PopMsg.showError(res, mainwindowRoot)
+                 }else{
+                     pcursor = res.pcursor
+                 }
+             })
+        }else{
+            AcService.getChannelVideo(cid, 10, function(res){
+                if(0 !== res.errorid){
+                    busyBox.running = false
+                    PopMsg.showError(res, mainwindowRoot)
+                }else{
+                    newVideoPageNo = 1
+                    videoModel.clear()
+                    for(var idx in res.vdata){
+                        if("videos" === res.vdata[idx].schema ||
+                                "videos_new" === res.vdata[idx].schema){
+                            var video = res.vdata[idx]
+                            updateInfo(video.bodyContents)
+                        }
                     }
+                    busyBox.running = false
                 }
-                busyBox.running = false
-            }
-        })
+            })
+        }
     }
 
     function appendNewVideo(){
@@ -99,15 +115,15 @@ Item{
     ListModel {
         id: videoModel
     }
-    ListModel {
-        id: channelModel
-    }
+
     TabBar {
          id: tabBar
          width: parent.width
          Repeater {
              id: repChannel
-             model: channelModel
+             model: ListModel {
+                 id: channelModel
+             }
              TabButton {
                  id: tabBtn
                  text: model.name
@@ -145,7 +161,8 @@ Item{
              }
          }
          onCurrentIndexChanged: {
-             if(currentIndex > 0)
+             console.log("onCurrentIndexChanged")
+             if(currentIndex >= 0)
                 changeChannel(channelModel.get(currentIndex).channelId)
          }
     }

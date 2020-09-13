@@ -40,8 +40,8 @@ Item{
             tabBar.model.append({ "name":rankChannels[idx].channelName,
                                   "value":rankChannels[idx].channelId})
         }
-        tabBar.currentIndex = -1
-        tabBar.currentIndex = 0
+        //tabBar.currentIndex = -1
+        //tabBar.currentIndex = 0
     }
 
     function refreshRank(cid){

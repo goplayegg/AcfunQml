@@ -115,6 +115,11 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
   > TODO
 
 
+## Package
+QtQuick\Shapes
+Qt5QuickShapes.dll
+
+
 ## LICENSE
 > Copyright &copy;  baoyuanle Under the [DBAD LICENSE](LICENSE.md)
 ##
