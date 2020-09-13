@@ -1,5 +1,6 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
+import "qrc:///ui/global/"
 import "qrc:///ui/global/styles/"
 import "qrc:///ui/components/btn/"
 
@@ -26,9 +27,21 @@ Item {
         width: 300
         placeholderText: qsTr("Search")
         selectByMouse: true
-        text: ""//TODO del
         anchors.left: btnBack.right
         anchors.leftMargin: 20
+        onAccepted: {
+            AcService.getSearchRecommend(function(res){
+                if(0 !== res.result){
+                    return
+                }
+                for(var idx in res.searchKeywords){
+                    console.log("key search word:"+res.searchKeywords[idx].keyword)
+                }
+            })
+            AcService.search(search.text, 0, function(res){
+
+            })
+        }
     }
 
     RoundButton {

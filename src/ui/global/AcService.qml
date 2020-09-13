@@ -239,6 +239,20 @@ Item {
         request('POST', url, null, body, cb);
     }
 
+    function getSearchRecommend(cb){
+        var url = "api-new.acfunchina.com/rest/app/search/recommend";
+        request('GET', url, null, null, cb);
+    }
+
+    function search(keyword, pCursor, cb){
+        var url = "api-new.acfunchina.com/rest/app/search/complex";
+        var qParam = [  {"keyword": encodeURIComponent(keyword)},
+                        {"requestId": ""},
+                        {"pCursor": pCursor},
+                        {"mkey": c_mkey} ];
+        request('GET', url, qParam, null, cb);
+    }
+
     //private
     function addHeader(hreq, endpoint){
         hreq.setRequestHeader("User-agent", c_userAgent);
