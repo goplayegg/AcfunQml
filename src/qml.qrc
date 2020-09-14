@@ -73,5 +73,6 @@
         <file>ui/components/btn/ImgTextButton.qml</file>
         <file>ui/components/btn/RoundImgBtn.qml</file>
         <file>ui/components/btn/RoundBtnWithText.qml</file>
+        <file>ui/other/SearchResult.qml</file>
     </qresource>
 </RCC>

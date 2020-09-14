@@ -57,6 +57,7 @@ Window {
     }
 
     property string videoPageSource: "qrc:/ui/videoPage/VideoPage.qml"
+    property string searchPageSource: "qrc:/ui/other/SearchResult.qml"
     property var stackViewLoader: [null, acMainLoader, articleLoader,
         circleLoader, topRankLoader, operationLoader, null, settingLoader, aboutLoader]
     property var stackViewSource: ["spliter",
@@ -115,6 +116,9 @@ Window {
                 onBack: {
                     stack.currentItem.item.back()
                     stack.pop()
+                }
+                onSearch: {
+                    searchLoader.openSearchPage(keyword)
                 }
             }
 
@@ -241,6 +245,25 @@ Window {
             }
             onLoaded: {
                 console.log("aboutLoader Loaded")
+            }
+        }
+
+        Loader{
+            id: searchLoader
+            asynchronous: true
+            source: searchPageSource
+            Connections {
+                target: searchLoader.item
+                function onOpenVideo(js) {
+                    videoLoader.openVideo(js)
+                }
+            }
+            function openSearchPage(keyword){
+                busyBox.text = qsTr("Loading...")
+                busyBox.running = true
+                console.log("search key:"+keyword)
+                stack.push(searchLoader)
+                searchLoader.item.search(keyword)
             }
         }
 

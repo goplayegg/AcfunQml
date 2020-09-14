@@ -118,9 +118,7 @@ Popup {
             ScrollBar.vertical : ScrollBar{
                 id: scrollbar
                 anchors.right: cardView.right
-                y: cardView.visibleArea.yPosition * cardView.height
                 width: 10
-                height: cardView.visibleArea.heightRatio * cardView.height
             }
 
             model:  emotModel

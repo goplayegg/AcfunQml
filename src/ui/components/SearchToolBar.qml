@@ -10,6 +10,7 @@ Item {
     property alias backEnable: btnBack.enabled
     signal back();
     signal refresh();
+    signal search(var keyword);
     height: 40
     RoundButton {
         id: btnBack
@@ -22,7 +23,8 @@ Item {
     }
 
     TextField {
-        id: search
+        id: searchInput
+        property var recommendKeywords:[]
         height: parent.height
         width: 300
         placeholderText: qsTr("Search")
@@ -30,17 +32,7 @@ Item {
         anchors.left: btnBack.right
         anchors.leftMargin: 20
         onAccepted: {
-            AcService.getSearchRecommend(function(res){
-                if(0 !== res.result){
-                    return
-                }
-                for(var idx in res.searchKeywords){
-                    console.log("key search word:"+res.searchKeywords[idx].keyword)
-                }
-            })
-            AcService.search(search.text, 0, function(res){
-
-            })
+            search(searchInput.text)
         }
     }
 
@@ -52,5 +44,17 @@ Item {
         textColor: AppStyle.accentColor
         anchors.right: parent.right
         onClicked: refresh()
+    }
+
+    Component.onCompleted: {
+        AcService.getSearchRecommend(function(res){
+            if(0 !== res.result){
+                return
+            }
+            for(var idx in res.searchKeywords){
+                console.log("key search word:"+res.searchKeywords[idx].keyword)
+                searchInput.recommendKeywords.push(res.searchKeywords[idx].keyword)
+            }
+        })
     }
 }
