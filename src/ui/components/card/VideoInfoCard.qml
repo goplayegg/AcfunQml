@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.0
+import "qrc:///ui/components/"
 import "qrc:///ui/global/libraries/functions.js" as FUN
 
 Item {
@@ -19,9 +20,18 @@ Item {
         anchors.bottomMargin: 10
         padding: 5
         text: {
-            var d = new Date()
-            d.setTime(infoJs.duration)
-            return FUN.fmtTime(d, "mm:ss")
+            if(infoJs.duration){
+                var d = new Date()
+                d.setTime(infoJs.duration)
+                return FUN.fmtTime(d, "mm:ss")
+            }
+            if(infoJs.durationDisplay)
+                return infoJs.durationDisplay
+            if(infoJs.time){
+                var dt = new Date()
+                dt.setTime(infoJs.time)
+                return qsTr("Posted") +"  "+ FUN.fmtTime(dt, "MM-dd")
+            }
         }
         z:imgCover.z+1
         color: "white"
@@ -37,19 +47,19 @@ Item {
         width: parent.width
         source: infoJs.videoCover;
         sourceSize: Qt.size(width, height)
-        visible: false//OpacityMask去显示
+        //visible: false//OpacityMask去显示
     }
-    TopRoundRect {
-        id: maskRect
-        anchors.fill: imgCover
-        visible: false
-        //radius: 5
-    }
-    OpacityMask {
-        anchors.fill: maskRect
-        maskSource: maskRect
-        source: imgCover
-    }
+//    TopRoundRect {
+//        id: maskRect
+//        anchors.fill: imgCover
+//        visible: false
+//        //radius: 5
+//    }
+//    OpacityMask {
+//        anchors.fill: maskRect
+//        maskSource: maskRect
+//        source: imgCover
+//    }
     Rectangle {
         color: "white"
         width: parent.width
@@ -103,10 +113,11 @@ Item {
                     width: height
                     sourceSize: Qt.size(width, height)
                     source: "qrc:/assets/img/banana.png"
+                    visible: infoJs.bananaCountShow !== undefined
                 }
                 Text {
                     font.pointSize: 8
-                    text: infoJs.bananaCountShow
+                    text: (infoJs.bananaCountShow !== undefined)?infoJs.bananaCountShow:""
                 }
             }
         }

@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import "qrc:///ui/components/"
+import "qrc:///ui/components/card/"
 import "qrc:///ui/global/"
 import "qrc:///ui/global/styles/"
 
@@ -25,7 +26,7 @@ Item{
                     busyBox.running = false
                     PopMsg.showError(res, mainwindowRoot)
                 }else{
-                    channelModel.append({"name":"精选","channelId":"MainPage"})
+                    //TODO channelModel.append({"name":"精选","channelId":"MainPage"})
                     for(var idx in res.channels){
                         channelModel.append(res.channels[idx])
                     }
@@ -103,6 +104,7 @@ Item{
             jsCurVideo.videoCover = jsCurVideo.img[0]
             jsCurVideo.userName = jsCurVideo.user.name
             jsCurVideo.createTime = ""
+            jsCurVideo.time = jsCurVideo.time
             jsCurVideo.viewCountShow = jsCurVideo.visit.views
             jsCurVideo.commentCountShow = jsCurVideo.visit.comments
             jsCurVideo.bananaCountShow = jsCurVideo.visit.banana

@@ -278,6 +278,9 @@ GET https://api-new.acfunchina.com/rest/app/search/recommend
 ## 搜索“高级弹幕”
 GET  https://api-new.acfunchina.com/rest/app/search/complex?keyword=%E9%AB%98%E7%BA%A7%E5%BC%B9%E5%B9%95&requestId=&pCursor=0&mkey=AAHewK3eIAAyMTkwNTkwNzUAAhAAMEP1uwQALBDiYAAAAMdu1yURgB5jZd_QsBgnOk1wnGQA6_eLEvGiajzUp4_YnU8EjTm7gzNYhBv59oCCDhbdkmIwsXnF9PgS5ly8eQyjuXlcS7VpWG0QlK0HakVDamteMHNHIui0A8V4tmELqQ%3D%3D
 
+**返回示例：**
+[搜索无常猴.json](搜索无常猴.json)
+
 ## Token请求
 POST https://id.app.acfun.cn/rest/app/token/get
 
@@ -293,7 +296,7 @@ result:
 	"acfun.midground.api.at": "\*\*\*\*\*"
 }
 
-## 首页轮播+日刊
+## 首页轮播+日刊(这个接口请求会失败 原因未知)
 POST https://api-new.acfunchina.com/rest/app/selection/feed
 
 **请求body：**

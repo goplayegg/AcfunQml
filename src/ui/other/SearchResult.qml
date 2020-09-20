@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import "qrc:///ui/components/"
+import "qrc:///ui/components/card/"
 import "qrc:///ui/global/"
 import "qrc:///ui/global/styles/"
 
@@ -38,8 +39,11 @@ Item{
         var cnt = js.itemList.length
         console.log("search result num:"+cnt)
         for(var i=0;i<cnt;++i){
+            var type = js.itemList[i].itemType
+            if(type >2)
+                continue
             resultModel.append({"info":js.itemList[i],
-                                "type":js.itemList[i].itemType})
+                                "type":type})
             console.log("search result append:"+js.itemList[i].title)
         }
         busyBox.running = false
@@ -62,27 +66,43 @@ Item{
         }
 
         model:  resultModel
-        delegate: Column {
-            id: colOpeCard
+        delegate: Item {
+            id: deleCard
             width: 190
             height: 190
-
-            Image {
-                id: img
-                width: parent.width
-                height: 110
-                sourceSize.width: width
-                sourceSize.height: height
-                source: model.info.coverUrl
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        console.log("open operation url:"+model.info.title)
+            Component{
+                id: cmpVideo
+                VideoInfoCard {
+                    infoJs: {
+                        "title": model.info.title,
+                        "contentId": model.info.contentId,
+                        "contentType": 2,
+                        "videoCover": model.info.coverUrl,
+                        "durationDisplay": model.info.playDuration,
+                        "userName": model.info.userName,
+                        "commentCountShow": model.info.commentCount,
+                        "createTime": model.info.ctime,
+                        "viewCountShow": model.info.viewCount,
+                        "danmakuCountShow": model.info.danmuCount,
+                        "description": model.info.decr
                     }
                 }
             }
-            Label {
-                text: model.info.title
+            Component {
+                id: cmpUser
+                UserInfoCard {
+                    userJson: model.info
+                }
+            }
+            Loader {
+                id: barLoader
+                sourceComponent: {
+                    if(model.type === 1)//user
+                        return cmpUser;
+                    if(model.type === 2)//video
+                        return cmpVideo;
+                    return cmpUser;
+                }
             }
         }
     }

@@ -51,10 +51,17 @@ Item {
             if(0 !== res.result){
                 return
             }
+            var keys = ""
             for(var idx in res.searchKeywords){
-                console.log("key search word:"+res.searchKeywords[idx].keyword)
+                console.log("key search word:"+idx+res.searchKeywords[idx].keyword)
                 searchInput.recommendKeywords.push(res.searchKeywords[idx].keyword)
+                if(idx == 0){
+                    keys = res.searchKeywords[idx].keyword
+                }else if(idx<3){
+                    keys += "," + res.searchKeywords[idx].keyword
+                }
             }
+            searchInput.placeholderText = keys
         })
     }
 }
