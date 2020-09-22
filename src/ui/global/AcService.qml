@@ -49,6 +49,37 @@ Item {
         request('GET', url, null, null, cb);
     }
 
+    function getUserInfoId(id, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/user/userInfo";
+        var qParam = [{"userId":id}];
+        request('GET', url, qParam, null, cb);
+    }
+
+    function isFollowingUid(id, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/relation/isFollowing";
+        var qParam = [{"toUserIds":id}];
+        request('GET', url, qParam, null, cb);
+    }
+
+    function getUserProfile(id, pcursor, cb) {//动态
+        var url = "api-new.app.acfun.cn/rest/app/feed/profile";
+        var qParam = [  {"pcursor":pcursor},
+                        {"userId":id},
+                        {"count": 10}]
+        request('GET', url, qParam, null, cb);
+    }
+
+    function getUserResource(id, resourceType, pcursor, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/user/resource/query";
+        var qParam = [  {"pcursor":pcursor},
+                        {"authorId":id},
+                        {"count": 20},
+                        {"resourceType":resourceType},//2-视频 3-文章
+                        {"sortType":3},//3-最新 2-香蕉最多 1-播放最多
+                        {"status":1}];
+        request('POST', url, qParam, null, cb);
+    }
+
     function getRankChannelList(cb) {
         var url = "api-new.app.acfun.cn/rest/app/rank/getChannelList";
         request('GET', url, null, null, cb);
@@ -256,7 +287,9 @@ Item {
     //private
     function addHeader(hreq, endpoint){
         hreq.setRequestHeader("User-agent", c_userAgent);
-        hreq.setRequestHeader("acPlatform","ANDROID_PHONE");
+        if("api-new.app.acfun.cn/rest/app/feed/profile"     !== endpoint){
+            hreq.setRequestHeader("acPlatform","ANDROID_PHONE");
+        }
         hreq.setRequestHeader("deviceType","1");
         hreq.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
         hreq.setRequestHeader("net","WIFI");

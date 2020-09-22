@@ -15,13 +15,6 @@ Item {
         id: imgAvatar
         width: 100
         height: 100
-        MouseArea {
-            anchors.fill: imgAvatar
-            onClicked: {
-                var url = "https://www.acfun.cn/u/"+userJson.userId
-                Qt.openUrlExternally(url)
-            }
-        }
     }
 
     Label {
@@ -98,6 +91,12 @@ Item {
         id: cmpGif
         AnimatedImage {
             id: gif
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    openUserPage()
+                }
+            }
         }
     }
 
@@ -105,6 +104,9 @@ Item {
         id: cmpImg
         RoundImage {
             size: imgAvatar.width
+            onClicked: {
+                openUserPage()
+            }
         }
     }
 
@@ -121,5 +123,21 @@ Item {
             imgAvatar.sourceComponent = cmpImg
             imgAvatar.item.source = userJson.userImg
         }
+    }
+
+    function openUserPage(){
+        console.log("user avatar click:"+userJson.userId)
+        //var url = "https://www.acfun.cn/u/"+userJson.userId
+        //Qt.openUrlExternally(url)
+        //AcService.getUserInfoId(userJson.userId, function(res){
+        //    })
+        //AcService.isFollowingUid(userJson.userId, function(res){
+        //    })
+        AcService.getUserProfile(userJson.userId, 0, function(res){
+            })
+        //AcService.getUserResource(userJson.userId, 2, 0, function(res){
+        //    })
+        //AcService.getUserResource(userJson.userId, 3, 0, function(res){
+        //    })
     }
 }

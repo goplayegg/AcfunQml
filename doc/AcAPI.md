@@ -304,3 +304,30 @@ mkey=AAHewK3eIAAyMTkwNTExNzYAAhAAMEP1uwSZbohCYAAAAJlXIdNAMQR5fM2F-KEOYN5wnGQA6_e
 
 **返回示例：**
 [首页轮播日刊.json](首页轮播日刊.json)
+
+## 用户信息
+GET https://api-new.app.acfun.cn/rest/app/user/userInfo?userId=923834
+
+**返回示例：**
+[用户信息.json](用户信息.json)
+
+## 是否关注用户
+GET https://api-new.app.acfun.cn/rest/app/relation/isFollowing?toUserIds=923834
+
+**返回示例：**
+{"result":0,"followingStatus":{"10506739":2},"host-name":"hb2-acfun-kcs263.aliyun","isBlocking":{"10506739":false},"isFollowings":{"10506739":true}}
+
+## 用户动态
+GET https://api-new.app.acfun.cn/rest/app/feed/profile?pcursor=0&userId=10506739&count=10&mkey=
+
+去掉Header里的acPlatform ANDROID_PHONE
+
+**返回示例：**
+[动态.json](动态.json)
+
+## 用户投稿 2视频3文章
+POST https://api-new.app.acfun.cn/rest/app/user/resource/query?count=20&authorId=10506739&resourceType=2&sortType=3&status=1&pcursor=0
+
+**返回示例：**
+[用户视频.json](用户视频.json)
+[用户文章.json](用户文章.json)
