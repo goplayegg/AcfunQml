@@ -129,6 +129,25 @@ Item {
         request('POST', url, qParam, body, cb);
     }
 
+    //动态+投稿动态
+    function getFollowFeed(pcursor, count, cb) {
+        var url = "api-new.acfunchina.com/rest/app/feed/followFeedV2";
+        var qParam = [{"resourceType":"0"},
+                      {"pcursor": pcursor},
+                      {"count": count} ];
+        request('GET', url, qParam, null, cb);
+    }
+
+    //仅投稿动态
+    function getFollowFeedPc(pcursor, count, cb) {
+        var url = "www.acfun.cn/rest/pc-direct/feed/followFeed";
+        var qParam = [{"isGroup":"0"},
+                      {"gid":"-1"},
+                      {"pcursor": pcursor},
+                      {"count": count} ];
+        request('GET', url, qParam, null, cb);
+    }
+
     function getChannelVideo(channel, size, cb) {
         var url = "apipc.app.acfun.cn/v3/regions";
         var qParam = [  {"channelId": channel},
@@ -299,7 +318,8 @@ Item {
         hreq.setRequestHeader("market","tencent");
         if(endpoint.indexOf("apipc.app.acfun.cn/v3/regions") !== -1 ||
                 "api-new.acfunchina.com/rest/app/comment/list" === endpoint ||
-                "api-new.acfunchina.com/rest/app/selection/feed" === endpoint)
+                "api-new.acfunchina.com/rest/app/selection/feed" === endpoint ||
+                "api-new.acfunchina.com/rest/app/feed/followFeedV2" === endpoint)
             hreq.setRequestHeader("appVersion", c_appVersion);
         if("" !== cookie){
             hreq.setRequestHeader("Cookie", cookie);

@@ -35,7 +35,7 @@ Item{
                 }
             })
         }else{
-            changeChannel(channelModel.get(currentIndex).channelId)
+            changeChannel(channelModel.get(tabBar.currentIndex).channelId)
         }
     }
 

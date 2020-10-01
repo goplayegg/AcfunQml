@@ -75,5 +75,6 @@
         <file>ui/other/SearchResult.qml</file>
         <file>ui/components/card/VideoInfoCard.qml</file>
         <file>ui/components/card/UserInfoCard.qml</file>
+        <file>ui/components/card/CircleInfoCard.qml</file>
     </qresource>
 </RCC>
