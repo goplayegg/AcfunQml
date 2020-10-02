@@ -1,4 +1,5 @@
-﻿AvatarWithCover 1.0 AvatarWithCover.qml
+﻿Avatar 1.0 Avatar.qml
+AvatarWithCover 1.0 AvatarWithCover.qml
 Banana 1.0 Banana.qml
 BusyIndicatorWithText 1.0 BusyIndicatorWithText.qml
 FullScreen 1.0 FullScreen.qml

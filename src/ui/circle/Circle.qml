@@ -40,6 +40,7 @@ Item{
             }
 
             Flow {
+                id: flow
                 anchors.left: parent.left
                 anchors.right: parent.right
                 spacing: 8
@@ -50,8 +51,22 @@ Item{
                         id: feedModel
                     }
                     CircleInfoCard {
-                        feedInfoJson: model.info
+                        feedInfo: model.info
                     }
+                }
+            }
+        }
+
+        Connections {
+            target: scroll.ScrollBar.vertical
+            function onPositionChanged() {
+                if(1.0 === scroll.ScrollBar.vertical.position+scroll.ScrollBar.vertical.size){
+                    getFeed()
+                }
+            }
+            function onSizeChanged() {
+                if(1.0 === scroll.ScrollBar.vertical.size){
+                    getFeed()
                 }
             }
         }
@@ -74,7 +89,7 @@ Item{
     property string pcursor: ""
     function getFeed(){
         busyBox.running = true
-        AcService.getFollowFeed(pcursor, 10, addFeed)
+        AcService.getFollowFeed(pcursor, 20, addFeed)
     }
 
     function addFeed(res){
@@ -82,6 +97,7 @@ Item{
             busyBox.running = false
             PopMsg.showError(res, mainwindowRoot)
         }else{
+            pcursor = res.pcursor
             for(var idx in res.feedList){
                 feedModel.append({info: res.feedList[idx]})
             }

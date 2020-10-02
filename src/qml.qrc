@@ -76,5 +76,7 @@
         <file>ui/components/card/VideoInfoCard.qml</file>
         <file>ui/components/card/UserInfoCard.qml</file>
         <file>ui/components/card/CircleInfoCard.qml</file>
+        <file>ui/components/Avatar.qml</file>
+        <file>ui/components/card/VideoCard.qml</file>
     </qresource>
 </RCC>

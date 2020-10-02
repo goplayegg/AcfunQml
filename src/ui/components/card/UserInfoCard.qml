@@ -11,10 +11,11 @@ Item {
     width: 190
     height: 190
 
-    Loader {
+    Avatar {
         id: imgAvatar
-        width: 100
-        height: 100
+        size: 100
+        avatarUrl: userJson.userImg
+        userId: userJson.userId
     }
 
     Label {
@@ -85,59 +86,5 @@ Item {
         width: parent.width
         text: userJson.signature
         wrapMode: Text.WordWrap
-    }
-
-    Component {
-        id: cmpGif
-        AnimatedImage {
-            id: gif
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    openUserPage()
-                }
-            }
-        }
-    }
-
-    Component {
-        id: cmpImg
-        RoundImage {
-            size: imgAvatar.width
-            onClicked: {
-                openUserPage()
-            }
-        }
-    }
-
-    Component.onCompleted: {
-        loadAvatarCover()
-    }
-
-    function loadAvatarCover(){
-        var gifIdx = userJson.userImg.indexOf(".gif")
-        if(gifIdx !== -1){
-            imgAvatar.sourceComponent = cmpGif
-            imgAvatar.item.source = userJson.userImg.substring(0, gifIdx+4)
-        }else{
-            imgAvatar.sourceComponent = cmpImg
-            imgAvatar.item.source = userJson.userImg
-        }
-    }
-
-    function openUserPage(){
-        console.log("user avatar click:"+userJson.userId)
-        //var url = "https://www.acfun.cn/u/"+userJson.userId
-        //Qt.openUrlExternally(url)
-        //AcService.getUserInfoId(userJson.userId, function(res){
-        //    })
-        //AcService.isFollowingUid(userJson.userId, function(res){
-        //    })
-        AcService.getUserProfile(userJson.userId, 0, function(res){
-            })
-        //AcService.getUserResource(userJson.userId, 2, 0, function(res){
-        //    })
-        //AcService.getUserResource(userJson.userId, 3, 0, function(res){
-        //    })
     }
 }

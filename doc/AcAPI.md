@@ -331,3 +331,13 @@ POST https://api-new.app.acfun.cn/rest/app/user/resource/query?count=20&authorId
 **返回示例：**
 [用户视频.json](用户视频.json)
 [用户文章.json](用户文章.json)
+
+## 个人动态(关注的up的动态)
+GET https://api-new.acfunchina.com/rest/app/feed/followFeedV2
+
+**请求param：**
+resourceType=0
+pcursor 
+count 
+
+Header里需要appVersion
