@@ -202,6 +202,9 @@ Window {
             id: circleLoader
             Connections {
                 target: circleLoader.item
+                function  onOpenVideo(js) {
+                    videoLoader.openVideo(js)
+                }
             }
             onLoaded: {
                 console.log("circleLoader Loaded")

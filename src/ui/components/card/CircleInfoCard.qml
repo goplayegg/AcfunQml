@@ -7,6 +7,7 @@ import "qrc:///ui/global/"
 
 Rectangle {
     property var feedInfo
+    property bool repost: false
     property real cardMargin: 5
     id: control
     width: 300
@@ -88,10 +89,18 @@ Rectangle {
             id: ldMedia
             x: 4
             width: parent.width-8
+            Connections {
+                target: ldMedia.item
+                ignoreUnknownSignals: true
+                function  onOpenVideoDetail(js) {
+                    openVideo(js)
+                }
+            }
         }
 
         Row {
             id: rowBtns
+            visible: !repost
             spacing: 8
             anchors.left: parent.left
             anchors.right: parent.right
@@ -137,6 +146,11 @@ Rectangle {
             ldMedia.setSource("PicCard.qml",
                               {"imgs": feedInfo.moment.imgs,
                                "width": ldMedia.width})
+        }else if(feedInfo.repostSource){
+            ldMedia.setSource("CircleInfoCard.qml",
+                              {"feedInfo": feedInfo.repostSource,
+                               "width": ldMedia.width,
+                               "repost": true})
         }
     }
 
