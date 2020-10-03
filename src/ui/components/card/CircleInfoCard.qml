@@ -18,10 +18,9 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
-        //anchors.bottom: parent.bottom
         anchors.margins: cardMargin
         anchors.topMargin: cardMargin+4
-        Item {
+        Item {//用户
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.leftMargin: 4
@@ -49,7 +48,7 @@ Rectangle {
                     font.family: AppStyle.fontNameMain
                 }
                 Label {
-                    text: feedInfo.time + " " + qsTr("%1 viewed").arg(feedInfo.viewCount)
+                    text: feedInfo.time + " " + ((feedInfo.resourceType === 2) ? (qsTr("%1 viewed").arg(feedInfo.viewCount)) : "")
                     leftPadding: 3
                     font.pixelSize: AppStyle.font_smal
                     font.family: AppStyle.fontNameMain
@@ -57,27 +56,38 @@ Rectangle {
             }
         }
 
-        TextArea {
+        TextArea {//动态正文
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.leftMargin: 4
             selectByMouse: true
             readOnly: true
             wrapMode: Text.WordWrap
-            font.weight: Font.Normal
+            font.weight: Font.Bold
             font.pixelSize: AppStyle.font_normal
             font.family: AppStyle.fontNameMain
-            text: feedInfo.moment?feedInfo.moment.text:
+            textFormat: TextEdit.AutoText
+            text: {
+                feedInfo.moment?g_commonTools.cvtToHtml(feedInfo.moment.text):
                                        feedInfo.articleBody?feedInfo.articleBody:
                                                                  feedInfo.caption?feedInfo.caption:
                                                                                        feedInfo.articleTitle
+            }
+            onLinkActivated: {
+                console.log("open circle link:"+link)
+                if(-1 !== link.indexOf("http")){
+                    var idx = link.lastIndexOf(".")
+                    PopImage.open(link, link.substring(idx+1))
+                }else{
+
+                }
+            }
         }
 
         Loader {
             id: ldMedia
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.margins: 4
+            x: 4
+            width: parent.width-8
         }
 
         Row {
@@ -110,6 +120,7 @@ Rectangle {
             }
             RoundBtnWithText {
                 id: btnLike
+                text: feedInfo.likeCount
                 customChecked: feedInfo.isLike
                 enabled: !customChecked
                 icon: "qrc:/assets/img/common/like0.png"
@@ -124,7 +135,8 @@ Rectangle {
                               {"infoJs": feedInfo.detail})
         }else if(feedInfo.resourceType === 10 && feedInfo.moment.imgs){
             ldMedia.setSource("PicCard.qml",
-                              {"imgs": feedInfo.moment.imgs})
+                              {"imgs": feedInfo.moment.imgs,
+                               "width": ldMedia.width})
         }
     }
 

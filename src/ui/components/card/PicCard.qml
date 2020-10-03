@@ -46,7 +46,9 @@ GridLayout {
         }
         control.columns = col
         control.rows = row
-        control.height = col>0 ? control.width*row/col : 0
+        console.log("picCard img control.width:"+control.width)
+        control.height = col===0 ? 0 :
+                                   col===1 ? control.width*212/282 : control.width*row/col
         for(var idx in imgs){
             modelImg.append({"info": imgs[idx]})
         }

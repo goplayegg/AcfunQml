@@ -28,6 +28,7 @@ Item {
     Component {
         id: cmpImg
         Image {
+            fillMode: Image.PreserveAspectFit
             sourceSize: Qt.size(ldImg.width, ldImg.height)
             MouseArea {
                 anchors.fill: parent
