@@ -11,12 +11,11 @@ Item {
 
     property var infoJs: ({})
 
-    Image {
-        id:imgCover
+    AutoImage {
+        id: imgCover
         height: 110*width/190
         width: parent.width
-        source: infoJs.coverUrl;
-        sourceSize: Qt.size(width, height)
+        source: infoJs.coverUrl
     }
 
     RoundButton {

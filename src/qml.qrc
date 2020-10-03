@@ -78,5 +78,7 @@
         <file>ui/components/card/CircleInfoCard.qml</file>
         <file>ui/components/Avatar.qml</file>
         <file>ui/components/card/VideoCard.qml</file>
+        <file>ui/components/AutoImage.qml</file>
+        <file>ui/components/card/PicCard.qml</file>
     </qresource>
 </RCC>

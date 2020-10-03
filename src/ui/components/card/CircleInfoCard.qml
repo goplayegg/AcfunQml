@@ -78,7 +78,6 @@ Rectangle {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.margins: 4
-
         }
 
         Row {
@@ -123,6 +122,9 @@ Rectangle {
         if(feedInfo.resourceType === 2){
             ldMedia.setSource("VideoCard.qml",
                               {"infoJs": feedInfo.detail})
+        }else if(feedInfo.resourceType === 10 && feedInfo.moment.imgs){
+            ldMedia.setSource("PicCard.qml",
+                              {"imgs": feedInfo.moment.imgs})
         }
     }
 

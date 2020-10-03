@@ -88,6 +88,8 @@ Item{
 
     property string pcursor: ""
     function getFeed(){
+        if(busyBox.running)
+            return
         busyBox.running = true
         AcService.getFollowFeed(pcursor, 20, addFeed)
     }
