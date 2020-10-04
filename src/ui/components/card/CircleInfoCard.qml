@@ -83,19 +83,16 @@ Rectangle {
 
                 }
             }
+            onPressed: {
+                if(event.button === 2)//right click
+                    console.log("onPressed:")
+            }
         }
 
         Loader {
             id: ldMedia
             x: 4
             width: parent.width-8
-            Connections {
-                target: ldMedia.item
-                ignoreUnknownSignals: true
-                function  onOpenVideoDetail(js) {
-                    openVideo(js)
-                }
-            }
         }
 
         Row {
@@ -110,7 +107,15 @@ Rectangle {
                 icon: "qrc:/assets/img/common/cmt0.png"
                 iconChecked: "qrc:/assets/img/common/cmt1.png"
                 onClicked: {
-                    console.log(customChecked?"btnComment":"btnComment")
+                    console.log("btnComment click, resourceType:"+feedInfo.resourceType)
+                    switch(feedInfo.resourceType){
+                    case 10:
+                        Global.openCircleDetail(feedInfo)
+                        break;
+                    case 2:
+                        Global.openVideo(feedInfo.detail)
+                        break;
+                    }
                 }
             }
             RoundBtnWithText {//投蕉
@@ -123,7 +128,12 @@ Rectangle {
                 property var componentBanana: null
                 onClicked: {
                     customChecked = true
-                    AcService.banana(acID, contentType, 1, function(res){
+                    AcService.banana(feedInfo.resourceId, feedInfo.resourceType, feedInfo.resourceType === 10 ? 1 : 5, function(res){
+                        if(0 !== res.result)
+                            PopMsg.showError(res, mainwindowRoot)
+                        else{
+                            //TODO Toast(res.extData.bananaRealCount)
+                        }
                     })
                 }
             }

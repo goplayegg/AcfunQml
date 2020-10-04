@@ -8,7 +8,6 @@ import "qrc:///ui/components/card/"
 
 Item{
     id:root
-    signal openVideo(var js)
 
     ScrollView {
         id: scroll

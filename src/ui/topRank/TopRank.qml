@@ -7,7 +7,6 @@ import "qrc:///ui/global/"
 Item{
     id:root
 
-    signal openVideo(var js)
     function empty(){
         return 0 === tabBar.model.count
     }

@@ -5,7 +5,7 @@ import QmlVlc 0.1
 
 import "qrc:///ui/components/"
 import "qrc:///ui/global/styles/"
-//import "qrc:///ui/global/"
+import "qrc:///ui/global/"
 import "qrc:///ui/navigator/"
 import "qrc:///ui/mainPage/"
 import "qrc:///ui/videoPage/"
@@ -58,6 +58,7 @@ Window {
 
     property string videoPageSource: "qrc:/ui/videoPage/VideoPage.qml"
     property string searchPageSource: "qrc:/ui/other/SearchResult.qml"
+    property string circleDetailSource: "qrc:/ui/circle/CircleDetail.qml"
     property var stackViewLoader: [null, acMainLoader, articleLoader,
         circleLoader, topRankLoader, operationLoader, null, settingLoader, aboutLoader]
     property var stackViewSource: ["spliter",
@@ -174,12 +175,6 @@ Window {
 
         Loader{
             id: acMainLoader
-            Connections {
-                target: acMainLoader.item
-                function  onOpenVideo(js) {
-                    videoLoader.openVideo(js)
-                }
-            }
             onLoaded: {
                 console.log("acMainLoader Loaded")
             }
@@ -187,12 +182,6 @@ Window {
 
         Loader{
             id: articleLoader
-            Connections {
-                target: articleLoader.item
-                function  onOpenVideo(js) {
-                    videoLoader.openVideo(js)
-                }
-            }
             onLoaded: {
                 console.log("articleLoader Loaded")
             }
@@ -200,12 +189,6 @@ Window {
 
         Loader{
             id: circleLoader
-            Connections {
-                target: circleLoader.item
-                function  onOpenVideo(js) {
-                    videoLoader.openVideo(js)
-                }
-            }
             onLoaded: {
                 console.log("circleLoader Loaded")
             }
@@ -213,12 +196,6 @@ Window {
 
         Loader{
             id: topRankLoader
-            Connections {
-                target: topRankLoader.item
-                function  onOpenVideo(js) {
-                    videoLoader.openVideo(js)
-                }
-            }
             onLoaded: {
                 console.log("topRankLoader Loaded")
             }
@@ -255,12 +232,6 @@ Window {
             id: searchLoader
             asynchronous: true
             source: searchPageSource
-            Connections {
-                target: searchLoader.item
-                function onOpenVideo(js) {
-                    videoLoader.openVideo(js)
-                }
-            }
             function openSearchPage(keyword){
                 busyBox.text = qsTr("Loading...")
                 busyBox.running = true
@@ -270,6 +241,26 @@ Window {
             }
         }
 
+        Loader{
+            id: circleDetailLoader
+            asynchronous: true
+            source: circleDetailSource
+            function openPage(info){
+                console.log("open circle detail..")
+                stack.push(circleDetailLoader)
+                circleDetailLoader.item.open(info)
+            }
+        }
+
+        Connections {
+            target: Global
+            function onOpenCircleDetail(info) {
+                circleDetailLoader.openPage(info)
+            }
+            function onOpenVideo(js) {
+                videoLoader.openVideo(js)
+            }
+        }
 
         BusyIndicatorWithText {
             id: busyBox

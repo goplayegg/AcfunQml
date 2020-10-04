@@ -1,5 +1,6 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
+import "qrc:///ui/global/"
 import "qrc:///ui/global/styles/"
 import "qrc:///ui/components/"
 import "qrc:///ui/components/btn/"
@@ -11,7 +12,6 @@ Item {
     height: 110*width/190
 
     property var infoJs: ({})
-    signal openVideoDetail(var js)
 
     AutoImage {
         id: imgCover
@@ -108,7 +108,7 @@ Item {
             player.visible = false
         }
         makeJson()
-        openVideoDetail(infoJs)
+        Global.openVideo(infoJs)
     }
 
     function play(){

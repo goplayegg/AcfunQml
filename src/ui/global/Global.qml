@@ -57,4 +57,7 @@ Item {
         })
         readJobObject.start();
     }
+
+    signal openVideo(var js)
+    signal openCircleDetail(var info)
 }

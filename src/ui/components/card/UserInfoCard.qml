@@ -61,6 +61,8 @@ Item {
         onClicked: {
             customChecked = !customChecked
             AcService.follow(userJson.userId, customChecked, function(res){
+                if(0 !== res.result)
+                    PopMsg.showError(res, mainwindowRoot)
                 })
         }
     }

@@ -2,6 +2,7 @@
 import QtQuick.Controls 2.12
 //import QtGraphicalEffects 1.0
 import "qrc:///ui/components/"
+import "qrc:///ui/global/"
 import "qrc:///ui/global/libraries/functions.js" as FUN
 
 Item {
@@ -126,8 +127,8 @@ Item {
     MouseArea {
         anchors.fill: parent
         hoverEnabled: true
-        onClicked: {
-            openVideo({
+        onClicked: {          
+            Global.openVideo({
                 title        : infoJs.title,
                 vid          : infoJs.vid,
                 contentId    : infoJs.contentId,

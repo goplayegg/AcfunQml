@@ -8,7 +8,6 @@ import "qrc:///ui/global/styles/"
 Item{
     id:root
 
-    signal openVideo(var js)
     function empty(){
         return false
     }
