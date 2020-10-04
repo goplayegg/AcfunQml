@@ -6,8 +6,9 @@ import "qrc:///ui/global/styles/"
 import "qrc:///ui/global/"
 
 Rectangle {
-    property var feedInfo
+    property var feedInfo: ({resourceType:0,time:"",userInfo:{id:0,headUrl:""}})
     property bool repost: false
+    property bool inDetail: false
     property real cardMargin: 5
     id: control
     width: 300
@@ -40,7 +41,7 @@ Rectangle {
                 anchors.left: imgAvatar.right
                 anchors.leftMargin: 10
                 TextArea {
-                    text: feedInfo.user.userName
+                    text: feedInfo.userInfo.name
                     padding: 0
                     selectByMouse: true
                     readOnly: true
@@ -103,6 +104,7 @@ Rectangle {
             anchors.right: parent.right
             RoundBtnWithText {//评论
                 id: btnComment
+                visible: !inDetail
                 text: feedInfo.commentCount
                 icon: "qrc:/assets/img/common/cmt0.png"
                 iconChecked: "qrc:/assets/img/common/cmt1.png"
@@ -113,6 +115,9 @@ Rectangle {
                         Global.openCircleDetail(feedInfo)
                         break;
                     case 2:
+                        feedInfo.detail.contentId = feedInfo.detail.dougaId
+                        feedInfo.detail.contentType = 2
+                        feedInfo.detail.vid = feedInfo.detail.videoList[0].id
                         Global.openVideo(feedInfo.detail)
                         break;
                     }
@@ -149,6 +154,12 @@ Rectangle {
     }
 
     Component.onCompleted: {
+        if(!inDetail)
+            loadMedia()
+    }
+
+    function loadMedia() {
+        ldMedia.visible = true
         if(feedInfo.resourceType === 2){
             ldMedia.setSource("VideoCard.qml",
                               {"infoJs": feedInfo.detail})
@@ -161,7 +172,13 @@ Rectangle {
                               {"feedInfo": feedInfo.repostSource,
                                "width": ldMedia.width,
                                "repost": true})
+        }else{
+            ldMedia.visible = false
         }
     }
 
+    function stop() {
+        if(ldMedia.item)
+            ldMedia.item.stop()
+    }
 }

@@ -325,7 +325,7 @@ GET https://api-new.app.acfun.cn/rest/app/feed/profile?pcursor=0&userId=10506739
 **返回示例：**
 [动态.json](动态.json)
 
-## 用户投稿 2视频3文章
+## 用户投稿 resourceType: 2视频 3文章 10动态
 POST https://api-new.app.acfun.cn/rest/app/user/resource/query?count=20&authorId=10506739&resourceType=2&sortType=3&status=1&pcursor=0
 
 **返回示例：**
@@ -341,3 +341,17 @@ pcursor
 count 
 
 Header里需要appVersion
+
+## 动态详情
+GET https://api-new.acfunchina.com/rest/app/moment/detail?momentId=746044
+
+**返回示例：**
+[动态详情.json](动态详情.json)
+
+## 评论列表
+GET https://api-new.acfunchina.com/rest/app/comment/list?sourceId=746044&sourceType=4&pcursor=0&count=20&showHotComments=1&app_version=6.26.0.966
+
+sourceType:  1-文章评论 3-视频评论  4-动态的评论
+
+**返回示例：**
+[评论列表.json](评论列表.json)

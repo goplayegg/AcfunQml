@@ -81,5 +81,6 @@
         <file>ui/components/AutoImage.qml</file>
         <file>ui/components/card/PicCard.qml</file>
         <file>ui/player/SimplePlayer.qml</file>
+        <file>ui/circle/CircleDetail.qml</file>
     </qresource>
 </RCC>

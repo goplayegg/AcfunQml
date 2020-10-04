@@ -197,10 +197,10 @@ Item {
         request('GET', url, qParam, null, cb);
     }
 
-    function getComment(sourceId, pcursor, cb){
+    function getComment(sourceId, sourceType, pcursor, cb){
         var url = "api-new.acfunchina.com/rest/app/comment/list";
         var qParam = [{"sourceId": sourceId},
-                {"sourceType": 3},
+                {"sourceType": sourceType},
                 {"pcursor": pcursor},
                 {"count": 20},
                 {"showHotComments": 1}];
@@ -208,11 +208,11 @@ Item {
         request('GET', url, qParam, null, cb);
     }
 
-    function sendComment(sourceId, cmt, replyToCommentId, cb) {
+    function sendComment(sourceId, sourceType, cmt, replyToCommentId, cb) {
         var url = "api-new.app.acfun.cn/rest/app/comment/add";
         var cmtJson = {
             "sourceId": sourceId,
-            "sourceType": 3,
+            "sourceType": sourceType,
             "content": encodeURIComponent(cmt),
             "syncToMoment": 0,
             "access_token": token

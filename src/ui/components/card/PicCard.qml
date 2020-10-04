@@ -53,4 +53,6 @@ GridLayout {
             modelImg.append({"info": imgs[idx]})
         }
     }
+    function stop() {
+    }
 }

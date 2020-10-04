@@ -9,6 +9,7 @@ Item {
     implicitHeight: rootCol.implicitHeight
     property var pcursor: "no_more"
     property var contentId
+    property int cmtType: 3
 
     function open(js){
         btnEditerTip.checked = false
@@ -19,7 +20,8 @@ Item {
         editor.clear()
         modelCmt.clear();
         contentId = js.contentId
-        AcService.getComment(js.contentId, 0, showComment)
+        cmtType = js.cmtType?js.cmtType:3
+        AcService.getComment(js.contentId, cmtType, 0, showComment)
     }
 
     function showComment(res){
@@ -107,6 +109,8 @@ Item {
             anchors.left: parent.left
             anchors.right: parent.right
             acId: contentId
+            resourceType: cmtType
+            //TODO 将发成功的评论插入到评论
         }
 
         ListModel {

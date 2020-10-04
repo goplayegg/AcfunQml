@@ -28,7 +28,13 @@ Item {
             target: player.item
             function onPlayStatChanged() {
                 player.playState = player.item.playStat
-                btnPlay.visible = (player.item.playStat === 0)
+                //btnPlay.visible = (player.item.playStat === 0)
+            }
+        }
+        onPlayStateChanged: {
+            if(0 === playState){
+                visible = false
+                btnPlay.visible = true
             }
         }
     }
@@ -103,10 +109,6 @@ Item {
     }
 
     function detail(){
-        if(player.playState !== 0){
-            player.item.stop()
-            player.visible = false
-        }
         makeJson()
         Global.openVideo(infoJs)
     }
@@ -114,7 +116,14 @@ Item {
     function play(){
         makeJson()
         player.visible = true
+        //TODO 改为播放器数量固定上限，每次复用，避免重复销毁
         player.setSource("qrc:///ui/player/SimplePlayer.qml",
                           {"videoInfo": infoJs})
+    }
+
+    function stop(){
+        if(player.playState !== 0){
+            player.item.stop()
+        }
     }
 }

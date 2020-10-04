@@ -39,8 +39,10 @@ Item {
         }
     }
 
-    Component.onCompleted: {
-        loadAvatarCover()
+    Component.onCompleted: loadAvatarCover()
+    onAvatarUrlChanged: {
+        if(imgAvatar.item)
+            loadAvatarCover()
     }
 
     function loadAvatarCover(){

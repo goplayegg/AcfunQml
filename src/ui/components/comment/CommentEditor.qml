@@ -11,6 +11,7 @@ import AcfunQml 1.0
 Rectangle {
     id: control
     property var acId
+    property int resourceType: 3
     property var replyToId: 0
     property var replyToName: ""
     property bool replySubCmt: false//回复子串编辑状态
@@ -189,7 +190,7 @@ Rectangle {
                 console.log("send:"+cmtText.text)
                 var accmt = document.getAcCmt()
                 //return;
-                AcService.sendComment(acId, accmt, replyToId, function(res){
+                AcService.sendComment(acId, resourceType, accmt, replyToId, function(res){
                     if(res.result !== 0){
                         PopMsg.showError(res, mainwindowRoot)
                         return

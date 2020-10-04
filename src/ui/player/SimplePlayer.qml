@@ -74,4 +74,14 @@ Item {
             }
         }
     }
+
+    Connections {
+        target: Global
+        function onOpenCircleDetail(info) {
+            stop()
+        }
+        function onOpenVideo(js) {
+            stop()
+        }
+    }
 }
