@@ -13,36 +13,37 @@ Rectangle{
     property bool shrinked: true
     onShrinkedChanged: {
         x = shrinked ? -width : 0
-        console.log("xxxxxxxxxxxxxxxxxxxxxxxx: "+x)
     }
     Behavior on x {
         NumberAnimation{ duration: 200; easing.type: Easing.OutQuad; onFinished: control.visible = !shrinked }
     }
 
-    property var userInfo : ({headUrl:"", name:"", userId:"", comeFrom:"",signature:"",registerTime:0,followed:0, following:0, contentCount:0, isFollowing: false})
+    property var userInfo : ({headUrl:"", name:"", userId:0, comeFrom:"",signature:"",registerTime:0,followed:0, following:0, contentCount:0, isFollowing: false})
     property bool isSelf: userInfo.userId === Global.userInfo.userid
 
     function open(uid){
         shrinked = false
+        if(userInfo.userId === uid)
+            return
+        userInfo.userId = uid
         AcService.getUserInfoId(uid, function(res){
             if(0 !== res.result){
                 busyBox.running = false
                 PopMsg.showError(res, mainwindowRoot)
+                userInfo.userId = 0
+                return
             }
             userInfo = res.profile
             })
-        console.log("Global.userInfo.userId:"+Global.userInfo.userid)
-        //AcService.getUserProfile(uid, 0, function(res){
-        //    })
-        //AcService.getUserResource(userJson.userId, 2, 0, function(res){
-        //    })
-        //AcService.getUserResource(userJson.userId, 3, 0, function(res){
-        //    })
+        swip.load()
     }
 
     Column {
         id: col
-        anchors.fill: parent
+        //anchors.fill: parent
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
         anchors.margins: 5
         spacing: 8
 
@@ -157,6 +158,54 @@ Rectangle{
             readOnly: true
             wrapMode: Text.WordWrap
         }
+
+        TabBarAc {
+            id: tab
+            height: 30
+            anchors.left: parent.left
+            anchors.right: parent.right
+            bottomRectHei: 6
+            checkedFontSize: AppStyle.font_xlarge
+            currentIndex: swip.currentIndex
+            Component.onCompleted: {
+                model.append({"name":qsTr("动态"), "value":0})
+                model.append({"name":qsTr("视频"), "value":1})
+                model.append({"name":qsTr("文章"), "value":2})
+            }
+            onCurrentIndexChanged: {
+                console.log("user page change tab idx:"+currentIndex)
+            }
+            background: Rectangle {
+                color: AppStyle.secondBkgroundColor
+            }
+        }
     }
 
+    SwipeView {
+        id: swip
+        anchors.top: col.bottom
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.margins: 5
+        anchors.bottomMargin: 0
+        clip: true
+        currentIndex: tab.currentIndex
+        function load() {
+            lders.itemAt(currentIndex).active = true
+            lders.itemAt(currentIndex).item.load(userInfo.userId)
+        }
+        onCurrentIndexChanged: load()
+        Repeater {
+            id: lders
+            model: 3
+            Loader {
+                active: false
+                sourceComponent: UserUploadList {
+                    type: index+1
+                    anchors.fill: parent
+                }
+            }
+        }
+    }
 }

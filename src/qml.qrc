@@ -83,5 +83,6 @@
         <file>ui/player/SimplePlayer.qml</file>
         <file>ui/circle/CircleDetail.qml</file>
         <file>ui/user/User.qml</file>
+        <file>ui/user/UserUploadList.qml</file>
     </qresource>
 </RCC>

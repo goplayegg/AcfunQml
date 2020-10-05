@@ -161,6 +161,9 @@ Rectangle {
     function loadMedia() {
         ldMedia.visible = true
         if(feedInfo.resourceType === 2){
+            if(undefined === feedInfo.detail){
+                feedInfo.detail = {coverUrl: feedInfo.coverUrl, dougaId: feedInfo.resourceId, vid: feedInfo.videoId }
+            }
             ldMedia.setSource("VideoCard.qml",
                               {"infoJs": feedInfo.detail})
         }else if(feedInfo.resourceType === 10 && feedInfo.moment.imgs){

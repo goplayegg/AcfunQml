@@ -67,6 +67,12 @@ QString CommonTools::cvtToHtml(const QString &source)
             format.setForeground(QBrush(clr));
             format.setAnchor(true);
             format.setAnchorHref(std::get<2>(info));
+        }else{
+            std::get<0>(info).replace("&quot;","\"");
+            std::get<0>(info).replace("&#39;","\'");
+            std::get<0>(info).replace("&lt;","<");
+            std::get<0>(info).replace("&gt;",">");
+            std::get<0>(info).replace("&amp;","&");
         }
         cursor.insertText(std::get<0>(info), format);
     }

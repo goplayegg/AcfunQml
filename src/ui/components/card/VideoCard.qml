@@ -105,7 +105,8 @@ Item {
     function makeJson(){
         infoJs.contentId = infoJs.dougaId
         infoJs.contentType = 2
-        infoJs.vid = infoJs.videoList[0].id
+        if(undefined !== infoJs.videoList)
+            infoJs.vid = infoJs.videoList[0].id
     }
 
     function detail(){

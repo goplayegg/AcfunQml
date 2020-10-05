@@ -1,6 +1,5 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
-//import QtGraphicalEffects 1.0
 import "qrc:///ui/components/"
 import "qrc:///ui/global/"
 import "qrc:///ui/global/libraries/functions.js" as FUN
@@ -43,25 +42,13 @@ Item {
         }
     }
 
-    Image {
+    AutoImage {
         id:imgCover
         height: 110
         width: parent.width
         source: infoJs.videoCover;
-        sourceSize: Qt.size(width, height)
-        //visible: false//OpacityMask去显示
     }
-//    TopRoundRect {
-//        id: maskRect
-//        anchors.fill: imgCover
-//        visible: false
-//        //radius: 5
-//    }
-//    OpacityMask {
-//        anchors.fill: maskRect
-//        maskSource: maskRect
-//        source: imgCover
-//    }
+
     Rectangle {
         color: "white"
         width: parent.width

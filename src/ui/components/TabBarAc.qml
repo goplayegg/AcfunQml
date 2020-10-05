@@ -5,8 +5,12 @@ import "qrc:///ui/global/styles/"
 
 TabBar {
     property alias model: tabModel
+    property double checkedFontSize: AppStyle.font_xxxlarge
+    property int checkedFontWeight: Font.ExtraBold
+    property int bottomRectHei: 10
     id: tabBar
     width: parent.width
+    currentIndex: 0
 
     ListModel {
         id: tabModel
@@ -16,6 +20,7 @@ TabBar {
         model: tabModel
         TabButton {
             id: tabBtn
+            checked: currentIndex === index
             text: model.name
             width: 20+tabText.implicitWidth
             background: Rectangle {
@@ -29,7 +34,7 @@ TabBar {
                     anchors.leftMargin: 5
                     visible: tabBtn.checked
                     width: tabText.width
-                    height: 10
+                    height: bottomRectHei
                     radius: height/2
                     gradient: Gradient {
                         orientation: Gradient.Horizontal
@@ -42,8 +47,8 @@ TabBar {
                 id: tabText
                 text: tabBtn.text
                 font.family: AppStyle.fontNameMain
-                font.pixelSize: tabBtn.checked ? AppStyle.font_xxxlarge: AppStyle.font_xlarge
-                font.weight: tabBar.checked ? Font.ExtraBold :Font.Normal
+                font.pixelSize: tabBtn.checked ? checkedFontSize: AppStyle.font_xlarge
+                font.weight: tabBar.checked ? checkedFontWeight :Font.Normal
                 color: tabBtn.checked ? AppStyle.foregroundColor : AppStyle.secondForeColor
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignBottom

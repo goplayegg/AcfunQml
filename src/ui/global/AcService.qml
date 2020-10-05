@@ -73,7 +73,7 @@ Item {
         var url = "api-new.app.acfun.cn/rest/app/user/resource/query";
         var qParam = [  {"pcursor":pcursor},
                         {"authorId":id},
-                        {"count": 20},
+                        {"count": 10},
                         {"resourceType":resourceType},//2-视频 3-文章
                         {"sortType":3},//3-最新 2-香蕉最多 1-播放最多
                         {"status":1}];
@@ -392,12 +392,14 @@ Item {
             hreq.error.disconnect(arguments.callee);
             console.log("hreq error:" + hreq.statusText);
             httpError(hreq.status + ":" + hreq.statusText);
+            cb({result:hreq.status,error_msg:hreq.statusText});
         });
 
         hreq.timeout.connect(function(){
             hreq.timeout.disconnect(arguments.callee);
             console.log("hreq time out");
             httpError("http time out")
+            cb({result:-1,error_msg:"http time out"});
         });
 
         var url = "https://" + endpoint;
