@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.0
 import QtQuick.Controls 2.12
 import "qrc:///ui/components/"
+import "qrc:///ui/global/"
 import "qrc:///ui/global/styles/"
 
 //         头像+挂件
@@ -52,6 +53,13 @@ Item {
         id: cmpImg
         Image {
             id: img
+        }
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: {
+            Global.openUser(userId)
         }
     }
 

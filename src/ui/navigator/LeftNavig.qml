@@ -84,17 +84,18 @@ Rectangle{
                 popLogin.open()
             }
         }
-        RoundImage{
+        Avatar{
             id:imgAvatar
             visible: logined
-            source: jsLogin.avatar
+            avatarUrl: jsLogin.avatar
+            userId: jsLogin.userid
             y: btnCategory.y+btnCategory.height+20
             anchors.horizontalCenter: parent.horizontalCenter
             size: shrinked?40:60
-            onClicked: {
-                logined = false
-                tabBar.setVisible(3, false)
-            }
+//            onClicked: {
+//                logined = false
+//                tabBar.setVisible(3, false)
+//            }
         }
         Text{
             id:txUserName

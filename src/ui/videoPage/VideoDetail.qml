@@ -36,7 +36,8 @@ Item {
         }else{
             user = JSON.parse(js.userJson)
         }
-        imgAvatar.source = user.headUrl
+        imgAvatar.avatarUrl = user.headUrl
+        imgAvatar.userId = user.id
         labUpName.text = user.name
         btnFollow.customChecked = user.isFollowing
         tagList = []
@@ -256,9 +257,11 @@ Item {
                 id: itemAvatar
                 z: 2
 
-                RoundImage {//头像
+                Avatar {//头像
                     id: imgAvatar
                     size: 50
+                    avatarUrl: ""
+                    userId: 0
                     property int animDuration: 1000
                     function start(){
                         imgAvatar.state = "eatBanana"

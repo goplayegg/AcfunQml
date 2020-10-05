@@ -17,13 +17,11 @@ Row {
 
     signal replyTo(var cmtId, var userName, var editerParent)
 
-    RoundImage {
+    Avatar {
         id: imgAvatar
-        width: 80
-        height: width
-        source: js.headImgUrl
-        onClicked: {
-        }
+        size: 50
+        avatarUrl: js.headImgUrl
+        userId: js.userId
     }
 
     Column {

@@ -56,9 +56,6 @@ Window {
         }
     }
 
-    property string videoPageSource: "qrc:/ui/videoPage/VideoPage.qml"
-    property string searchPageSource: "qrc:/ui/other/SearchResult.qml"
-    property string circleDetailSource: "qrc:/ui/circle/CircleDetail.qml"
     property var stackViewLoader: [null, acMainLoader, articleLoader,
         circleLoader, topRankLoader, operationLoader, null, settingLoader, aboutLoader]
     property var stackViewSource: ["spliter",
@@ -158,7 +155,7 @@ Window {
         Loader{
             id: videoLoader
             asynchronous: true
-            source: videoPageSource
+            source: "qrc:/ui/videoPage/VideoPage.qml"
             Connections {
                 target: videoLoader.item
             }
@@ -231,7 +228,7 @@ Window {
         Loader{
             id: searchLoader
             asynchronous: true
-            source: searchPageSource
+            source: "qrc:/ui/other/SearchResult.qml"
             function openSearchPage(keyword){
                 busyBox.text = qsTr("Loading...")
                 busyBox.running = true
@@ -244,11 +241,26 @@ Window {
         Loader{
             id: circleDetailLoader
             asynchronous: true
-            source: circleDetailSource
+            source: "qrc:/ui/circle/CircleDetail.qml"
             function openPage(info){
                 console.log("open circle detail..")
                 stack.push(circleDetailLoader)
                 circleDetailLoader.item.open(info)
+            }
+        }
+
+        Loader{
+            id: userLoader
+            z: navi.z+1
+            width: navi.width+35
+            height: navi.height
+            visible: status === Loader.Ready
+            function openPage(info){
+                if(status !== Loader.Ready){
+                    source = "qrc:/ui/user/User.qml"
+                    console.log("load user page.....")
+                }
+                userLoader.item.open(info)
             }
         }
 
@@ -259,6 +271,9 @@ Window {
             }
             function onOpenVideo(js) {
                 videoLoader.openVideo(js)
+            }
+            function onOpenUser(js) {
+                userLoader.openPage(js)
             }
         }
 

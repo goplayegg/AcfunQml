@@ -18,7 +18,7 @@ Row {
 
     AvatarWithCover {
         id: avatarItem
-        size: 90
+        size: 70
         avatarUrl: js.headImgUrl
         coverUrl: js.avatarImage
     }

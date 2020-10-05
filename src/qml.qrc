@@ -82,5 +82,6 @@
         <file>ui/components/card/PicCard.qml</file>
         <file>ui/player/SimplePlayer.qml</file>
         <file>ui/circle/CircleDetail.qml</file>
+        <file>ui/user/User.qml</file>
     </qresource>
 </RCC>

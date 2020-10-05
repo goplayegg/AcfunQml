@@ -56,19 +56,13 @@ Item {
         }
     }
 
+    signal clicked()
     function openUserPage(){
+        if(userId === undefined){
+            clicked()
+            return
+        }
         console.log("user avatar click:"+userId)
-        //var url = "https://www.acfun.cn/u/"+userJson.userId
-        //Qt.openUrlExternally(url)
-        //AcService.getUserInfoId(userJson.userId, function(res){
-        //    })
-        //AcService.isFollowingUid(userJson.userId, function(res){
-        //    })
-        AcService.getUserProfile(userId, 0, function(res){
-            })
-        //AcService.getUserResource(userJson.userId, 2, 0, function(res){
-        //    })
-        //AcService.getUserResource(userJson.userId, 3, 0, function(res){
-        //    })
+        Global.openUser(userId)
     }
 }
