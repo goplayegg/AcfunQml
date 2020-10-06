@@ -188,6 +188,7 @@ Rectangle{
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.margins: 5
+        anchors.topMargin: 8
         anchors.bottomMargin: 0
         clip: true
         currentIndex: tab.currentIndex

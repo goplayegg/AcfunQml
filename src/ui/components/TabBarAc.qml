@@ -20,12 +20,14 @@ TabBar {
         model: tabModel
         TabButton {
             id: tabBtn
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
             checked: currentIndex === index
             text: model.name
             width: 20+tabText.implicitWidth
             background: Rectangle {
                 implicitWidth: 100
-                implicitHeight: 40
+                implicitHeight: tabBar.height
                 color: "transparent"
                 Rectangle {
                     anchors.bottom: parent.bottom

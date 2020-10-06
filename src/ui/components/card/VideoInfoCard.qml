@@ -46,7 +46,7 @@ Item {
         id:imgCover
         height: 110
         width: parent.width
-        source: infoJs.videoCover;
+        source: infoJs.videoCover
     }
 
     Rectangle {

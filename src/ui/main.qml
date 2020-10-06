@@ -160,7 +160,7 @@ Window {
                 target: videoLoader.item
             }
             function  openVideo(js) {
-                busyBox.text = qsTr("Loading video ...")
+                busyBox.text = qsTr("Loading...")
                 busyBox.running = true
                 console.log("open video:"+JSON.stringify(js))
                 var d=new Date();

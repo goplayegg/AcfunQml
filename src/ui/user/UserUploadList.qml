@@ -73,6 +73,7 @@ Item{
         anchors.fill: parent
         anchors.margins: 0
         clip: true
+        spacing: 8
         ScrollBar.vertical: ScrollBar {
             id: scrBar
             onPositionChanged: {
@@ -109,10 +110,11 @@ Item{
                     ldCard.setSource("qrc:///ui/components/card/CircleInfoCard.qml", {feedInfo: model.info, width: cardList.width})
                     break;
                 case 2:
-                    ldCard.setSource("qrc:///ui/components/card/VideoCard.qml", {infoJs: model.info, width: cardList.width})
-                    return ""
+                    ldCard.setSource("qrc:///ui/components/card/VideoInfoCardMini.qml", {infoJs: model.info, width: cardList.width})
+                    break;
                 case 3:
-                    return ""
+                    ldCard.setSource("qrc:///ui/components/card/ArticalCard.qml", {infoJs: model.info, width: cardList.width})
+                    break;
                 }
             }
         }
