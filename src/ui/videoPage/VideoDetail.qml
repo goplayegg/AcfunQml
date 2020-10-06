@@ -104,7 +104,7 @@ Item {
                 wrapMode: Text.WordWrap
                 font.pixelSize: AppStyle.font_xxlarge
                 font.family: AppStyle.fontNameMain
-                font.weight: Font.Black
+                font.weight: Font.Bold
                 verticalAlignment: Text.AlignVCenter
             }
 
@@ -148,10 +148,10 @@ Item {
                     onClicked: {
                         console.log(customChecked?"favorite":"unFavorite")
                         if(customChecked){
-                            AcService.favorite(acID, function(res){
+                            AcService.favorite(acID, 9, function(res){
                                 })
                         }else{
-                            AcService.unFavorite(acID, function(res){
+                            AcService.unFavorite(acID, 9, function(res){
                                 })
                         }
                     }

@@ -121,5 +121,6 @@ QtObject {
     property double font_xxxxlarge: 48 * scale
 
     // font family
-    property string fontNameMain: "微软雅黑"
+    property string fontNameMain: "Microsoft YaHei"
+    property string fontNameArticle: "Microsoft YaHei,Helvetica Neue For Number,Segoe UI,Hiragino Sans GB,sans-serif"
 }

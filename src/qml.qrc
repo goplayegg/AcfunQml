@@ -85,6 +85,6 @@
         <file>ui/user/User.qml</file>
         <file>ui/user/UserUploadList.qml</file>
         <file>ui/components/card/VideoInfoCardMini.qml</file>
-        <file>ui/components/card/ArticalCard.qml</file>
+        <file>ui/components/card/ArticleCard.qml</file>
     </qresource>
 </RCC>

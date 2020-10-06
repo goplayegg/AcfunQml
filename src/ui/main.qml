@@ -252,7 +252,7 @@ Window {
         Loader{
             id: userLoader
             z: navi.z+1
-            width: navi.width+35
+            width: 340
             height: navi.height
             visible: status === Loader.Ready
             function openPage(info){
@@ -274,6 +274,10 @@ Window {
             }
             function onOpenUser(js) {
                 userLoader.openPage(js)
+            }
+            function onOpenArticle(js) {
+                navi.curIdx = 2
+                articleLoader.item.open(js)
             }
         }
 

@@ -61,4 +61,5 @@ Item {
     signal openVideo(var js)
     signal openCircleDetail(var info)
     signal openUser(var js)
+    signal openArticle(var js)
 }

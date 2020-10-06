@@ -113,7 +113,7 @@ Item{
                     ldCard.setSource("qrc:///ui/components/card/VideoInfoCardMini.qml", {infoJs: model.info, width: cardList.width})
                     break;
                 case 3:
-                    ldCard.setSource("qrc:///ui/components/card/ArticalCard.qml", {infoJs: model.info, width: cardList.width})
+                    ldCard.setSource("qrc:///ui/components/card/ArticleCard.qml", {infoJs: model.info, width: cardList.width})
                     break;
                 }
             }

@@ -355,3 +355,9 @@ sourceType:  1-文章评论 3-视频评论  4-动态的评论
 
 **返回示例：**
 [评论列表.json](评论列表.json)
+
+## 文章内容
+GET https://api-new.app.acfun.cn/rest/app/article/info?articleId=18269613&app_version=6.31.1.1026
+
+**返回示例：**
+[文章内容.json](文章内容.json)

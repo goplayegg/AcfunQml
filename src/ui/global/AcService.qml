@@ -197,6 +197,13 @@ Item {
         request('GET', url, qParam, null, cb);
     }
 
+    function getArticle(aid, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/article/info";
+        var qParam = [{"articleId": aid}];
+
+        request('GET', url, qParam, null, cb);
+    }
+
     function getComment(sourceId, sourceType, pcursor, cb){
         var url = "api-new.acfunchina.com/rest/app/comment/list";
         var qParam = [{"sourceId": sourceId},
@@ -259,15 +266,15 @@ Item {
         request('POST', url, qParam, null, cb);
     }
 
-    function favorite(resourceId, cb) {
+    function favorite(resourceId, type, cb) {
         var url = "api-new.app.acfun.cn/rest/app/favorite";
-        var body = "resourceId=" +resourceId+ "&resourceType="+9;
+        var body = "resourceId=" +resourceId+ "&resourceType="+type;
         request('POST', url, null, body, cb);
     }
 
-    function unFavorite(resourceId, cb) {
+    function unFavorite(resourceId, type, cb) {
         var url = "api-new.app.acfun.cn/rest/app/unFavorite";
-        var body = "resourceIds=" +resourceId+ "&resourceType="+9;
+        var body = "resourceIds=" +resourceId+ "&resourceType="+type;
         request('POST', url, null, body, cb);
     }
 
