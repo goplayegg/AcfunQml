@@ -89,6 +89,7 @@ Item{
                     font.weight: Font.Medium
                 }
                 Label {
+                    visible: colOpeCard.width>=600
                     text: qsTr("%1 to %2").arg(model.beginTime).arg(model.endTime)
                     font.pixelSize: AppStyle.font_xlarge
                     font.family: AppStyle.fontNameMain
