@@ -111,6 +111,8 @@ Item {
 
     function detail(){
         makeJson()
+        if(undefined === infoJs.title)
+            infoJs.vid = undefined
         Global.openVideo(infoJs)
     }
 

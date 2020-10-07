@@ -28,22 +28,17 @@ Item{
         stop()
     }
 
+    property var param
     function openPrivate(js){
         player.start(js)
         detail.open(js)
-        timerDelay.param = js
-        timerDelay.start()
+        param = js
+        btnCmt.visible = true
     }
 
     function stop() {
         player.stop()
-    }
-
-    Timer {
-        property var param
-        id: timerDelay
-        interval: 1000;
-        onTriggered: comment.open(param)
+        comment.clear()
     }
 
     ScrollView {
@@ -84,6 +79,7 @@ Item{
 
             CommentList {
                 id: comment
+                visible: !btnCmt.visible
                 anchors.left: parent.left
                 anchors.right: parent.right
             }
@@ -97,10 +93,23 @@ Item{
         anchors.right: parent.right
         anchors.rightMargin: 30
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 30
+        anchors.bottomMargin: 10
         visible: scroll.ScrollBar.vertical.position>0.2
         onClicked: {
             scroll.ScrollBar.vertical.position = 0
+        }
+    }
+    RoundButton {
+        id: btnCmt
+        anchors.bottom: btnGoTop.top
+        anchors.bottomMargin: 5
+        anchors.horizontalCenter: btnGoTop.horizontalCenter
+        icon.name: AppIcons.mdi_comment_processing_outline
+        size: 40
+        tooltip: qsTr("show comment")
+        onClicked: {
+            visible = false
+            comment.open(param)
         }
     }
     Component.onCompleted: {

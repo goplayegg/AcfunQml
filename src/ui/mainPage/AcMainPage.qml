@@ -27,6 +27,8 @@ Item{
                 }else{
                     //TODO channelModel.append({"name":"精选","channelId":"MainPage"})
                     for(var idx in res.channels){
+                        if("文章"===res.channels[idx].name)
+                            continue
                         channelModel.append(res.channels[idx])
                     }
                     //tabBar.currentIndex = -1

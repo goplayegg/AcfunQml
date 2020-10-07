@@ -11,6 +11,10 @@ Item {
     property var contentId
     property int cmtType: 3
 
+    function clear(){
+        modelCmt.clear();
+    }
+
     function open(js){
         btnEditerTip.checked = false
         if(editor.parent !== cmtEditer)
