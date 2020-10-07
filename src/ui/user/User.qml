@@ -110,7 +110,7 @@ Rectangle{
                     width: parent.width
                     height: 30
                     text: isSelf?qsTr("Logout"):
-                                  userInfo.isFollowing?"Followed":qsTr("Follow")
+                                  userInfo.isFollowing?qsTr("Followed"):qsTr("Follow")
                     background: Rectangle{
                         color: (isSelf||userInfo.isFollowing)?AppStyle.backgroundColor:AppStyle.accentColor
                         radius: 4
