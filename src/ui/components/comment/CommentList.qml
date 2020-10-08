@@ -13,6 +13,7 @@ Item {
 
     function clear(){
         modelCmt.clear();
+        editor.parent = cmtEditer
     }
 
     function open(js){
@@ -146,7 +147,7 @@ Item {
             font.weight: Font.Normal
             visible: "no_more" !== pcursor
             onClicked: {
-                AcService.getComment(contentId, pcursor, showComment)
+                AcService.getComment(contentId, cmtType, pcursor, showComment)
             }
         }
 

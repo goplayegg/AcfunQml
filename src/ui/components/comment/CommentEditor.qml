@@ -196,6 +196,7 @@ Rectangle {
                         return
                     }
                     cmtText.text = ""
+                    PopMsg.showError({error_msg:"已发送"}, mainwindowRoot)
                 })
             }
         }
