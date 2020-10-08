@@ -186,7 +186,7 @@ Item{
                                 tmp.start();
                                 imgAvatar.start()
                             }
-                            AcService.banana(acID, 3, 1, function(res){
+                            AcService.banana(acID, 3, 5, function(res){
                                 })
                         }
                     }
