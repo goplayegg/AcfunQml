@@ -69,7 +69,7 @@ Item{
                     color: AppStyle.accentColor
                     icon.name: AppIcons.mdi_github_circle
                     text: "蚂蚁会飞乐"
-                    tip: "https://github.com/baoyuanle/AcfunQml"
+                    tip: "https://github.com/goplayegg/AcfunQml"
                     onClicked: Qt.openUrlExternally(tip)
                 }
                 ImgTextButton {
@@ -142,7 +142,7 @@ Item{
                 color: AppStyle.backgroundColor
                 textColor: AppStyle.foregroundColor
                 icon.name: AppIcons.mdi_venmo
-                text: "0.1.1 " + Global.appVer()
+                text: "0.2.1 " + Global.appVer()
                 tip: qsTr("App version")
             }
 

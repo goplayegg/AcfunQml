@@ -45,31 +45,31 @@ public:
           m_parent(window)
     {
 
-        m_languageList << u8"中文简体"
-                       << u8"English"
-                       << u8"日本語"
-                       << u8"한국어"
-                       << u8"Français"
-                       << u8"Español"
-                       << u8"Portugués"
-                       << u8"In Italiano"
-                       << u8"русский язык"
-                       << u8"Tiếng Việt"
-                       << u8"Deutsch"
-                       << u8" عربي ، ";
+        m_languageList << u8"中文简体";
+//                       << u8"English"
+//                       << u8"日本語"
+//                       << u8"한국어"
+//                       << u8"Français"
+//                       << u8"Español"
+//                       << u8"Portugués"
+//                       << u8"In Italiano"
+//                       << u8"русский язык"
+//                       << u8"Tiếng Việt"
+//                       << u8"Deutsch"
+//                       << u8" عربي ، ";
         QStringList fileList;
-        fileList << "trans_zh.qm"
-                << "trans_en.qm"
-                << "trans_ja.qm"
-                << "trans_ko.qm"
-                << "trans_fr.qm"
-                << "trans_es.qm"
-                << "trans_pt.qm"
-                << "trans_it.qm"
-                << "trans_ru.qm"
-                << "trans_vi.qm"
-                << "trans_de.qm"
-                << "trans_ar.qm";
+        fileList << "trans_zh.qm";
+//                << "trans_en.qm"
+//                << "trans_ja.qm"
+//                << "trans_ko.qm"
+//                << "trans_fr.qm"
+//                << "trans_es.qm"
+//                << "trans_pt.qm"
+//                << "trans_it.qm"
+//                << "trans_ru.qm"
+//                << "trans_vi.qm"
+//                << "trans_de.qm"
+//                << "trans_ar.qm";
 
         for (auto i = 0; i < m_languageList.length(); ++i)
         {
@@ -80,7 +80,8 @@ public:
         }
         if(lazyPref.get()){
             m_lang = lazyPref->value("translation").toString();
-        }else{
+        }
+        if(m_lang.isEmpty()){
             m_lang = m_languageList.at(0);
         }
         qDebug()<<"language:"<<m_lang;

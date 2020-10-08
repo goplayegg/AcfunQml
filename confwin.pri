@@ -25,7 +25,7 @@ exists($$ACFUNQML_SOURCE_TREE/lib/acfunQml) {
     LIBS *= -L$$ACFUNQML_SOURCE_TREE/lib/acfunQml/plugins
 }
 
-COPYRIGHT = "$${ACFUNQML_COPYRIGHT} By baoyuanle"
+COPYRIGHT = "$${ACFUNQML_COPYRIGHT} By goplayegg"
 DESCRIPTION  = "$${APP_CASE_ID}"
 DEFINES += RC_VERSION=$$replace(ACFUNQML_VERSION, "\\.", ","),0 \
         RC_VERSION_STRING=\"$${ACFUNQML_COMPAT_VERSION}\" \

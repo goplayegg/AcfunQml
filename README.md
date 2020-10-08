@@ -1,4 +1,4 @@
-# 声明
+﻿# 声明
 本软件非Acfun官方产品，不做任何商业用途，不涉及破解，仅用于学习交流，开发者不会以任何形式为软件本体收费，也不对此开通任何捐赠渠道。用户数据仅在用户与Acfun之间流通，开发者不会窃取任何数据，不会存储用户A站密码（会加密存储认证token到用户本地PC），他人经开源等渠道使用本代码衍生的任何软件与本人无关，请注意A站账户安全。
 
 # Introduction
@@ -67,7 +67,7 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 
 # Build
 - Download libvlc library (http://ftp.gnome.org/mirror/videolan.org/vlc/last/)
-- Build QmlVlc (https://github.com/baoyuanle/QmlVlc)
+- Build QmlVlc (https://github.com/goplayegg/QmlVlc)
 
 - Windows:
   - unzip if you download zip package, install if you download the execute package.
@@ -116,12 +116,15 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 
 
 ## Package
-QtQuick\Shapes
-Qt5QuickShapes.dll
+msvcp140.dll
+msvcp140_1.dll
+vcruntime140.dll
+//QtQuick\Shapes
+//Qt5QuickShapes.dll
 
 
 ## LICENSE
-> Copyright &copy;  baoyuanle Under the [DBAD LICENSE](LICENSE.md)
+> Copyright &copy;  goplayegg Under the [DBAD LICENSE](LICENSE.md)
 ##
 > The project dependent on some other opensource project , see [LICENSES_third](LICENSE_third.md)
 
