@@ -34,6 +34,10 @@ Rectangle{
         console.log("jsLogin", JSON.stringify(jsLogin))
         loginFinish(js)
     }
+    function logout (){
+        logined = false
+        tabBar.setVisible(3, false)
+    }
 
     Item{
         id:topArea
@@ -92,10 +96,6 @@ Rectangle{
             y: btnCategory.y+btnCategory.height+20
             anchors.horizontalCenter: parent.horizontalCenter
             size: shrinked?40:60
-//            onClicked: {
-//                logined = false
-//                tabBar.setVisible(3, false)
-//            }
         }
         Text{
             id:txUserName

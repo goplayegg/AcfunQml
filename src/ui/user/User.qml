@@ -34,13 +34,13 @@ Rectangle{
                 return
             }
             userInfo = res.profile
+            btnLogout.customChecked = userInfo.isFollowing
             })
         swip.load()
     }
 
     Column {
         id: col
-        //anchors.fill: parent
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: parent.top
@@ -107,23 +107,26 @@ Rectangle{
                 }
                 Button{
                     id: btnLogout
+                    property bool customChecked: false
                     width: parent.width
                     height: 30
-                    text: isSelf?qsTr("Logout"):
-                                  userInfo.isFollowing?qsTr("Followed"):qsTr("Follow")
+                    text: isSelf?qsTr("Logout"):customChecked?qsTr("Followed"):qsTr("Follow")
                     background: Rectangle{
-                        color: (isSelf||userInfo.isFollowing)?AppStyle.backgroundColor:AppStyle.accentColor
+                        color: (btnLogout.customChecked || isSelf)?AppStyle.backgroundColor:AppStyle.accentColor
                         radius: 4
                     }
                     onClicked: {
                         if(isSelf){
-                            //todo logout
+                            Global.logout()
+                            shrinked = true
                             return
                         }else{
-                            userInfo.isFollowing = !userInfo.isFollowing
-                            AcService.follow(userInfo.userId, userInfo.isFollowing, function(res){
-                                if(0 !== res.result)
+                            customChecked = !customChecked
+                            AcService.follow(userInfo.userId, customChecked, function(res){
+                                if(0 !== res.result){
                                     PopMsg.showError(res, mainwindowRoot)
+                                    customChecked = !customChecked
+                                }
                             })
                         }
                     }

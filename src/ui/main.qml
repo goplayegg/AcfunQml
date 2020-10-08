@@ -279,6 +279,9 @@ Window {
                 navi.curIdx = 2
                 articleLoader.item.open(js)
             }
+            function onLogout(){
+                navi.logout()
+            }
         }
 
         BusyIndicatorWithText {

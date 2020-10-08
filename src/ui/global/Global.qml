@@ -62,4 +62,5 @@ Item {
     signal openCircleDetail(var info)
     signal openUser(var js)
     signal openArticle(var js)
+    signal logout()
 }
