@@ -79,6 +79,16 @@ QString CommonTools::cvtToHtml(const QString &source)
     return m_pDoc->toHtml();
 }
 
+QString CommonTools::cvtArticleTitle(const QString &title, const QString &body)
+{
+    QString str;
+    if(title.isEmpty()){
+        return body;
+    }
+    str = QString("<a href=\"article\">%1</a>").arg(title) + "<br/>" + body;
+    return str;
+}
+
 void CommonTools::classBegin()
 {
 

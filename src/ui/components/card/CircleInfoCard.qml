@@ -69,24 +69,29 @@ Rectangle {
             font.pixelSize: AppStyle.font_normal
             font.family: AppStyle.fontNameMain
             textFormat: TextEdit.AutoText
+            hoverEnabled: true
+            ToolTip.visible: height<60?false:hovered
+            ToolTip.text: qsTr("右键打开")
             text: {
                 feedInfo.moment?g_commonTools.cvtToHtml(feedInfo.moment.text):
-                                       feedInfo.articleBody?feedInfo.articleBody:
-                                                                 feedInfo.caption?feedInfo.caption:
-                                                                                       feedInfo.articleTitle
+                                feedInfo.articleTitle?g_commonTools.cvtArticleTitle(feedInfo.articleTitle,feedInfo.articleBody):
+                                                     feedInfo.caption?feedInfo.caption:
+                                                                      feedInfo.articleBody
             }
             onLinkActivated: {
                 console.log("open circle link:"+link)
                 if(-1 !== link.indexOf("http")){
                     var idx = link.lastIndexOf(".")
                     PopImage.open(link, link.substring(idx+1))
-                }else{
-
+                }else if("article" === link){
+                    Global.openArticle(feedInfo.resourceId)
                 }
             }
             onPressed: {
-                if(event.button === 2)//right click
+                if(event.button === 2){//right click
                     console.log("onPressed:")
+                    openDetail()
+                }
             }
         }
 
@@ -109,18 +114,7 @@ Rectangle {
                 icon: "qrc:/assets/img/common/cmt0.png"
                 iconChecked: "qrc:/assets/img/common/cmt1.png"
                 onClicked: {
-                    console.log("btnComment click, resourceType:"+feedInfo.resourceType)
-                    switch(feedInfo.resourceType){
-                    case 10:
-                        Global.openCircleDetail(feedInfo)
-                        break;
-                    case 2:
-                        feedInfo.detail.contentId = feedInfo.detail.dougaId
-                        feedInfo.detail.contentType = 2
-                        feedInfo.detail.vid = feedInfo.detail.videoList[0].id
-                        Global.openVideo(feedInfo.detail)
-                        break;
-                    }
+                    openDetail()
                 }
             }
             RoundBtnWithText {//投蕉
@@ -183,5 +177,25 @@ Rectangle {
     function stop() {
         if(ldMedia.item)
             ldMedia.item.stop()
+    }
+
+    function openDetail(){
+        console.log("openDetail, resourceType:"+feedInfo.resourceType)
+        switch(feedInfo.resourceType){
+        case 10:
+        case 3:
+            Global.openCircleDetail(feedInfo)
+            break;
+        case 2:
+            if(undefined === feedInfo.detail.videoList){
+                Global.openVideo({contentId: feedInfo.resourceId})
+            }else{
+                feedInfo.detail.contentId = feedInfo.detail.dougaId
+                feedInfo.detail.contentType = 2
+                feedInfo.detail.vid = feedInfo.detail.videoList[0].id
+                Global.openVideo(feedInfo.detail)
+            }
+            break;
+        }
     }
 }

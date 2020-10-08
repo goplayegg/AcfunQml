@@ -3,6 +3,7 @@
 
 # Introduction
 AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build on Qt 5 & Qt Quick 2.x (Qml) & QmlVlc (based on libvlc).
+[软件介绍页AC18470014](https://www.acfun.cn/a/ac18470014)
 
 # Features
 - Login Acfun and show basic user infomation
@@ -17,7 +18,7 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
   - fill App
   - full Screen
   - mini window
-  - resolution change (TODO)
+  - resolution change
 - Danmaku
   - fly
   - top
@@ -31,7 +32,7 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 - Banana
 - Favorite
 	- add favorite
-	- remote favorite
+	- remove favorite
 	- favorite list (TODO)
 - Like
 	- Like count
@@ -39,12 +40,14 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 - Comment
   - show comment 
   - send comment
-  - ac emotion
+  - ac emotion (Improving)
 - Index Page Video List (TODO)
-- Video Search (TODO)
-- Home page (TODO)
-- Circle page (TODO)
-- Article page (TODO)
+- Video/User Search
+- Home page (个人信息页)
+- User Notification (消息TODO)
+- Circle page (动态)
+- Article page (文章)
+- Event (活动)
 - Setting
   - Hard decode (with problems)
   - Language change
@@ -61,13 +64,12 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 ![shot](./screenshots/banana.gif)
 
 # Requirements
-- Qt 5.12.0 or later
-- Qt Quick 2.0 or later
+- Qt 5.12.0 or later (I am using 5.15 now)
 - Libvlc 3.0 or later
 
 # Build
 - Download libvlc library (http://ftp.gnome.org/mirror/videolan.org/vlc/last/)
-- Build QmlVlc (https://github.com/goplayegg/QmlVlc)
+- Build QmlVlc with qmake (https://github.com/goplayegg/QmlVlc)
 
 - Windows:
   - unzip if you download zip package, install if you download the execute package.
@@ -116,11 +118,11 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 
 
 ## Package
-msvcp140.dll
-msvcp140_1.dll
-vcruntime140.dll
-//QtQuick\Shapes
-//Qt5QuickShapes.dll
+- msvcp140.dll
+- msvcp140_1.dll
+- vcruntime140.dll
+- //QtQuick\Shapes
+- //Qt5QuickShapes.dll
 
 
 ## LICENSE
@@ -145,4 +147,10 @@ vcruntime140.dll
 
 > zhengtianzuo(https://github.com/zhengtianzuo)
 
-> 软件交互视觉很大程度上参考[云之幻](https://github.com/Richasy)的[UWP应用哔哩](https://www.microsoft.com/store/apps/9MVN4NSLT150)。
+> 云之幻(https://github.com/Richasy/BiliBili-UWP)
+
+> 啦啦追不上(https://github.com/niuchaobo/acfun-helper)
+
+> Sokwva(https://github.com/Sokwva)
+
+> ......
