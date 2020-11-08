@@ -68,7 +68,7 @@ Item{
                     id: btnGitHub
                     color: AppStyle.accentColor
                     icon.name: AppIcons.mdi_github_circle
-                    text: "蚂蚁会飞乐"
+                    text: "GoPlayEgg"
                     tip: "https://github.com/goplayegg/AcfunQml"
                     onClicked: Qt.openUrlExternally(tip)
                 }

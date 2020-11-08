@@ -9,11 +9,16 @@ Item {
     property string token: ""
     property string acSecurity: ""
     property string midground_st: ""
-    readonly property string c_appVersion: "6.26.0.966"//"6.24.1.958"
-    readonly property string c_userAgent: "acvideo core/6.26.0.966(OPPO;OPPO A83;7.1.1)"
+    property string udid: ""
+    readonly property string c_appVersion: "6.31.1.1026"//"6.26.0.966"//"6.24.1.958"
+    readonly property string c_userAgent: "acvideo core/6.31.1.1026(OPPO;OPPO A83;7.1.1)"
     property string c_mkey: "AAHewK3eIAAyMjA2MDMyMjQAAhAAMEP1uwSG3TvhYAAAAO5fOOpIdKsH2h4IGsF6BlVwnGQA6_eLEvGiajzUp4_YthxOPC-hxcOpTk0SPSrxyhbdkmIwsXnF9PgS5ly8eQyjuXlcS7VpWG0QlK0HakVDamteMHNHIui0A8V4tmELqQ%3D%3D"
     property string c_mkeyMainPage: "AAHewK3eIAAyMTkwNTExNzYAAhAAMEP1uwSZbohCYAAAAJlXIdNAMQR5fM2F-KEOYN5wnGQA6_eLEvGiajzUp4_YnU8EjTm7gzNYhBv59oCCDhbdkmIwsXnF9PgS5ly8eQyjuXlcS7VpWG0QlK0HakVDamteMHNHIui0A8V4tmELqQ%3D%3D"
     signal httpError(var errMsg);
+
+    Component.onCompleted: {
+        udid = FUN.guid();//TODO按设备固定一下
+    }
 
     function login(user, psw, cb) {
         var body = "username="+user +"&password="+psw;
@@ -310,24 +315,47 @@ Item {
         request('GET', url, qParam, null, cb);
     }
 
+    //通知数量
+    function clock(cb){
+        var url = "api-new.app.acfun.cn/rest/app/clock/r";
+        var qParam = [  {"access_token": token}];
+        request('GET', url, qParam, null, cb);
+    }
+
+    //通知内容，type：  1-站内公告 2-回复 3-赞 4-艾特 5-收藏+投蕉 8-礼物 9-系统通知     pCursor首次为1
+    function notify(type, pCursor, cb){
+        var url = "api-new.app.acfun.cn/rest/app/notify/load";
+        var qParam = [  {"type": type},
+                        {"pCursor": pCursor},
+                        {"appMode":"0"}];
+        request('GET', url, qParam, null, cb);
+    }
+
     //private
     function addHeader(hreq, endpoint){
         hreq.setRequestHeader("User-agent", c_userAgent);
         if("api-new.app.acfun.cn/rest/app/feed/profile"     !== endpoint){
             hreq.setRequestHeader("acPlatform","ANDROID_PHONE");
         }
+        hreq.setRequestHeader("random", FUN.guid());//可以不加
         hreq.setRequestHeader("deviceType","1");
         hreq.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
         hreq.setRequestHeader("net","WIFI");
         hreq.setRequestHeader("productId","2000");
-        hreq.setRequestHeader("udid","be0088b8-1ae1-341d-b31e-bed8e78e2325");
+        hreq.setRequestHeader("udid",udid);//"be0088b8-1ae1-341d-b31e-bed8e78e2325"
         hreq.setRequestHeader("resolution","1080x1920");
         hreq.setRequestHeader("market","tencent");
+        var dateNow=new Date();
+        var strNow = FUN.fmtTime(dateNow, "yyyy-MM-dd hh:mm:ss.000")
+        hreq.setRequestHeader("requestTime", strNow);
+
         if(endpoint.indexOf("apipc.app.acfun.cn/v3/regions") !== -1 ||
                 "api-new.acfunchina.com/rest/app/comment/list" === endpoint ||
                 "api-new.acfunchina.com/rest/app/selection/feed" === endpoint ||
-                "api-new.acfunchina.com/rest/app/feed/followFeedV2" === endpoint)
+                "api-new.acfunchina.com/rest/app/feed/followFeedV2" === endpoint ||
+                "api-new.app.acfun.cn/rest/app/notify/load" === endpoint)
             hreq.setRequestHeader("appVersion", c_appVersion);
+
         if("" !== cookie){
             hreq.setRequestHeader("Cookie", cookie);
         }
@@ -359,9 +387,10 @@ Item {
         if(0 !== res.result)
             return
         cookie = "";
-        cookie +="did=be0088b8-1ae1-341d-b31e-bed8e78e2325;safety_id=AAFAsQ04RM6Acm0WUcbfyJ5Q";
+        cookie +="did="+udid;
+        cookie +=";safety_id=AAFAsQ04RM6Acm0WUcbfyJ5Q";
         cookie +=";acPasstoken="+ res.acPassToken;
-        cookie +=";acSecurity="+ res.acSecurity;
+        cookie +=";acSecurity="+ res.acSecurity;//这个字段看抓包没有，以前为啥加这个？
         cookie +=";auth_key="+ res.auth_key;
         cookie +=";old_token="+ res.token;
         cookie +=";userId="+ res.userid;

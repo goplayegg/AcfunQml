@@ -13,6 +13,7 @@ public:
     explicit CommonTools(QObject *parent = 0);
     Q_INVOKABLE QString cvtToHtml(const QString &source);
     Q_INVOKABLE QString cvtArticleTitle(const QString &title, const QString &body);
+    Q_INVOKABLE QString token(const QString &unixTime);//wrong methed
 
 signals:
     // QQmlParserStatus interface

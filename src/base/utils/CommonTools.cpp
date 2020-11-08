@@ -89,6 +89,21 @@ QString CommonTools::cvtArticleTitle(const QString &title, const QString &body)
     return str;
 }
 
+QString CommonTools::token(const QString &unixTime)
+{
+    auto strTime = unixTime;//+"123";
+    qDebug()<<"test strTime:"<<strTime;
+    QByteArray ba;
+    ba.append((char)8);
+    ba.append((char)1);
+    ba.append((char)18);
+    ba.append((char)13);
+    ba.append(strTime);
+    qDebug()<<"test QByteArray:"<<ba.toStdString().c_str();
+    auto base64 = ba.toBase64();
+    return base64;
+}
+
 void CommonTools::classBegin()
 {
 

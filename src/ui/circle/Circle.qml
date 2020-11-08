@@ -39,20 +39,18 @@ Item{
                 }
             }
 
-            Flow {
-                id: flow
+            Waterfall {
+                id: waterfall
                 anchors.left: parent.left
                 anchors.right: parent.right
-                spacing: 8
+                cardWidth: 300
+                manuallyReLayout: true
 
-                Repeater {
-                    id: repCard
-                    model: ListModel {
-                        id: feedModel
-                    }
-                    CircleInfoCard {
-                        feedInfo: model.info
-                    }
+                model: ListModel {
+                    id: feedModel
+                }
+                delegate: CircleInfoCard {
+                    feedInfo: model.info
                 }
             }
         }
@@ -73,7 +71,7 @@ Item{
     }
 
     function refresh(){
-        feedModel.clear()
+        waterfall.clear()
         pcursor = ""
         getFeed()
     }
@@ -104,6 +102,15 @@ Item{
                 feedModel.append({info: res.feedList[idx]})
             }
             busyBox.running = false
+            timerLayout.restart()
+        }
+    }
+
+    Timer {
+        id: timerLayout
+        interval: 100//TODO时间做成可配置
+        onTriggered: {
+            waterfall.reLayout(waterfall.layoutedMaxIdx+1)
         }
     }
 }

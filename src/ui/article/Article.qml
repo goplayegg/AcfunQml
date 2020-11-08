@@ -1,4 +1,5 @@
-﻿import QtQuick 2.12
+﻿//TODO: 上滑看评论时把把标题收起来到顶部
+import QtQuick 2.12
 import QtQuick.Controls 2.12
 import "qrc:///ui/components/"
 import "qrc:///ui/components/btn/"
