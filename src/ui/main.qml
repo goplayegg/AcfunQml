@@ -57,12 +57,13 @@ Window {
     }
 
     property var stackViewLoader: [null, acMainLoader, articleLoader,
-        circleLoader, topRankLoader, operationLoader, null, settingLoader, aboutLoader]
+        circleLoader, topRankLoader, msgLoader, operationLoader, null, settingLoader, aboutLoader]
     property var stackViewSource: ["spliter",
         "qrc:/ui/mainPage/AcMainPage.qml",
         "qrc:/ui/article/Article.qml",
         "qrc:/ui/circle/Circle.qml",
         "qrc:/ui/topRank/TopRank.qml",
+        "qrc:/ui/msg/MyMsg.qml",
         "qrc:/ui/other/Operation.qml",
         "spliter",
         "qrc:/ui/other/Setting.qml",
@@ -195,6 +196,13 @@ Window {
             id: topRankLoader
             onLoaded: {
                 console.log("topRankLoader Loaded")
+            }
+        }
+
+        Loader{
+            id: msgLoader
+            onLoaded: {
+                console.log("msgLoader Loaded")
             }
         }
 

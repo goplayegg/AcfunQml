@@ -22,7 +22,7 @@ Item{
             AcService.getRankChannelList(function(res){
                 if(res.result !== 0){
                     busyBox.running = false
-                    PopMsg.showError(js, mainwindowRoot)
+                    PopMsg.showError(res, mainwindowRoot)
                     return
                 }
                 rankChannels = res.channels
@@ -50,7 +50,7 @@ Item{
         AcService.getRank(cid, cmbPeriod.crtPeriod, function(res){
             if(res.result !== 0){
                 busyBox.running = false
-                PopMsg.showError(js, mainwindowRoot)
+                PopMsg.showError(res, mainwindowRoot)
                 return
             }
             updateInfo(res)
@@ -61,7 +61,7 @@ Item{
         AcService.getYoungStar(cmbPeriod.crtPeriod, function(res){
             if(res.result !== 0){
                 busyBox.running = false
-                PopMsg.showError(js, mainwindowRoot)
+                PopMsg.showError(res, mainwindowRoot)
                 return
             }
             updateInfo(res)
@@ -72,7 +72,7 @@ Item{
         AcService.getFastRise(function(res){
             if(res.result !== 0){
                 busyBox.running = false
-                PopMsg.showError(js, mainwindowRoot)
+                PopMsg.showError(res, mainwindowRoot)
                 return
             }
             updateInfo(res)
@@ -83,7 +83,7 @@ Item{
         AcService.getBananaRank(cmbPeriod.crtPeriod, function(res){
             if(res.result !== 0){
                 busyBox.running = false
-                PopMsg.showError(js, mainwindowRoot)
+                PopMsg.showError(res, mainwindowRoot)
                 return
             }
             updateInfo(res)

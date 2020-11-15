@@ -323,7 +323,7 @@ Item {
     }
 
     //通知内容，type：  1-站内公告 2-回复 3-赞 4-艾特 5-收藏+投蕉 8-礼物 9-系统通知     pCursor首次为1
-    function notify(type, pCursor, cb){
+    function getNotify(type, pCursor, cb){
         var url = "api-new.app.acfun.cn/rest/app/notify/load";
         var qParam = [  {"type": type},
                         {"pCursor": pCursor},

@@ -13,6 +13,7 @@ singleton PopImage 1.0 PopImage.qml
 RectBackLabel 1.0 RectBackLabel.qml
 RoundImage 1.0 RoundImage.qml
 RoundMouseArea 1.0 RoundMouseArea.qml
+ScrollUpdateView 1.0 ScrollUpdateView.qml
 SearchToolBar 1.0 SearchToolBar.qml
 TabBarAc 1.0 TabBarAc.qml
 TitleBar 1.0 TitleBar.qml

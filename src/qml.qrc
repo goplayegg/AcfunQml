@@ -88,5 +88,8 @@
         <file>ui/components/card/ArticleCard.qml</file>
         <file>ui/msg/MyMsg.qml</file>
         <file>ui/components/Waterfall.qml</file>
+        <file>ui/components/ScrollUpdateView.qml</file>
+        <file>ui/msg/CommentMsgList.qml</file>
+        <file>ui/msg/CommentMsgCard.qml</file>
     </qresource>
 </RCC>
