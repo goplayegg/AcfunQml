@@ -5,6 +5,7 @@ import "qrc:///ui/global/styles"
 Button {
     property string tip: ""
     property color color: "#fff"
+    property bool noBorder: false
     id: control
     height: 40
     width: 46
@@ -26,6 +27,7 @@ Button {
         }
 
     background: Rectangle {
+        visible: !control.noBorder
         color: "transparent"
         radius: 5
         border.color: AppStyle.secondForeColor

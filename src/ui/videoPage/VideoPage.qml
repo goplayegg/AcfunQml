@@ -14,6 +14,11 @@ Item{
     function open(js){
         if(undefined === js.vid){
             AcService.getVideoByAc(js.contentId, function(res){
+                    if(0 !== res.result){
+                        busyBox.running = false
+                        PopMsg.showError(res, mainwindowRoot)
+                        return
+                    }
                     res.contentId = res.dougaId
                     res.contentType = 2
                     res.vid = res.videoList[0].id

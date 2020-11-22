@@ -13,6 +13,7 @@ Column {
     property alias replyTo: cmtPaser.replyToId
     property alias replyToName: cmtPaser.replyToName
     property alias contentText: cmtPaser.acFormatTxt
+    property alias textColor: cmtText.color
 
     TextArea {
         id: cmtText
@@ -23,6 +24,7 @@ Column {
         readOnly: true
         focus: true
         wrapMode: TextArea.Wrap
+        color: AppStyle.foregroundColor
         font.pixelSize: AppStyle.font_xlarge
         font.family: AppStyle.fontNameMain
         font.weight: Font.Medium

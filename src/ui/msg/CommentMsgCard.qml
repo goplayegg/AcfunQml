@@ -2,6 +2,7 @@
 import QtQuick.Controls 2.12
 import "qrc:///ui/components/"
 import "qrc:///ui/components/btn/"
+import "qrc:///ui/components/comment"
 import "qrc:///ui/global/styles/"
 import "qrc:///ui/global/"
 
@@ -56,23 +57,29 @@ Rectangle {
             }
         }
 
-        TextArea {
+        CommentText {
+            id: cmtArea
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.leftMargin: 4
-            selectByMouse: true
-            readOnly: true
-            wrapMode: Text.WordWrap
-            font.weight: Font.Bold
-            font.pixelSize: AppStyle.font_normal
-            font.family: AppStyle.fontNameMain
-            textFormat: TextEdit.AutoText
-            text: msgInfo.commentContent
-            onLinkActivated: {
-                console.log("open circle link:"+link)
-            }
-            onPressed: {
-                openDetail()
+            contentText: msgInfo.commentContent
+        }
+
+        Rectangle {
+            id: rectRepliedBk
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: cmtReplied.height
+            color: "transparent"
+            border.color: AppStyle.thirdBkgroundColor
+            border.width: 1
+            CommentText {
+                id: cmtReplied
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.leftMargin: 4
+                textColor: AppStyle.thirdForeColor
+                contentText: msgInfo.replyCommentContent?msgInfo.replyCommentContent:msgInfo.resourceTitle
             }
         }
 
@@ -81,13 +88,12 @@ Rectangle {
             spacing: 8
             anchors.left: parent.left
             anchors.right: parent.right
-            RoundBtnWithText {//评论
-                id: btnComment
-                //text: msgInfo.commentCount
+            RoundBtnWithText {//回复
+                id: btnReply
                 icon: "qrc:/assets/img/common/cmt0.png"
                 iconChecked: "qrc:/assets/img/common/cmt1.png"
                 onClicked: {
-                    openDetail()
+                    console.log("commentId:"+msgInfo.commentId)
                 }
             }
             RoundBtnWithText {
@@ -98,10 +104,27 @@ Rectangle {
                 icon: "qrc:/assets/img/common/like0.png"
                 iconChecked: "qrc:/assets/img/common/like1.png"
             }
+            IconBtn {
+                id: btnDetail
+                height: 40
+                width: 40
+                noBorder: true
+                text: AppIcons.mdi_arrow_expand
+                color: hovered?AppStyle.primaryColor:AppStyle.foregroundColor
+                tip: qsTr("Open artic or video")
+                onClicked: {
+                    console.log("resource:"+msgInfo.resourceId+" type:"+msgInfo.resourceType)
+                    switch(msgInfo.resourceType){
+                    case 3:
+                        Global.openArticle(msgInfo.resourceId)
+                        break;
+                    case 2:
+                        Global.openVideo({contentId: msgInfo.resourceId})
+                        break;
+                    }
+                }
+            }
         }
-    }
-
-    Component.onCompleted: {
     }
 
 }

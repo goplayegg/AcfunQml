@@ -112,7 +112,7 @@ Item{
             jsCurVideo.stowCount = jsCurVideo.visit.stows
             jsCurVideo.userJson = JSON.stringify(jsCurVideo.user)
             videoModel.append(jsCurVideo)
-            console.log("rank append:"+ jsCurVideo.title)
+            console.log("video append:"+ jsCurVideo.title)
         }
     }
     ListModel {

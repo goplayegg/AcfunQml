@@ -1,4 +1,5 @@
-﻿import QtQuick 2.12
+﻿//目前废弃这个实现方式
+import QtQuick 2.12
 import QtQuick.Controls 2.12
 import "qrc:///ui/global/styles/"
 import AcfunQml 1.0

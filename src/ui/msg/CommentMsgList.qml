@@ -60,7 +60,7 @@ ScrollUpdateView {
         var cnt = msg.notifies.length
         for(var i=0;i<cnt;++i){
             msgModel.append({msg:msg.notifies[i]})
-            console.log("rank append:"+ msg.notifies[i].commentContent)
+            console.log("comment append:"+ msg.notifies[i].commentContent)
         }
         Qt.callLater(relayout)
         loading = false
