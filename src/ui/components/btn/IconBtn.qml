@@ -6,6 +6,7 @@ Button {
     property string tip: ""
     property color color: "#fff"
     property bool noBorder: false
+    property int iconFontSize: 20
     id: control
     height: 40
     width: 46
@@ -19,7 +20,7 @@ Button {
         Text {
             text: control.text
             font.family: AppIcons.family
-            font.pixelSize: 20
+            font.pixelSize: iconFontSize
             color: control.color
             font.weight: Font.Light
             horizontalAlignment: Text.AlignHCenter

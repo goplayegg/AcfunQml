@@ -14,6 +14,7 @@ Rectangle {
     implicitHeight: col.implicitHeight+2*cardMargin
     color: AppStyle.secondBkgroundColor
 
+    signal reply(var msgInfo)
     Column {
         id: col
         anchors.left: parent.left
@@ -93,7 +94,8 @@ Rectangle {
                 icon: "qrc:/assets/img/common/cmt0.png"
                 iconChecked: "qrc:/assets/img/common/cmt1.png"
                 onClicked: {
-                    console.log("commentId:"+msgInfo.commentId)
+                    console.log("reply to commentId:"+msgInfo.commentId)
+                    reply(msgInfo)
                 }
             }
             RoundBtnWithText {
@@ -108,10 +110,11 @@ Rectangle {
                 id: btnDetail
                 height: 40
                 width: 40
+                iconFontSize: 30
                 noBorder: true
-                text: AppIcons.mdi_arrow_expand
+                text: msgInfo.resourceType === 3?AppIcons.mdi_book_open_outline:AppIcons.mdi_play_circle_outline
                 color: hovered?AppStyle.primaryColor:AppStyle.foregroundColor
-                tip: qsTr("Open artic or video")
+                tip: msgInfo.resourceType === 3?qsTr("Open article"):qsTr("Open video")
                 onClicked: {
                     console.log("resource:"+msgInfo.resourceId+" type:"+msgInfo.resourceType)
                     switch(msgInfo.resourceType){

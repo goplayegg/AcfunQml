@@ -220,6 +220,7 @@ Item {
         request('GET', url, qParam, null, cb);
     }
 
+    // sourceType:  1-文章评论 3-视频评论  4-动态的评论
     function sendComment(sourceId, sourceType, cmt, replyToCommentId, cb) {
         var url = "api-new.app.acfun.cn/rest/app/comment/add";
         var cmtJson = {

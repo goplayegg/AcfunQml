@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import "qrc:///ui/components/"
+import "qrc:///ui/components/comment"
 import "qrc:///ui/global/"
 
 ScrollUpdateView {
@@ -18,12 +19,33 @@ ScrollUpdateView {
         }
         delegate: CommentMsgCard{
             msgInfo: model.msg
+            onReply: {
+                if(!ldEditor.active){
+                    ldEditor.active = true
+                }
+                ldEditor.item.acId = msgInfo.resourceId
+                ldEditor.item.resourceType = Global.resourceType2sourceType(msgInfo.resourceType)
+                ldEditor.item.replyToId = msgInfo.commentId
+                ldEditor.item.replyToName = msgInfo.userName
+            }
         }
     }
 
     onUpdate: {
         refreshMsg()
     }
+
+    Loader {
+        id: ldEditor
+        active: false
+        sourceComponent: CommentEditor {
+            parent: waterfall
+            anchors.left: parent.left
+            anchors.right: parent.right
+            replySubCmt: true
+        }
+    }
+
 
     function load(refresh){
         if(refresh){

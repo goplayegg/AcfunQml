@@ -58,6 +58,17 @@ Item {
         readJobObject.start();
     }
 
+    function resourceType2sourceType(type){
+        switch(type){
+        case 10://动态
+            return 4;
+        case 2://视频
+            return 3;
+        case 3://文章
+            return 1;
+        }
+    }
+
     signal openVideo(var js)
     signal openCircleDetail(var info)
     signal openUser(var js)
