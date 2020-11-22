@@ -3,6 +3,7 @@ import QtQuick.Controls 2.12
 import "qrc:///ui/components/"
 import "qrc:///ui/components/comment"
 import "qrc:///ui/global/"
+import "qrc:///ui/global/styles"
 
 ScrollUpdateView {
     id: control
@@ -18,32 +19,51 @@ ScrollUpdateView {
             id: msgModel
         }
         delegate: CommentMsgCard{
+            id: msgCard
             msgInfo: model.msg
             onReply: {
                 if(!ldEditor.active){
                     ldEditor.active = true
                 }
-                ldEditor.item.acId = msgInfo.resourceId
-                ldEditor.item.resourceType = Global.resourceType2sourceType(msgInfo.resourceType)
-                ldEditor.item.replyToId = msgInfo.commentId
-                ldEditor.item.replyToName = msgInfo.userName
+                ldEditor.item.y = msgCard.y+msgCard.height
+                ldEditor.item.replyTo(msgInfo)
+            }
+        }
+
+        Loader {
+            id: ldEditor
+            active: false
+            sourceComponent: Popup {
+                padding: 0
+                focus: true
+                parent: waterfall
+                width: parent.width
+                height: editor.height
+                background: Rectangle{
+                    color: AppStyle.backgroundColor
+                    border.color: AppStyle.thirdBkgroundColor
+                    border.width: 1
+                }
+                CommentEditor {
+                    id: editor
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    replySubCmt: true
+                }
+                function replyTo(msgInfo){
+                    editor.acId = msgInfo.resourceId
+                    editor.resourceType = Global.resourceType2sourceType(msgInfo.resourceType)
+                    editor.replyToId = msgInfo.commentId
+                    editor.replyToName = msgInfo.userName
+                    editor.focusInEdit()
+                    open()
+                }
             }
         }
     }
 
     onUpdate: {
         refreshMsg()
-    }
-
-    Loader {
-        id: ldEditor
-        active: false
-        sourceComponent: CommentEditor {
-            parent: waterfall
-            anchors.left: parent.left
-            anchors.right: parent.right
-            replySubCmt: true
-        }
     }
 
 

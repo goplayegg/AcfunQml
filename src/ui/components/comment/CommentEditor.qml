@@ -36,6 +36,9 @@ Rectangle {
     function clear(){
         cmtText.text = ""
     }
+    function focusInEdit(){
+        cmtText.focus = true//外侧的窗口(Popup)也必须设置focus true 否则不生效
+    }
 
     MouseArea {
         anchors.fill: parent
