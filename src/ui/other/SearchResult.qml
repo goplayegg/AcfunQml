@@ -39,7 +39,7 @@ Item{
         console.log("search result num:"+cnt)
         for(var i=0;i<cnt;++i){
             var type = js.itemList[i].itemType
-            if(type >2)
+            if(type >3)
                 continue
             resultModel.append({"info":js.itemList[i],
                                 "type":type})
@@ -93,6 +93,12 @@ Item{
                     userJson: model.info
                 }
             }
+            Component {
+                id: cmpArticle
+                ArticleCardSquare {
+                    articleJson: model.info
+                }
+            }
             Loader {
                 id: barLoader
                 sourceComponent: {
@@ -100,6 +106,8 @@ Item{
                         return cmpUser;
                     if(model.type === 2)//video
                         return cmpVideo;
+                    if(model.type === 3)//article
+                        return cmpArticle;
                     return cmpUser;
                 }
             }

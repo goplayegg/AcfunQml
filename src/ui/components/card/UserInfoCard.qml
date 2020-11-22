@@ -7,7 +7,7 @@ import "qrc:///ui/global/"
 
 Item {
     property var userJson: undefined
-    id: itemAvatar
+    id: control
     width: 190
     height: 190
 
