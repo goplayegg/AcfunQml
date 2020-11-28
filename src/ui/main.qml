@@ -250,10 +250,13 @@ Window {
             id: circleDetailLoader
             asynchronous: true
             source: "qrc:/ui/circle/CircleDetail.qml"
-            function openPage(info){
+            function openPage(info, byId){
                 console.log("open circle detail..")
                 stack.push(circleDetailLoader)
-                circleDetailLoader.item.open(info)
+                if(byId)
+                    circleDetailLoader.item.openById(info)
+                else
+                    circleDetailLoader.item.open(info)
             }
         }
 
@@ -274,8 +277,8 @@ Window {
 
         Connections {
             target: Global
-            function onOpenCircleDetail(info) {
-                circleDetailLoader.openPage(info)
+            function onOpenCircleDetail(info, byId) {
+                circleDetailLoader.openPage(info, byId)
             }
             function onOpenVideo(js) {
                 videoLoader.openVideo(js)

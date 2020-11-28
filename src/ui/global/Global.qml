@@ -70,7 +70,7 @@ Item {
     }
 
     signal openVideo(var js)
-    signal openCircleDetail(var info)
+    signal openCircleDetail(var info, var byId)
     signal openUser(var js)
     signal openArticle(var js)
     signal logout()

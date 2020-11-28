@@ -77,7 +77,7 @@ Item {
 
     Connections {
         target: Global
-        function onOpenCircleDetail(info) {
+        function onOpenCircleDetail(info, byId) {
             stop()
         }
         function onOpenVideo(js) {

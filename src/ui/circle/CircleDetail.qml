@@ -65,4 +65,28 @@ Item{
         comment.open({"contentId": info.resourceId, "cmtType": 4})
         busyBox.running = false
     }
+
+    function openById(mid){
+        AcService.getMomentDetail(mid, function(res){
+            if(0 !== res.result){
+                PopMsg.showError(res, mainwindowRoot)
+                return
+            }
+            card.repost = false
+            card.feedInfo = {
+                resourceType: 10,
+                resourceId: mid,
+                userInfo: res.moment.user,
+                moment: res.moment,
+                likeCount: res.moment.likeCount,
+                isLike: res.moment.isLike,
+                bananaCount: res.moment.bananaCount,
+                isThrowBanana: res.moment.isThrowBanana,
+                commentCount: res.moment.commentCount,
+                time: res.moment.createTime
+            }
+            card.loadMedia()
+        })
+        comment.open({"contentId": mid, "cmtType": 4})
+    }
 }

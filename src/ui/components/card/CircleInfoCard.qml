@@ -69,7 +69,7 @@ Rectangle {
             font.pixelSize: AppStyle.font_normal
             font.family: AppStyle.fontNameMain
             textFormat: TextEdit.AutoText
-            hoverEnabled: true
+            hoverEnabled: !inDetail
             ToolTip.visible: height<60?false:hovered
             ToolTip.text: qsTr("右键打开")
             text: {
@@ -184,7 +184,7 @@ Rectangle {
         switch(feedInfo.resourceType){
         case 10:
         case 3:
-            Global.openCircleDetail(feedInfo)
+            Global.openCircleDetail(feedInfo, false)
             break;
         case 2:
             if(undefined === feedInfo.detail.videoList){

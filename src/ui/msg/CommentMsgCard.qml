@@ -112,9 +112,13 @@ Rectangle {
                 width: 40
                 iconFontSize: 30
                 noBorder: true
-                text: msgInfo.resourceType === 3?AppIcons.mdi_book_open_outline:AppIcons.mdi_play_circle_outline
+                text: msgInfo.resourceType === 3?AppIcons.mdi_book_open_outline
+                                                :msgInfo.resourceType === 2?AppIcons.mdi_play_circle_outline
+                                                                            :AppIcons.mdi_crosshairs
                 color: hovered?AppStyle.primaryColor:AppStyle.foregroundColor
-                tip: msgInfo.resourceType === 3?qsTr("Open article"):qsTr("Open video")
+                tip: msgInfo.resourceType === 3?qsTr("Open article")
+                                               :msgInfo.resourceType === 2?qsTr("Open video")
+                                                                          :qsTr("Open")
                 onClicked: {
                     console.log("resource:"+msgInfo.resourceId+" type:"+msgInfo.resourceType)
                     switch(msgInfo.resourceType){
@@ -123,6 +127,9 @@ Rectangle {
                         break;
                     case 2:
                         Global.openVideo({contentId: msgInfo.resourceId})
+                        break;
+                    case 10:
+                        Global.openCircleDetail(msgInfo.resourceId, true)
                         break;
                     }
                 }

@@ -153,6 +153,13 @@ Item {
         request('GET', url, qParam, null, cb);
     }
 
+    //动态详情
+    function getMomentDetail(mid, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/moment/detail";
+        var qParam = [{"momentId": mid}];
+        request('GET', url, qParam, null, cb);
+    }
+
     function getChannelVideo(channel, size, cb) {
         var url = "apipc.app.acfun.cn/v3/regions";
         var qParam = [  {"channelId": channel},
