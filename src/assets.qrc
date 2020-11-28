@@ -782,5 +782,8 @@
         <file>assets/img/emot/5xs76uvgppj85k4.png</file>
         <file>assets/img/leftNav/a3d.png</file>
         <file>assets/img/leftNav/a3f.png</file>
+        <file>assets/img/common/gift.png</file>
+        <file>assets/img/common/goldBanana.png</file>
+        <file>assets/img/common/peach.png</file>
     </qresource>
 </RCC>

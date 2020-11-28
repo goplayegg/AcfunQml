@@ -79,8 +79,9 @@ Item{
             Loader {
                 id: ldGift
                 active: false
-                sourceComponent: CommentMsgList {
+                sourceComponent: GiftMsgList {
                     anchors.fill: parent
+                    autoUpdate: parent.SwipeView.isCurrentItem
                 }
             }
         }

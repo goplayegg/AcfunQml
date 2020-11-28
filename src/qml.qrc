@@ -94,5 +94,7 @@
         <file>ui/components/card/ArticleCardSquare.qml</file>
         <file>ui/msg/LikeMsgList.qml</file>
         <file>ui/msg/LikeMsgCard.qml</file>
+        <file>ui/msg/GiftMsgCard.qml</file>
+        <file>ui/msg/GiftMsgList.qml</file>
     </qresource>
 </RCC>
