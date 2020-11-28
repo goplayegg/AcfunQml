@@ -63,9 +63,14 @@ ScrollUpdateView {
     }
 
     onUpdate: {
+        console.log("refresh comment Msg  ccccccccccccccccc:")
         refreshMsg()
     }
 
+    onAutoUpdateChanged: {
+        if(!autoUpdate)
+            waterfall.clear()
+    }
 
     function load(refresh){
         if(refresh){

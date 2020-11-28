@@ -92,5 +92,7 @@
         <file>ui/msg/CommentMsgList.qml</file>
         <file>ui/msg/CommentMsgCard.qml</file>
         <file>ui/components/card/ArticleCardSquare.qml</file>
+        <file>ui/msg/LikeMsgList.qml</file>
+        <file>ui/msg/LikeMsgCard.qml</file>
     </qresource>
 </RCC>

@@ -43,13 +43,14 @@ Item{
                 lders[currentIndex].active = true
                 lders[currentIndex].item.load(refresh)
             }
-            onCurrentIndexChanged: load(false)
+            onCurrentIndexChanged: load(true)
 
             Loader {
                 id: ldMsg
                 active: false
                 sourceComponent: CommentMsgList {
                     anchors.fill: parent
+                    autoUpdate: parent.SwipeView.isCurrentItem
                 }
             }
 
@@ -63,8 +64,9 @@ Item{
             Loader {
                 id: ldLike
                 active: false
-                sourceComponent: CommentMsgList {
+                sourceComponent: LikeMsgList {
                     anchors.fill: parent
+                    autoUpdate: parent.SwipeView.isCurrentItem
                 }
             }
             Loader {
