@@ -22,7 +22,7 @@ Item{
             anchors.right: parent.right
             currentIndex: swip.currentIndex
             Component.onCompleted: {
-                model.append({"name":qsTr("消息"), "value":0})
+                //model.append({"name":qsTr("消息"), "value":0})
                 model.append({"name":qsTr("评论"), "value":1})
                 model.append({"name":qsTr("点赞"), "value":2})
                 model.append({"name":qsTr("@我的"), "value":3})
@@ -37,7 +37,7 @@ Item{
             height: parent.height-tabMsgType.height
             clip: true
             currentIndex: tabMsgType.currentIndex
-            property var lders: [ldMsg, ldCmt, ldLike, ldAt, ldGift]
+            property var lders: [/*ldMsg, */ldCmt, ldLike, ldAt, ldGift]
             function load(refresh) {
                 console.log("msg swip load current idx:"+currentIndex)
                 lders[currentIndex].active = true
@@ -45,20 +45,21 @@ Item{
             }
             onCurrentIndexChanged: load(true)
 
-            Loader {
+            /*Loader {
                 id: ldMsg
                 active: false
                 sourceComponent: CommentMsgList {
                     anchors.fill: parent
                     autoUpdate: parent.SwipeView.isCurrentItem
                 }
-            }
+            }*/
 
             Loader {
                 id: ldCmt
                 active: false
                 sourceComponent: CommentMsgList {
                     anchors.fill: parent
+                    autoUpdate: parent.SwipeView.isCurrentItem
                 }
             }
             Loader {
@@ -72,8 +73,9 @@ Item{
             Loader {
                 id: ldAt
                 active: false
-                sourceComponent: CommentMsgList {
+                sourceComponent: AtMsgList {
                     anchors.fill: parent
+                    autoUpdate: parent.SwipeView.isCurrentItem
                 }
             }
             Loader {

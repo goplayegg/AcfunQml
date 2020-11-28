@@ -96,5 +96,7 @@
         <file>ui/msg/LikeMsgCard.qml</file>
         <file>ui/msg/GiftMsgCard.qml</file>
         <file>ui/msg/GiftMsgList.qml</file>
+        <file>ui/msg/AtMsgCard.qml</file>
+        <file>ui/msg/AtMsgList.qml</file>
     </qresource>
 </RCC>
