@@ -339,7 +339,63 @@ Item {
         request('GET', url, qParam, null, cb);
     }
 
-    //private
+    //推荐视频列表
+    function relatdFeedList(resId, resType, count, cb){
+        var url = "api-new.app.acfun.cn/rest/app/feed/related/general";
+        var qParam = [  {"resourceId": resId},
+                        {"resourceType": resType},
+                        {"count": count},
+                        {"appMode":"0"}];
+        request('GET', url, qParam, null, cb);
+    }
+
+    //收藏的视频 cursor首次为0
+    function favoriteVideoList(cursor, count, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/favorite/dougaList";
+        var body = "cursor="+ cursor+ "&count="+count;
+        request('POST', url, null, body, cb);
+    }
+
+    //收藏的文章
+    function favoriteArticleList(cursor, count, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/favorite/articleList";
+        var body = "cursor="+ cursor+ "&count="+count;
+        request('POST', url, null, body, cb);
+    }
+
+    //收藏的合集
+    function favoriteAlbumList(cursor, count, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/favorite/albumList";
+        var body = "cursor="+ cursor+ "&count="+count;
+        request('POST', url, null, body, cb);
+    }
+
+    //历史记录 1-全部 2-视频 3-文章 pcursor首次为""
+    function favoriteHistoryList(pcursor, type, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/browse/history/list";
+        var body = "pcursor="+ pcursor;
+        switch (type){
+        case 3:
+            body += "&resourceTypes=3";
+            break;
+        case 2:
+            body += "&resourceTypes=1&resourceTypes=2";
+            break;
+        default:
+            body += "&resourceTypes=1&resourceTypes=2&resourceTypes=3";
+            break;
+        }
+        request('POST', url, null, body, cb);
+    }
+
+    //收藏的合集
+    function deleteHistory(comboIds, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/browse/history/delete";
+        var body = "comboIds="+ comboIds;
+        request('POST', url, null, body, cb);
+    }
+
+    //--------------------private--------------------
     function addHeader(hreq, endpoint){
         hreq.setRequestHeader("User-agent", c_userAgent);
         if("api-new.app.acfun.cn/rest/app/feed/profile"     !== endpoint){
