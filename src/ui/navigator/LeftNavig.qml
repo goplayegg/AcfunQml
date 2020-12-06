@@ -4,6 +4,7 @@ import "qrc:///ui/components/"
 import "qrc:///ui/components/sideBar"
 import "qrc:///ui/global/"
 import "qrc:///ui/global/styles/"
+import "qrc:///ui/other/"
 
 Rectangle{
     id:root
@@ -70,7 +71,18 @@ Rectangle{
                 color: btnCategory.hovered?"white":"#DEE5EB"
                 radius: height/2
             }
+            onClicked: {
+                var pt = btnCategory.parent.mapToItem(mainwindowRoot, btnCategory.x+btnCategory.width, btnCategory.y)
+                popupOther.x = pt.x
+                popupOther.y = pt.y
+                popupOther.open()
+            }
         }
+        OtherPagePopup {
+            id: popupOther
+            parent: mainwindowRoot
+        }
+
         Button{
             id:btnLogin
             visible: !logined

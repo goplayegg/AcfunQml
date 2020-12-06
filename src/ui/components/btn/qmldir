@@ -1,6 +1,8 @@
 ﻿IconBtn 1.0 IconBtn.qml
 IconTextButton 1.0 IconTextButton.qml
+IconTextUpDownBtn 1.0 IconTextUpDownBtn.qml
 ImgTextButton 1.0 ImgTextButton.qml
+ImgTextUpDownBtn 1.0 ImgTextUpDownBtn.qml
 RoundButton 1.0 RoundButton.qml
 RoundImgBtn 1.0 RoundImgBtn.qml
 RoundBtnWithText 1.0 RoundBtnWithText.qml

@@ -98,5 +98,8 @@
         <file>ui/msg/GiftMsgList.qml</file>
         <file>ui/msg/AtMsgCard.qml</file>
         <file>ui/msg/AtMsgList.qml</file>
+        <file>ui/other/OtherPagePopup.qml</file>
+        <file>ui/components/btn/ImgTextUpDownBtn.qml</file>
+        <file>ui/components/btn/IconTextUpDownBtn.qml</file>
     </qresource>
 </RCC>
