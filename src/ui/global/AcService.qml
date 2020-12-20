@@ -395,6 +395,27 @@ Item {
         request('POST', url, null, body, cb);
     }
 
+    //添加稍后再看
+    function addWaiting(resourceId, resourceType, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/addWaiting";
+        var body = "resourceId="+ resourceId+"&resourceType="+resourceType;
+        request('POST', url, null, body, cb);
+    }
+
+    //稍后再看列表
+    function waitingList(pcursor, count, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/waitingList";
+        var body = "pcursor="+ pcursor+"&count="+count;
+        request('POST', url, null, body, cb);
+    }
+
+    //取消稍后再看 入参对应waitingList返回的contentId和type   (批量怎么组装body？)
+    function cancelWaiting(resourceIds, resourceType, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/cancelWaiting";
+        var body = "resourceIds="+ resourceIds+"&resourceType="+resourceType;
+        request('POST', url, null, body, cb);
+    }
+
     //--------------------private--------------------
     function addHeader(hreq, endpoint){
         hreq.setRequestHeader("User-agent", c_userAgent);
