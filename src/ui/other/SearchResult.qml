@@ -19,7 +19,8 @@ Item{
     }
 
     function search(keyword, pCursor = 0){
-        busyBox.text = qsTr("Loading search result ...")
+        if(keyword === "")
+            return
         busyBox.running = true
         if(0 === pCursor)
             resultModel.clear()

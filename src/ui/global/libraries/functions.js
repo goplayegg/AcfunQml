@@ -32,6 +32,13 @@ function fmtTime(date, fmt) {
     return fmt;
 }
 
+//毫秒时间转为"yyyy-MM-dd"
+function fmtMs2TimeStr(ms){
+    var d = new Date()
+    d.setTime(ms)
+    return fmtTime(d, "yyyy-MM-dd")
+}
+
 //make key=value&key2=value2
 function fmtQueryBody(keyVal){
     var ret = "";

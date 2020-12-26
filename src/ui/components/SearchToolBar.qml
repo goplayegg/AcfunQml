@@ -34,6 +34,28 @@ Item {
         onAccepted: {
             search(searchInput.text)
         }
+        RoundButton {
+            id: btnSearch
+            visible: parent.text !== ""
+            icon.name: AppIcons.mdi_magnify
+            size: parent.height*3/4
+            textColor: AppStyle.foregroundColor
+            anchors.right: btnClear.left
+            anchors.rightMargin: 4
+            anchors.verticalCenter: parent.verticalCenter
+            onClicked: search(searchInput.text)
+        }
+        RoundButton {
+            id: btnClear
+            visible: parent.text !== ""
+            icon.name: AppIcons.mdi_close_circle_outline
+            size: btnSearch.size
+            textColor: AppStyle.foregroundColor
+            anchors.right: parent.right
+            anchors.rightMargin: 4
+            anchors.verticalCenter: parent.verticalCenter
+            onClicked: parent.text = ""
+        }
     }
 
     RoundButton {

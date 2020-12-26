@@ -10,6 +10,7 @@ Item {
     height: width
 
     property var infoJs: ({})
+    property bool noCount: false
 
     Label{
         id: duration
@@ -75,6 +76,7 @@ Item {
                 text: infoJs.title
             }
             Row{
+                visible: !noCount
                 spacing: 5
                 Image {
                     height: textPlayCnt.height

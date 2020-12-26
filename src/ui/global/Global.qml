@@ -74,4 +74,5 @@ Item {
     signal openUser(var js)
     signal openArticle(var js)
     signal logout()
+    signal openOther(var idx)//0 收藏 1 稍后再看 2 历史 3 搜索
 }

@@ -13,7 +13,6 @@ Item{
     }
 
     function refresh(){
-        busyBox.text = qsTr("Loading events list ...")
         busyBox.running = true
         AcService.getOperationList(function(res){
             updateInfo(res)

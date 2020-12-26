@@ -101,5 +101,8 @@
         <file>ui/other/OtherPagePopup.qml</file>
         <file>ui/components/btn/ImgTextUpDownBtn.qml</file>
         <file>ui/components/btn/IconTextUpDownBtn.qml</file>
+        <file>ui/other/FavoriteListPage.qml</file>
+        <file>ui/other/HistoryListPage.qml</file>
+        <file>ui/other/PocketListPage.qml</file>
     </qresource>
 </RCC>

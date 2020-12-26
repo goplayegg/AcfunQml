@@ -74,7 +74,6 @@ ScrollUpdateView {
 
     function load(refresh){
         if(refresh){
-            busyBox.text = qsTr("Loading...")
             busyBox.running = true
             pCursor = "1"
             waterfall.clear()

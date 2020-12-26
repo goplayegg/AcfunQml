@@ -157,9 +157,6 @@ Window {
             id: videoLoader
             asynchronous: true
             source: "qrc:/ui/videoPage/VideoPage.qml"
-            Connections {
-                target: videoLoader.item
-            }
             function  openVideo(js) {
                 busyBox.text = qsTr("Loading...")
                 busyBox.running = true
@@ -215,9 +212,6 @@ Window {
 
         Loader{
             id: settingLoader
-            Connections {
-                target: settingLoader.item
-            }
             onLoaded: {
                 console.log("settingLoader Loaded")
             }
@@ -225,11 +219,38 @@ Window {
 
         Loader{
             id: aboutLoader
-            Connections {
-                target: aboutLoader.item
-            }
             onLoaded: {
                 console.log("aboutLoader Loaded")
+            }
+        }
+
+        Loader{
+            id: favoriteLoader
+            asynchronous: true
+            source: "qrc:/ui/other/FavoriteListPage.qml"
+            function open(){
+                stack.push(favoriteLoader)//TODO 先将原来的pop掉
+                favoriteLoader.item.refresh()
+            }
+        }
+
+        Loader{
+            id: pocketLoader
+            asynchronous: true
+            source: "qrc:/ui/other/PocketListPage.qml"
+            function open(){
+                stack.push(pocketLoader)
+                pocketLoader.item.refresh()
+            }
+        }
+
+        Loader{
+            id: historyLoader
+            asynchronous: true
+            source: "qrc:/ui/other/HistoryListPage.qml"
+            function open(){
+                stack.push(historyLoader)
+                historyLoader.item.refresh()
             }
         }
 
@@ -238,8 +259,6 @@ Window {
             asynchronous: true
             source: "qrc:/ui/other/SearchResult.qml"
             function openSearchPage(keyword){
-                busyBox.text = qsTr("Loading...")
-                busyBox.running = true
                 console.log("search key:"+keyword)
                 stack.push(searchLoader)
                 searchLoader.item.search(keyword)
@@ -292,6 +311,22 @@ Window {
             }
             function onLogout(){
                 navi.logout()
+            }
+            function onOpenOther(idx){
+                switch(idx){
+                case 0://收藏
+                    favoriteLoader.open()
+                    break;
+                case 1://稍后再看
+                    pocketLoader.open()
+                    break;
+                case 2://历史
+                    historyLoader.open()
+                    break;
+                case 3://搜索
+                    searchLoader.openSearchPage("")
+                    break;
+                }
             }
         }
 

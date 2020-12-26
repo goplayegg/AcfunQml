@@ -16,7 +16,6 @@ Item{
     property int crtChannelID: 0
 
     function refresh(){
-        busyBox.text = qsTr("Loading...")
         busyBox.running = true
         if(undefined === rankChannels){
             AcService.getRankChannelList(function(res){

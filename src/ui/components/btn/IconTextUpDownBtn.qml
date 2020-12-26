@@ -10,7 +10,7 @@ Button {
     property color color: AppStyle.thirdBkgroundColor
     property color textColor: AppStyle.foregroundColor
     property color iconColor: textColor
-    property string tip: ""
+    //property string tip: ""
     height: AppStyle.md
     font.family : AppStyle.fontNameMain
     font.pixelSize: AppStyle.font_xlarge
@@ -22,9 +22,9 @@ Button {
     rightInset: 2
     bottomInset: 0
     hoverEnabled:true
-    ToolTip.visible: hovered
-    ToolTip.text: tip!==""?tip:control.text
-    ToolTip.delay: Qt.styleHints.mousePressAndHoldInterval
+    //ToolTip.visible: hovered
+    //ToolTip.text: tip!==""?tip:control.text
+    //ToolTip.delay: Qt.styleHints.mousePressAndHoldInterval
 
     contentItem: Item {
         Item {

@@ -371,7 +371,7 @@ Item {
     }
 
     //历史记录 1-全部 2-视频 3-文章 pcursor首次为""
-    function favoriteHistoryList(pcursor, type, cb) {
+    function watchHistoryList(pcursor, type, cb) {
         var url = "api-new.app.acfun.cn/rest/app/browse/history/list";
         var body = "pcursor="+ pcursor;
         switch (type){
@@ -416,6 +416,12 @@ Item {
         request('POST', url, null, body, cb);
     }
 
+    function reportPlayContent(resourceId, resourceType, cb) {
+        var url = "apilog.app.acfun.cn/rest/app/report/playContent";
+        var body = "";//g_commonTools.makePlayReportBody("923834", udid, "2", "16310505", "13349768", FUN.crtTimsMs())
+        request('POST', url, null, body, cb);
+    }
+
     //--------------------private--------------------
     function addHeader(hreq, endpoint){
         hreq.setRequestHeader("User-agent", c_userAgent);
@@ -424,7 +430,12 @@ Item {
         }
         hreq.setRequestHeader("random", FUN.guid());//可以不加
         hreq.setRequestHeader("deviceType","1");
-        hreq.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        if(endpoint.indexOf("apilog.app.acfun.cn/rest/app/report/playContent") !== -1 ){
+            hreq.setRequestHeader("Content-Type","application/x-protobuf");
+        }else{
+            hreq.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        }
+
         hreq.setRequestHeader("net","WIFI");
         hreq.setRequestHeader("productId","2000");
         hreq.setRequestHeader("udid",udid);//"be0088b8-1ae1-341d-b31e-bed8e78e2325"
