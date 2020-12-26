@@ -64,7 +64,6 @@ Item {
 
         RoundButton {
             id: btnPlay
-            checkable: true
             icon.name: player.playState === 1 ? AppIcons.mdi_pause : AppIcons.mdi_play
             size: 40
             anchors.verticalCenter: parent.verticalCenter
@@ -80,7 +79,6 @@ Item {
         RoundButton {
             id: btnDetail
             visible: false
-            checkable: true
             icon.name: AppIcons.mdi_monitor
             size: 40
             anchors.verticalCenter: parent.verticalCenter
@@ -93,12 +91,26 @@ Item {
         RoundButton {
             id: btnPocket
             visible: false
-            checkable: true
+            property bool pocketed: false
+            textColor: pocketed?AppStyle.primaryColor:AppStyle.foregroundColor
             icon.name: AppIcons.mdi_pocket
             size: 40
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.horizontalCenterOffset: 60
+            onClicked: {
+                if(!pocketed){
+                    AcService.addWaiting(infoJs.dougaId, 2, function(res){
+                        if(res.result === 0)
+                            pocketed = true
+                    });
+                }else{
+                    AcService.cancelWaiting(infoJs.dougaId, 2, function(res){
+                        if(res.result === 0)
+                            pocketed = false
+                    });
+                }
+            }
         }
     }
 
