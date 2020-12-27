@@ -17,7 +17,13 @@ Item {
     signal httpError(var errMsg);
 
     Component.onCompleted: {
-        udid = FUN.guid();//TODO按设备固定一下
+        var guid = g_preference.value("devGuid")
+        if(undefined !== guid){
+            udid = guid;
+        }else{
+            udid = FUN.guid();
+            g_preference.setValue("devGuid", udid);
+        }
     }
 
     function login(user, psw, cb) {
