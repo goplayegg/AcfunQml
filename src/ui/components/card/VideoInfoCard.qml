@@ -11,10 +11,12 @@ Item {
 
     property var infoJs: ({})
     property bool noCount: false
+    property alias containsMouse: mouseArea.containsMouse
+    property alias coverImgUrl:imgCover.source
 
     Label{
         id: duration
-        visible: false
+        visible: containsMouse
         anchors.left: parent.left
         anchors.bottom: imgCover.bottom
         anchors.leftMargin: 10
@@ -114,6 +116,7 @@ Item {
         }
     }
     MouseArea {
+        id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
         onClicked: {          
@@ -137,7 +140,5 @@ Item {
                 isLike          : infoJs.isLike
             })
         }
-        onEntered: duration.visible = true
-        onExited: duration.visible = false
     }
 }

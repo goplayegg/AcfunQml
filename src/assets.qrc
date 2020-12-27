@@ -785,5 +785,6 @@
         <file>assets/img/common/gift.png</file>
         <file>assets/img/common/goldBanana.png</file>
         <file>assets/img/common/peach.png</file>
+        <file>assets/img/bk/acShock.png</file>
     </qresource>
 </RCC>

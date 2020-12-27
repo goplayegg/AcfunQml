@@ -40,10 +40,18 @@ Item {
     }
 
     Component.onCompleted: {
+        control.state = "ok"
         loadAvatarCover()
     }
 
+    onSourceChanged: {
+        if(control.state === "ok")
+            loadAvatarCover()
+    }
+
     function loadAvatarCover(){
+        if(source === undefined)
+            return
         var gifIdx = source.indexOf(".gif")
         if(gifIdx !== -1){
             ldImg.sourceComponent = cmpGif

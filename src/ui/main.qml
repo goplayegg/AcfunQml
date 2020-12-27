@@ -158,7 +158,6 @@ Window {
             asynchronous: true
             source: "qrc:/ui/videoPage/VideoPage.qml"
             function  openVideo(js) {
-                busyBox.text = qsTr("Loading...")
                 busyBox.running = true
                 console.log("open video:"+JSON.stringify(js))
                 var d=new Date();
@@ -333,6 +332,7 @@ Window {
         BusyIndicatorWithText {
             id: busyBox
             anchors.centerIn: mainwindowRoot
+            text: qsTr("Loading...")
             visible: busyBox.running
         }
 

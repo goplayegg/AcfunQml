@@ -2,6 +2,7 @@
 import QtQuick.Controls 2.12
 import "qrc:///ui/components/"
 import "qrc:///ui/components/card/"
+import "qrc:///ui/components/btn/"
 import "qrc:///ui/global/"
 import "qrc:///ui/global/styles/"
 import "qrc:///ui/global/libraries/functions.js" as FUN
@@ -80,8 +81,8 @@ Item{
         delegate: VideoInfoCard {
             infoJs: {
                 "title": model.info.caption,
-                "contentId": model.info.dougaId,
-                "contentType": 2,
+                "contentId": model.info.contentId,
+                "contentType": model.info.type,
                 "videoCover": model.info.coverUrl,
                 "durationDisplay": model.info.playDuration,
                 "userName": model.info.user.name,
@@ -91,6 +92,32 @@ Item{
                 "danmakuCountShow": model.info.danmakuCountShow,
                 "bananaCountShow":model.info.bananaCountShow,
                 "description": model.info.description
+            }
+
+            RoundButton {
+                id: btnDelete
+                visible: parent.containsMouse || hovered
+                property bool deleted: false
+                onDeletedChanged: parent.coverImgUrl = btnDelete.deleted?"qrc:/assets/img/bk/acShock.png":model.info.coverUrl
+                icon.name: deleted?AppIcons.mdi_restart :AppIcons.mdi_delete_outline
+                size: 30
+                textColor: AppStyle.foregroundColor
+                anchors.right: parent.right
+                anchors.rightMargin: 4
+                y: 4
+                onClicked: {
+                    if(deleted){
+                        AcService.addWaiting(model.info.contentId, model.info.type, function(res){
+                            if(res.result === 0)
+                                deleted = false
+                        });
+                    }else{
+                        AcService.cancelWaiting(model.info.contentId, model.info.type, function(res){
+                            if(res.result === 0)
+                                deleted = true
+                        });
+                    }
+                }
             }
         }
     }
