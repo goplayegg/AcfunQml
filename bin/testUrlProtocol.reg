@@ -1,0 +1,17 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\AcfunQml]
+@="AcfunQml Protocol/1"
+"URL Protocol"=""
+
+[HKEY_CLASSES_ROOT\AcfunQml\DefaultIcon]
+@="J:\\myDemo\\AcfunQml\\bin\\package\\acfunqml.exe,0"
+
+[HKEY_CLASSES_ROOT\AcfunQml\shell]
+@=""
+
+[HKEY_CLASSES_ROOT\AcfunQml\shell\open]
+@=""
+
+[HKEY_CLASSES_ROOT\AcfunQml\shell\open\command]
+@="\"J:\\myDemo\\AcfunQml\\bin\\package\\acfunqml.exe\" \"%1\""

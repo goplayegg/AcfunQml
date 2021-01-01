@@ -16,6 +16,7 @@ public:
     Q_INVOKABLE QString token(const QString &unixTime);//wrong methed
 
 signals:
+    void externalCmd(const QString &json);
     // QQmlParserStatus interface
 public:
     void classBegin() override;

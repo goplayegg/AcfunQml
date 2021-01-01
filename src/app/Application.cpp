@@ -49,6 +49,11 @@ Application::Application(int &argc, char **argv)
 #endif
 
     // 5. command line parser
+    if(argc >1 )
+    {
+        m_strCmd = QString(argv[1]);
+        qDebug()<<"acfunQml command line start with:"<<m_strCmd;
+    }
 
     // 6. initialize settings
 
@@ -72,6 +77,7 @@ int Application::exec(const QStringList &params)
     d->qmlWindow = new QmlWindow(this);
     d->qmlWindow->qmlRegisterType();
     d->qmlWindow->show();
+    d->qmlWindow->inputCmd(m_strCmd);
 
     auto ret = BaseApplication::exec();
     delete d->qmlWindow;

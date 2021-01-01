@@ -6,7 +6,9 @@
 #include <QPointer>
 
 class QmlWindowPrivate;
-
+namespace Util {
+    class CommonTools;
+}
 class QmlWindow : public QObject
 {
     Q_OBJECT
@@ -18,6 +20,8 @@ public:
     void qmlRegisterType();
 
     void reTrans(const QString &lang);
+
+    void inputCmd(const QString &cmd);
 signals:
 
 public slots:
@@ -28,6 +32,7 @@ private:
     QPointer<QQmlApplicationEngine> m_qmlEgnine;
 
     QScopedPointer<QmlWindowPrivate> d;
+    Util::CommonTools *m_pTools{ nullptr };
 };
 
 #endif // QMLWINDOW_H

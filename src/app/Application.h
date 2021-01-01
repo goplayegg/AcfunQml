@@ -33,6 +33,8 @@ public:
 signals:
 
 public slots:
+private:
+    QString m_strCmd;
 };
 
 #endif // APPLICATION_H

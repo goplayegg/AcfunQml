@@ -17,7 +17,6 @@ Item{
     }
 
     function refresh(){
-        busyBox.text = qsTr("Loading...")
         busyBox.running = true
         if(empty()){
             AcService.getChannelList(function(res){

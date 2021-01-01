@@ -148,13 +148,34 @@ void QmlWindow::qmlRegisterType()
     m_qmlEgnine->setNetworkAccessManagerFactory(new MyNetworkAccessManagerFactory());
     Util::FileSaver *pFileSaver = new Util::FileSaver(this);
     m_qmlEgnine->rootContext()->setContextProperty("g_fileSaver", pFileSaver);
-    Util::CommonTools *pTools = new Util::CommonTools(this);
-    m_qmlEgnine->rootContext()->setContextProperty("g_commonTools", pTools);
+    m_pTools = new Util::CommonTools(this);
+    m_qmlEgnine->rootContext()->setContextProperty("g_commonTools", m_pTools);
 }
 
 void QmlWindow::reTrans(const QString &lang)
 {
     d->reTrans(lang);
+}
+
+void QmlWindow::inputCmd(const QString &cmd)
+{
+    qDebug() << "acfunqml QmlWindow::inputCmd"<<cmd;
+    const QString strExeUrl ="AcfunQml://";
+    if(!cmd.startsWith(strExeUrl, Qt::CaseInsensitive)){
+        qDebug() << "only support cmd started width AcfunQml://";
+        return;
+    }
+    auto strEncode = cmd.mid(strExeUrl.length());
+    if(strEncode.endsWith('/')){
+        strEncode = strEncode.left(strEncode.length()-1);
+    }
+    QByteArray ba;
+    ba.append(strEncode);
+    auto strDecode = QUrl::fromPercentEncoding(ba);
+    qDebug() <<strDecode;
+    if(m_pTools){
+        m_pTools->externalCmd(strDecode);
+    }
 }
 
 void QmlWindow::show()

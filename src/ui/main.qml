@@ -329,6 +329,44 @@ Window {
             }
         }
 
+        Connections {
+            target: g_commonTools
+            function onExternalCmd(json){
+                var ms = 0
+                if(videoLoader.state === Loader.Ready){
+                    console.log("onExternalCmd, video ready!")
+                }else{
+                    ms = 3000
+                }
+                var vCmd = JSON.parse(json)
+                if(vCmd.type === "video"){
+                    timerDoLater.doLater(ms, {contentId: vCmd.acId}, function(val){
+                                                    videoLoader.openVideo(val)})
+                }else{
+                    console.log("not support!Cmd:"+json)
+                }
+            }
+        }
+
+        Timer {
+            id: timerDoLater
+            property var funCb
+            property var cbVal
+            function doLater(ms, val, cb){
+                if(ms === 0){
+                    cb(val)
+                    return
+                }
+                interval = ms
+                funCb = cb
+                cbVal = val
+                restart()
+            }
+            onTriggered: {
+                funCb(cbVal)
+            }
+        }
+
         BusyIndicatorWithText {
             id: busyBox
             anchors.centerIn: mainwindowRoot
