@@ -33,7 +33,12 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 - Favorite
 	- add favorite
 	- remove favorite
-	- favorite list (TODO)
+	- favorite list (Improving)
+- History List (Improving)
+- Watch later (稍后再看)
+  - list
+  - add
+  - delete
 - Like
 	- Like count
 	- like/unlike (TODO)
@@ -44,7 +49,11 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 - Index Page Video List (TODO)
 - Video/User Search
 - Home page (个人信息页)
-- User Notification (消息TODO)
+- User Notification (消息)
+  - comment
+  - like
+  - @
+  - gift
 - Circle page (动态)
 - Article page (文章)
 - Event (活动)
@@ -52,6 +61,8 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
   - Hard decode (with problems)
   - Language change
   - Skin change (simple)
+- Url Protocol
+  - [UrlProtocol使用说明](./bin/UrlProtocol使用说明.txt)
 
 # 遇到的问题
 - 已经转移到issues页面

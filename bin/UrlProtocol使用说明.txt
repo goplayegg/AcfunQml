@@ -1,0 +1,5 @@
+0.支持用浏览器调用AcfunQml打开视频
+1.使用最新代码版本
+2.修改testUrlProtocol.reg中的路径J:\\myDemo\\AcfunQml\\bin\\package为正确路径，双击运行reg
+3.浏览器打开testUrlProtocol.html测试使用
+4.参考testUrlProtocol.html和UrlProtocol.json格式自己编程调用，格式为AcfunQml://urlencode后的json
