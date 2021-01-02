@@ -332,10 +332,14 @@ Window {
         Connections {
             target: g_commonTools
             function onExternalCmd(json){
+                mainwindow.show()
+                mainwindow.raise()
+                mainwindow.requestActivate()
                 var ms = 0
-                if(videoLoader.state === Loader.Ready){
+                if(videoLoader.item !== null){
                     console.log("onExternalCmd, video ready!")
                 }else{
+                    console.log("onExternalCmd, video not ready, jump after 3s.")
                     ms = 3000
                 }
                 var vCmd = JSON.parse(json)

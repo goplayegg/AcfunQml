@@ -1,5 +1,7 @@
 ﻿#include "Application.h"
 #include "QmlWindow.h"
+#include "utils/SharedMsgSender.h"
+#include "utils/SharedMsgFetcher.h"
 
 #include <QTextCodec>
 #include <QTranslator>
@@ -72,14 +74,28 @@ Application::~Application()
 
 int Application::exec(const QStringList &params)
 {
-    Q_UNUSED(params)
-
-    d->qmlWindow = new QmlWindow(this);
-    d->qmlWindow->qmlRegisterType();
-    d->qmlWindow->show();
-    d->qmlWindow->inputCmd(m_strCmd);
+    auto key = applicationName()+organizationDomain()+" by GoPlayEgg";
+    Util::SharedMsgSender *pMsgSender = nullptr;
+    Util::SharedMsgFetcher *pMsgFetcher = nullptr;
+    if(params.size()){
+        pMsgSender = new Util::SharedMsgSender(this);
+        connect(pMsgSender, &Util::SharedMsgSender::timeout, this, &QCoreApplication::quit);
+        pMsgSender->setKey(key);
+        pMsgSender->sendMsg(m_strCmd);
+    }else{
+        pMsgFetcher = new Util::SharedMsgFetcher(this);
+        connect(pMsgFetcher, &Util::SharedMsgFetcher::msgComing, [this](const QString &msg){
+            d->qmlWindow->inputCmd(msg);});
+        pMsgFetcher->setKey(key);
+        d->qmlWindow = new QmlWindow(this);
+        d->qmlWindow->qmlRegisterType();
+        d->qmlWindow->show();
+        d->qmlWindow->inputCmd(m_strCmd);
+    }
 
     auto ret = BaseApplication::exec();
+    delete pMsgSender;
+    delete pMsgFetcher;
     delete d->qmlWindow;
     return ret;
 }
