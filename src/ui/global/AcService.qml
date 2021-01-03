@@ -228,7 +228,7 @@ Item {
                 {"sourceType": sourceType},
                 {"pcursor": pcursor},
                 {"count": 20},
-                {"showHotComments": 1}];
+                {"showHotComments": pcursor==0?1:0}];
 
         request('GET', url, qParam, null, cb);
     }
@@ -428,6 +428,41 @@ Item {
         request('POST', url, null, body, cb);
     }
 
+    //动画 番剧
+    function bangumiMainPage(cb) {
+        var url = "api-new.acfunchina.com/rest/app/speedTheater";
+        var body = "mkey="+c_mkey;
+        request('POST', url, null, body, cb);
+    }
+
+    function bangumiDetail(bangumiId, cb) {
+        var url = "api-new.acfunchina.com/rest/app/new-bangumi/detail";
+        var body = "bangumiId="+bangumiId;
+        request('POST', url, null, body, cb);
+    }
+
+    //pcursor首次空
+    function favoriteBangumi(count, pcursor, cb){
+        var url = "api-new.app.acfun.cn/rest/app/feed/favorite/bangumi";
+        var qParam = [  {"count": count},
+                        {"pcursor": pcursor},
+                        {"access_token": token},
+                        {"appMode":"0"}];
+        request('GET', url, qParam, null, cb);
+    }
+
+    function bangumiItemList(bangumiId, cb){
+        var url = "api-new.acfunchina.com/rest/app/new-bangumi/itemList";
+        var bParam = {
+            "bangumiId": bangumiId,
+            "pageSize": 1000,
+            "pageNo": 1,
+            "mkey": c_mkey
+        };
+        var body = FUN.fmtQueryBody(bParam);
+        request('POST', url, null, body, cb);
+    }
+
     //--------------------private--------------------
     function addHeader(hreq, endpoint){
         hreq.setRequestHeader("User-agent", c_userAgent);
@@ -444,7 +479,7 @@ Item {
 
         hreq.setRequestHeader("net","WIFI");
         hreq.setRequestHeader("productId","2000");
-        hreq.setRequestHeader("udid",udid);//"be0088b8-1ae1-341d-b31e-bed8e78e2325"
+        hreq.setRequestHeader("udid",udid);
         hreq.setRequestHeader("resolution","1080x1920");
         hreq.setRequestHeader("market","tencent");
         var dateNow=new Date();
