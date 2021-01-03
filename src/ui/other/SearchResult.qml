@@ -101,7 +101,6 @@ Item{
                 }
             }
             Loader {
-                id: barLoader
                 sourceComponent: {
                     if(model.type === 1)//user
                         return cmpUser;

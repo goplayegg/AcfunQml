@@ -147,9 +147,7 @@ Rectangle{
             color: AppStyle.secondForeColor
             font.family: AppStyle.fontNameMain
             text: {
-                var d = new Date()
-                d.setTime(userInfo.registerTime)
-                return userInfo.comeFrom + " " + qsTr("register time:") + FUN.fmtTime(d, "yyyy-MM-dd")
+                return userInfo.comeFrom + " " + qsTr("register time:") + FUN.fmtMs2TimeStr(userInfo.registerTime)
             }
         }
         TextArea {

@@ -69,9 +69,10 @@ Item {
         width: parent.width
         wrapMode: Text.WordWrap
         text: {
-            var dt = new Date()
-            dt.setTime(articleJson.ctime)
-            return articleJson.userName + "  " + qsTr("Posted") + "  "+ FUN.fmtTime(dt, "yyyy-MM-dd")
+            var time = ""
+            if(0 !== articleJson.ctime)
+                time = "  " + qsTr("Posted") + "  "+ FUN.fmtMs2TimeStr(articleJson.ctime)
+            return articleJson.userName + time
         }
     }
 

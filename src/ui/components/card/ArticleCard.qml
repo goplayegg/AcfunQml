@@ -76,9 +76,7 @@ Item {
                     font.pixelSize: AppStyle.font_smal
                     font.family: AppStyle.fontNameMain
                     text: {
-                        var d = new Date()
-                        d.setTime(infoJs.time?infoJs.time:infoJs.contributeTime)
-                        return FUN.fmtTime(d, "yyyy-MM-dd")
+                        return FUN.fmtMs2TimeStr(infoJs.time?infoJs.time:infoJs.contributeTime)
                     }
                 }
 
