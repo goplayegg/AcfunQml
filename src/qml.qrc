@@ -104,5 +104,6 @@
         <file>ui/other/FavoriteListPage.qml</file>
         <file>ui/other/HistoryListPage.qml</file>
         <file>ui/other/PocketListPage.qml</file>
+        <file>ui/mainPage/BangumiPage.qml</file>
     </qresource>
 </RCC>

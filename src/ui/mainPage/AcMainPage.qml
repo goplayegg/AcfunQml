@@ -17,6 +17,7 @@ Item{
     }
 
     function refresh(){
+        //return
         busyBox.running = true
         if(empty()){
             AcService.getChannelList(function(res){
@@ -24,6 +25,7 @@ Item{
                     busyBox.running = false
                     PopMsg.showError(res, mainwindowRoot)
                 }else{
+                    channelModel.append({"name":"番剧","channelId":"bangumi"})
                     //TODO channelModel.append({"name":"精选","channelId":"MainPage"})
                     for(var idx in res.channels){
                         if("文章"===res.channels[idx].name)
@@ -41,8 +43,10 @@ Item{
 
     property string pcursor: ""
     property int newVideoPageNo:1
+    property string crtCid:""
     function changeChannel(cid){
         busyBox.running = true
+        crtCid = cid
         if("MainPage" === cid){
              AcService.getMainPage(pcursor, 10, function(res){
                  if(0 !== res.result){
@@ -52,6 +56,8 @@ Item{
                      pcursor = res.pcursor
                  }
              })
+        }else if("bangumi" === cid){
+            bangumi.open()
         }else{
             AcService.getChannelVideo(cid, 10, function(res){
                 if(0 !== res.errorid){
@@ -114,9 +120,6 @@ Item{
             console.log("video append:"+ jsCurVideo.title)
         }
     }
-    ListModel {
-        id: videoModel
-    }
 
     TabBar {
          id: tabBar
@@ -170,6 +173,7 @@ Item{
     }
     GridView {
         id: cardView
+        visible: crtCid !== "bangumi"
         anchors {
             margins: 0
             topMargin: 10
@@ -199,9 +203,24 @@ Item{
             }
         }
 
-        model:  videoModel
+        model: ListModel {
+                id: videoModel
+            }
         delegate: VideoInfoCard{
                 infoJs: model
             }
+    }
+
+    BangumiPage {
+        id: bangumi
+        visible: crtCid === "bangumi"
+        anchors {
+            margins: 0
+            topMargin: 10
+            top: tabBar.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
     }
 }

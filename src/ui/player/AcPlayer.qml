@@ -26,6 +26,8 @@ FullScreen {
     function start(js){
         videoInfo = js
         stop()
+        if(js.vid === 0 )
+            return
         AcService.getVideo(js.vid,js.contentId,js.contentType,funPlayVideo)
         danmaku.open(js.vid, 0)
     }
