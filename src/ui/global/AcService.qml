@@ -456,8 +456,7 @@ Item {
         var bParam = {
             "bangumiId": bangumiId,
             "pageSize": 1000,
-            "pageNo": 1,
-            "mkey": c_mkey
+            "pageNo": 1
         };
         var body = FUN.fmtQueryBody(bParam);
         request('POST', url, null, body, cb);

@@ -24,6 +24,18 @@ Item{
                     res.vid = res.videoList[0].id
                     openPrivate(res)
                 })
+        }else if(js.contentType === 1){//番剧
+            AcService.bangumiDetail(js.contentId, function(res){
+                    if(0 !== res.result){
+                        busyBox.running = false
+                        PopMsg.showError(res, mainwindowRoot)
+                        return
+                    }
+                    res.data.contentId = res.data.id
+                    res.data.contentType = 1
+                    res.data.vid = js.vid
+                    openBangumiPrivate(res.data)
+                })
         }else{
             openPrivate(js)
         }
@@ -38,6 +50,14 @@ Item{
         player.start(js)
         detail.open(js)
         param = js
+        btnCmt.visible = true
+    }
+
+    function openBangumiPrivate(js){
+        player.start(js)
+        detail.openBangumi(js)
+        param = js
+        param.cmtType = 2
         btnCmt.visible = true
     }
 

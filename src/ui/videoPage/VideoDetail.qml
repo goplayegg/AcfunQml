@@ -67,9 +67,58 @@ Item {
         modelVideos.clear()
         if(videoList.length>1){
             for(var idxV in videoList){
-                modelVideos.append(videoList[idxV])
+                modelVideos.append({info:videoList[idxV]})
             }
         }
+    }
+
+    function openBangumi(js){
+        acID = js.id
+        contentType = 1
+        textTitle.text = js.title
+        btnLike.text = js.likeCount
+        btnLike.customChecked = js.isLike
+        btnStar.text = js.stowCountShow
+        btnStar.customChecked = js.isFavorite
+        textPlayCnt.text = js.playCountShow
+        textDanmCount.text = js.commentCountShow
+        textAC.text = "AC"+js.contentId
+        textDesc.text = js.intro
+        tagList = []
+        if(undefined !== js.bangumiStyleList){
+            tagList = js.bangumiStyleList
+        }
+        var tagLenShow = repTags.count
+        var tagLen = tagList.length
+        for(var idx=0; idx<tagLenShow; ++idx){
+            if(idx<tagLen){
+                repTags.itemAt(idx).text = tagList[idx].name
+            }else{
+                repTags.itemAt(idx).text = ""
+            }
+        }
+        var bangumList = []
+        if(undefined !== js.related_bangumis){
+            bangumList = js.related_bangumis
+        }
+        modelRelatBangumis.clear()
+        if(bangumList.length>1){
+            for(var idxB in bangumList){
+                modelRelatBangumis.append(bangumList[idxB])
+            }
+        }
+        AcService.bangumiItemList(js.id, function(res){
+            if(0 !== res.result){
+                PopMsg.showError(res, mainwindowRoot)
+                return
+            }
+            modelVideos.clear()
+            if(res.items.length>1){
+                for(var idxV in res.items){
+                    modelVideos.append({info:res.items[idxV]})
+                }
+            }
+        })
     }
 
     function nextPart(){
@@ -119,6 +168,7 @@ Item {
                 }
                 RoundBtnWithText {//投蕉
                     id: btnBanana
+                    visible: contentType !== 1
                     enabled: !customChecked
                     icon: "qrc:/assets/img/common/banana0.png"
                     iconChecked: "qrc:/assets/img/common/banana1.png"
@@ -141,17 +191,18 @@ Item {
                             })
                     }
                 }
-                RoundBtnWithText {//关注
+                RoundBtnWithText {//收藏/追番
                     id: btnStar
                     icon: "qrc:/assets/img/common/star0.png"
                     iconChecked: "qrc:/assets/img/common/star1.png"
                     onClicked: {
                         console.log(customChecked?"favorite":"unFavorite")
+                        let resType = contentType === 1 ? 1 : 9//追番1 收藏视频9
                         if(customChecked){
-                            AcService.favorite(acID, 9, function(res){
+                            AcService.favorite(acID, resType, function(res){
                                 })
                         }else{
-                            AcService.unFavorite(acID, 9, function(res){
+                            AcService.unFavorite(acID, resType, function(res){
                                 })
                         }
                     }
@@ -203,25 +254,69 @@ Item {
             }
         }
 
+        Flow {//相关番剧 一般是第一季 第二季 第三季
+            visible: contentType === 1 && modelRelatBangumis.count>1
+            spacing: 10
+            anchors.left: parent.left
+            anchors.right: parent.right
+            ButtonGroup {
+                id: btnsBangumi
+                onCheckedButtonChanged: {
+                    console.log("change bangumi to:"+checkedButton.vInfo.id)
+                }
+            }
+            Repeater {
+                model: ListModel {
+                    id: modelRelatBangumis
+                }
+                Button {
+                    property var vInfo: model
+                    property var idx: model.index
+                    width: implicitWidth<80?80:implicitWidth
+                    height: 26
+                    checkable: true
+                    checked: model.id == acID
+                    ButtonGroup.group: btnsBangumi
+                    background: Rectangle {
+                        color: checked?AppStyle.accentColor:AppStyle.secondBkgroundColor
+                        radius: 5
+                    }
+                    contentItem: Text {
+                        anchors.centerIn: parent
+                        text: model.name
+                        font.family:  AppStyle.fontNameMain
+                        font.weight: Font.Light
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        color: checked?AppStyle.backgroundColor:AppStyle.foregroundColor
+                    }
+                }
+            }
+        }
         Flow {//分P
             spacing: 10
             anchors.left: parent.left
             anchors.right: parent.right
-            ListModel {
-                id: modelVideos
-            }
             ButtonGroup {
                 id: btnsVideo
                 onCheckedButtonChanged: {
-                    textDanmCount.text = checkedButton.vInfo.danmakuCountShow
-                    changeVideoPart(checkedButton.vInfo)
+                    if(undefined === checkedButton.vInfo.episodeName){
+                        console.log("Video part changed to: "+checkedButton.vInfo.title)
+                        textDanmCount.text = checkedButton.vInfo.danmakuCountShow
+                        changeVideoPart(checkedButton.vInfo)
+                    }else{
+                        console.log("bangumi part changed to: "+checkedButton.vInfo.episodeName)
+                        changeVideoPart({id:checkedButton.vInfo.videoId})
+                    }
                 }
             }
             Repeater {
                 id: repBtnPart
-                model: modelVideos
+                model: ListModel {
+                    id: modelVideos
+                }
                 Button {
-                    property var vInfo: model
+                    property var vInfo: model.info
                     property var idx: model.index
                     width: implicitWidth<180?180:implicitWidth
                     height: 36
@@ -234,7 +329,7 @@ Item {
                     }
                     contentItem: Text {
                         anchors.centerIn: parent
-                        text: model.title
+                        text: vInfo.episodeName?vInfo.episodeName:vInfo.title
                         font.family:  AppStyle.fontNameMain
                         font.weight: Font.Light
                         horizontalAlignment: Text.AlignHCenter
@@ -247,6 +342,7 @@ Item {
 
         Item {//up主信息
             id: rowUp
+            visible: contentType !== 1
             height: itemAvatar.height
             anchors.left: parent.left
             anchors.right: parent.right
