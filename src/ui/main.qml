@@ -346,6 +346,14 @@ Window {
                 if(vCmd.type === "video"){
                     timerDoLater.doLater(ms, {contentId: vCmd.acId}, function(val){
                                                     videoLoader.openVideo(val)})
+                }else if(vCmd.type === "bangumi"){
+                    let vInfo = {
+                        contentId: vCmd.acId,
+                        contentType: 1,
+                        vid: 0
+                    }
+                    timerDoLater.doLater(ms, vInfo, function(val){
+                                                    videoLoader.openVideo(val)})
                 }else{
                     console.log("not support!Cmd:"+json)
                 }
