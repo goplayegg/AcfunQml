@@ -39,7 +39,7 @@ Item {
         }
         RectBackLabel {
             anchors.right: parent.right
-            anchors.rightMargin: 4
+            anchors.rightMargin: 8
             anchors.top: parent.top
             anchors.topMargin: 4
             height: 16

@@ -5,8 +5,9 @@ import "qrc:///ui/components/card/"
 import "qrc:///ui/global/"
 import "qrc:///ui/global/styles/"
 
-Item {
-
+ScrollView {
+    clip: true
+    ScrollBar.vertical.policy: ScrollBar.AlwaysOn
     property bool bangumiPageLoaded: false
     function open(){
         if(bangumiPageLoaded){
@@ -20,22 +21,18 @@ Item {
             }else{
                 bangumiPageLoaded = true
                 busyBox.running = false
-                //for(let i in res.favorite){
-                //    videoModel.append({info:res.favorite[i]})
-                //}
+                setModel(favoriteModel, res.favorite)
                 for(let idx in res.data){
-                    if("slideBanner" === res.data[idx].moduleLayout)
-                        slideBanner.set(res.data[idx])
+                    if("slideBanner" === res.data[idx].moduleLayout){
+                        setModel(modelBanner, res.data[idx].contentList)
+                    }
                     else if(15 === res.data[idx].moduleId){//热播推荐
-                        let hotList = res.data[idx].contentList
-                        for(let ih in hotList){
-                            hotModel.append({info:hotList[ih]})
-                        }
+                        setModel(hotModel, res.data[idx].contentList)
+                    }
+                    else if("horizontalArrange" === res.data[idx].moduleLayout){//其他横屏
+                        setModel(bangumiHorModel, res.data[idx].contentList)
                     }else{
-                        let contentList = res.data[idx].contentList
-                        for(let ic in contentList){
-                            bangumiModel.append({info:contentList[ic]})
-                        }
+                        setModel(bangumiModel, res.data[idx].contentList)
                     }
                 }
 
@@ -46,12 +43,22 @@ Item {
             }
         })
     }
+    function setModel(model, list){
+        for(let i in list){
+            model.append({info:list[i]})
+        }
+    }
 
     property bool smallMode: width<1030
+    Item {
+        id: contentScroll
+        anchors.left: parent.left
+        anchors.right: parent.right
+
     SwipeCircle {
         id: slideBanner
         width: smallMode?620:800
-        height: 250
+        height: smallMode?200:250
         model: ListModel {
             id: modelBanner
         }
@@ -72,11 +79,6 @@ Item {
                 }
             }
         }
-        function set(js){
-            for(let i in js.contentList){
-                modelBanner.append({info:js.contentList[i]})
-            }
-        }
     }
 
     GridView {
@@ -86,7 +88,9 @@ Item {
         cellWidth: 205
         cellHeight: 125
         ScrollBar.vertical : ScrollBar{
-            policy: smallMode?ScrollBar.AlwaysOn:ScrollBar.AsNeeded
+            anchors.right: parent.right
+            anchors.rightMargin: 8
+            policy: hots.contentHeight>hots.height?ScrollBar.AlwaysOn:ScrollBar.AsNeeded
         }
         model: ListModel {
                 id: hotModel
@@ -96,23 +100,86 @@ Item {
             }
     }
 
-    GridView {
+    ListView {
+        id: favorite
         anchors.top: smallMode?hots.bottom:slideBanner.bottom
         anchors.topMargin: 10
-        anchors.bottom: parent.bottom
-        width: parent.width
-        clip: true
-        cellWidth: 205
-        cellHeight: 300
-        ScrollBar.vertical : ScrollBar{}
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: count>0?125:0
+        spacing: 15
+        orientation: Qt.Horizontal
+        ScrollBar.horizontal : ScrollBar{
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: -5
+            policy: favorite.contentWidth>favorite.width?ScrollBar.AlwaysOn:ScrollBar.AsNeeded
+        }
         model: ListModel {
-                id: bangumiModel
+                id: favoriteModel
             }
-        delegate: BangumiCard {
-                infoJs: model.info
+        delegate: BangumiCardHor {
+                infoJs: {
+                    "coverUrl": model.info.coverUrls[0],
+                    "noStow": true,
+                    "title": model.info.showSerialStatus,
+                    "videoId": 0,
+                    "href": model.info.id
+                }
             }
     }
 
+    Grid {
+        id: girdBangumi
+        anchors.top: favorite.bottom
+        anchors.topMargin: 10
+        anchors.left: parent.left
+        anchors.right: parent.right
+        spacing: 15
+        property int cellWidth: 190
+        columns: width/(cellWidth+spacing)
+        Repeater{
+            model: ListModel {
+                    id: bangumiModel
+                }
+            delegate: BangumiCard {
+                    width: girdBangumi.cellWidth
+                    infoJs: model.info
+                }
+        }
+    }
+    Grid {
+        id: girdBangumiHor
+        anchors.top: girdBangumi.bottom
+        anchors.topMargin: 10
+        anchors.left: parent.left
+        anchors.right: parent.right
+        spacing: 15
+        property int cellWidth: 190
+        columns: width/(cellWidth+spacing)
+        Repeater{
+            model: ListModel {
+                    id: bangumiHorModel
+                }
+            delegate: VideoInfoCard {
+                    width: girdBangumiHor.cellWidth
+                    infoJs:
+                    {
+                        "title": model.info.title,
+                        "contentId": model.info.href,
+                        "contentType": 2,
+                        "videoCover": model.info.coverUrl,
+                        "userName": "",
+                        "commentCountShow": model.info.commentCount,
+                        "createTime": "",
+                        "viewCountShow": model.info.playCount,
+                        "danmakuCountShow": "",
+                        "description": ""
+                    }
+                }
+        }
+    }
+
+    property int staticHeight: slideBanner.height + 10 + favorite.height + 10 + girdBangumi.height + 10 + girdBangumiHor.height
     state: smallMode?"vertical":"right"
     states: [
         State {
@@ -125,6 +192,10 @@ Item {
                 anchors.leftMargin: 0
                 height: hots.cellHeight
             }
+            PropertyChanges {
+                target: contentScroll
+                implicitHeight: staticHeight + 10 + hots.height
+            }
         },
         State {
             name: "right"
@@ -136,6 +207,11 @@ Item {
                 anchors.leftMargin: 20
                 height: slideBanner.height
             }
+            PropertyChanges {
+                target: contentScroll
+                implicitHeight: staticHeight
+            }
         }
     ]
+    }
 }

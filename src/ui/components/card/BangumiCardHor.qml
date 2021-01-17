@@ -22,6 +22,7 @@ Item {
             anchors.top: parent.top
             anchors.topMargin: 4
             spacing: 4
+            visible: infoJs.noStow === undefined
             Image {
                 height: textStowCnt.height
                 width: height
@@ -33,7 +34,7 @@ Item {
                 color: "#fff"
                 font.pointSize: AppStyle.font_normal
                 font.family: AppStyle.fontNameMain
-                text: infoJs.bangumiStowCount
+                text: infoJs.noStow ? "":infoJs.bangumiStowCount
             }
         }
         RectBackLabel {
@@ -68,7 +69,6 @@ Item {
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            console.log("11111111111111111")
             Global.openVideo({
                                  vid          : infoJs.videoId,
                                  contentId    : infoJs.href,

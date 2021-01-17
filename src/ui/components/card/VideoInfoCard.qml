@@ -35,6 +35,7 @@ Item {
                 dt.setTime(infoJs.time)
                 return qsTr("Posted") +"  "+ FUN.fmtTime(dt, "MM-dd")
             }
+            duration.visible = false
             return ""
         }
         z:imgCover.z+1
