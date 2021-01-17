@@ -1,6 +1,7 @@
 ﻿pragma Singleton
 import QtQuick 2.12
 import QtQuick.Window 2.12
+import "qrc:///ui/global/"
 
 Window {
     id: control
@@ -16,6 +17,9 @@ Window {
     Item {
         id: fullItem
         anchors.fill: parent
+        Keys.onSpacePressed: Global.spacePressed()
+        Keys.onEnterPressed: Global.enterPressed()
+        Keys.onReturnPressed: Global.enterPressed()
     }
     TitleBar {
         property color hovColor: "#FFFFFF"
@@ -40,6 +44,7 @@ Window {
             x = smallX
             y = smallY
             showNormal()
+            fullItem.forceActiveFocus()
         }else{
             fullWindow = true
         }
@@ -48,6 +53,7 @@ Window {
         if(fullWindow){
             flags = Qt.FramelessWindowHint
             showFullScreen()
+            fullItem.forceActiveFocus()
         }
     }
     onWidthChanged: {

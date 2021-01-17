@@ -51,6 +51,7 @@ Item{
         detail.open(js)
         param = js
         btnCmt.visible = true
+        root.forceActiveFocus()
     }
 
     function openBangumiPrivate(js){
@@ -59,6 +60,7 @@ Item{
         param = js
         param.cmtType = 2
         btnCmt.visible = true
+        root.forceActiveFocus()
     }
 
     function stop() {
@@ -99,6 +101,7 @@ Item{
                 onChangeVideoPart: {
                     busyBox.running = true
                     player.changePart(vInfo)
+                    root.forceActiveFocus()
                 }
             }
 
@@ -138,8 +141,22 @@ Item{
         }
     }
     Component.onCompleted: {
-        console.log("VideoPage completed")
         var d=new Date();
-        console.log(FUN.fmtTime(d, "hh:mm:ss"))
+        console.log("VideoPage completed:"+FUN.fmtTime(d, "hh:mm:ss"))
+    }
+
+    focus: true
+    Keys.onSpacePressed: player.togglePause()
+    Keys.onEnterPressed: player.toggleFullScreen()
+    Keys.onReturnPressed: player.toggleFullScreen()
+
+    Connections {
+        target: Global
+        function onSpacePressed() {
+            player.togglePause()
+        }
+        function onEnterPressed() {
+            player.toggleFullScreen()
+        }
     }
 }

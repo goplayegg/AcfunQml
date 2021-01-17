@@ -72,6 +72,10 @@ FullScreen {
     function togglePause(){
         vlcPlayer.togglePause()
     }
+    function toggleFullScreen(){
+        ctrlFrame.fullScreen = !ctrlFrame.fullScreen
+    }
+
     DanmControl {
         property var componentBanana: null
         id: danmCtrl
@@ -163,7 +167,7 @@ FullScreen {
                     togglePause()
                 }
                 onDoubleClicked: {
-                    ctrlFrame.fullScreen = !ctrlFrame.fullScreen
+                    toggleFullScreen()
                 }
             }
             VideoControl {

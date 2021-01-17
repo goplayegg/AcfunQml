@@ -73,6 +73,18 @@ Item {
     }
 
     function openBangumi(js){
+        AcService.bangumiItemList(js.id, function(res){
+            if(0 !== res.result){
+                PopMsg.showError(res, mainwindowRoot)
+                return
+            }
+            modelVideos.clear()
+            if(res.items.length>1){
+                for(var idxV in res.items){
+                    modelVideos.append({info:res.items[idxV]})
+                }
+            }
+        })
         acID = js.id
         contentType = 1
         textTitle.text = js.title
@@ -107,18 +119,6 @@ Item {
                 modelRelatBangumis.append(bangumList[idxB])
             }
         }
-        AcService.bangumiItemList(js.id, function(res){
-            if(0 !== res.result){
-                PopMsg.showError(res, mainwindowRoot)
-                return
-            }
-            modelVideos.clear()
-            if(res.items.length>1){
-                for(var idxV in res.items){
-                    modelVideos.append({info:res.items[idxV]})
-                }
-            }
-        })
     }
 
     function nextPart(){

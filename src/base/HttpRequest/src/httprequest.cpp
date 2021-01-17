@@ -16,7 +16,11 @@ HttpRequest::HttpRequest(QNetworkAccessManager *networkManager, QObject *parent)
     QObject(parent),
     d_ptr(new HttpRequestPrivate(networkManager, this))
 {
-    qDebug()<<"ssl version:"<<QSslSocket::sslLibraryBuildVersionString();
+    static bool bFirstDebug = true;
+    if(bFirstDebug){
+        bFirstDebug = false;
+        qDebug()<<"ssl version:"<<QSslSocket::sslLibraryBuildVersionString();
+    }
     qRegisterMetaType<NetworkStatus>("HttpRequest::NetworkStatus");
     qRegisterMetaType<State>("HttpRequest::State");
 
