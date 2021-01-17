@@ -105,5 +105,9 @@
         <file>ui/other/HistoryListPage.qml</file>
         <file>ui/other/PocketListPage.qml</file>
         <file>ui/mainPage/BangumiPage.qml</file>
+        <file>ui/components/SwipeCircle.qml</file>
+        <file>ui/components/card/BangumiCard.qml</file>
+        <file>ui/components/card/BangumiCardHor.qml</file>
+        <file>ui/components/RectBackLabelBlink.qml</file>
     </qresource>
 </RCC>

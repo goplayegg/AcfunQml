@@ -5,7 +5,7 @@ import "qrc:///ui/global/styles/"
 Label {
     id: control
     property color clr: AppStyle.thirdForeColor
-    property alias blink: anim.running
+    property alias bkColor: bk.color
     background: Rectangle{
         id: bk
         color: "transparent"
@@ -22,12 +22,4 @@ Label {
     font.family: AppStyle.fontNameMain
     font.weight: Font.Normal
     color: clr
-    ColorAnimation on clr {
-        id: anim
-        from: AppStyle.secondForeColor
-        to: AppStyle.backgroundColor
-        duration: 2000
-        loops: Animation.Infinite
-        running: false
-    }
 }

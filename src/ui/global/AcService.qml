@@ -10,7 +10,8 @@ Item {
     property string acSecurity: ""
     property string midground_st: ""
     property string udid: ""
-    readonly property string c_appVersion: "6.31.1.1026"//"6.26.0.966"//"6.24.1.958"
+    readonly property string c_appVersion: "6.31.1.1026"////"6.24.1.958"
+    readonly property string c_appVersion4Bangumi: "6.39.0.1095"//"6.26.0.966"
     readonly property string c_userAgent: "acvideo core/6.31.1.1026(OPPO;OPPO A83;7.1.1)"
     property string c_mkey: "AAHewK3eIAAyMjA2MDMyMjQAAhAAMEP1uwSG3TvhYAAAAO5fOOpIdKsH2h4IGsF6BlVwnGQA6_eLEvGiajzUp4_YthxOPC-hxcOpTk0SPSrxyhbdkmIwsXnF9PgS5ly8eQyjuXlcS7VpWG0QlK0HakVDamteMHNHIui0A8V4tmELqQ%3D%3D"
     property string c_mkeyMainPage: "AAHewK3eIAAyMTkwNTExNzYAAhAAMEP1uwSZbohCYAAAAJlXIdNAMQR5fM2F-KEOYN5wnGQA6_eLEvGiajzUp4_YnU8EjTm7gzNYhBv59oCCDhbdkmIwsXnF9PgS5ly8eQyjuXlcS7VpWG0QlK0HakVDamteMHNHIui0A8V4tmELqQ%3D%3D"
@@ -431,8 +432,9 @@ Item {
     //动画 番剧
     function bangumiMainPage(cb) {
         var url = "api-new.acfunchina.com/rest/app/speedTheater";
-        var body = "mkey="+c_mkey;
-        request('POST', url, null, body, cb);
+        var qParam = [  {"appMode":"0"}];
+        //var body = "mkey="+c_mkey;
+        request('POST', url, qParam, null, cb);
     }
 
     function bangumiDetail(bangumiId, cb) {
@@ -491,6 +493,8 @@ Item {
                 "api-new.acfunchina.com/rest/app/feed/followFeedV2" === endpoint ||
                 "api-new.app.acfun.cn/rest/app/notify/load" === endpoint)
             hreq.setRequestHeader("appVersion", c_appVersion);
+        else if("api-new.acfunchina.com/rest/app/speedTheater" === endpoint)
+            hreq.setRequestHeader("appVersion", c_appVersion4Bangumi);
 
         if("" !== cookie){
             hreq.setRequestHeader("Cookie", cookie);

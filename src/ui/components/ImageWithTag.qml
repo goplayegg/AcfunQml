@@ -7,14 +7,13 @@ Image {
     property string tag: ""
     signal clicked()
 
-    RectBackLabel {
+    RectBackLabelBlink {
         anchors.top: parent.top
         anchors.right: parent.right
         anchors.topMargin: 10
         anchors.rightMargin: anchors.topMargin
         visible: tag !== ""
         text: tag
-        blink: true
     }
 
     MouseArea {
