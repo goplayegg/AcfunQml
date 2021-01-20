@@ -9,6 +9,7 @@ Item {
     implicitHeight: rootCol.implicitHeight
     height: implicitHeight
     property var sourceId: 0
+    property int cmtType: 3
     property var rootCmtId: 0
     property string pcursor: ""
 
@@ -24,7 +25,8 @@ Item {
 //        console.log("SubCommentList height:"+height + "rootCmtId:"+rootCmtId)
 //    }
 
-    function open(jsonStr, cmtId){
+    function open(jsonStr, cmtId, subCount, sourceType){
+        cmtType = sourceType
         rootCmtId = cmtId
         //console.log("showComment"+JSON.stringify(res))
         modelCmt.clear()
@@ -40,7 +42,7 @@ Item {
         if("no_more" === pcursor)
             textMore.visible = false
         else{
-            textMore.iTotal = subCmts.length
+            textMore.iTotal = subCount
         }
     }
     function loadSubCmt(res){
@@ -91,7 +93,7 @@ Item {
             text: qsTr("total:%1").arg(iTotal)+"  " + "<a href=\"more\">"+qsTr("show more")+"</a>"
             onLinkActivated: {
                 console.log("clicked:"+link)
-                AcService.getSubComment(sourceId, rootCmtId, pcursor, loadSubCmt)
+                AcService.getSubComment(sourceId, cmtType, rootCmtId, pcursor, loadSubCmt)
             }
         }
     }

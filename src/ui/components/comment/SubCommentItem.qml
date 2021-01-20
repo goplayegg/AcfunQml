@@ -67,6 +67,8 @@ Row {
                 id: btnLike
                 icon: "qrc:/assets/img/common/like0.png"
                 iconChecked: "qrc:/assets/img/common/like1.png"
+                text: js.likeCount?js.likeCountFormat:""
+                customChecked: js.isLiked
             }
             RoundBtnWithText {
                 id: btnReply

@@ -69,6 +69,8 @@ Row {
                 id: btnLike
                 icon: "qrc:/assets/img/common/like0.png"
                 iconChecked: "qrc:/assets/img/common/like1.png"
+                text: js.likeCount?js.likeCountFormat:""
+                customChecked: js.isLiked
             }
             RoundBtnWithText {
                 id: btnReply
@@ -123,12 +125,7 @@ Row {
     Component.onCompleted: {
         if("" !== js.subCommentsJson){
             subCmt.source = "SubCommentList.qml"
-            subCmt.item.open(js.subCommentsJson, js.commentId)
+            subCmt.item.open(js.subCommentsJson, js.commentId, js.subCommentCountFormat, js.sourceType)
         }
-        var likeTxt = ""//qsTr("Like")
-        if(js.likeCount)
-            likeTxt+=js.likeCountFormat
-        btnLike.text = likeTxt
-        btnLike.customChecked = js.isLiked
     }
 }

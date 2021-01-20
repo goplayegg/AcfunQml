@@ -234,7 +234,7 @@ Item {
         request('GET', url, qParam, null, cb);
     }
 
-    // sourceType:  1-文章评论 3-视频评论  4-动态的评论
+    // sourceType:  1-文章评论 2-番剧评论 3-视频评论  4-动态的评论
     function sendComment(sourceId, sourceType, cmt, replyToCommentId, cb) {
         var url = "api-new.app.acfun.cn/rest/app/comment/add";
         var cmtJson = {
@@ -251,10 +251,10 @@ Item {
         request('POST', url, null, body, cb);
     }
 
-    function getSubComment(sourceId, rootCommentId, pcursor, cb){
+    function getSubComment(sourceId, sourceType, rootCommentId, pcursor, cb){
         var url = "api-new.app.acfun.cn/rest/app/comment/sublist";
         var qParam = [{"sourceId": sourceId},
-                {"sourceType": 3},
+                {"sourceType": sourceType},
                 {"pcursor": pcursor},
                 {"count": 20},
                 {"rootCommentId": rootCommentId}];
