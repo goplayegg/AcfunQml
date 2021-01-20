@@ -51,7 +51,7 @@
     <message>
         <location filename="../impl/acCmtPaseAndShow.cpp" line="68"/>
         <source>Reply to</source>
-        <translation type="unfinished">回复</translation>
+        <translation>回复</translation>
     </message>
 </context>
 <context>
@@ -59,7 +59,7 @@
     <message>
         <location filename="../impl/acCommentPaser.cpp" line="59"/>
         <source>Reply to</source>
-        <translation type="unfinished">回复</translation>
+        <translation>回复</translation>
     </message>
 </context>
 <context>
@@ -69,9 +69,8 @@
         <translation type="vanished">加载视频列表...</translation>
     </message>
     <message>
-        <location filename="../ui/mainPage/AcMainPage.qml" line="20"/>
         <source>Loading...</source>
-        <translation type="unfinished">加载中...</translation>
+        <translation type="obsolete">加载中...</translation>
     </message>
 </context>
 <context>
@@ -90,37 +89,55 @@
 <context>
     <name>Article</name>
     <message>
-        <location filename="../ui/article/Article.qml" line="83"/>
+        <location filename="../ui/article/Article.qml" line="84"/>
         <source>Posted</source>
-        <translation type="unfinished">发布于</translation>
+        <translation>发布于</translation>
     </message>
     <message>
-        <location filename="../ui/article/Article.qml" line="334"/>
+        <location filename="../ui/article/Article.qml" line="335"/>
         <source>Followed</source>
-        <translation type="unfinished">已关注</translation>
+        <translation>已关注</translation>
     </message>
     <message>
-        <location filename="../ui/article/Article.qml" line="334"/>
+        <location filename="../ui/article/Article.qml" line="335"/>
         <source>Follow</source>
-        <translation type="unfinished">关注</translation>
+        <translation>关注</translation>
     </message>
     <message>
-        <location filename="../ui/article/Article.qml" line="411"/>
+        <location filename="../ui/article/Article.qml" line="412"/>
         <source>show article</source>
-        <translation type="unfinished">显示文章</translation>
+        <translation>显示文章</translation>
     </message>
     <message>
-        <location filename="../ui/article/Article.qml" line="411"/>
+        <location filename="../ui/article/Article.qml" line="412"/>
         <source>show comment</source>
-        <translation type="unfinished">显示评论</translation>
+        <translation>显示评论</translation>
     </message>
 </context>
 <context>
     <name>ArticleCard</name>
     <message>
-        <location filename="../ui/components/card/ArticleCard.qml" line="90"/>
+        <location filename="../ui/components/card/ArticleCard.qml" line="88"/>
         <source>%1 viewed</source>
-        <translation type="unfinished">%1已阅</translation>
+        <translation>%1已阅</translation>
+    </message>
+</context>
+<context>
+    <name>ArticleCardSquare</name>
+    <message>
+        <location filename="../ui/components/card/ArticleCardSquare.qml" line="28"/>
+        <source>%1 viewed</source>
+        <translation>%1 已阅</translation>
+    </message>
+    <message>
+        <location filename="../ui/components/card/ArticleCardSquare.qml" line="38"/>
+        <source>%1 comments</source>
+        <translation>%1 评论</translation>
+    </message>
+    <message>
+        <location filename="../ui/components/card/ArticleCardSquare.qml" line="74"/>
+        <source>Posted</source>
+        <translation>发布于</translation>
     </message>
 </context>
 <context>
@@ -128,12 +145,12 @@
     <message>
         <location filename="../ui/circle/Circle.qml" line="28"/>
         <source>动态</source>
-        <translation type="unfinished">动态</translation>
+        <translation>动态</translation>
     </message>
     <message>
-        <location filename="../ui/circle/Circle.qml" line="37"/>
+        <location filename="../ui/circle/Circle.qml" line="38"/>
         <source>Video only</source>
-        <translation type="unfinished">仅视频（还没做）</translation>
+        <translation>仅视频</translation>
     </message>
 </context>
 <context>
@@ -141,55 +158,60 @@
     <message>
         <location filename="../ui/components/card/CircleInfoCard.qml" line="53"/>
         <source>%1 viewed</source>
-        <translation type="unfinished">%1已阅</translation>
+        <translation>%1已阅</translation>
+    </message>
+    <message>
+        <location filename="../ui/components/card/CircleInfoCard.qml" line="74"/>
+        <source>右键打开</source>
+        <translation>右键打开</translation>
     </message>
 </context>
 <context>
     <name>CommentEditor</name>
     <message>
-        <location filename="../ui/components/comment/CommentEditor.qml" line="56"/>
+        <location filename="../ui/components/comment/CommentEditor.qml" line="59"/>
         <source>Reply</source>
-        <translation type="unfinished">回复</translation>
+        <translation>回复</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/CommentEditor.qml" line="56"/>
+        <location filename="../ui/components/comment/CommentEditor.qml" line="59"/>
         <source>评论一时爽，一直评论一直爽。</source>
-        <translation type="unfinished"></translation>
+        <translation>评论一时爽，一直评论一直爽。</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/CommentEditor.qml" line="110"/>
+        <location filename="../ui/components/comment/CommentEditor.qml" line="113"/>
         <source>Bold</source>
-        <translation type="unfinished">加粗</translation>
+        <translation>加粗</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/CommentEditor.qml" line="121"/>
+        <location filename="../ui/components/comment/CommentEditor.qml" line="124"/>
         <source>Italic</source>
-        <translation type="unfinished">斜体</translation>
+        <translation>斜体</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/CommentEditor.qml" line="132"/>
+        <location filename="../ui/components/comment/CommentEditor.qml" line="135"/>
         <source>Underline</source>
-        <translation type="unfinished">下划线</translation>
+        <translation>下划线</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/CommentEditor.qml" line="143"/>
+        <location filename="../ui/components/comment/CommentEditor.qml" line="146"/>
         <source>Strike</source>
-        <translation type="unfinished">删除线</translation>
+        <translation>删除线</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/CommentEditor.qml" line="152"/>
+        <location filename="../ui/components/comment/CommentEditor.qml" line="155"/>
         <source>Color</source>
-        <translation type="unfinished">颜色</translation>
+        <translation>颜色</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/CommentEditor.qml" line="175"/>
+        <location filename="../ui/components/comment/CommentEditor.qml" line="178"/>
         <source>Emotion</source>
-        <translation type="unfinished">表情</translation>
+        <translation>表情</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/CommentEditor.qml" line="186"/>
+        <location filename="../ui/components/comment/CommentEditor.qml" line="189"/>
         <source>Send comment</source>
-        <translation type="unfinished">发送评论</translation>
+        <translation>发送评论</translation>
     </message>
 </context>
 <context>
@@ -197,40 +219,58 @@
     <message>
         <location filename="../ui/components/comment/CommentItem.qml" line="42"/>
         <source>UP</source>
-        <translation type="unfinished"></translation>
+        <translation>UP</translation>
     </message>
     <message>
         <location filename="../ui/components/comment/CommentItem.qml" line="42"/>
         <source>same city</source>
-        <translation type="unfinished">同城</translation>
+        <translation>同城</translation>
     </message>
     <message>
         <location filename="../ui/components/comment/CommentItem.qml" line="49"/>
         <source>post time</source>
-        <translation type="unfinished">发表于</translation>
+        <translation>发表于</translation>
     </message>
     <message>
         <location filename="../ui/components/comment/CommentItem.qml" line="91"/>
         <source>Send by</source>
-        <translation type="unfinished">来自 </translation>
+        <translation>来自 </translation>
     </message>
 </context>
 <context>
     <name>CommentList</name>
     <message>
-        <location filename="../ui/components/comment/CommentList.qml" line="70"/>
+        <location filename="../ui/components/comment/CommentList.qml" line="71"/>
         <source>Comment</source>
-        <translation type="unfinished">评论</translation>
+        <translation>评论</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/CommentList.qml" line="97"/>
+        <location filename="../ui/components/comment/CommentList.qml" line="98"/>
         <source>编辑器正处于引用发言状态，点击恢复正常状态。</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑器正处于引用发言状态，点击恢复正常状态。</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/CommentList.qml" line="143"/>
+        <location filename="../ui/components/comment/CommentList.qml" line="144"/>
         <source>show more</source>
-        <translation type="unfinished">加载更多</translation>
+        <translation>加载更多</translation>
+    </message>
+</context>
+<context>
+    <name>CommentMsgCard</name>
+    <message>
+        <location filename="../ui/msg/CommentMsgCard.qml" line="119"/>
+        <source>Open article</source>
+        <translation type="unfinished">打开文章</translation>
+    </message>
+    <message>
+        <location filename="../ui/msg/CommentMsgCard.qml" line="120"/>
+        <source>Open video</source>
+        <translation type="unfinished">打开视频</translation>
+    </message>
+    <message>
+        <location filename="../ui/msg/CommentMsgCard.qml" line="121"/>
+        <source>Open</source>
+        <translation type="unfinished">打开</translation>
     </message>
 </context>
 <context>
@@ -266,48 +306,48 @@
     <message>
         <location filename="../ui/player/ctrl/DanmSendOption.qml" line="35"/>
         <source>Font size</source>
-        <translation type="unfinished">字体大小</translation>
+        <translation>字体大小</translation>
     </message>
     <message>
         <location filename="../ui/player/ctrl/DanmSendOption.qml" line="46"/>
         <source>Normal</source>
-        <translation type="unfinished">正常</translation>
+        <translation>正常</translation>
     </message>
     <message>
         <location filename="../ui/player/ctrl/DanmSendOption.qml" line="46"/>
         <source>Big</source>
-        <translation type="unfinished">大</translation>
+        <translation>大</translation>
     </message>
     <message>
         <location filename="../ui/player/ctrl/DanmSendOption.qml" line="46"/>
         <source>Small</source>
         <translatorcomment>3333</translatorcomment>
-        <translation type="unfinished">小</translation>
+        <translation>小</translation>
     </message>
     <message>
         <location filename="../ui/player/ctrl/DanmSendOption.qml" line="58"/>
         <source>Mode</source>
-        <translation type="unfinished">位置</translation>
+        <translation>位置</translation>
     </message>
     <message>
         <location filename="../ui/player/ctrl/DanmSendOption.qml" line="71"/>
         <source>Fly danmaku</source>
-        <translation type="unfinished">滚动</translation>
+        <translation>滚动</translation>
     </message>
     <message>
         <location filename="../ui/player/ctrl/DanmSendOption.qml" line="71"/>
         <source>Bottom danmaku</source>
-        <translation type="unfinished">底部</translation>
+        <translation>底部</translation>
     </message>
     <message>
         <location filename="../ui/player/ctrl/DanmSendOption.qml" line="71"/>
         <source>Top danmaku</source>
-        <translation type="unfinished">顶部</translation>
+        <translation>顶部</translation>
     </message>
     <message>
         <location filename="../ui/player/ctrl/DanmSendOption.qml" line="75"/>
         <source>Color</source>
-        <translation type="unfinished">颜色</translation>
+        <translation>颜色</translation>
     </message>
 </context>
 <context>
@@ -315,7 +355,7 @@
     <message>
         <location filename="../ui/player/ctrl/DanmShowOption.qml" line="21"/>
         <source>Danmaku opacity</source>
-        <translation type="unfinished">弹幕透明度</translation>
+        <translation>弹幕透明度</translation>
     </message>
 </context>
 <context>
@@ -323,38 +363,43 @@
     <message>
         <location filename="../impl/documenthandler.cpp" line="478"/>
         <source>Cannot save: </source>
-        <translation type="unfinished">保存失败: </translation>
+        <translation>保存失败: </translation>
     </message>
 </context>
 <context>
     <name>LeftNavig</name>
     <message>
-        <location filename="../ui/navigator/LeftNavig.qml" line="77"/>
+        <location filename="../ui/navigator/LeftNavig.qml" line="95"/>
         <source>登陆账户</source>
         <translation>登陆账户</translation>
     </message>
     <message>
-        <location filename="../ui/navigator/LeftNavig.qml" line="150"/>
+        <location filename="../ui/navigator/LeftNavig.qml" line="164"/>
         <source>视频</source>
         <translation>视频</translation>
     </message>
     <message>
-        <location filename="../ui/navigator/LeftNavig.qml" line="151"/>
+        <location filename="../ui/navigator/LeftNavig.qml" line="165"/>
         <source>文章</source>
         <translation>文章</translation>
     </message>
     <message>
-        <location filename="../ui/navigator/LeftNavig.qml" line="152"/>
+        <location filename="../ui/navigator/LeftNavig.qml" line="166"/>
         <source>动态</source>
         <translation>动态</translation>
     </message>
     <message>
-        <location filename="../ui/navigator/LeftNavig.qml" line="153"/>
+        <location filename="../ui/navigator/LeftNavig.qml" line="167"/>
         <source>排行榜</source>
         <translation>排行榜</translation>
     </message>
     <message>
-        <location filename="../ui/navigator/LeftNavig.qml" line="154"/>
+        <location filename="../ui/navigator/LeftNavig.qml" line="168"/>
+        <source>消息</source>
+        <translation>消息</translation>
+    </message>
+    <message>
+        <location filename="../ui/navigator/LeftNavig.qml" line="169"/>
         <source>活动</source>
         <translation></translation>
     </message>
@@ -385,16 +430,61 @@
     </message>
 </context>
 <context>
-    <name>Operation</name>
+    <name>MyMsg</name>
     <message>
-        <location filename="../ui/other/Operation.qml" line="16"/>
-        <source>Loading events list ...</source>
-        <translation type="unfinished">加载活动列表...</translation>
+        <location filename="../ui/msg/MyMsg.qml" line="26"/>
+        <source>评论</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/other/Operation.qml" line="93"/>
+        <location filename="../ui/msg/MyMsg.qml" line="27"/>
+        <source>点赞</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/msg/MyMsg.qml" line="28"/>
+        <source>@我的</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/msg/MyMsg.qml" line="29"/>
+        <source>礼物</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Operation</name>
+    <message>
+        <source>Loading events list ...</source>
+        <translation type="obsolete">加载活动列表...</translation>
+    </message>
+    <message>
+        <location filename="../ui/other/Operation.qml" line="92"/>
         <source>%1 to %2</source>
-        <translation type="unfinished">%1 至 %2</translation>
+        <translation>%1 至 %2</translation>
+    </message>
+</context>
+<context>
+    <name>OtherPagePopup</name>
+    <message>
+        <location filename="../ui/other/OtherPagePopup.qml" line="26"/>
+        <source>Favorite</source>
+        <translation>我的收藏</translation>
+    </message>
+    <message>
+        <location filename="../ui/other/OtherPagePopup.qml" line="27"/>
+        <source>Pocket</source>
+        <translation>稍后再看</translation>
+    </message>
+    <message>
+        <location filename="../ui/other/OtherPagePopup.qml" line="28"/>
+        <source>Histoty</source>
+        <translation>历史记录</translation>
+    </message>
+    <message>
+        <location filename="../ui/other/OtherPagePopup.qml" line="29"/>
+        <source>Search</source>
+        <translation>搜索结果</translation>
     </message>
 </context>
 <context>
@@ -402,12 +492,12 @@
     <message>
         <location filename="../ui/components/PopImage.qml" line="14"/>
         <source>Image</source>
-        <translation type="unfinished">图片</translation>
+        <translation>图片</translation>
     </message>
     <message>
         <location filename="../ui/components/PopImage.qml" line="96"/>
         <source>Save</source>
-        <translation type="unfinished">保存</translation>
+        <translation>保存</translation>
     </message>
 </context>
 <context>
@@ -416,7 +506,7 @@
         <location filename="../ui/components/PopMsg.qml" line="18"/>
         <location filename="../ui/components/PopMsg.qml" line="27"/>
         <source>error</source>
-        <translation type="unfinished">错误</translation>
+        <translation>错误</translation>
     </message>
 </context>
 <context>
@@ -659,9 +749,8 @@
 <context>
     <name>SearchResult</name>
     <message>
-        <location filename="../ui/other/SearchResult.qml" line="22"/>
         <source>Loading search result ...</source>
-        <translation type="unfinished">加载搜索结果中...</translation>
+        <translation type="obsolete">加载搜索结果中...</translation>
     </message>
 </context>
 <context>
@@ -677,7 +766,7 @@
         <translation>搜索</translation>
     </message>
     <message>
-        <location filename="../ui/components/SearchToolBar.qml" line="42"/>
+        <location filename="../ui/components/SearchToolBar.qml" line="64"/>
         <source>refresh</source>
         <translation>刷新</translation>
     </message>
@@ -687,17 +776,17 @@
     <message>
         <location filename="../ui/other/Setting.qml" line="35"/>
         <source>App setting</source>
-        <translation type="unfinished">软件设置</translation>
+        <translation>软件设置</translation>
     </message>
     <message>
         <location filename="../ui/other/Setting.qml" line="42"/>
         <source>Language</source>
-        <translation type="unfinished">语言</translation>
+        <translation>语言</translation>
     </message>
     <message>
         <location filename="../ui/other/Setting.qml" line="59"/>
         <source>Theme</source>
-        <translation type="unfinished">主题</translation>
+        <translation>主题</translation>
     </message>
     <message>
         <location filename="../ui/other/Setting.qml" line="79"/>
@@ -710,22 +799,22 @@
     <message>
         <location filename="../ui/components/comment/SubCommentItem.qml" line="43"/>
         <source>UP</source>
-        <translation type="unfinished"></translation>
+        <translation>UP</translation>
     </message>
     <message>
         <location filename="../ui/components/comment/SubCommentItem.qml" line="43"/>
         <source>same city</source>
-        <translation type="unfinished">同城</translation>
+        <translation>同城</translation>
     </message>
     <message>
         <location filename="../ui/components/comment/SubCommentItem.qml" line="50"/>
         <source>post time</source>
-        <translation type="unfinished">发表于</translation>
+        <translation>发表于</translation>
     </message>
     <message>
         <location filename="../ui/components/comment/SubCommentItem.qml" line="89"/>
         <source>Send by</source>
-        <translation type="unfinished">来自 </translation>
+        <translation>来自 </translation>
     </message>
 </context>
 <context>
@@ -733,20 +822,19 @@
     <message>
         <location filename="../ui/components/comment/SubCommentList.qml" line="91"/>
         <source>total:%1</source>
-        <translation type="unfinished">共%1条</translation>
+        <translation>共%1条</translation>
     </message>
     <message>
         <location filename="../ui/components/comment/SubCommentList.qml" line="91"/>
         <source>show more</source>
-        <translation type="unfinished">显示更多</translation>
+        <translation>显示更多</translation>
     </message>
 </context>
 <context>
     <name>TopRank</name>
     <message>
-        <location filename="../ui/topRank/TopRank.qml" line="19"/>
         <source>Loading...</source>
-        <translation type="unfinished">加载中...</translation>
+        <translation type="obsolete">加载中...</translation>
     </message>
 </context>
 <context>
@@ -754,42 +842,42 @@
     <message>
         <location filename="../ui/user/User.qml" line="55"/>
         <source>User Info</source>
-        <translation type="unfinished">用户信息</translation>
+        <translation>用户信息</translation>
     </message>
     <message>
-        <location filename="../ui/user/User.qml" line="112"/>
+        <location filename="../ui/user/User.qml" line="113"/>
         <source>Logout</source>
-        <translation type="unfinished">登出</translation>
+        <translation>登出</translation>
     </message>
     <message>
         <location filename="../ui/user/User.qml" line="113"/>
         <source>Follow</source>
-        <translation type="unfinished">关注</translation>
+        <translation>关注</translation>
     </message>
     <message>
         <location filename="../ui/user/User.qml" line="113"/>
         <source>Followed</source>
-        <translation type="unfinished">已关注</translation>
+        <translation>已关注</translation>
     </message>
     <message>
-        <location filename="../ui/user/User.qml" line="149"/>
+        <location filename="../ui/user/User.qml" line="150"/>
         <source>register time:</source>
-        <translation type="unfinished">注册时间：</translation>
-    </message>
-    <message>
-        <location filename="../ui/user/User.qml" line="171"/>
-        <source>动态</source>
-        <translation type="unfinished">动态</translation>
+        <translation>注册时间：</translation>
     </message>
     <message>
         <location filename="../ui/user/User.qml" line="172"/>
-        <source>视频</source>
-        <translation type="unfinished">视频</translation>
+        <source>动态</source>
+        <translation>动态</translation>
     </message>
     <message>
         <location filename="../ui/user/User.qml" line="173"/>
+        <source>视频</source>
+        <translation>视频</translation>
+    </message>
+    <message>
+        <location filename="../ui/user/User.qml" line="174"/>
         <source>文章</source>
-        <translation type="unfinished">文章</translation>
+        <translation>文章</translation>
     </message>
 </context>
 <context>
@@ -797,22 +885,22 @@
     <message>
         <location filename="../ui/components/card/UserInfoCard.qml" line="37"/>
         <source>%1 contents</source>
-        <translation type="unfinished">%1 动态</translation>
+        <translation>%1 动态</translation>
     </message>
     <message>
         <location filename="../ui/components/card/UserInfoCard.qml" line="46"/>
         <source>%1 fans</source>
-        <translation type="unfinished">%1 粉丝</translation>
+        <translation>%1 粉丝</translation>
     </message>
     <message>
         <location filename="../ui/components/card/UserInfoCard.qml" line="59"/>
         <source>Followed</source>
-        <translation type="unfinished">已关注</translation>
+        <translation>已关注</translation>
     </message>
     <message>
         <location filename="../ui/components/card/UserInfoCard.qml" line="59"/>
         <source>Follow</source>
-        <translation type="unfinished">关注</translation>
+        <translation>关注</translation>
     </message>
 </context>
 <context>
@@ -820,7 +908,7 @@
     <message>
         <location filename="../ui/user/UserUploadList.qml" line="66"/>
         <source>no more infomation</source>
-        <translation type="unfinished">没有更多内容</translation>
+        <translation>没有更多内容</translation>
     </message>
 </context>
 <context>
@@ -865,33 +953,33 @@
     <message>
         <location filename="../ui/videoPage/VideoDetail.qml" line="29"/>
         <source>Posted</source>
-        <translation type="unfinished">发布于</translation>
+        <translation>发布于</translation>
     </message>
     <message>
-        <location filename="../ui/videoPage/VideoDetail.qml" line="327"/>
+        <location filename="../ui/videoPage/VideoDetail.qml" line="423"/>
         <source>Followed</source>
-        <translation type="unfinished">已关注</translation>
+        <translation>已关注</translation>
     </message>
     <message>
-        <location filename="../ui/videoPage/VideoDetail.qml" line="327"/>
+        <location filename="../ui/videoPage/VideoDetail.qml" line="423"/>
         <source>Follow</source>
-        <translation type="unfinished">关注</translation>
+        <translation>关注</translation>
     </message>
 </context>
 <context>
     <name>VideoInfoCard</name>
     <message>
-        <location filename="../ui/components/card/VideoInfoCard.qml" line="33"/>
+        <location filename="../ui/components/card/VideoInfoCard.qml" line="36"/>
         <source>Posted</source>
-        <translation type="unfinished">发布于</translation>
+        <translation>发布于</translation>
     </message>
 </context>
 <context>
     <name>VideoPage</name>
     <message>
-        <location filename="../ui/videoPage/VideoPage.qml" line="109"/>
+        <location filename="../ui/videoPage/VideoPage.qml" line="137"/>
         <source>show comment</source>
-        <translation type="unfinished">显示评论</translation>
+        <translation>显示评论</translation>
     </message>
 </context>
 <context>
@@ -935,10 +1023,9 @@
         <translation>Acfun Qml</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="163"/>
-        <location filename="../ui/main.qml" line="233"/>
+        <location filename="../ui/main.qml" line="385"/>
         <source>Loading...</source>
-        <translation type="unfinished">加载中...</translation>
+        <translation>加载中...</translation>
     </message>
     <message>
         <source>Loading video ...</source>

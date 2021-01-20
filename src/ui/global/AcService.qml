@@ -141,10 +141,10 @@ Item {
         request('POST', url, qParam, body, cb);
     }
 
-    //动态+投稿动态
-    function getFollowFeed(pcursor, count, cb) {
+    //动态+投稿动态 type 0-全部，2-仅视频
+    function getFollowFeed(pcursor, count, type, cb) {
         var url = "api-new.acfunchina.com/rest/app/feed/followFeedV2";
-        var qParam = [{"resourceType":"0"},
+        var qParam = [{"resourceType": type},
                       {"pcursor": pcursor},
                       {"count": count} ];
         request('GET', url, qParam, null, cb);

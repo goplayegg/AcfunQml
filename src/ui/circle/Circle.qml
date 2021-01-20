@@ -33,9 +33,13 @@ Item{
                     font.weight: Font.Black
                 }
                 Switch {
+                    id: swchVideoOnly
                     height: txTitle.height
                     text: qsTr("Video only")
                     anchors.right: parent.right
+                    onCheckedChanged: {
+                        refresh()
+                    }
                 }
             }
 
@@ -89,7 +93,7 @@ Item{
         if(busyBox.running)
             return
         busyBox.running = true
-        AcService.getFollowFeed(pcursor, 20, addFeed)
+        AcService.getFollowFeed(pcursor, 20, swchVideoOnly.checked?2:0, addFeed)
     }
 
     function addFeed(res){
