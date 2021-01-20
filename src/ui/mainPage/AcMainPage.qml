@@ -57,7 +57,10 @@ Item{
                  }
              })
         }else if("bangumi" === cid){
-            bangumi.open()
+            if(!bangumi.bangumiPageLoaded)
+                bangumi.open()
+            else
+                bangumi.refreshFavorite()
         }else{
             AcService.getChannelVideo(cid, 10, function(res){
                 if(0 !== res.errorid){

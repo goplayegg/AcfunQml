@@ -35,11 +35,6 @@ ScrollView {
                         setModel(bangumiModel, res.data[idx].contentList)
                     }
                 }
-
-                return
-                AcService.favoriteBangumi(10, "", function(res){
-
-                })
             }
         })
     }
@@ -47,6 +42,20 @@ ScrollView {
         for(let i in list){
             model.append({info:list[i]})
         }
+    }
+
+    function refreshFavorite(){
+        busyBox.running = true
+        AcService.favoriteBangumi(50, "", function(res){
+            if(0 !== res.result){
+                busyBox.running = false
+                PopMsg.showError(res, mainwindowRoot)
+            }else{
+                busyBox.running = false
+                favoriteModel.clear()
+                setModel(favoriteModel, res.feeds)
+            }
+        })
     }
 
     property bool smallMode: width<1030
