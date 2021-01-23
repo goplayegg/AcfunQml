@@ -19,6 +19,8 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
   - full Screen
   - mini window
   - resolution change
+  - key control : space to pause, enter to full screen
+- Bangumi
 - Danmaku
   - fly
   - top
@@ -47,7 +49,7 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
   - send comment
   - ac emotion (Improving)
 - Index Page Video List (TODO)
-- Video/User Search
+- Video/User/Bangumi/Article Search
 - Home page (个人信息页)
 - User Notification (消息)
   - comment
