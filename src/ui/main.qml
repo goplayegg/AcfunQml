@@ -1,10 +1,8 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Window 2.12
-import QmlVlc 0.1
 
 import "qrc:///ui/components/"
-import "qrc:///ui/global/styles/"
 import "qrc:///ui/global/"
 import "qrc:///ui/navigator/"
 import "qrc:///ui/mainPage/"
@@ -15,32 +13,16 @@ import "qrc:///ui/global/libraries/functions.js" as FUN
 import "qrc:///ui/components/emot"
 import "qrc:///test"
 
-Window {
+SaveSizeWindow {
     id: mainwindow
-
+    objectName: "mainWnd"
     visible: true
-    width: 990
-    height: 710
     minimumWidth: 500
     minimumHeight: 600
     title: qsTr("AcfunQml")
 
-    VlcConfig {
-        id: vlcConfig
-        Component.onCompleted: {
-            var hardDec = g_preference.value("hardDec")
-            var enable = true
-            if(undefined !== hardDec){
-                enable = hardDec === "true"
-            }
-            console.log("VlcConfig enable hard decode:"+enable)
-            vlcConfig.enableHardDecode(enable)
-
-            var theme = g_preference.value("theme")
-            if(undefined !== theme) {
-                AppStyle.currentTheme = parseInt(theme)
-            }
-        }
+    Component.onCompleted: {
+        console.log("mainwindow onCompleted finished")
     }
 
     onClosing: {
@@ -50,6 +32,7 @@ Window {
             videoLoader.item.stop()
         }
     }
+
     onActiveChanged: {
         if(active && FullScreenWindow.visible){
             FullScreenWindow.raise()
