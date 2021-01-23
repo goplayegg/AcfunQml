@@ -2,8 +2,8 @@
 import QtQuick 2.12
 import "qrc:///ui/global/styles/"
 import AcfunQml 1.0
-import QmlVlc 0.1
 import QtKeychain 1.0
+import QmlVlc 0.1
 
 Item {
     property int sliderBarWidth: 6
