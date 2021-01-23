@@ -18,29 +18,32 @@ Item{
     function back(){
     }
 
-    function search(keyword, pCursor = 0){
-        if(keyword === "")
+    property string curKeyword: ""
+    function search(keyword, pCursor = "0"){
+        if(keyword === "" || busyBox.running)
             return
         busyBox.running = true
-        if(0 === pCursor)
+        curKeyword = keyword
+        if("0" === pCursor)
             resultModel.clear()
         AcService.search(keyword, pCursor, function(res){
             updateInfo(res)
         })
     }
 
+    property string nextCursor: ""
     function updateInfo(js){
         if(0 !== js.result){
             busyBox.running = false
             PopMsg.showError(js, mainwindowRoot)
             return
         }
-
+        nextCursor = js.pCursor
         var cnt = js.itemList.length
         console.log("search result num:"+cnt)
         for(var i=0;i<cnt;++i){
             var type = js.itemList[i].itemType
-            if(type >3)
+            if(type >5)
                 continue
             resultModel.append({"info":js.itemList[i],
                                 "type":type})
@@ -49,9 +52,6 @@ Item{
         busyBox.running = false
     }
 
-    ListModel {
-        id:resultModel
-    }
     GridView {
         id: cardView
         anchors.fill: parent
@@ -63,9 +63,21 @@ Item{
             id: scrollbar
             anchors.right: cardView.right
             width: 10
+            onPositionChanged: {
+                if(1.0 === position+size){
+                    search(curKeyword, nextCursor)
+                }
+            }
+            onSizeChanged: {
+                if(1.0 === size){
+                    search(curKeyword, nextCursor)
+                }
+            }
         }
 
-        model:  resultModel
+        model: ListModel {
+            id: resultModel
+        }
         delegate: Item {
             id: deleCard
             width: 190
@@ -100,6 +112,19 @@ Item{
                     articleJson: model.info
                 }
             }
+            Component {
+                id: cmpBangumi
+                BangumiCardHor {
+                    infoJs: {
+                        "coverUrl": model.info.coverImageH != ""?model.info.coverImageH:model.info.coverImageV,
+                        "bangumiStowCount": model.info.viewCountInfo,
+                        "bangumiPaymentType": model.info.paymentType,
+                        "title": model.info.bgmTitle?model.info.bgmTitle:model.info.albumTitle,
+                        "videoId": 0,
+                        "href": model.info.id
+                    }
+                }
+            }
             Loader {
                 sourceComponent: {
                     if(model.type === 1)//user
@@ -108,6 +133,9 @@ Item{
                         return cmpVideo;
                     if(model.type === 3)//article
                         return cmpArticle;
+                    if(model.type === 5 ||
+                       model.type === 4)//bangumi
+                        return cmpBangumi;
                     return cmpUser;
                 }
             }
