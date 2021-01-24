@@ -1,0 +1,5 @@
+3rdparty
+*.DS_Store
+*.user
+bin/AcfunQml.app/Contents/Resources/empty.lproj
+bin/AcfunQml.app/Contents/MacOS/AcfunQml
