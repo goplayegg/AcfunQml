@@ -15,9 +15,10 @@ RoundButton {
     property string tooltip
     property bool outline: false
     property bool loading: false
-    property bool rotate: false
+    //property bool rotate: false
     property int duration: 1200
     property real size: AppStyle.md
+    property int checkedRotation: 0
 
 
     padding: 0
@@ -60,13 +61,20 @@ RoundButton {
         verticalAlignment: Text.AlignVCenter
         color: !control.enabled ? control.Material.hintTextColor : control.textColor
 
-        RotationAnimation on rotation {
+        /*RotationAnimation on rotation {
             running: control.rotate
             from: 0
             to: 360
             loops: Animation.Infinite
             duration: control.duration
             onStopped: buttonContent.rotation = 0
+        }*/
+
+        rotation: control.checked ? checkedRotation : 0
+        Behavior on rotation {
+            NumberAnimation {
+                duration: control.duration
+            }
         }
     }
 

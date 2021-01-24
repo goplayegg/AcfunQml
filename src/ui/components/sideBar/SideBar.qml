@@ -136,7 +136,9 @@ Rectangle{
     RoundButton {
         id: btnShrink
         checkable: true
-        icon.name: checked?AppIcons.mdi_chevron_double_right: AppIcons.mdi_chevron_double_left
+        checkedRotation: 180
+        duration: 300
+        icon.name: AppIcons.mdi_chevron_double_left
         size: 40
         anchors.left: parent.left
         anchors.leftMargin: 20
