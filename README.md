@@ -81,7 +81,7 @@ AcfunQml  is a thirdparty desktop App of Acfun Video & Danmaku wibsite,  build o
 - Libvlc 3.0 or later
 
 # Build
-- Download libvlc library (http://ftp.gnome.org/mirror/videolan.org/vlc/last/)
+- Download libvlc library (https://mirrors.tuna.tsinghua.edu.cn/videolan-ftp/vlc/last/)
 - Build QmlVlc with qmake (https://github.com/goplayegg/QmlVlc)
 
 - Windows:

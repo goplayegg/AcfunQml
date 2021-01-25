@@ -63,8 +63,12 @@ QT_QUICK_CONTROLS_CONF=:/qtquickcontrols2.conf
 
 # path to vlc library
 INCLUDEPATH += $$ACFUNQML_SOURCE_TREE/src
+win32: {
 LIBS *= -L$$ACFUNQML_LIBRARY_PATH \
         -L$$ACFUNQML_SOURCE_TREE/3rdparty/vlc/lib -lQmlVlcPlugin
+}else {
+LIBS *= -L$$ACFUNQML_LIBRARY_PATH
+}
 
 message(LIBS $$LIBS)
 message(TARGET $$TARGET)

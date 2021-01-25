@@ -4,8 +4,27 @@
 #include <QObject>
 #include <QQmlApplicationEngine>
 #include <QPointer>
+#include <QCoreApplication>
+#include "QmlPreferences.h"
+#include "utils/Lazy.h"
 
-class QmlWindowPrivate;
+class QTranslator;
+class QmlWindow;
+class QmlWindowPrivate
+{
+public:
+    QmlWindowPrivate(QmlWindow *window);
+
+    void reTrans(const QString &lang);
+
+    QString m_lang;
+    QMap<QString, std::shared_ptr<QTranslator>> m_transMap;
+    QTranslator *m_pLastLang;
+    QStringList m_languageList;
+    Util::Lazy<QmlPreferences> lazyPref;
+    QmlWindow *m_parent;
+};
+
 namespace Util {
     class CommonTools;
 }
