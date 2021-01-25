@@ -1,5 +1,59 @@
 3rdparty
-*.DS_Store
+doc
 *.user
+
+# MacOS
+*.DS_Store
 bin/AcfunQml.app/Contents/Resources/empty.lproj
 bin/AcfunQml.app/Contents/MacOS/AcfunQml
+
+# C++ objects and libs
+*.slo
+*.lo
+*.o
+*.a
+*.la
+*.lai
+*.so
+*.dll
+*.dylib
+
+# Qt-es
+object_script.*.Release
+object_script.*.Debug
+*_plugin_import.cpp
+/.qmake.cache
+/.qmake.stash
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.qmlc
+*.jsc
+Makefile*
+*build-*
+
+# Qt unit tests
+target_wrapper.*
+
+# QtCreator
+*.autosave
+
+# QtCreator Qml
+*.qmlproject.user
+*.qmlproject.user.*
+
+# QtCreator CMake
+CMakeLists.txt.user*
+
+# Qt translate
+*.ts
+
+# build path
+/bin
+/src/assets/img
