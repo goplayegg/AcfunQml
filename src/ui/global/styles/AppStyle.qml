@@ -1,6 +1,5 @@
 ﻿pragma Singleton
 import QtQuick 2.12
-import QtQuick.Window 2.12
 
 QtObject {
     // Global colors
@@ -121,6 +120,6 @@ QtObject {
     property double font_xxxxlarge: 48 * scale
 
     // font family
-    property string fontNameMain: "Microsoft YaHei"
-    property string fontNameArticle: "Microsoft YaHei,Helvetica Neue For Number,Segoe UI,Hiragino Sans GB,sans-serif"
+    property string fontNameMain: g_commonTools.mainFontFamily()
+    property string fontNameArticle: g_commonTools.articleFontFamily()
 }

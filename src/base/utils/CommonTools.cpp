@@ -49,7 +49,7 @@ QString CommonTools::cvtToHtml(const QString &source)
     }
     if(m_pDoc == nullptr){
         m_pDoc = new QTextDocument(this);
-        m_pDoc->setDefaultFont(QFont("Microsoft YaHei"));
+        m_pDoc->setDefaultFont(QFont(mainFontFamily()));
     }
     m_pDoc->clear();
     QTextCursor cursor = QTextCursor(m_pDoc);
@@ -102,6 +102,29 @@ QString CommonTools::token(const QString &unixTime)
     qDebug()<<"test QByteArray:"<<ba.toStdString().c_str();
     auto base64 = ba.toBase64();
     return base64;
+}
+
+QString CommonTools::mainFontFamily()
+{
+    return QString("mac"==osType()?"":"Microsoft YaHei");
+}
+
+QString CommonTools::articleFontFamily()
+{
+    return mainFontFamily()+",Helvetica Neue For Number,Segoe UI,Hiragino Sans GB,sans-serif";
+}
+
+QString CommonTools::osType() const
+{
+    QString os;
+#ifdef OS_WIN
+    os = "win";
+#endif
+#ifdef OS_MAC
+    os = "mac";
+#endif
+
+    return os;
 }
 
 void CommonTools::classBegin()

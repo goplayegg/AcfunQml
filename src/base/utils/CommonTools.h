@@ -11,10 +11,14 @@ class CommonTools: public QObject, public QQmlParserStatus
     Q_INTERFACES(QQmlParserStatus)
 public:
     explicit CommonTools(QObject *parent = 0);
+    Q_PROPERTY(QString osType READ osType FINAL)//操作系统: win mac linux
     Q_INVOKABLE QString cvtToHtml(const QString &source);
     Q_INVOKABLE QString cvtArticleTitle(const QString &title, const QString &body);
     Q_INVOKABLE QString token(const QString &unixTime);//wrong methed
+    Q_INVOKABLE QString mainFontFamily();
+    Q_INVOKABLE QString articleFontFamily();
 
+    QString osType() const;
 signals:
     void externalCmd(const QString &json);
     // QQmlParserStatus interface
