@@ -12,6 +12,9 @@ Window {
     property int smallHeight: 400
     property int smallX: screen.width - smallWidth
     property int smallY: 0
+    minimumWidth: 250
+    minimumHeight: 200
+    readonly property int wndFlagBase: g_commonTools.osType === "mac"?(Qt.CustomizeWindowHint | Qt.WindowMinMaxButtonsHint): Qt.FramelessWindowHint
 
     visible: fullItem.children.length>0
     Item {
@@ -36,31 +39,41 @@ Window {
         }
     }
     onSmallWindowChanged: {
+        console.log("onSmallWindowChanged :"+smallWindow)
         if(smallWindow){
             fullWindow = false
-            flags = Qt.Window | Qt.WindowStaysOnTopHint
+            flags = Qt.Window | Qt.WindowStaysOnTopHint | wndFlagBase
             width = smallWidth
             height = smallHeight
             x = smallX
             y = smallY
             showNormal()
             fullItem.forceActiveFocus()
+            console.log("changed to WindowStaysOnTopHint showNormal")
         }else{
-            fullWindow = true
+            //fullWindow = true
+            //showMinimized()
+            console.log("onSmallWindowChanged exit smallWindow to normal")
         }
     }
     onFullWindowChanged: {
+        console.log("onFullWindowChanged :"+fullWindow)
         if(fullWindow){
-            flags = Qt.FramelessWindowHint
+            flags = wndFlagBase
             showFullScreen()
             fullItem.forceActiveFocus()
+            console.log("changed to FramelessWindowHint showFullScreen")
+        }else{
+            //showMinimized()
         }
     }
     onWidthChanged: {
+        console.log("changed width:"+width)
         if(smallWindow)
             smallWidth = width
     }
     onHeightChanged: {
+        console.log("changed height:"+height)
         if(smallWindow)
             smallHeight = height
     }

@@ -11,7 +11,7 @@ namespace Util {
 CommonTools::CommonTools(QObject *parent)
     :QObject(parent)
 {
-
+    osTypeChanged(osType());
 }
 
 QString CommonTools::cvtToHtml(const QString &source)
@@ -106,7 +106,7 @@ QString CommonTools::token(const QString &unixTime)
 
 QString CommonTools::mainFontFamily()
 {
-    return QString("mac"==osType()?"":"Microsoft YaHei");
+    return QString("mac"==osType()?"Hiragino Sans GB":"Microsoft YaHei");
 }
 
 QString CommonTools::articleFontFamily()
