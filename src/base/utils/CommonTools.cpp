@@ -124,6 +124,14 @@ void CommonTools::disableScreenSaver(bool bDis)
     }
 }
 
+void CommonTools::setMainWnd(QVariant wnd)
+{
+    qDebug()<<"setMainWnd QVariant:"<<wnd;
+    auto pObj = wnd.value<QObject*>();
+    ScreenSaver::m_pWnd = (QWindow*)pObj;
+    qDebug()<<"setMainWnd QWindow*:"<<ScreenSaver::m_pWnd;
+}
+
 QString CommonTools::osType() const
 {
     QString os;

@@ -11,8 +11,10 @@ int main(int argc, char *argv[])
     auto appname = app.applicationName()+" by GoPlayEgg";
     QSharedMemory singleton(appname);
     if(!singleton.create(1)){
-        qDebug()<<appname<<" already running";
+        qDebug()<<appname<<" already running";        
+#ifdef OS_WIN
         sl<<"app exists";
+#endif //OS_WIN
     }
 
     return app.exec(sl);

@@ -1,18 +1,18 @@
 ﻿#include "ScreenSaver.h"
 #include <QApplication>
 #include <QDebug>
+#include <QWindow>
 
 #ifdef OS_WIN
     #include <windows.h>
 #endif	//OS_WIN
 
-#ifdef OS_MAC
-    #include <QWidget>
+#ifdef OS_X11
     #include <QProcess>
 
     QProcess * _xdgScreenSaverProcess = NULL;
     WId _XWindowID = 0;
-#endif	//OS_MAC
+#endif	//OS_X11
 
 namespace Util {
 
@@ -27,32 +27,33 @@ void ScreenSaver::disable() {
     app->installNativeEventFilter(m_pFilter);
 #endif	//OS_WIN
 
-#ifdef OS_MAC
+#ifdef OS_X11
 	if (!_xdgScreenSaverProcess) {
-		//Lazy initialization
-		_xdgScreenSaverProcess = new QProcess(app);
+        //Lazy initialization
+        _xdgScreenSaverProcess = new QProcess(app);
 	}
-	_XWindowID = app->activeWindow()->winId();
+    if(!m_pWnd)
+        return;
+    _XWindowID = m_pWnd->winId();
 	QStringList args;
 	args << "suspend";
-	args << QString::number(_XWindowID);
+    args << QString::number(_XWindowID);
 	int errorCode = _xdgScreenSaverProcess->execute("xdg-screensaver", args);
     qDebug() << args << errorCode;
     qDebug() << _xdgScreenSaverProcess->readAll();
-#endif	//OS_MAC
+#endif	//OS_X11
 }
 
 void ScreenSaver::restore() {
     qDebug() << "Restore screensaver";
 
+#ifdef OS_WIN
 	QApplication * app = qobject_cast<QApplication *>(QApplication::instance());
 	Q_ASSERT(app);
-
-#ifdef OS_WIN
     app->removeNativeEventFilter(m_pFilter);
 #endif	//OS_WIN
 
-#ifdef OS_MAC
+#ifdef OS_X11
 	if (_XWindowID > 0) {
 		QStringList args;
 		args << "resume";
@@ -67,15 +68,18 @@ void ScreenSaver::restore() {
 	} else {
         qDebug() << "_XWindowID cannot be 0";
 	}
-#endif	//OS_MAC
+#endif	//OS_X11
 }
 
 ScreenSavFilter* ScreenSaver::m_pFilter = nullptr;
+QWindow* ScreenSaver::m_pWnd = nullptr;
 void ScreenSaver::init()
 {
+#ifdef OS_WIN
     if(nullptr == m_pFilter){
         m_pFilter = new ScreenSavFilter();
     }
+#endif //OS_WIN
 }
 
 bool ScreenSavFilter::nativeEventFilter(const QByteArray &eventType, void *message, long *result)

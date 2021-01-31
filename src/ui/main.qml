@@ -22,7 +22,8 @@ SaveSizeWindow {
     title: qsTr("AcfunQml")
 
     Component.onCompleted: {
-        console.log("mainwindow onCompleted finished")
+        g_commonTools.setMainWnd(mainwindow)
+        console.log("mainwindow onCompleted finished:"+mainwindow)
     }
 
     onClosing: {

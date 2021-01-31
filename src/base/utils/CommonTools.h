@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <QObject>
 #include <QQmlParserStatus>
+#include <QVariant>
 
 class QTextDocument;
 namespace Util {
@@ -18,6 +19,7 @@ public:
     Q_INVOKABLE QString mainFontFamily();
     Q_INVOKABLE QString articleFontFamily();
     Q_INVOKABLE void disableScreenSaver(bool bDis);
+    Q_INVOKABLE void setMainWnd(QVariant wnd);
 
     QString osType() const;
 signals:

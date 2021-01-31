@@ -12,6 +12,7 @@
  *
  * @author Tanguy Krotoff
  */
+class QWindow;
 namespace Util {
 
 class ScreenSavFilter: public QAbstractNativeEventFilter{
@@ -27,6 +28,8 @@ public:
 	static void restore();
 
     static void init();//call in QApplication thread
+
+    static QWindow* m_pWnd;
 private:
 
 	ScreenSaver();
