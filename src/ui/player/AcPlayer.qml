@@ -138,6 +138,12 @@ FullScreen {
                 }else if(VlcPlayer.Ended === state){
                     videoEnded()
                 }
+
+                if(VlcPlayer.Playing === state){
+                    g_commonTools.disableScreenSaver(true)
+                }else if(VlcPlayer.Buffering !== state){
+                    g_commonTools.disableScreenSaver(false)
+                }
                 console.log("vlcPlayer status:"+ state)
             }
         }

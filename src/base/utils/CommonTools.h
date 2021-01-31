@@ -17,6 +17,7 @@ public:
     Q_INVOKABLE QString token(const QString &unixTime);//wrong methed
     Q_INVOKABLE QString mainFontFamily();
     Q_INVOKABLE QString articleFontFamily();
+    Q_INVOKABLE void disableScreenSaver(bool bDis);
 
     QString osType() const;
 signals:

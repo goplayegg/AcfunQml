@@ -1,10 +1,11 @@
 ﻿#include "CommonTools.h"
-#include <qDebug>
+#include <QDebug>
 #include <QRegularExpression>
 #include <vector>
 #include <tuple>
 #include <QTextDocument>
 #include <QTextCursor>
+#include "ScreenSaver.h"
 
 namespace Util {
 
@@ -112,6 +113,15 @@ QString CommonTools::mainFontFamily()
 QString CommonTools::articleFontFamily()
 {
     return mainFontFamily()+",Helvetica Neue For Number,Segoe UI,Hiragino Sans GB,sans-serif";
+}
+
+void CommonTools::disableScreenSaver(bool bDis)
+{
+    if(bDis){
+        ScreenSaver::disable();
+    }else{
+        ScreenSaver::restore();
+    }
 }
 
 QString CommonTools::osType() const

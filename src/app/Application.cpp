@@ -2,12 +2,13 @@
 #include "QmlWindow.h"
 #include "utils/SharedMsgSender.h"
 #include "utils/SharedMsgFetcher.h"
+#include "utils/ScreenSaver.h"
 
 #include <QTextCodec>
 #include <QTranslator>
 #include <QPointer>
 #include <QTimer>
-#include <qDebug>
+#include <QDebug>
 #include <QIcon>
 
 class ApplicationPrivate
@@ -93,6 +94,7 @@ int Application::exec(const QStringList &params)
         d->qmlWindow->inputCmd(m_strCmd);
     }
 
+    Util::ScreenSaver::init();
     auto ret = BaseApplication::exec();
     delete pMsgSender;
     delete pMsgFetcher;
