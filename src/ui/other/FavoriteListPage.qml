@@ -21,7 +21,7 @@ Item{
     function back(){
     }
 
-    property int pcursor: 0
+    property var pcursor: 0
     function search(){
         if(busyBox.running)
             return
