@@ -22,7 +22,7 @@ public:
 
 class ScreenSaver {
 public:
-
+    ~ScreenSaver();
 	static void disable();
 
 	static void restore();

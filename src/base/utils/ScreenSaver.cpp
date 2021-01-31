@@ -14,7 +14,23 @@
     WId _XWindowID = 0;
 #endif	//OS_X11
 
+#ifdef OS_MAC
+    #include <Availability.h>
+    #include <IOKit/pwr_mgt/IOPMLib.h>
+    quint32 _osxIOPMAssertionId = 0U;
+#endif //OS_MAC
+
 namespace Util {
+
+ScreenSaver::~ScreenSaver()
+{
+#ifdef OS_MAC
+    if (_osxIOPMAssertionId) {
+        IOPMAssertionRelease((IOPMAssertionID)_osxIOPMAssertionId);
+        _osxIOPMAssertionId = 0U;
+    }
+#endif //OS_MAC
+}
 
 void ScreenSaver::disable() {
     qDebug() << "Disable screensaver";
@@ -42,6 +58,17 @@ void ScreenSaver::disable() {
     qDebug() << args << errorCode;
     qDebug() << _xdgScreenSaverProcess->readAll();
 #endif	//OS_X11
+
+#ifdef OS_MAC
+    IOPMAssertionID assertionId = _osxIOPMAssertionId;
+    IOReturn r = IOPMAssertionCreateWithDescription(kIOPMAssertionTypePreventUserIdleDisplaySleep,
+                                                    CFSTR("AcfunQmlScreenSaver"),
+                                                    NULL, NULL, NULL, 0, NULL, &assertionId);
+    if (r == kIOReturnSuccess) {
+        _osxIOPMAssertionId = assertionId;
+    }
+    qDebug() << "IOPMAssertionDeclareUserActivity return:"<<r<<"  _osxIOPMAssertionId:"<<_osxIOPMAssertionId;
+#endif //OS_MAC
 }
 
 void ScreenSaver::restore() {
@@ -69,6 +96,14 @@ void ScreenSaver::restore() {
         qDebug() << "_XWindowID cannot be 0";
 	}
 #endif	//OS_X11
+
+#ifdef OS_MAC
+    if (_osxIOPMAssertionId) {
+        auto r = IOPMAssertionRelease((IOPMAssertionID)_osxIOPMAssertionId);
+        qDebug() << "IOPMAssertionRelease return:"<<r<<"  _osxIOPMAssertionId:"<<_osxIOPMAssertionId;
+        _osxIOPMAssertionId = 0U;
+    }
+#endif //OS_MAC
 }
 
 ScreenSavFilter* ScreenSaver::m_pFilter = nullptr;
