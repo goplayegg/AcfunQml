@@ -37,6 +37,10 @@ Item {
         var readJobObject = cmpReadPsw.createObject(null,{})
         readJobObject.key = key
         readJobObject.finished.connect(function (returnedPassword){
+            if(null === returnedPassword){
+                console.log("readEncrypt key \""+key+"\"failed")
+                return
+            }
             var curVal = returnedPassword.textData()
             //console.log("value is: "+curVal+" key is:"+key)
             cb(curVal)

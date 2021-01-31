@@ -23,10 +23,14 @@ Popup {
             return
         }
         strError = ""
-        Global.storeEncrypt("acPassToken",js.acPassToken)
-        Global.storeEncrypt("acSecurity",js.acSecurity)
-        Global.storeEncrypt("auth_key",js.auth_key)
-        Global.storeEncrypt("token",js.token)
+        var loginParam = {
+            acPassToken: js.acPassToken,
+            acSecurity: js.acSecurity,
+            auth_key: js.auth_key,
+            token: js.token
+        }
+
+        Global.storeEncrypt("AcfunQmlKeys", JSON.stringify(loginParam))
         g_preference.setValue("userid",js.userid)
         AcService.getUserInfo(gotUserInfo)
     }
@@ -47,53 +51,30 @@ Popup {
         }
     }
 
-    QtObject{
-        id: loginParam
-        property var keyLen: 4
-        property var curkeyIdx: 0
-        property var stracPassToken: ""
-        property var stracSecurity: ""
-        property var strauth_key: ""
-        property var strtoken: ""
-    }
-
     function initLogin(){
         var userid = g_preference.value("userid")
         if(undefined === userid || userid === "")
             return
 
-        loginParam.curkeyIdx = 0
-        Global.readEncrypt("acPassToken", function(value){
-            loginParam.stracPassToken = value
-            initLoginImpl()
-        });
-        Global.readEncrypt("acSecurity", function(value){
-            loginParam.stracSecurity = value
-            initLoginImpl()
-        });
-        Global.readEncrypt("auth_key", function(value){
-            loginParam.strauth_key = value
-            initLoginImpl()
-        });
-        Global.readEncrypt("token", function(value){
-            loginParam.strtoken = value
-            initLoginImpl()
+        Global.readEncrypt("AcfunQmlKeys", function(value){
+            if(value !== ""){
+                var loginParam = JSON.parse(value)
+                initLoginImpl(loginParam)
+            }
         });
     }
-    function initLoginImpl(){
-        loginParam.curkeyIdx++
-        if(loginParam.curkeyIdx>=loginParam.keyLen){
-            var auth = {
-                acPassToken:loginParam.stracPassToken,
-                acSecurity:loginParam.stracSecurity,
-                auth_key:loginParam.strauth_key,
-                token:loginParam.strtoken,
-                userid:parseInt(g_preference.value("userid")),
-                result:0
-            }
-            AcService.makeCookie(auth)
-            AcService.getUserInfo(gotUserInfo)
+
+    function initLoginImpl(loginParam){
+        var auth = {
+            acPassToken: loginParam.acPassToken,
+            acSecurity: loginParam.acSecurity,
+            auth_key: loginParam.auth_key,
+            token: loginParam.token,
+            userid: parseInt(g_preference.value("userid")),
+            result: 0
         }
+        AcService.makeCookie(auth)
+        AcService.getUserInfo(gotUserInfo)
     }
 
     Column{
