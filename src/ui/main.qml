@@ -139,7 +139,7 @@ SaveSizeWindow {
 
         Loader{
             id: videoLoader
-            function  openVideo(js) {
+            function openVideo(js) {
                 busyBox.running = true
                 source = "qrc:/ui/videoPage/VideoPage.qml"
                 console.log("open video:"+JSON.stringify(js))
@@ -318,11 +318,11 @@ SaveSizeWindow {
                 mainwindow.raise()
                 mainwindow.requestActivate()
                 var ms = 0
-                if(videoLoader.item !== null){
-                    console.log("onExternalCmd, video ready!")
+                if(!stack.empty){
+                    console.log("onExternalCmd, ready!")
                 }else{
-                    console.log("onExternalCmd, video not ready, jump after 3s.")
-                    ms = 3000
+                    console.log("onExternalCmd, stack.empty, jump after 2s.")
+                    ms = 2000
                 }
                 var vCmd = JSON.parse(json)
                 if(vCmd.type === "video"){
