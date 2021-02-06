@@ -73,6 +73,7 @@ ScrollView {
         }
         delegate: Image {
             source: model.info.coverUrl
+            visible: SwipeView.isCurrentItem || SwipeView.isPreviousItem
             MouseArea {
                 anchors.fill: parent
                 hoverEnabled: true

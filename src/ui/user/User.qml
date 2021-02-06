@@ -12,10 +12,19 @@ Rectangle{
     color: AppStyle.secondBkgroundColor
     property bool shrinked: true
     onShrinkedChanged: {
+        control.visible = true
         x = shrinked ? -width : 0
     }
     Behavior on x {
-        NumberAnimation{ duration: 200; easing.type: Easing.OutQuad; onFinished: control.visible = !shrinked }
+        SequentialAnimation {
+            NumberAnimation{ duration: 200; easing.type: Easing.OutQuad;}
+            ScriptAction {
+                script: {
+                    if(shrinked)
+                        control.visible = false
+                }
+            }
+        }
     }
 
     property var userInfo : ({headUrl:"", name:"", userId:0, comeFrom:"",signature:"",registerTime:0,followed:0, following:0, contentCount:0, isFollowing: false})
