@@ -7,11 +7,11 @@ import "qrc:///ui/global/"
 import "qrc:///ui/navigator/"
 import "qrc:///ui/mainPage/"
 import "qrc:///ui/videoPage/"
-import "qrc:///ui/global/libraries/functions.js" as FUN
+//import "qrc:///ui/global/libraries/functions.js" as FUN
 
 //test
-import "qrc:///ui/components/emot"
-import "qrc:///test"
+//import "qrc:///ui/components/emot"
+//import "qrc:///test"
 
 SaveSizeWindow {
     id: mainwindow
@@ -139,13 +139,10 @@ SaveSizeWindow {
 
         Loader{
             id: videoLoader
-            asynchronous: true
-            source: "qrc:/ui/videoPage/VideoPage.qml"
             function  openVideo(js) {
                 busyBox.running = true
+                source = "qrc:/ui/videoPage/VideoPage.qml"
                 console.log("open video:"+JSON.stringify(js))
-                var d=new Date();
-                console.log(FUN.fmtTime(d, "hh:mm:ss"))
                 stack.push(videoLoader)
                 videoLoader.item.open(js)
             }
@@ -209,9 +206,8 @@ SaveSizeWindow {
 
         Loader{
             id: favoriteLoader
-            asynchronous: true
-            source: "qrc:/ui/other/FavoriteListPage.qml"
             function open(){
+                source = "qrc:/ui/other/FavoriteListPage.qml"
                 stack.push(favoriteLoader)//TODO 先将原来的pop掉
                 favoriteLoader.item.refresh()
             }
@@ -219,9 +215,8 @@ SaveSizeWindow {
 
         Loader{
             id: pocketLoader
-            asynchronous: true
-            source: "qrc:/ui/other/PocketListPage.qml"
             function open(){
+                source = "qrc:/ui/other/PocketListPage.qml"
                 stack.push(pocketLoader)
                 pocketLoader.item.refresh()
             }
@@ -229,9 +224,8 @@ SaveSizeWindow {
 
         Loader{
             id: historyLoader
-            asynchronous: true
-            source: "qrc:/ui/other/HistoryListPage.qml"
             function open(){
+                source = "qrc:/ui/other/HistoryListPage.qml"
                 stack.push(historyLoader)
                 historyLoader.item.refresh()
             }
@@ -239,9 +233,8 @@ SaveSizeWindow {
 
         Loader{
             id: searchLoader
-            asynchronous: true
-            source: "qrc:/ui/other/SearchResult.qml"
             function openSearchPage(keyword){
+                source = "qrc:/ui/other/SearchResult.qml"
                 console.log("search key:"+keyword)
                 stack.push(searchLoader)
                 searchLoader.item.search(keyword)
@@ -250,10 +243,8 @@ SaveSizeWindow {
 
         Loader{
             id: circleDetailLoader
-            asynchronous: true
-            source: "qrc:/ui/circle/CircleDetail.qml"
             function openPage(info, byId){
-                console.log("open circle detail..")
+                source = "qrc:/ui/circle/CircleDetail.qml"
                 stack.push(circleDetailLoader)
                 if(byId)
                     circleDetailLoader.item.openById(info)
@@ -274,6 +265,13 @@ SaveSizeWindow {
                     console.log("load user page.....")
                 }
                 userLoader.item.open(info)
+            }
+            Connections {
+                target: userLoader.item
+                function onVisibleChanged(){
+                    console.log("userLoader.item onVisibleChanged")
+                    navi.visible = !userLoader.item.visible
+                }
             }
         }
 

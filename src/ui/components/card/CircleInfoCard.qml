@@ -6,7 +6,7 @@ import "qrc:///ui/global/styles/"
 import "qrc:///ui/global/"
 
 Rectangle {
-    property var feedInfo: ({resourceType:0,time:"",userInfo:{id:0,headUrl:""}})
+    property var feedInfo: ({resourceType:0,time:"",userInfo:{id:0,headUrl:"",name:""},moment:{text:""},commentCount:"",isThrowBanana:false,bananaCount:"",isLike:false,likeCount:""})
     property bool repost: false
     property bool inDetail: false
     property real cardMargin: 5
