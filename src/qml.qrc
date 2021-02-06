@@ -110,5 +110,7 @@
         <file>ui/components/card/BangumiCardHor.qml</file>
         <file>ui/components/RectBackLabelBlink.qml</file>
         <file>ui/components/SaveSizeWindow.qml</file>
+        <file>ui/components/ToastMsg.qml</file>
+        <file>ui/global/AcServiceEx.qml</file>
     </qresource>
 </RCC>

@@ -19,5 +19,6 @@ SearchToolBar 1.0 SearchToolBar.qml
 SwipeCircle 1.0 SwipeCircle.qml
 TabBarAc 1.0 TabBarAc.qml
 TitleBar 1.0 TitleBar.qml
+ToastMsg 1.0 ToastMsg.qml
 TopRoundRect 1.0 TopRoundRect.qml
 Waterfall 1.0 Waterfall.qml

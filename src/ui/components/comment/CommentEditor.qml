@@ -199,7 +199,7 @@ Rectangle {
                         return
                     }
                     cmtText.text = ""
-                    PopMsg.showError({error_msg:"已发送"}, mainwindowRoot)
+                    toastMsg.showTip("评论成功")
                 })
             }
         }

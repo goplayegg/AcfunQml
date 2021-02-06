@@ -187,8 +187,7 @@ Item{
                                 tmp.start();
                                 imgAvatar.start()
                             }
-                            AcService.banana(acID, 3, 5, function(res){
-                                })
+                            AcServiceEx.banana(acID, 3, 5)
                         }
                     }
                     RoundBtnWithText {//关注
@@ -198,11 +197,9 @@ Item{
                         onClicked: {
                             console.log(customChecked?"favorite":"unFavorite")
                             if(customChecked){
-                                AcService.favorite(acID, 3, function(res){
-                                    })
+                                AcServiceEx.favorite(acID, 3)
                             }else{
-                                AcService.unFavorite(acID, 3, function(res){
-                                    })
+                                AcServiceEx.unFavorite(acID, 3)
                             }
                         }
                     }
@@ -335,8 +332,7 @@ Item{
                     text: customChecked? qsTr("Followed"): qsTr("Follow")
                     onClicked: {
                         customChecked = !customChecked
-                        AcService.follow(user.id, customChecked, function(res){
-                            })
+                        AcServiceEx.follow(user.id, customChecked)
                     }
                 }
             }

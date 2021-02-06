@@ -368,5 +368,13 @@ SaveSizeWindow {
             visible: busyBox.running
         }
 
+        Loader {
+            asynchronous: true
+            ToastMsg {
+                parent: mainwindowRoot
+                id: toastMsg
+                Component.onCompleted: AcServiceEx.toastMsg = toastMsg
+            }
+        }
     }
 }

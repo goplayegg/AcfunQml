@@ -127,13 +127,7 @@ Rectangle {
                 property var componentBanana: null
                 onClicked: {
                     customChecked = true
-                    AcService.banana(feedInfo.resourceId, feedInfo.resourceType, feedInfo.resourceType === 10 ? 1 : 5, function(res){
-                        if(0 !== res.result)
-                            PopMsg.showError(res, mainwindowRoot)
-                        else{
-                            //TODO Toast(res.extData.bananaRealCount)
-                        }
-                    })
+                    AcServiceEx.banana(feedInfo.resourceId, feedInfo.resourceType, feedInfo.resourceType === 10 ? 1 : 5)
                 }
             }
             RoundBtnWithText {

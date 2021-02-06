@@ -1,2 +1,3 @@
 ﻿singleton AcService 1.0 AcService.qml
 singleton Global 1.0 Global.qml
+singleton AcServiceEx 1.0 AcServiceEx.qml

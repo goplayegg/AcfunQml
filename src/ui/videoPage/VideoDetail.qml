@@ -187,8 +187,7 @@ Item {
                             tmp.start();
                             imgAvatar.start()
                         }
-                        AcService.banana(acID, contentType, 5, function(res){
-                            })
+                        AcServiceEx.banana(acID, contentType, 5)
                     }
                 }
                 RoundBtnWithText {//收藏/追番
@@ -199,11 +198,9 @@ Item {
                         console.log(customChecked?"favorite":"unFavorite")
                         let resType = contentType === 1 ? 1 : 9//追番1 收藏视频9
                         if(customChecked){
-                            AcService.favorite(acID, resType, function(res){
-                                })
+                            AcServiceEx.favorite(acID, resType)
                         }else{
-                            AcService.unFavorite(acID, resType, function(res){
-                                })
+                            AcServiceEx.unFavorite(acID, resType)
                         }
                     }
                 }
@@ -423,8 +420,7 @@ Item {
                 text: customChecked? qsTr("Followed"): qsTr("Follow")
                 onClicked: {
                     customChecked = !customChecked
-                    AcService.follow(user.id, customChecked, function(res){
-                        })
+                    AcServiceEx.follow(user.id, customChecked)
                 }
             }
         }

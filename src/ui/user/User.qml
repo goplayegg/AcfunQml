@@ -131,12 +131,7 @@ Rectangle{
                             return
                         }else{
                             customChecked = !customChecked
-                            AcService.follow(userInfo.userId, customChecked, function(res){
-                                if(0 !== res.result){
-                                    PopMsg.showError(res, mainwindowRoot)
-                                    customChecked = !customChecked
-                                }
-                            })
+                            AcServiceEx.follow(userInfo.userId, customChecked)
                         }
                     }
                 }
