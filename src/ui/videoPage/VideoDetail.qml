@@ -259,7 +259,14 @@ Item {
             ButtonGroup {
                 id: btnsBangumi
                 onCheckedButtonChanged: {
-                    console.log("change bangumi to:"+checkedButton.vInfo.id)
+                    console.log("change bangumi to:"+checkedButton.vInfo.id+"  current acID:"+acID)
+                    if(checkedButton.vInfo.id == acID)
+                        return
+                    Global.openVideo({
+                                         vid          : 0,
+                                         contentId    : checkedButton.vInfo.id,
+                                         contentType  : 1
+                                     })
                 }
             }
             Repeater {
