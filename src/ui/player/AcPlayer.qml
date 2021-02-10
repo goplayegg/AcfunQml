@@ -29,14 +29,16 @@ FullScreen {
         if(js.vid === 0 )
             return
         AcService.getVideo(js.vid,js.contentId,js.contentType,funPlayVideo)
-        danmaku.open(js.vid, 0)
+        if(!danmCtrl.danmakuClosed)
+            danmaku.open(js.vid, 0)
     }
 
     function changePart(js){//分p
         videoInfo.vid = js.id
         stop()
         AcService.getVideo(js.id,videoInfo.contentId,videoInfo.contentType,funPlayVideo)
-        danmaku.open(js.id, 0)
+        if(!danmCtrl.danmakuClosed)
+            danmaku.open(js.id, 0)
     }
 
     function funPlayVideo(js){
@@ -84,7 +86,7 @@ FullScreen {
         width: parent.width
         onDanmakuClosedChanged: {
             if(danmakuClosed)
-                danmaku.close(false)
+                danmaku.close(true)
             else{
                 danmaku.open(videoInfo.vid, vlcPlayer.time)
             }
@@ -194,7 +196,10 @@ FullScreen {
                 }
                 onChangePosition: {
                     vlcPlayer.position = pos
-                    danmaku.open(videoInfo.vid, vlcPlayer.time)
+                    if(!danmCtrl.danmakuClosed){
+                        danmaku.close(true)
+                        danmaku.open(videoInfo.vid, vlcPlayer.time)
+                    }
                 }
                 onChangeQuality: {
                     playVideoQuility(type)

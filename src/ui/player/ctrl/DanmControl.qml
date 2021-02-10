@@ -90,6 +90,7 @@ Rectangle {
                 if(msg.text.length === 0){
                     return
                 }
+                //TODO subChannelId?
                 var danmJson = {
                     body: msg.text,
                     videoId:0,
