@@ -171,6 +171,7 @@ Rectangle {
                   ListElement { key: "1.0X"; value: 1.0 }
                   ListElement { key: "1.5X"; value: 1.5 }
                   ListElement { key: "2.0X"; value: 2.0 }
+                  ListElement { key: "3.0X"; value: 3.0 }
                 }
             }
         }
