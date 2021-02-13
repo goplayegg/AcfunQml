@@ -70,6 +70,9 @@ Item {
                 modelVideos.append({info:videoList[idxV]})
             }
         }
+        if(btnFollow.customChecked && !btnBanana.customChecked && Global.getAutoBanana()){
+            btnBanana.clicked()
+        }
     }
 
     function openBangumi(js){

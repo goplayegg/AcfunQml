@@ -79,12 +79,22 @@ Item {
         id.height = height
     }
 
+    function getAutoBanana(){
+        let autoBanana = g_preference.value("autoBanana")
+        if(undefined !== autoBanana)
+            return autoBanana === "true"
+        return false
+    }
+
+    function getHardDecode(){
+        let hardDec = g_preference.value("hardDec")
+        if(undefined !== hardDec)
+            return hardDec === "true"
+        return true
+    }
+
     Component.onCompleted: {
-        var hardDec = g_preference.value("hardDec")
-        var enable = true
-        if(undefined !== hardDec){
-            enable = hardDec === "true"
-        }
+        let enable = getHardDecode()
         console.log("VlcConfig enable hard decode:"+enable)
         vlcConfig.enableHardDecode(enable)
 

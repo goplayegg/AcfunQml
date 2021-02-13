@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import "qrc:///ui/global/styles"
+import "qrc:///ui/global"
 
 Item{
     id:root
@@ -88,6 +89,20 @@ Item{
                         g_preference.setValue("hardDec", checked)
                 }
             }
+
+            Label {
+                text: qsTr("Auto throw banana to followed Ups")
+                font.pixelSize: AppStyle.font_xlarge
+                font.family: AppStyle.fontNameMain
+            }
+
+            Switch {
+                id: swAutoBanana
+                onCheckedChanged: {
+                    if(loaded)
+                        g_preference.setValue("autoBanana", checked)
+                }
+            }
         }
     }
 
@@ -97,10 +112,8 @@ Item{
             cmbTrans.currentIndex = cmbTrans.find(lan)
 
         cmbTheme.currentIndex = AppStyle.currentTheme
-
-        var hardDec = g_preference.value("hardDec")
-        if(undefined !== hardDec)
-            swHardDec.checked = hardDec === "true"
+        swHardDec.checked = Global.getHardDecode()
+        swAutoBanana.checked = Global.getAutoBanana()
 
         loaded = true
     }

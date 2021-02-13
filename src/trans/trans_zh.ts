@@ -76,12 +76,12 @@
 <context>
     <name>AppStyle</name>
     <message>
-        <location filename="../ui/global/styles/AppStyle.qml" line="37"/>
+        <location filename="../ui/global/styles/AppStyle.qml" line="36"/>
         <source>白昼主题</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/global/styles/AppStyle.qml" line="51"/>
+        <location filename="../ui/global/styles/AppStyle.qml" line="50"/>
         <source>暗夜主题</source>
         <translation type="unfinished"></translation>
     </message>
@@ -104,12 +104,12 @@
         <translation>关注</translation>
     </message>
     <message>
-        <location filename="../ui/article/Article.qml" line="412"/>
+        <location filename="../ui/article/Article.qml" line="411"/>
         <source>show article</source>
         <translation>显示文章</translation>
     </message>
     <message>
-        <location filename="../ui/article/Article.qml" line="412"/>
+        <location filename="../ui/article/Article.qml" line="411"/>
         <source>show comment</source>
         <translation>显示评论</translation>
     </message>
@@ -232,7 +232,7 @@
         <translation>发表于</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/CommentItem.qml" line="91"/>
+        <location filename="../ui/components/comment/CommentItem.qml" line="93"/>
         <source>Send by</source>
         <translation>来自 </translation>
     </message>
@@ -407,24 +407,24 @@
 <context>
     <name>Login</name>
     <message>
-        <location filename="../ui/navigator/Login.qml" line="118"/>
-        <location filename="../ui/navigator/Login.qml" line="176"/>
+        <location filename="../ui/navigator/Login.qml" line="99"/>
+        <location filename="../ui/navigator/Login.qml" line="157"/>
         <source>Login</source>
         <translation>登陆账户</translation>
     </message>
     <message>
-        <location filename="../ui/navigator/Login.qml" line="142"/>
+        <location filename="../ui/navigator/Login.qml" line="123"/>
         <source>User name</source>
         <translation>用户名</translation>
     </message>
     <message>
-        <location filename="../ui/navigator/Login.qml" line="152"/>
+        <location filename="../ui/navigator/Login.qml" line="133"/>
         <source>User name / phone number</source>
         <translation>用户名/手机号码</translation>
     </message>
     <message>
-        <location filename="../ui/navigator/Login.qml" line="156"/>
-        <location filename="../ui/navigator/Login.qml" line="166"/>
+        <location filename="../ui/navigator/Login.qml" line="137"/>
+        <location filename="../ui/navigator/Login.qml" line="147"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
@@ -774,24 +774,29 @@
 <context>
     <name>Setting</name>
     <message>
-        <location filename="../ui/other/Setting.qml" line="35"/>
+        <location filename="../ui/other/Setting.qml" line="36"/>
         <source>App setting</source>
         <translation>软件设置</translation>
     </message>
     <message>
-        <location filename="../ui/other/Setting.qml" line="42"/>
+        <location filename="../ui/other/Setting.qml" line="43"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../ui/other/Setting.qml" line="59"/>
+        <location filename="../ui/other/Setting.qml" line="60"/>
         <source>Theme</source>
         <translation>主题</translation>
     </message>
     <message>
-        <location filename="../ui/other/Setting.qml" line="79"/>
+        <location filename="../ui/other/Setting.qml" line="80"/>
         <source>Use hard decoder</source>
         <translation type="unfinished">使用硬解码（暂时无效）</translation>
+    </message>
+    <message>
+        <location filename="../ui/other/Setting.qml" line="94"/>
+        <source>Auto throw banana to followed Ups</source>
+        <translation>自动给已关注UP投蕉</translation>
     </message>
 </context>
 <context>
@@ -812,7 +817,7 @@
         <translation>发表于</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/SubCommentItem.qml" line="89"/>
+        <location filename="../ui/components/comment/SubCommentItem.qml" line="91"/>
         <source>Send by</source>
         <translation>来自 </translation>
     </message>
@@ -820,12 +825,12 @@
 <context>
     <name>SubCommentList</name>
     <message>
-        <location filename="../ui/components/comment/SubCommentList.qml" line="91"/>
+        <location filename="../ui/components/comment/SubCommentList.qml" line="93"/>
         <source>total:%1</source>
         <translation>共%1条</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/SubCommentList.qml" line="91"/>
+        <location filename="../ui/components/comment/SubCommentList.qml" line="93"/>
         <source>show more</source>
         <translation>显示更多</translation>
     </message>
@@ -840,42 +845,42 @@
 <context>
     <name>User</name>
     <message>
-        <location filename="../ui/user/User.qml" line="55"/>
+        <location filename="../ui/user/User.qml" line="64"/>
         <source>User Info</source>
         <translation>用户信息</translation>
     </message>
     <message>
-        <location filename="../ui/user/User.qml" line="113"/>
+        <location filename="../ui/user/User.qml" line="122"/>
         <source>Logout</source>
         <translation>登出</translation>
     </message>
     <message>
-        <location filename="../ui/user/User.qml" line="113"/>
+        <location filename="../ui/user/User.qml" line="122"/>
         <source>Follow</source>
         <translation>关注</translation>
     </message>
     <message>
-        <location filename="../ui/user/User.qml" line="113"/>
+        <location filename="../ui/user/User.qml" line="122"/>
         <source>Followed</source>
         <translation>已关注</translation>
     </message>
     <message>
-        <location filename="../ui/user/User.qml" line="150"/>
+        <location filename="../ui/user/User.qml" line="154"/>
         <source>register time:</source>
         <translation>注册时间：</translation>
     </message>
     <message>
-        <location filename="../ui/user/User.qml" line="172"/>
+        <location filename="../ui/user/User.qml" line="176"/>
         <source>动态</source>
         <translation>动态</translation>
     </message>
     <message>
-        <location filename="../ui/user/User.qml" line="173"/>
+        <location filename="../ui/user/User.qml" line="177"/>
         <source>视频</source>
         <translation>视频</translation>
     </message>
     <message>
-        <location filename="../ui/user/User.qml" line="174"/>
+        <location filename="../ui/user/User.qml" line="178"/>
         <source>文章</source>
         <translation>文章</translation>
     </message>
@@ -933,17 +938,17 @@
         <translation type="vanished">分辨率</translation>
     </message>
     <message>
-        <location filename="../ui/player/ctrl/VideoControl.qml" line="187"/>
+        <location filename="../ui/player/ctrl/VideoControl.qml" line="188"/>
         <source>Small</source>
         <translation>小窗播放</translation>
     </message>
     <message>
-        <location filename="../ui/player/ctrl/VideoControl.qml" line="201"/>
+        <location filename="../ui/player/ctrl/VideoControl.qml" line="202"/>
         <source>Full App</source>
         <translation>铺满应用</translation>
     </message>
     <message>
-        <location filename="../ui/player/ctrl/VideoControl.qml" line="215"/>
+        <location filename="../ui/player/ctrl/VideoControl.qml" line="216"/>
         <source>Full Screen</source>
         <translation>全屏</translation>
     </message>
@@ -956,12 +961,12 @@
         <translation>发布于</translation>
     </message>
     <message>
-        <location filename="../ui/videoPage/VideoDetail.qml" line="423"/>
+        <location filename="../ui/videoPage/VideoDetail.qml" line="431"/>
         <source>Followed</source>
         <translation>已关注</translation>
     </message>
     <message>
-        <location filename="../ui/videoPage/VideoDetail.qml" line="423"/>
+        <location filename="../ui/videoPage/VideoDetail.qml" line="431"/>
         <source>Follow</source>
         <translation>关注</translation>
     </message>
@@ -1018,12 +1023,12 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../ui/main.qml" line="26"/>
+        <location filename="../ui/main.qml" line="22"/>
         <source>AcfunQml</source>
         <translation>Acfun Qml</translation>
     </message>
     <message>
-        <location filename="../ui/main.qml" line="385"/>
+        <location filename="../ui/main.qml" line="367"/>
         <source>Loading...</source>
         <translation>加载中...</translation>
     </message>
