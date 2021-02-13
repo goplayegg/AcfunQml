@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import "qrc:///ui/global/styles/"
+import "qrc:///ui/global/"
 
 Rectangle {
     id: root
@@ -10,6 +11,7 @@ Rectangle {
 
     property int btnHeight: 40
     property int btnWidth : 46
+    property bool loaded: false
 
     property int volume: 100
     property bool mute: false
@@ -52,6 +54,13 @@ Rectangle {
     function slotQualityChanged(currentValue){
         console.log("quality changed:"+currentValue)
         changeQuality(currentValue)
+    }
+
+    Component.onCompleted: {
+        cmbSpeed.currentIndex = Global.getValPref("videoSpeedIdx", 1)
+        volume = Global.getValPref("videoVolume", 100)
+        mute = Global.getBoolPref("videoMute")
+        loaded = true
     }
 
     ProgressControl {
@@ -99,9 +108,13 @@ Rectangle {
                 target: voiceBar.item
                 function onPlayVolumeChanged(){
                     root.volume = voiceBar.item.playVolume
+                    if(loaded)
+                        g_preference.setValue("videoVolume", root.volume)
                 }
                 function onMuteChanged(){
                     root.mute = voiceBar.item.mute
+                    if(loaded)
+                        g_preference.setValue("videoMute", root.mute)
                 }
             }
         }
@@ -114,9 +127,11 @@ Rectangle {
             VideoCtrlBtn {
                 height: btnHeight
                 width: btnWidth
-                text: AppIcons.mdi_volume_high
+                text: mute?AppIcons.mdi_volume_mute:AppIcons.mdi_volume_high
                 tip: qsTr("Voice")
                 onClicked: {
+                    voiceBar.item.playVolume = root.volume
+                    voiceBar.item.mute = root.mute
                     voiceBar.item.open()
                 }
             }
@@ -164,7 +179,6 @@ Rectangle {
                 id: cmbSpeed
                 width: 50
                 textRole: "key"
-                currentIndex: 1
                 indicator: null
                 model: ListModel {
                   ListElement { key: "0.5X"; value: 0.5 }
@@ -172,6 +186,10 @@ Rectangle {
                   ListElement { key: "1.5X"; value: 1.5 }
                   ListElement { key: "2.0X"; value: 2.0 }
                   ListElement { key: "3.0X"; value: 3.0 }
+                }
+                onCurrentIndexChanged: {
+                    if(loaded)
+                        g_preference.setValue("videoSpeedIdx", currentIndex)
                 }
             }
         }

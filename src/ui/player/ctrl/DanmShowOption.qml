@@ -28,6 +28,7 @@ Popup {
             from: 0.0
             to: 1.0
             value: 1.0
+            stepSize: 0.1
         }
     }
 }

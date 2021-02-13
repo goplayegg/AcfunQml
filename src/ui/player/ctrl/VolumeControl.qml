@@ -10,7 +10,7 @@ Popup {
         color: AppStyle.secondBkgroundColor
         radius: 5
     }
-    property var playVolume: volumeSlider.value
+    property alias playVolume: volumeSlider.value
     property alias mute: btnMute.checked
 
     Component.onCompleted: {

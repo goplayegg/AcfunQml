@@ -30,7 +30,10 @@ ScrollView {
                         setModel(hotModel, res.data[idx].contentList)
                     }
                     else if("horizontalArrange" === res.data[idx].moduleLayout){//其他横屏
-                        setModel(bangumiHorModel, res.data[idx].contentList)
+                        if(idx == 1 && hotModel.count === 0)
+                            setModel(hotModel, res.data[idx].contentList)
+                        else
+                            setModel(bangumiHorModel, res.data[idx].contentList)
                     }else{
                         setModel(bangumiModel, res.data[idx].contentList)
                     }

@@ -90,7 +90,7 @@ Item{
             imgAvatar.userId = user.id
             labUpName.text = user.name
             btnFollow.customChecked = user.isFollowing
-            if(btnFollow.customChecked && !btnBanana.customChecked && Global.getAutoBanana()){
+            if(btnFollow.customChecked && !btnBanana.customChecked && Global.getBoolPref("autoBanana")){
                 btnBanana.clicked()
             }
         })

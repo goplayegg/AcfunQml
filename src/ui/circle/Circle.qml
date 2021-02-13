@@ -38,7 +38,10 @@ Item{
                     text: qsTr("Video only")
                     anchors.right: parent.right
                     onCheckedChanged: {
+                        if(!loaded)
+                            return
                         refresh()
+                        g_preference.setValue("circleOnlyGetVideo", checked)
                     }
                 }
             }
@@ -116,5 +119,11 @@ Item{
         onTriggered: {
             waterfall.reLayout(waterfall.layoutedMaxIdx+1)
         }
+    }
+
+    property bool loaded: false
+    Component.onCompleted: {
+        swchVideoOnly.checked = Global.getBoolPref("circleOnlyGetVideo")
+        loaded = true
     }
 }

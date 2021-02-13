@@ -70,7 +70,7 @@ Item {
                 modelVideos.append({info:videoList[idxV]})
             }
         }
-        if(btnFollow.customChecked && !btnBanana.customChecked && Global.getAutoBanana()){
+        if(btnFollow.customChecked && !btnBanana.customChecked && Global.getBoolPref("autoBanana")){
             btnBanana.clicked()
         }
     }
@@ -125,6 +125,8 @@ Item {
     }
 
     function nextPart(){
+        if(null === btnsVideo.checkedButton)
+            return
         var jumpTo = btnsVideo.checkedButton.idx+1
         if(jumpTo < modelVideos.count){
             console.log("auto jump to part "+jumpTo+", video part total count:"+modelVideos.count)

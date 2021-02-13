@@ -112,8 +112,8 @@ Item{
             cmbTrans.currentIndex = cmbTrans.find(lan)
 
         cmbTheme.currentIndex = AppStyle.currentTheme
-        swHardDec.checked = Global.getHardDecode()
-        swAutoBanana.checked = Global.getAutoBanana()
+        swHardDec.checked = Global.getBoolPref("hardDec", true)
+        swAutoBanana.checked = Global.getBoolPref("autoBanana")
 
         loaded = true
     }

@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import "qrc:///ui/global/styles/"
+import "qrc:///ui/global/"
 
 Rectangle {
     id: root
@@ -12,6 +13,7 @@ Rectangle {
 
     property var danmOpacity: 1.0
     property alias danmakuClosed: btnSwitch.checked
+    property bool loaded: false
     signal clickBanana()
     signal sendDanm(var danmJson)
 
@@ -31,6 +33,10 @@ Rectangle {
             text: checked?AppIcons.mdi_card_bulleted_off_outline:AppIcons.mdi_card_bulleted_outline
             tip: qsTr("Danmaku switch")
             checkable: true
+            onCheckedChanged: {
+                if(loaded)
+                    g_preference.setValue("danmakuOpened", !checked)
+            }
         }
         VideoCtrlBtn {
             height: btnHeight
@@ -43,6 +49,7 @@ Rectangle {
                 var pt = mapToItem(root, width/2, 0)
                 danmShowOpt.item.x = pt.x-danmShowOpt.item.width/2
                 danmShowOpt.item.y = pt.y-danmShowOpt.item.height
+                danmShowOpt.item.danmOpacity = root.danmOpacity
                 danmShowOpt.item.open()
             }
         }
@@ -122,7 +129,15 @@ Rectangle {
             target: danmShowOpt.item
             function  onDanmOpacityChanged() {
                 root.danmOpacity = danmShowOpt.item.danmOpacity
+                if(loaded)
+                    g_preference.setValue("danmakuOpacity", root.danmOpacity)
             }
         }
+    }
+
+    Component.onCompleted: {
+        btnSwitch.checked = !Global.getBoolPref("danmakuOpened", true)
+        root.danmOpacity = Global.getValPref("danmakuOpacity", 1.0)
+        loaded = true
     }
 }
