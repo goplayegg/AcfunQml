@@ -268,9 +268,9 @@ SaveSizeWindow {
             }
             Connections {
                 target: userLoader.item
-                function onVisibleChanged(){
-                    console.log("userLoader.item onVisibleChanged")
-                    navi.visible = !userLoader.item.visible
+                function onShrinkedChanged(){
+                    console.log("userLoader.item onShrinkedChanged")
+                    navi.visible = userLoader.item.shrinked
                 }
             }
         }
