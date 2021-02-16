@@ -251,6 +251,7 @@ Item {
         request('POST', url, null, body, cb);
     }
 
+    //这个协议获取到的评论不会带正确的格式，如@的， 比较安卓抓包应该是header没带appVersion导致，如果带了appVersion会返回错误，应该是校验了sign
     function getSubComment(sourceId, sourceType, rootCommentId, pcursor, cb){
         var url = "api-new.app.acfun.cn/rest/app/comment/sublist";
         var qParam = [{"sourceId": sourceId},

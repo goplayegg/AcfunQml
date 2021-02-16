@@ -1,5 +1,4 @@
 ﻿/*
- * this is play B
  * 使用正则解析acfun评论报文
  * 按格式拆分评论中的文本/表情/图片 为一个个segment
 */

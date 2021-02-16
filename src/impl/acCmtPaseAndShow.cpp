@@ -79,10 +79,11 @@ void AcCmtPaseAndShow::cvtToSegment(const QString &str)
 {
     qDebug()<<"cvtToSegment:";
 
-    //匹配带格式bius的字符 或者[at uid=]@用户ID[/at]
+    //匹配带格式bius的字符 或者[at uid=]@用户ID[/at] 或者[ac=17908957]ac17908957[/ac]
     //将匹配的和不匹配的分割开，按顺序添加到评论UI里面
     QString strRet = str;
-    QRegularExpression reg("(\\[[bius]\\])+(?<txt>.*?)(\\[/([bius]|color)\\])+|\\[at\\suid=(?<id>[0-9]+)\\](?<name>.*?)\\[/at\\]");
+    QRegularExpression reg("(\\[[bius]\\])+(?<txt>.*?)(\\[/([bius]|color)\\])+|\\[at\\suid=(?<uid>[0-9]+)\\](?<name>.*?)\\[/at\\]"
+                           "|\\[ac=(?<acid>[0-9]+)\\](?<aclink>.*?)\\[/ac\\]");
     QRegularExpressionMatch match= reg.match(strRet);
     int iCurStart = match.capturedStart();
     int iCurEnd = match.capturedEnd();
@@ -93,11 +94,17 @@ void AcCmtPaseAndShow::cvtToSegment(const QString &str)
         }
         auto strFormated = strRet.mid(iCurStart, iCurEnd-iCurStart);
         FormatText ft;
-        auto strId = match.captured("id");
-        if(!strId.isEmpty()){//匹配到了@用户
+        auto strAcId = match.captured("acid");
+        auto strUid = match.captured("uid");
+        if(!strAcId.isEmpty()){//匹配到了稿件链接
+            auto strName = match.captured("aclink");
+            qDebug()<<"ac link:"<<strAcId<<" name:"<<strName;
+            ft.acID = strAcId;
+            ft.txt = strName;
+        }else if(!strUid.isEmpty()){//匹配到了@用户
             auto strName = match.captured("name");
-            qDebug()<<"at:"<<strId<<" name:"<<strName;
-            ft.iId = strId.toUInt();
+            qDebug()<<"at:"<<strUid<<" name:"<<strName;
+            ft.iId = strUid.toUInt();
             ft.txt = strName;
         }else{//带格式bius的字符
             auto strText = match.captured("txt");
@@ -257,7 +264,13 @@ void AcCmtPaseAndShow::addTextToDoc(FormatText &ft, QTextCursor &cursor)
         QColor clr(0x0000ff);
         format.setForeground(QBrush(clr));
         format.setAnchor(true);
-        format.setAnchorHref(QString("https://www.acfun.cn/u/%1").arg(ft.iId));
+        format.setAnchorHref(QString("uid/%1").arg(ft.iId));
+    }
+    if(!ft.acID.isEmpty()){
+        QColor clr(0x0000ff);
+        format.setForeground(QBrush(clr));
+        format.setAnchor(true);
+        format.setAnchorHref(QString("ac/")+ft.acID);
     }
     if(!ft.color.isEmpty()){
         QColor clr(ft.color);

@@ -1,5 +1,6 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
+import "qrc:///ui/global/"
 import "qrc:///ui/global/styles/"
 import "qrc:///ui/components/"
 import AcfunQml 1.0
@@ -29,12 +30,7 @@ Column {
         font.family: AppStyle.fontNameMain
         font.weight: Font.Medium
         onLinkActivated:{
-            console.log("open link:"+link)
-            if(link.substr(link.length-4)===".gif"){
-                PopImage.open(link, "gif")
-            }else{
-                Qt.openUrlExternally(link)
-            }
+            Global.openUrl(link)
         }
 
         AcCmtPaseAndShow {

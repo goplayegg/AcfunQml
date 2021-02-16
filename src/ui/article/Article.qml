@@ -362,12 +362,7 @@ Item{
                 font.family: AppStyle.fontNameArticle
                 font.weight: Font.Medium
                 onLinkActivated:{
-                    console.log("open link:"+link)
-                    if(link.substr(link.length-4)===".gif"){
-                        PopImage.open(link, "gif")
-                    }else{
-                        Qt.openUrlExternally(link)
-                    }
+                    Global.openUrl(link)
                 }
             }
         }

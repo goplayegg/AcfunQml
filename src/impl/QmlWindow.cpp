@@ -119,7 +119,7 @@ void QmlWindow::qmlRegisterType()
     ::qmlRegisterType<constPreferences>("AcfunQml", 1, 0, "ConstPreferences");
     ::qmlRegisterType<DanmakuPaser>("AcfunQml", 1, 0, "DanmakuPaser");
     ::qmlRegisterType<DocumentHandler>("AcfunQml", 1, 0, "DocumentHandler");
-    ::qmlRegisterType<AcCommentPaser>("AcfunQml", 1, 0, "AcCommentPaser");
+    //::qmlRegisterType<AcCommentPaser>("AcfunQml", 1, 0, "AcCommentPaser");
     ::qmlRegisterType<TextDocHandler>("AcfunQml", 1, 0, "TextDocHandler");
     ::qmlRegisterType<AcCmtPaseAndShow>("AcfunQml", 1, 0, "AcCmtPaseAndShow");
     ::qmlRegisterType<HttpRequest>("Network",1, 0, "HttpRequest");

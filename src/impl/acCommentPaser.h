@@ -1,4 +1,5 @@
 ﻿/*
+ * 这个方案配合CommentContent.qml使用 目前已经搁置 acCmtPaseAndShow.h代替
  * 使用正则解析acfun评论报文
  * 因为Qt自带html富文本显示控件对gif动图支持较差
  * 需要对gif单独用AnimatedImage显示，其他富文本可以用TextArea
@@ -21,6 +22,7 @@ struct FormatText
     QString color;
     QString imgUrl;
     QString type;//img, gif
+    QString acID;//稿件ID
 };
 
 class AcCommentPaser : public QObject

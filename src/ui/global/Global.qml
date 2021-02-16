@@ -1,6 +1,7 @@
 ﻿pragma Singleton
 import QtQuick 2.12
 import "qrc:///ui/global/styles/"
+import "qrc:///ui/components/"
 import AcfunQml 1.0
 import QtKeychain 1.0
 import QmlVlc 0.1
@@ -93,6 +94,21 @@ Item {
         if(undefined !== prefValue)
             return prefValue
         return defaultVal
+    }
+
+    function openUrl(link){
+        console.log("open link:"+link)
+        if(link.substr(link.length-4)===".gif"){
+            PopImage.open(link, "gif")
+        }else if(link.substr(0, 3)==="ac/"){
+            let acid = link.substr(3)
+            openVideo({contentId: acid})
+        }else if(link.substr(0, 4)==="uid/"){
+            let uid = link.substr(4)
+            openUser(uid)
+        }else{
+            Qt.openUrlExternally(link)
+        }
     }
 
     Component.onCompleted: {
