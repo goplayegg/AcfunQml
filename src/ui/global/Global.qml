@@ -57,6 +57,8 @@ Item {
         case 3://文章
             return 1;
         }
+        console.log("error unsupport res type:"+type)
+        return type
     }
 
     function saveSize(id, name){

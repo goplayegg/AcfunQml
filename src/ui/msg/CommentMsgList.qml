@@ -63,7 +63,7 @@ ScrollUpdateView {
     }
 
     onUpdate: {
-        console.log("refresh comment Msg  ccccccccccccccccc:")
+        console.log("refresh comment Msg")
         refreshMsg()
     }
 

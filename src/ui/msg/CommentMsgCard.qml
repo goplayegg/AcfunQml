@@ -100,11 +100,11 @@ Rectangle {
             }
             RoundBtnWithText {
                 id: btnLike
-                //text: msgInfo.likeCount
-                //customChecked: msgInfo.isLike
-                enabled: !customChecked
                 icon: "qrc:/assets/img/common/like0.png"
                 iconChecked: "qrc:/assets/img/common/like1.png"
+                onClicked: {
+                    AcServiceEx.likeComment(msgInfo.resourceId, Global.resourceType2sourceType(msgInfo.resourceType), msgInfo.commentId, customChecked)
+                }
             }
             IconBtn {
                 id: btnDetail

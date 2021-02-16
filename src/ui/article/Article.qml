@@ -169,6 +169,7 @@ Item{
                         id: btnLike
                         icon: "qrc:/assets/img/common/like0.png"
                         iconChecked: "qrc:/assets/img/common/like1.png"
+                        onClicked: toastMsg.showTip("T.T 目前只支持对评论点赞")
                     }
                     RoundBtnWithText {//投蕉
                         id: btnBanana
