@@ -5,6 +5,8 @@
 
 #ifdef OS_WIN
     #include <windows.h>
+
+    HANDLE _powerRequest = INVALID_HANDLE_VALUE;
 #endif	//OS_WIN
 
 #ifdef OS_X11
@@ -30,20 +32,46 @@ ScreenSaver::~ScreenSaver()
         _osxIOPMAssertionId = 0U;
     }
 #endif //OS_MAC
+
+#ifdef OS_WIN
+    if (m_stayingAwake)
+        restore();
+#endif //OS_WIN
 }
 
 void ScreenSaver::disable() {
     qDebug() << "Disable screensaver";
 
-	QApplication * app = qobject_cast<QApplication *>(QApplication::instance());
-	Q_ASSERT(app);
-
 #ifdef OS_WIN
-	//restore() will set the event filter to NULL
-    app->installNativeEventFilter(m_pFilter);
+    if (m_stayingAwake)
+        return;
+
+    REASON_CONTEXT rc;
+    std::wstring wreason(L"AcfunQmlScreenSaver");
+    rc.Version = POWER_REQUEST_CONTEXT_VERSION;
+    rc.Flags = POWER_REQUEST_CONTEXT_SIMPLE_STRING;
+    rc.Reason.SimpleReasonString = (wchar_t *) wreason.c_str();
+    _powerRequest = PowerCreateRequest(&rc);
+    if (_powerRequest == INVALID_HANDLE_VALUE)
+    {
+        qDebug() << "Error creating power request:" << GetLastError();
+        return;
+    }
+    qDebug() << "Disable screensaver PowerCreateRequest succeed";
+    m_stayingAwake = PowerSetRequest(_powerRequest, PowerRequestDisplayRequired);
+    if (!m_stayingAwake)
+    {
+        qDebug() << "Error running PowerSetRequest():" << GetLastError();
+    }
+    else
+    {
+        qDebug() << "Disable screensaver succeed";
+    }
 #endif	//OS_WIN
 
 #ifdef OS_X11
+    QApplication * app = qobject_cast<QApplication *>(QApplication::instance());
+    Q_ASSERT(app);
 	if (!_xdgScreenSaverProcess) {
         //Lazy initialization
         _xdgScreenSaverProcess = new QProcess(app);
@@ -75,9 +103,20 @@ void ScreenSaver::restore() {
     qDebug() << "Restore screensaver";
 
 #ifdef OS_WIN
-	QApplication * app = qobject_cast<QApplication *>(QApplication::instance());
-	Q_ASSERT(app);
-    app->removeNativeEventFilter(m_pFilter);
+    if (!m_stayingAwake)
+        return;
+    bool bCleared = PowerClearRequest(_powerRequest, PowerRequestDisplayRequired);
+    if (!bCleared)
+    {
+        qDebug() << "Error running PowerClearRequest():" << GetLastError();
+    }
+    else
+    {
+        qDebug() << "Restore screensaver succeed";
+    }
+    CloseHandle(_powerRequest);
+    _powerRequest = INVALID_HANDLE_VALUE;
+    m_stayingAwake = false;
 #endif	//OS_WIN
 
 #ifdef OS_X11
@@ -106,44 +145,13 @@ void ScreenSaver::restore() {
 #endif //OS_MAC
 }
 
-ScreenSavFilter* ScreenSaver::m_pFilter = nullptr;
+std::atomic<bool> ScreenSaver::m_stayingAwake;
 QWindow* ScreenSaver::m_pWnd = nullptr;
 void ScreenSaver::init()
 {
 #ifdef OS_WIN
-    if(nullptr == m_pFilter){
-        m_pFilter = new ScreenSavFilter();
-    }
+    m_stayingAwake = false;
 #endif //OS_WIN
-}
-
-bool ScreenSavFilter::nativeEventFilter(const QByteArray &eventType, void *message, long *result)
-{
-#ifdef OS_WIN
-    MSG * msg = static_cast<MSG *>(message);
-
-    if (msg && msg->message == WM_SYSCOMMAND) {
-        if (msg->wParam == SC_SCREENSAVE || msg->wParam == SC_MONITORPOWER) {
-            //Intercept ScreenSaver and Monitor Power Messages
-            //Prior to activating the screen saver, Windows send this message with the wParam
-            //set to SC_SCREENSAVE to all top-level windows. If you set the return value of the
-            //message to a non-zero value the screen saver will not start.
-
-            //In fact, because of Qt, we don't care about the result value
-            //It works with values 0 & 1
-            //*result = 1; this may crash in win10
-
-            qDebug() << "Intercept Windows screensaver event";
-
-            //bool QCoreApplication::winEventFilter(MSG * msg, long * result)
-            //If you don't want the event to be processed by Qt, then return true and
-            //set result to the value that the window procedure should return.
-            //Otherwise return false.
-            return true;
-        }
-    }
-#endif	//OS_WIN
-    return false;
 }
 
 }
