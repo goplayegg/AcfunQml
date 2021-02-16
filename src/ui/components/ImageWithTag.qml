@@ -14,6 +14,7 @@ Image {
         anchors.rightMargin: anchors.topMargin
         visible: tag !== ""
         text: tag
+        blink: true
     }
 
     MouseArea {

@@ -57,7 +57,7 @@ Row {
                 text: "#" +js.floor
             }
         }
-        //CommentContent
+
         CommentText {
             id: cmtArea
             anchors.left: parent.left
