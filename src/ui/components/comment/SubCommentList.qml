@@ -14,6 +14,7 @@ Item {
     property string pcursor: ""
 
     signal replyTo(var cmtId, var userName, var editerParent)
+    signal likeComment(var cmtId, var like)
 
     Rectangle {
         id: rectBk
@@ -79,6 +80,9 @@ Item {
                 js: model
                 onReplyTo: {
                     root.replyTo(cmtId, userName, editerParent)
+                }
+                onLikeComment: {
+                    root.likeComment(cmtId, like)
                 }
             }
         }

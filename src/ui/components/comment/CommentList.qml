@@ -136,6 +136,9 @@ Item {
                     editor.replyToName = userName
                     editor.parent = editerParent
                 }
+                onLikeComment: {
+                    AcServiceEx.likeComment(contentId, cmtType, cmtId, like)
+                }
             }
         }
 

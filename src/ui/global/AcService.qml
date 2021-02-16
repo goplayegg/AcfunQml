@@ -304,6 +304,12 @@ Item {
         request('POST', url, null, body, cb);
     }
 
+    function likeComment(sourceId, sourceType, commentId, like, cb) {
+        var url = like?"api-new.app.acfun.cn/rest/app/comment/like":"api-new.app.acfun.cn/rest/app/comment/unlike";
+        var body = "sourceId=" +sourceId+ "&sourceType="+sourceType+"&commentId="+commentId;
+        request('POST', url, null, body, cb);
+    }
+
     function follow(userId, follow, cb) {
         var url = "api-new.app.acfun.cn/rest/app/relation/follow";
         var body = "action=" +(follow?"1":"2")+ "&groupId=0&toUserId=" + userId;

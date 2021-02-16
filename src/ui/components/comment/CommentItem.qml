@@ -15,6 +15,7 @@ Row {
     property var editorItemHeight
 
     signal replyTo(var cmtId, var userName, var editerParent)
+    signal likeComment(var cmtId, var like)
 
     AvatarWithCover {
         id: avatarItem
@@ -71,6 +72,10 @@ Row {
                 iconChecked: "qrc:/assets/img/common/like1.png"
                 text: js.likeCount?js.likeCountFormat:""
                 customChecked: js.isLiked
+                onClicked: {
+                    console.log("btnLike to:"+js.commentId)
+                    likeComment(js.commentId, customChecked)
+                }
             }
             RoundBtnWithText {
                 id: btnReply
@@ -118,6 +123,9 @@ Row {
             target: subCmt.item
             function onReplyTo(cmtId, userName, editerParent) {
                 control.replyTo(cmtId, userName, editerParent)
+            }
+            function onLikeComment(cmtId, like) {
+                control.likeComment(cmtId, like)
             }
         }
     }

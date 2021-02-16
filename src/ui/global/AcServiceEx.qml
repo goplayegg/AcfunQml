@@ -45,4 +45,14 @@ QtObject {
             }
         })
     }
+
+    function likeComment(contentId, cmtType, cmtId, like){
+        AcService.likeComment(contentId, cmtType, cmtId, like, function(res){
+            if(0 !== res.result){
+                PopMsg.showError(res, toastMsg.parent)
+            }else{
+                toastMsg.showTip(like?"点赞成功":"取消点赞成功")
+            }
+        })
+    }
 }
