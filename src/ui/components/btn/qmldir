@@ -1,4 +1,5 @@
-﻿IconBtn 1.0 IconBtn.qml
+﻿BusyRoundBtn 1.0 BusyRoundBtn.qml
+IconBtn 1.0 IconBtn.qml
 IconTextButton 1.0 IconTextButton.qml
 IconTextUpDownBtn 1.0 IconTextUpDownBtn.qml
 ImgTextButton 1.0 ImgTextButton.qml

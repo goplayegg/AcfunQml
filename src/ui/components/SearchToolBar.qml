@@ -58,12 +58,9 @@ Item {
         }
     }
 
-    RoundButton {
+    BusyRoundBtn {
         id: btnRefresh
-        icon.name: AppIcons.mdi_refresh
-        tooltip: qsTr("refresh")
         size: root.height
-        textColor: AppStyle.accentColor
         anchors.right: parent.right
         onClicked: refresh()
     }
