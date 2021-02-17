@@ -97,7 +97,7 @@ Rectangle {
                 if(msg.text.length === 0){
                     return
                 }
-                //TODO subChannelId?
+                //TODO subChannelId 频道号 可能是为了方便服务器统计各个频道的弹幕活跃度
                 var danmJson = {
                     body: msg.text,
                     videoId:0,
@@ -106,9 +106,9 @@ Rectangle {
                     mode: danmSendOpt.item.mode,
                     color: danmSendOpt.item.color,
                     size: danmSendOpt.item.fontSize,
-                    type:"douga",
-                    subChannelId:190,
-                    subChannelName:""
+                    type: "douga",//番剧是bangumi
+                    subChannelId: 0,
+                    subChannelName: ""
                 }
                 root.sendDanm(danmJson)
             }

@@ -135,13 +135,6 @@ Rectangle {
                     voiceBar.item.open()
                 }
             }
-            VideoCtrlBtn {
-                height: btnHeight
-                width: btnWidth
-                text: AppIcons.mdi_vector_arrange_below
-                tip: qsTr("Window")
-                visible: false//TODO
-            }
             ComboBox {
                 property bool noFavoriteQuality: false
                 id: cmbQuality

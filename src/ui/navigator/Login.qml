@@ -131,7 +131,6 @@ Popup {
             height: 60
             width: parent.width
             placeholderText: qsTr("User name / phone number")
-            text: ""//TODO del
         }
         Label{
             text: qsTr("Password")
@@ -146,7 +145,6 @@ Popup {
             width: parent.width
             placeholderText: qsTr("Password")
             echoMode:TextInput.Password
-            text: ""//TODO del
         }
 
         Button{
