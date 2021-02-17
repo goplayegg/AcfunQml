@@ -471,6 +471,12 @@ Item {
         request('POST', url, null, body, cb);
     }
 
+    function resourceType(acId, cb) {
+        var url = "api-new.app.acfun.cn/rest/app/resource/type";
+        var qParam = [{"resourceCode": acId}];
+        request('GET', url, qParam, null, cb);
+    }
+
     //--------------------private--------------------
     function addHeader(hreq, endpoint){
         hreq.setRequestHeader("User-agent", c_userAgent);

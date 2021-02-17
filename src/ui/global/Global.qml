@@ -102,7 +102,14 @@ Item {
             PopImage.open(link, "gif")
         }else if(link.substr(0, 3)==="ac/"){
             let acid = link.substr(3)
-            openVideo({contentId: acid})
+            AcService.resourceType("ac"+acid, function(res){
+                if(res.result === 0){
+                    if(res.resourceType==="ARTICLE")
+                        openArticle(acid)
+                    else
+                        openVideo({contentId: acid})
+                }
+            })
         }else if(link.substr(0, 4)==="uid/"){
             let uid = link.substr(4)
             openUser(uid)
