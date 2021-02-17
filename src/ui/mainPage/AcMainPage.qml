@@ -62,7 +62,7 @@ Item{
             else
                 bangumi.refreshFavorite()
         }else{
-            AcService.getChannelVideo(cid, 10, function(res){
+            AcService.getChannelVideo(cid, 40, function(res){
                 if(0 !== res.errorid){
                     busyBox.running = false
                     PopMsg.showError(res, mainwindowRoot)

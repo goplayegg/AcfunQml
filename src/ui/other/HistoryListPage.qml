@@ -26,7 +26,7 @@ Item{
         if(busyBox.running)
             return
         busyBox.running = true
-        AcService.watchHistoryList(pcursor, 20, function(res){
+        AcService.watchHistoryList(pcursor, 40, function(res){
             if("" === pcursor)
                 histModel.clear()
             updateInfo(res)

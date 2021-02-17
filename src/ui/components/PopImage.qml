@@ -31,8 +31,8 @@ Window {
     }
 
     Item {
+        id: imgParent
         anchors.fill: parent
-
         AnimatedImage {
             id: img
             anchors.horizontalCenter: parent.horizontalCenter
@@ -112,9 +112,15 @@ Window {
     }
     Connections {
         target: g_fileSaver
-        function finished(succ) {
-            console.log("save image succ?:"+succ)
-            //TODO toast tip
+        function onFinished(succ) {
+            toastMsg.showTip(succ?qsTr("Saved."):qsTr("Save failed."))
+        }
+    }
+    Loader {
+        asynchronous: true
+        ToastMsg {
+            parent: imgParent
+            id: toastMsg
         }
     }
 }

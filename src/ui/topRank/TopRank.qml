@@ -118,7 +118,7 @@ Item{
                 model.append({"name":"新秀", "value":1})
                 model.append({"name":"上升最快", "value":2})
                 model.append({"name":"香蕉榜", "value":3})
-                model.append({"name":"文章", "value":4})
+                //model.append({"name":"文章", "value":4})
             }
             onCurrentIndexChanged: {
                 if(empty())

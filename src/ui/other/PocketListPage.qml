@@ -27,7 +27,7 @@ Item{
         if(busyBox.running || "no_more" === pcursor)
             return
         busyBox.running = true
-        AcService.waitingList(pcursor, 20, function(res){
+        AcService.waitingList(pcursor, 40, function(res){
             if("" === pcursor)
                 laterModel.clear()
             updateInfo(res)

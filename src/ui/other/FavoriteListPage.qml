@@ -26,7 +26,7 @@ Item{
         if(busyBox.running)
             return
         busyBox.running = true
-        AcService.favoriteVideoList(pcursor, 20, function(res){
+        AcService.favoriteVideoList(pcursor, 40, function(res){
             if(0 === pcursor)
                 favModel.clear()
             updateInfo(res)

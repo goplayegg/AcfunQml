@@ -252,8 +252,9 @@ Item {
     }
 
     //这个协议获取到的评论不会带正确的格式，如@的， 比较安卓抓包应该是header没带appVersion导致，如果带了appVersion会返回错误，应该是校验了sign
+    //api-new.app.acfun.cn改为api-new.acfunchina.com 再带上appVersion后正常
     function getSubComment(sourceId, sourceType, rootCommentId, pcursor, cb){
-        var url = "api-new.app.acfun.cn/rest/app/comment/sublist";
+        var url = "api-new.acfunchina.com/rest/app/comment/sublist";
         var qParam = [{"sourceId": sourceId},
                 {"sourceType": sourceType},
                 {"pcursor": pcursor},
@@ -502,6 +503,7 @@ Item {
 
         if(endpoint.indexOf("apipc.app.acfun.cn/v3/regions") !== -1 ||
                 "api-new.acfunchina.com/rest/app/comment/list" === endpoint ||
+                "api-new.acfunchina.com/rest/app/comment/sublist" === endpoint ||
                 "api-new.acfunchina.com/rest/app/selection/feed" === endpoint ||
                 "api-new.acfunchina.com/rest/app/feed/followFeedV2" === endpoint ||
                 "api-new.app.acfun.cn/rest/app/notify/load" === endpoint)
