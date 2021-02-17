@@ -142,7 +142,7 @@ Item{
                 color: AppStyle.backgroundColor
                 textColor: AppStyle.foregroundColor
                 icon.name: AppIcons.mdi_venmo
-                text: "0.5.1 " + Global.appVer()
+                text: "0.6.1 " + Global.appVer()
                 tip: qsTr("App version")
             }
 

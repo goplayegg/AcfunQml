@@ -94,22 +94,22 @@
         <translation>发布于</translation>
     </message>
     <message>
-        <location filename="../ui/article/Article.qml" line="335"/>
+        <location filename="../ui/article/Article.qml" line="336"/>
         <source>Followed</source>
         <translation>已关注</translation>
     </message>
     <message>
-        <location filename="../ui/article/Article.qml" line="335"/>
+        <location filename="../ui/article/Article.qml" line="336"/>
         <source>Follow</source>
         <translation>关注</translation>
     </message>
     <message>
-        <location filename="../ui/article/Article.qml" line="411"/>
+        <location filename="../ui/article/Article.qml" line="407"/>
         <source>show article</source>
         <translation>显示文章</translation>
     </message>
     <message>
-        <location filename="../ui/article/Article.qml" line="411"/>
+        <location filename="../ui/article/Article.qml" line="407"/>
         <source>show comment</source>
         <translation>显示评论</translation>
     </message>
@@ -138,6 +138,14 @@
         <location filename="../ui/components/card/ArticleCardSquare.qml" line="74"/>
         <source>Posted</source>
         <translation>发布于</translation>
+    </message>
+</context>
+<context>
+    <name>BusyRoundBtn</name>
+    <message>
+        <location filename="../ui/components/btn/BusyRoundBtn.qml" line="10"/>
+        <source>refresh</source>
+        <translation>刷新</translation>
     </message>
 </context>
 <context>
@@ -217,22 +225,22 @@
 <context>
     <name>CommentItem</name>
     <message>
-        <location filename="../ui/components/comment/CommentItem.qml" line="42"/>
+        <location filename="../ui/components/comment/CommentItem.qml" line="43"/>
         <source>UP</source>
         <translation>UP</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/CommentItem.qml" line="42"/>
+        <location filename="../ui/components/comment/CommentItem.qml" line="43"/>
         <source>same city</source>
         <translation>同城</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/CommentItem.qml" line="49"/>
+        <location filename="../ui/components/comment/CommentItem.qml" line="50"/>
         <source>post time</source>
         <translation>发表于</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/CommentItem.qml" line="93"/>
+        <location filename="../ui/components/comment/CommentItem.qml" line="98"/>
         <source>Send by</source>
         <translation>来自 </translation>
     </message>
@@ -250,7 +258,7 @@
         <translation>编辑器正处于引用发言状态，点击恢复正常状态。</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/CommentList.qml" line="144"/>
+        <location filename="../ui/components/comment/CommentList.qml" line="147"/>
         <source>show more</source>
         <translation>加载更多</translation>
     </message>
@@ -276,27 +284,27 @@
 <context>
     <name>DanmControl</name>
     <message>
-        <location filename="../ui/player/ctrl/DanmControl.qml" line="32"/>
+        <location filename="../ui/player/ctrl/DanmControl.qml" line="34"/>
         <source>Danmaku switch</source>
         <translation type="unfinished">弹幕开关</translation>
     </message>
     <message>
-        <location filename="../ui/player/ctrl/DanmControl.qml" line="41"/>
+        <location filename="../ui/player/ctrl/DanmControl.qml" line="47"/>
         <source>Danmaku display</source>
         <translation type="unfinished">弹幕显示</translation>
     </message>
     <message>
-        <location filename="../ui/player/ctrl/DanmControl.qml" line="56"/>
+        <location filename="../ui/player/ctrl/DanmControl.qml" line="63"/>
         <source>Danmaku send option</source>
         <translation type="unfinished">发送设置</translation>
     </message>
     <message>
-        <location filename="../ui/player/ctrl/DanmControl.qml" line="69"/>
+        <location filename="../ui/player/ctrl/DanmControl.qml" line="76"/>
         <source>Acfun 认真你就输了 (つд⊂)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/player/ctrl/DanmControl.qml" line="88"/>
+        <location filename="../ui/player/ctrl/DanmControl.qml" line="95"/>
         <source>Send</source>
         <translation type="unfinished">发送</translation>
     </message>
@@ -408,7 +416,7 @@
     <name>Login</name>
     <message>
         <location filename="../ui/navigator/Login.qml" line="99"/>
-        <location filename="../ui/navigator/Login.qml" line="157"/>
+        <location filename="../ui/navigator/Login.qml" line="155"/>
         <source>Login</source>
         <translation>登陆账户</translation>
     </message>
@@ -423,8 +431,8 @@
         <translation>用户名/手机号码</translation>
     </message>
     <message>
-        <location filename="../ui/navigator/Login.qml" line="137"/>
-        <location filename="../ui/navigator/Login.qml" line="147"/>
+        <location filename="../ui/navigator/Login.qml" line="136"/>
+        <location filename="../ui/navigator/Login.qml" line="146"/>
         <source>Password</source>
         <translation>密码</translation>
     </message>
@@ -498,6 +506,16 @@
         <location filename="../ui/components/PopImage.qml" line="96"/>
         <source>Save</source>
         <translation>保存</translation>
+    </message>
+    <message>
+        <location filename="../ui/components/PopImage.qml" line="116"/>
+        <source>Saved.</source>
+        <translation type="unfinished">保存成功。</translation>
+    </message>
+    <message>
+        <location filename="../ui/components/PopImage.qml" line="116"/>
+        <source>Save failed.</source>
+        <translation type="unfinished">保存失败。</translation>
     </message>
 </context>
 <context>
@@ -766,9 +784,8 @@
         <translation>搜索</translation>
     </message>
     <message>
-        <location filename="../ui/components/SearchToolBar.qml" line="64"/>
         <source>refresh</source>
-        <translation>刷新</translation>
+        <translation type="vanished">刷新</translation>
     </message>
 </context>
 <context>
@@ -802,22 +819,22 @@
 <context>
     <name>SubCommentItem</name>
     <message>
-        <location filename="../ui/components/comment/SubCommentItem.qml" line="43"/>
+        <location filename="../ui/components/comment/SubCommentItem.qml" line="44"/>
         <source>UP</source>
         <translation>UP</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/SubCommentItem.qml" line="43"/>
+        <location filename="../ui/components/comment/SubCommentItem.qml" line="44"/>
         <source>same city</source>
         <translation>同城</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/SubCommentItem.qml" line="50"/>
+        <location filename="../ui/components/comment/SubCommentItem.qml" line="51"/>
         <source>post time</source>
         <translation>发表于</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/SubCommentItem.qml" line="91"/>
+        <location filename="../ui/components/comment/SubCommentItem.qml" line="96"/>
         <source>Send by</source>
         <translation>来自 </translation>
     </message>
@@ -825,12 +842,12 @@
 <context>
     <name>SubCommentList</name>
     <message>
-        <location filename="../ui/components/comment/SubCommentList.qml" line="93"/>
+        <location filename="../ui/components/comment/SubCommentList.qml" line="97"/>
         <source>total:%1</source>
         <translation>共%1条</translation>
     </message>
     <message>
-        <location filename="../ui/components/comment/SubCommentList.qml" line="93"/>
+        <location filename="../ui/components/comment/SubCommentList.qml" line="97"/>
         <source>show more</source>
         <translation>显示更多</translation>
     </message>
@@ -919,17 +936,16 @@
 <context>
     <name>VideoControl</name>
     <message>
-        <location filename="../ui/player/ctrl/VideoControl.qml" line="118"/>
+        <location filename="../ui/player/ctrl/VideoControl.qml" line="131"/>
         <source>Voice</source>
         <translation>声音</translation>
     </message>
     <message>
-        <location filename="../ui/player/ctrl/VideoControl.qml" line="127"/>
         <source>Window</source>
-        <translation>新窗口</translation>
+        <translation type="vanished">新窗口</translation>
     </message>
     <message>
-        <location filename="../ui/player/ctrl/VideoControl.qml" line="160"/>
+        <location filename="../ui/player/ctrl/VideoControl.qml" line="168"/>
         <source>Pause</source>
         <translation>暂停</translation>
     </message>
@@ -938,17 +954,17 @@
         <translation type="vanished">分辨率</translation>
     </message>
     <message>
-        <location filename="../ui/player/ctrl/VideoControl.qml" line="188"/>
+        <location filename="../ui/player/ctrl/VideoControl.qml" line="199"/>
         <source>Small</source>
         <translation>小窗播放</translation>
     </message>
     <message>
-        <location filename="../ui/player/ctrl/VideoControl.qml" line="202"/>
+        <location filename="../ui/player/ctrl/VideoControl.qml" line="213"/>
         <source>Full App</source>
         <translation>铺满应用</translation>
     </message>
     <message>
-        <location filename="../ui/player/ctrl/VideoControl.qml" line="216"/>
+        <location filename="../ui/player/ctrl/VideoControl.qml" line="227"/>
         <source>Full Screen</source>
         <translation>全屏</translation>
     </message>
@@ -961,12 +977,12 @@
         <translation>发布于</translation>
     </message>
     <message>
-        <location filename="../ui/videoPage/VideoDetail.qml" line="431"/>
+        <location filename="../ui/videoPage/VideoDetail.qml" line="433"/>
         <source>Followed</source>
         <translation>已关注</translation>
     </message>
     <message>
-        <location filename="../ui/videoPage/VideoDetail.qml" line="431"/>
+        <location filename="../ui/videoPage/VideoDetail.qml" line="433"/>
         <source>Follow</source>
         <translation>关注</translation>
     </message>
