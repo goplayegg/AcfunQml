@@ -567,8 +567,8 @@ Item {
         var hreq = HttpRequestFactory.create();
         hreq.finished.connect(function() {
             hreq.finished.disconnect(arguments.callee);
-            console.log('hreq: on finished res.len: ' + hreq.responseText.length + " hreq stat:" + hreq.status + hreq.statusText);
-            console.log('hreq: on finished res: ' + hreq.responseText)
+            console.log('hreq: on finished res.len: ', hreq.responseText.length, " hreq stat:", hreq.status, hreq.statusText,
+                        '\r\nresponseText: ', hreq.responseText)
             if(hreq.status === HttpRequest.NoError) {
                 if(cb) {
                     var res = JSON.parse(hreq.responseText)
@@ -596,7 +596,7 @@ Item {
         hreq.open(verb, url);
         hreq = addHeader(hreq, endpoint);
         var data = body?body:'';
-        console.log('request: ' + verb + ' ' + url +  " body:" + data);
+        console.log('request: ', verb, ' ', url, " body:", data);
         hreq.send(data);
     }
 }
