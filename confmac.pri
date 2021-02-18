@@ -27,3 +27,6 @@ INSTALL_BIN_PATH     = $$APP_PREFIX/$${APP_TARGET}.app/Contents/MacOS
 INSTALL_APP_PATH     = $$APP_PREFIX/
 
 DEFINES += OS_MAC
+
+
+ICON = Icon.icns

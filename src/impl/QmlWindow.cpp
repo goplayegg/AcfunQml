@@ -69,8 +69,9 @@ QmlWindowPrivate::QmlWindowPrivate(QmlWindow *window)
     for (auto i = 0; i < m_languageList.length(); ++i)
     {
         auto trans = std::make_shared<QTranslator>();
-        bool ok = trans->load("trans/"+fileList.at(i));
-        qDebug() << m_languageList.at(i) << fileList.at(i) << ok;
+        auto trPath = QCoreApplication::applicationDirPath()+"/trans/"+fileList.at(i);
+        bool ok = trans->load(trPath);
+        qDebug() << m_languageList.at(i) << fileList.at(i) << ok<<" current path:"<<trPath;
         m_transMap[m_languageList.at(i)] = trans;
     }
     if(lazyPref.get()){
