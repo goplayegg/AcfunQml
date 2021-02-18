@@ -30,3 +30,4 @@ DEFINES += OS_MAC
 
 
 ICON = Icon.icns
+QMAKE_INFO_PLIST = Info.plist
