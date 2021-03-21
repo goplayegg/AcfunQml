@@ -99,10 +99,16 @@ Popup {
             text: qsTr("Login")
             font.bold: true
             font.pointSize: 24
+            font.family: AppStyle.fontNameMain
         }
 
+        Item {
+            visible: !txError.visible
+            height: 20
+            width:1
+        }
         Label{
-            anchors.topMargin: 30
+            id: txError
             width: parent.width
             height: 40
             text: strError
@@ -119,42 +125,54 @@ Popup {
         }
 
         Label{
-            anchors.topMargin: 80
             text: qsTr("User name")
-            color: AppStyle.thirdBkgroundColor
+            color: AppStyle.secondForeColor
             font.pixelSize: AppStyle.font_large
             font.family: AppStyle.fontNameMain
             verticalAlignment: Text.AlignVCenter
         }
         TextField{
             id: texUser
-            height: 60
+            height: 50
             width: parent.width
+            font.pixelSize: AppStyle.font_large
             placeholderText: qsTr("User name / phone number")
+        }
+
+        Item {
+            height: 10
+            width:1
         }
         Label{
             text: qsTr("Password")
-            color: AppStyle.thirdBkgroundColor
+            color: AppStyle.secondForeColor
             font.pixelSize: AppStyle.font_large
             font.family: AppStyle.fontNameMain
             verticalAlignment: Text.AlignVCenter
         }
         TextField{
             id: texPsw
-            height: 60
+            height: 50
             width: parent.width
+            font.pixelSize: AppStyle.font_large
             placeholderText: qsTr("Password")
             echoMode:TextInput.Password
         }
 
-        Button{
-            anchors.topMargin: 50
+        Item {
+            height: 25
+            width:1
+        }
+
+        IconTextHCenterBtn{
             id:btnLogin
-            height: 60
+            height: 50
             width: parent.width
             text:qsTr("Login")
-            //textColor: "white"
-            //color: AppStyle.accentColor
+            textColor: AppStyle.backgroundColor
+            font.pixelSize: AppStyle.font_xxlarge
+            color: AppStyle.accentColor
+            icon.name: AppIcons.mdi_face
             onClicked: {
                 AcService.login(texUser.text, texPsw.text, setLoginData)
             }

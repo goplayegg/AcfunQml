@@ -114,16 +114,14 @@ Rectangle{
                         }
                     }
                 }
-                Button{
+                IconTextHCenterBtn{
                     id: btnLogout
                     property bool customChecked: false
                     width: parent.width
                     height: 30
                     text: isSelf?qsTr("Logout"):customChecked?qsTr("Followed"):qsTr("Follow")
-                    background: Rectangle{
-                        color: (btnLogout.customChecked || isSelf)?AppStyle.backgroundColor:AppStyle.accentColor
-                        radius: 4
-                    }
+                    textColor: (btnLogout.customChecked || isSelf)?AppStyle.secondForeColor:AppStyle.backgroundColor
+                    color: (btnLogout.customChecked || isSelf)?AppStyle.backgroundColor:AppStyle.accentColor
                     onClicked: {
                         if(isSelf){
                             Global.logout()

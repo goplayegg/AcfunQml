@@ -112,5 +112,6 @@
         <file>ui/components/ToastMsg.qml</file>
         <file>ui/global/AcServiceEx.qml</file>
         <file>ui/components/btn/BusyRoundBtn.qml</file>
+        <file>ui/components/btn/IconTextHCenterBtn.qml</file>
     </qresource>
 </RCC>

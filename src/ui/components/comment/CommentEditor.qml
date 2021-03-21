@@ -183,16 +183,17 @@ Rectangle {
                 }
             }
         }
-        Button {
+        IconTextButton {
             enabled: cmtText.text.length>0
             height: btnHeight
             text: qsTr("Send comment")
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
+            textColor: AppStyle.backgroundColor
+            icon.name: AppIcons.mdi_comment_processing_outline
             onClicked: {
                 console.log("send:"+cmtText.text)
                 var accmt = document.getAcCmt()
-                //return;
                 AcService.sendComment(acId, resourceType, accmt, replyToId, function(res){
                     if(res.result !== 0){
                         PopMsg.showError(res, mainwindowRoot)

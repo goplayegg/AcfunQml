@@ -418,7 +418,7 @@
         <location filename="../ui/navigator/Login.qml" line="99"/>
         <location filename="../ui/navigator/Login.qml" line="155"/>
         <source>Login</source>
-        <translation>登陆账户</translation>
+        <translation>登陆</translation>
     </message>
     <message>
         <location filename="../ui/navigator/Login.qml" line="123"/>

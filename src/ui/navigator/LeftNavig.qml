@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.5
 import "qrc:///ui/components/"
+import "qrc:///ui/components/btn"
 import "qrc:///ui/components/sideBar"
 import "qrc:///ui/global/"
 import "qrc:///ui/global/styles/"
@@ -83,7 +84,7 @@ Rectangle{
             parent: mainwindowRoot
         }
 
-        Button{
+        IconTextHCenterBtn{
             id:btnLogin
             visible: !logined
             anchors.right: parent.right
@@ -91,17 +92,18 @@ Rectangle{
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 10
             height: shrinked?40:38
-            icon.source: pref+"ug.png"
-            text: shrinked?"":qsTr("登陆账户")
-            background: Rectangle{
-                color: shrinked?"white":"#00A1D6"
-                radius: shrinked?height/2:3
-            }
+            text: shrinked?"": tip
+            tip: qsTr("登陆账户")
+            textColor: shrinked?AppStyle.foregroundColor:AppStyle.backgroundColor
+            color: shrinked?AppStyle.backgroundColor:AppStyle.accentColor
+            icon.name: shrinked?AppIcons.mdi_face_profile:AppIcons.mdi_face
+            radius: shrinked?height/2:4
             onClicked: {
                 popupOpened(true)
                 popLogin.open()
             }
         }
+
         Avatar{
             id:imgAvatar
             visible: logined
